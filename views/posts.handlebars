@@ -1,0 +1,11 @@
+<div class="card bg-dark">
+  <div class="card-body px-4">
+    {{#each posts}}
+        <p class="text-light">{{createdAt}}</p>
+        <h1 class="card-title text-light">{{dataValues.titulo}}</h1>
+        <p class="card-text text-light">{{dataValues.conteudo}}</p>
+        
+        <hr class="text-light">
+    {{/each}}
+  </div>
+</div>
