@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const Post = require('./models/Post')
 const handlebars = require('express-handlebars');
+require('dotenv').config()
 
 // Config
 // Template Engine
