@@ -1,13 +1,13 @@
 <div class="card bg-dark">
   <div class="card-body px-4">
     {{#each posts}}
-        <p class="text-light">{{createdAt}}</p>
         <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
-        <p class="card-text text-light">{{dataValues.descricao}}</p>
-        <a href="/posts/{{dataValues.titulo}}" class="btn btn-primary text-light">Ler Mais!</a>
-        <a href="/deletar/{{dataValues.id}}">
-          <button type="button" class="btn btn-danger mx-1">DELETAR</button>
-        </a>
+        <small class="text-secondary">{{dataValues.updatedAt}}</small>
+        <p class="card-text text-info">{{dataValues.descricao}}</p>
+        <a href="/posts/{{dataValues.titulo}}" class="btn btn-success text-light">Ler Mais!</a>
+        {{!-- <a href="/deletar/{{dataValues.id}}">
+          <button type="button" class="btn btn-outline-danger mx-1">DELETAR</button>
+        </a> --}}
         
         <hr class="text-light">
     {{/each}}
