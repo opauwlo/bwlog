@@ -52,6 +52,6 @@ app.get(`/posts/:titulo`, function (req, res) {
   })
 })
 
-app.listen(8055, function () {
+app.listen(8005, function () {
   console.log(`Servidor Rodando`)
 })
