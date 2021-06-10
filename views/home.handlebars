@@ -5,9 +5,9 @@
         <small class="text-secondary">{{dataValues.updatedAt}}</small>
         <p class="card-text text-info">{{dataValues.descricao}}</p>
         <a href="/posts/{{dataValues.titulo}}" class="btn btn-success text-light">Ler Mais!</a>
-        {{!-- <a href="/deletar/{{dataValues.id}}">
+        <a href="/deletar/{{dataValues.id}}">
           <button type="button" class="btn btn-outline-danger mx-1">DELETAR</button>
-        </a> --}}
+        </a>
         
         <hr class="text-light">
     {{/each}}

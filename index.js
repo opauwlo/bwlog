@@ -46,8 +46,8 @@ app.get(`/deletar/:id`, function(req, res){
 })
 
 app.get(`/posts/:titulo`, function (req, res) {
-  Post.findAll({where: {'titulo': req.params.titulo}}).then(function(posts){
-    res.render('posts', {posts: posts})
+  Post.findAll({where: {'titulo': req.params.titulo}}).then(function(post){
+    res.render('posts', {posts: post})
 
   })
 })

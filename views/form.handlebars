@@ -1,4 +1,4 @@
-<form action="/add" method="POST">
+<form action="/add" method="POST" class="p-3">
   <div class="mb-3 p-2">
     <label for="exampleFormControlInput1" class="form-label text-light">Titulo</label>
     <input type="text" name="titulo" class="form-control" id="exampleFormControlInput1" placeholder="Titulo">
@@ -9,7 +9,7 @@
   </div>  
   <div class="mb-3 p-2">
     <label for="exampleFormControlTextarea1" class="form-label text-light">Conteudo do post</label>
-    <textarea name="conteudo" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea name="conteudo" class="form-control" id="exampleFormControlTextarea1" rows="3" wrap="hard" spellcheck="true"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary btn-sm mx-2">Enviar</button>
+  <button type="submit" class="btn btn-primary mx-2">Enviar</button>
 </form>
