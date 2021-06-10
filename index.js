@@ -53,6 +53,6 @@ app.get(`/posts/:titulo`, function (req, res) {
   })
 })
 
-app.listen(8005, function () {
+app.listen(process.env.PORT || 8005, function () {
   console.log(`Servidor Rodando`)
 })
