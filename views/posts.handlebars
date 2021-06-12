@@ -1,9 +1,10 @@
 <div class="card bg-dark">
   <div class="card-body px-4">
     {{#each posts}}
-        <h1 class="card-title text-light">{{dataValues.titulo}}</h1>
-        <small class="text-secondary">{{dataValues.updatedAt}}</small>
-        <p class="card-text text-light">{{dataValues.conteudo}}</p>
+        <section class="text-light mt-2">
+          {{{dataValues.conteudo}}}
+        </section>
+        <small class="text-secondary mt-5">{{dataValues.updatedAt}}</small>
         
         <hr class="text-light">
     {{/each}}

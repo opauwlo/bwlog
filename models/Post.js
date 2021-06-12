@@ -4,6 +4,9 @@ const Post = db.sequelize.define('postagens', {
   titulo: {
     type: db.Sequelize.STRING
   },
+  slug: {
+    type: db.Sequelize.TEXT
+  },
   descricao: {
     type: db.Sequelize.TEXT
   },

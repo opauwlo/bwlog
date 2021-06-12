@@ -12,7 +12,8 @@
     "sequelize": "^6.6.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "devDependencies": {
     "@types/express-handlebars": "^5.3.0",

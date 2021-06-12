@@ -5,7 +5,9 @@ const handlebars = require('express-handlebars');
 require('dotenv').config()
 
 // Config
-// Template Engine
+//static
+app.use('/static', express.static(__dirname + '/public'));
+// Template 
 app.engine('handlebars', handlebars({
   defaultLayout: 'main'
 }))
@@ -27,6 +29,7 @@ app.get(`/`, function (req, res) {
 })
 app.post(`/add`, function (req, res) {
   Post.create({
+    slug: req.body.slug,
     titulo: req.body.titulo,
     descricao: req.body.descricao,
     conteudo: req.body.conteudo
@@ -46,8 +49,8 @@ app.get(`/deletar/:id`, function(req, res){
   })
 })
 
-app.get(`/posts/:titulo`, function (req, res) {
-  Post.findAll({where: {'titulo': req.params.titulo}}).then(function(post){
+app.get(`/posts/:slug`, function (req, res) {
+  Post.findAll({where: {'slug': req.params.slug}}).then(function(post){
     res.render('posts', {posts: post})
 
   })
