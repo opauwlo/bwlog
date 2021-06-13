@@ -18,14 +18,14 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 // Rotas
-app.get(`/cad`, function (req, res) {
-  res.render('form')
-})
 app.get(`/`, function (req, res) {
   Post.findAll(({order: [['id','DESC']]})).then(function(posts){
     res.render('home', {posts: posts})
 
   })
+})
+app.get(`/cad`, function (req, res) {
+  res.render('form')
 })
 app.post(`/add`, function (req, res) {
   Post.create({
@@ -41,6 +41,38 @@ app.post(`/add`, function (req, res) {
 
 })
 
+app.post(`/update/:id`, function (req, res) {
+    const id = req.params.id;
+  
+    Post.update(req.body, {
+      where: { id: id }
+    }).then(function () {
+       res.redirect(`/`)
+      }).catch(function (erro) {
+        res.send(`falha ao atualizar post: `+ erro)
+      })
+
+
+})
+
+app.get(`/edit/:slug`, function (req, res) {
+  Post.findAll({where: {'slug': req.params.slug}}).then(function(post){
+    res.render('edit', {edit: post})
+  })
+})
+app.post(`/add`, function (req, res) {
+  Post.create({
+    slug: req.body.slug,
+    titulo: req.body.titulo,
+    descricao: req.body.descricao,
+    conteudo: req.body.conteudo
+  }).then(function () {
+    res.redirect(`/`)
+  }).catch(function (erro) {
+    res.send(`falha ao criar post: `+ erro)
+  })
+
+})
 app.get(`/deletar/:id`, function(req, res){
   Post.destroy({where: {'id': req.params.id}}).then(function (){
     res.redirect(`/`)

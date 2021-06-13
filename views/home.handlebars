@@ -1,15 +1,21 @@
-<div class="card bg-dark">
+<div class="card bg-dark m-3">
   <div class="card-body px-4">
     {{#each posts}}
         <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
         <small class="text-secondary">{{dataValues.updatedAt}}</small>
         <p class="card-text text-info">{{dataValues.descricao}}</p>
-        <a href="/posts/{{dataValues.slug}}" class="btn btn-success text-light">Ler Mais!</a>
-        <a href="/deletar/{{dataValues.id}}">
-          <button type="button" class="btn btn-outline-danger mx-1">DELETAR</button>
+        <a href="/posts/{{dataValues.slug}}" class="btn btn-success text-light mx-auto justify-content-end">Ler Mais!</a>
+        {{!-- <a href="/deletar/{{dataValues.id}}">
+          <button type="button" class="btn btn-danger mx-1">excluir</button>
         </a>
+        <a href="/edit/{{dataValues.slug}}">
+          <button type="button" class="btn btn-warning mx-1">editar</button>
+        </a> --}}
         
         <hr class="text-light">
     {{/each}}
   </div>
 </div>
+<script>
+
+</script>
