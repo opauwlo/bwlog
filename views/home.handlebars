@@ -1,21 +1,44 @@
-<div class="card bg-dark m-3">
-  <div class="card-body px-4">
-    {{#each posts}}
+<div class="card-body bg-transparent card text-center m-3">
+  <h5 class="card-title text-primary fw-bold mb-2">Bem Vindo Ao Pauwlo</h5>
+  <p class="card-text text-light">With supporting text below as a natural lead-in to additional content.</p>
+  <a href="#" class="btn btn-light">Inscreva-se</a>
+</div>
+{{#each posts}}
+    <div class="card bg-dark m-3">
+      <div class="card-body px-4">
         <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
         <small class="text-secondary">{{dataValues.updatedAt}}</small>
         <p class="card-text text-info">{{dataValues.descricao}}</p>
-        <a href="/posts/{{dataValues.slug}}" class="btn btn-success text-light mx-auto justify-content-end">Ler Mais!</a>
-        <a href="/deletar/{{dataValues.id}}">
-          <button type="button" class="btn btn-danger mx-1">excluir</button>
-        </a>
-        <a href="/edit/{{dataValues.slug}}">
-          <button type="button" class="btn btn-warning mx-1">editar</button>
-        </a>
-        
+        <p class="card-text text-info">{{dataValues.publicado}}</p>
+        <a href="/posts/{{dataValues.slug}}" class="btn btn-success text-light">Ler Mais!</a>
+        <a href="/edit/{{dataValues.slug}}" class="btn btn-primary mx-1">editar</a>        
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Deletar
+        </button>
         <hr class="text-light">
-    {{/each}}
-  </div>
-</div>
-<script>
+      </div>
+    </div>
+{{/each}}
 
-</script>
+{{#each posts}}
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-light" id="staticBackdropLabel">Deseja Deletar?</h5>
+          <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+          <a href="/deletar/{{dataValues.id}}">
+            <button type="button" class="btn btn-danger mx-1">Deletar</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}

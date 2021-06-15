@@ -1,12 +1,12 @@
-<div class="card bg-dark m-2">
-  <div class="card-body px-4">
-    {{#each posts}}
-        <section class="text-light mt-2">
-          {{{dataValues.conteudo}}}
-        </section>
-        <small class="text-secondary mt-5">{{dataValues.updatedAt}}</small>
-        
-        <hr class="text-light">
-    {{/each}}
+{{#each posts}}
+  <div class="card bg-dark m-2">
+    <div class="card-body px-4">
+      <section class="text-light mt-2">
+        {{{dataValues.conteudo}}}
+      </section>
+      <small class="text-secondary mt-5">{{dataValues.updatedAt}}</small>
+
+      <hr class="text-light">
+    </div>
   </div>
-</div>
+{{/each}}

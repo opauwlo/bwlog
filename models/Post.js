@@ -12,6 +12,9 @@ const Post = db.sequelize.define('postagens', {
   },
   conteudo: {
     type: db.Sequelize.TEXT
+  },
+  publicado: {
+    type: db.Sequelize.STRING.BINARY
   }
 })
 

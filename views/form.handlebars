@@ -1,17 +1,21 @@
-<form action="/add" method="POST" class="p-3">
+<head>
+  <title>Novo Post</title>
+</head>
+<script src="static/ckeditor/build/ckeditor.js"></script>
+<form action="/add" method="POST" class="p-3" id="form">
   <div class="mb-3 p-2">
     <label class="form-label text-light">slug</label>
-    <input type="text" name="slug" class="form-control" placeholder="slug">
+    <input type="text" name="slug" class="form-control" placeholder="slug" required>
   </div>
 
   <div class="mb-3 p-2">
     <label class="form-label text-light">Titulo</label>
-    <input type="text" name="titulo" class="form-control" placeholder="Titulo">
+    <input type="text" name="titulo" class="form-control" placeholder="Titulo" required>
   </div>
 
   <div class="mb-3 p-2">
     <label class="form-label text-light">Descrição</label>
-    <textarea name="descricao" class="form-control"  rows="3"></textarea>
+    <textarea name="descricao" class="form-control" rows="3" required></textarea>
   </div>  
 
   <div class="mb-3 p-2">
@@ -19,7 +23,15 @@
     <textarea name="conteudo" class="form-control" id="conteudo"></textarea>
   </div>
   <button type="submit" class="btn btn-primary mx-2">Enviar</button>
+
+  <button type="submit" class="btn btn-primary mx-2" onclick="toRasc()">Salvar rascunho</button>
 </form>
+
+<script>
+  function toRasc() {
+    document.getElementById("form").action = "/rascunho";
+  }
+</script>
 
 <script>ClassicEditor
     .create( document.querySelector( '#conteudo' ), {
