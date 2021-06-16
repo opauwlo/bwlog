@@ -1,37 +1,60 @@
-<head>
-  <title>Novo Post</title>
-</head>
-<script src="static/ckeditor/build/ckeditor.js"></script>
+<title>Novo Post</title>
+<script src="/ckeditor/build/ckeditor.js"></script>
 <form action="/add" method="POST" class="p-3" id="form">
+
   <div class="mb-3 p-2">
-    <label class="form-label text-light">slug</label>
-    <input type="text" name="slug" class="form-control" placeholder="slug" required>
+    <label class="form-label text-light" for="floatingInput">Autor(a)</label>
+    <input type="text" name="autor" class="form-control" id="floatingInput" value="{{user.name}}">
+  </div>
+
+  <div class="mb-3 p-2 visually-hidden">
+    <label class="form-label text-light" for="floatingInput">Email</label>
+    <input type="text" name="email" class="form-control" id="floatingInput" value="{{user.email}}">
+  </div>
+
+  <div class="mb-3 p-2 visually-hidden">
+    <label class="form-label text-light" for="floatingInput">Foto</label>
+    <input type="text" name="foto" class="form-control" id="floatingInput" value="{{user.picture}}">
   </div>
 
   <div class="mb-3 p-2">
-    <label class="form-label text-light">Titulo</label>
-    <input type="text" name="titulo" class="form-control" placeholder="Titulo" required>
+    <label class="form-label text-light" for="floatingInput">Slug</label>
+    <input type="text" name="slug" class="form-control" id="floatingInput" placeholder="slug" required>
+  </div>
+
+
+  <div class="mb-3 p-2">
+    <label class="form-label text-light" for="floatingInput">Titulo</label>
+    <input type="text" name="titulo" class="form-control" id="floatingInput" placeholder="Titulo" required>
   </div>
 
   <div class="mb-3 p-2">
-    <label class="form-label text-light">Descrição</label>
-    <textarea name="descricao" class="form-control" rows="3" required></textarea>
+    <label class="form-label text-light" for="floatingInput">Descrição</label>
+    <textarea id="floatingInput" name="descricao" class="form-control" rows="3" placeholder="Descriçao"></textarea>
   </div>  
 
   <div class="mb-3 p-2">
     <label class="form-label text-light">Conteudo do post</label>
     <textarea name="conteudo" class="form-control" id="conteudo"></textarea>
   </div>
+
+  <div class="mb-3 p-2">
+    <label class="form-label text-light" for="floatingInput">Salvar como:</label>
+    <select class="form-select" name="publicado" required>
+      <option value="1">Publicar</option>
+      <option value="0">Salvar como rascunho</option>
+    </select>
+  </div>
   <button type="submit" class="btn btn-primary mx-2">Enviar</button>
 
-  <button type="submit" class="btn btn-primary mx-2" onclick="toRasc()">Salvar rascunho</button>
+  {{!-- <button type="submit" class="btn btn-primary mx-2" onclick="toRasc()">Salvar rascunho</button> --}}
 </form>
 
-<script>
+{{!-- <script>
   function toRasc() {
-    document.getElementById("form").action = "/rascunho";
+    document.getElementById("form").action = "/sketch";
   }
-</script>
+</script> --}}
 
 <script>ClassicEditor
     .create( document.querySelector( '#conteudo' ), {

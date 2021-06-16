@@ -15,6 +15,15 @@ const Post = db.sequelize.define('postagens', {
   },
   publicado: {
     type: db.Sequelize.STRING.BINARY
+  },
+  autor : {
+    type: db.Sequelize.STRING
+  },
+  email: {
+    type: db.Sequelize.STRING
+  },
+  foto : {
+    type: db.Sequelize.STRING
   }
 })
 

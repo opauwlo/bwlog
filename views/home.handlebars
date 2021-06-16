@@ -1,43 +1,68 @@
-<div class="card-body bg-transparent card text-center m-3">
-  <h5 class="card-title text-primary fw-bold mb-2">Bem Vindo Ao Pauwlo</h5>
-  <p class="card-text text-light">With supporting text below as a natural lead-in to additional content.</p>
-  <a href="#" class="btn btn-light">Inscreva-se</a>
-</div>
-{{#each posts}}
-    <div class="card bg-dark m-3">
-      <div class="card-body px-4">
-        <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
-        <small class="text-secondary">{{dataValues.updatedAt}}</small>
-        <p class="card-text text-info">{{dataValues.descricao}}</p>
-        <a href="/posts/{{dataValues.slug}}" class="btn btn-success text-light">Ler Mais!</a>
-        <a href="/edit/{{dataValues.slug}}" class="btn btn-primary mx-1">editar</a>        
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Deletar
-        </button>
-        <hr class="text-light">
-      </div>
-    </div>
-{{/each}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="485040018311-t4628pim6j74ssva2ctso0qapn65hts9.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Home Page</title>
+  </head>
+  <body>
 
-{{#each posts}}
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content bg-dark text-light">
-        <div class="modal-header bg-dark">
-          <h5 class="modal-title text-light" id="staticBackdropLabel">Deseja Deletar?</h5>
-          <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-          <a href="/deletar/{{dataValues.id}}">
-            <button type="button" class="btn btn-danger mx-1">Deletar</button>
-          </a>
+    <div class="card-body bg-transparent card text-center shadow m-3" id="bannerNotLogin">
+      <h5 class="card-title text-secondary fw-light fs-4 mb-2">Bem vindo ao blog</h5>
+      <p class="card-text text-light">O blog</p>
+      <div class="g-signin2 shadow mx-auto" data-onsuccess="SignIn" data-theme="dark"></div>
+      <small class="text-secondary">
+        <a href="/logout" class="btn shadow btn-danger mt-2 text-light" onclick="signOut();">Sign out</a>
+      </small>
+    </div>
+
+    {{#each posts}}
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card bg-dark m-3 shadow-lg">
+            <div class="card-body px-4">
+              <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
+              <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
+              <p class="card-text text-info">{{dataValues.descricao}}</p>
+              <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-success text-light">Ler Mais!</a>
+              <a href="/edit/{{dataValues.id}}" class="btn btn-primary mx-1">editar</a>        
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Deletar
+              </button>
+              <hr class="text-light">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-{{/each}}
+    {{/each}}
+
+    {{#each posts}}
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-light" id="staticBackdropLabel">Deseja Deletar?</h5>
+              <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+              <a href="/deletar/{{dataValues.id}}">
+                <button type="button" class="btn btn-danger mx-1">Deletar</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+
+  </body>
+</html>
+
+

@@ -4,8 +4,21 @@
       <section class="text-light mt-2">
         {{{dataValues.conteudo}}}
       </section>
-      <small class="text-secondary mt-5">{{dataValues.updatedAt}}</small>
-
+      <div class="auotr">
+        <small class="text-secondary mt-5">Publicado por: {{dataValues.autor}}</small>
+        <small class="">
+          <img class="rounded-circle  position-relative"src="{{dataValues.foto}}" alt="">
+        </small>
+        
+      </div>
+      <div class="card mb-3 w-25 h-25">
+        <img class="card-img-top" src="{{dataValues.foto}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Publicado por:</h5>
+          <p class="card-text">{{dataValues.autor}}</p>
+          <p class="card-text"><small class="text-muted">{{dataValues.updateAt}}</small></p>
+        </div>
+      </div>
       <hr class="text-light">
     </div>
   </div>

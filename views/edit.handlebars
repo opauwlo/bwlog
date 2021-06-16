@@ -1,28 +1,67 @@
 <script src="/static/ckeditor/build/ckeditor.js"></script>
 {{#each edit}}
-  <form action="/update/{{dataValues.id}}" method="POST" class="p-3">
+  <form action="/update/{{dataValues.id}}" method="POST" class="p-3" id="formEdit">
+
     <div class="mb-3 p-2">
-      <label class="form-label text-light">Slug</label>
-      <input type="text" name="slug" class="form-control" value="{{dataValues.slug}}"> 
+      <label class="form-label text-light" for="floatingInput">Autor(a)</label>
+      <input type="text" name="autor" class="form-control" id="floatingInput" value="{{user.name}}">
+    </div>
+
+    <div class="mb-3 p-2 .d-none">
+      <label class="form-label text-light" for="floatingInput">Email</label>
+      <input type="text" name="email" class="form-control" id="floatingInput" value="{{user.email}}">
+    </div>
+
+    <div class="mb-3 p-2 .d-none">
+      <label class="form-label text-light" for="floatingInput">Foto</label>
+      <input type="text" name="foto" class="form-control" id="floatingInput" value="{{user.picture}}">
     </div>
 
     <div class="mb-3 p-2">
-      <label class="form-label text-light">Titulo</label>
-      <input type="text" name="titulo" class="form-control" value="{{dataValues.titulo}}">
+      <label for="floatingInput" class="form-label text-light">Slug</label>
+      <input type="text" name="slug" class="form-control" id="floatingInput" value="{{dataValues.slug}}"> 
     </div>
 
     <div class="mb-3 p-2">
-      <label class="form-label text-light">Descrição</label>
-      <textarea name="descricao" class="form-control"  rows="2">{{dataValues.descricao}}</textarea>
+      <label for="floatingInput" class="form-label text-light">Título</label>
+      <input type="text" name="titulo" class="form-control" id="floatingInput" value="{{dataValues.titulo}}">
+    </div>
+
+    <div class="mb-3 p-2">
+      <label for="floatingInput" class="form-label text-light">Descrição</label>
+      <textarea name="descricao" class="form-control" id="floatingInput" rows="2">{{dataValues.descricao}}</textarea>
     </div>  
 
     <div class="mb-3 p-2">
       <label class="form-label text-light">Conteudo do post</label>
       <textarea name="conteudo" class="form-control" id="conteudo">{{dataValues.conteudo}}</textarea>
     </div>
+
+    <div class="mb-3 p-2">
+      <label class="form-label text-light" for="floatingInput">Salvar como:</label>
+      <select class="form-select mb-3 p-2" name="publicado" required>
+        <option class="mb-3 p-2" value="1">Publicar</option>
+        <option class="mb-3 p-2" value="0">Salvar como rascunho</option>
+      </select>
+    </div>
+
     <button type="submit" class="btn btn-primary mx-2">Enviar</button>
   </form>
 {{/each}}
+{{!-- <script>
+  function toRasc() {
+    const express = require('express');
+    const app = express();
+    const Post = require('../models/Post.js')
+    src
+    document.getElementById("formEdit").action = "/sketch";
+    const id = req.params.id;
+    Post.update(req.body, {
+      where: { id: id },
+      publicado: 0
+    })
+  }
+</script> --}}
 <script>ClassicEditor
     .create( document.querySelector( '#conteudo' ), {
       
