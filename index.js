@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
 const Post = require("./models/Post");
+const Users = require("./models/User");
 const handlebars = require("express-handlebars");
 const cookieParser = require('cookie-parser')
 // Google
-const CLIENT_ID = '485040018311-t4628pim6j74ssva2ctso0qapn65hts9.apps.googleusercontent.com'
+const CLIENT_ID = process.env.CLIENT_ID;
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
+require('./public/js/auth')
 require("dotenv").config();
 
 // Config
@@ -30,16 +32,16 @@ app.use(express.json());
 app.use(cookieParser());
 // Rotas
 app.get(`/`, function(req, res) {
-  let name = req.body.name;
+  //
+  
   Post.findAll({
     order: [["id", "DESC"]],
     where: {
       publicado: 1
     }
   }).then((posts)=> {
-    
-    res.render("home",
-    {
+    res.render("home", 
+    { 
       posts: posts
     });
   });
@@ -64,11 +66,16 @@ app.post(`/`, (req, res)=>{
   }).catch(console.error);
 })
 
+app.get('/login', (req, res)=>{
+  res.render('login');
+})
+
 app.get('/logout', (req, res)=>{
   res.clearCookie('session-token');
   res.redirect('/');
 })
-app.get('/perfil', checkAuthenticated, (req, res)=>{
+
+app.get('/perfil/:id', checkAuthenticated, (req, res)=>{
   let user = req.user;
 
   res.render("perfil", {
@@ -91,6 +98,11 @@ app.post(`/add`, checkAuthenticated, function(req, res) {
     descricao: req.body.descricao,
     conteudo: req.body.conteudo,
     publicado: req.body.publicado,
+  }),
+  Users.create({
+    autor: req.body.autor,
+    email: req.body.email,
+    foto: req.body.foto
   })
     .then(function() {
       res.redirect(`/`);
@@ -157,6 +169,7 @@ app.get(`/posts/:slug`, function(req, res) {
   });
 });
 
+
 function checkAuthenticated(req, res, next){
 
   let token = req.cookies['session-token'];
@@ -178,11 +191,10 @@ function checkAuthenticated(req, res, next){
         next();
     })
     .catch(err=>{
-        res.redirect('/')
+        res.redirect('/login')
     })
 
 }
-
 
 app.listen(process.env.PORT || 8005, function() {
   console.log(`Servidor Rodando`);

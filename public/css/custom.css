@@ -52,3 +52,7 @@ main .ck-editor[role='application'] {
 .new-post a {
   text-decoration: none;
 }
+.none {
+	display: none;
+	visibility: hidden;
+}

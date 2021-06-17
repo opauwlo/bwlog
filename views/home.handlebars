@@ -1,22 +1,14 @@
-<div class=" new-post ">
-  <a class="link-secondary "href="/cad">
-    <div class="input-group shadow">
-      <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary" placeholder="compartilhe momentos, escreva" aria-describedby="button-addon2">
-      <button class="btn btn-success rounded-end text-light m-auto" type="button" id="button-addon2">
-        <i class="bi text-white bi-plus-circle"></i>
-      </button>
-    </div>
-  </a>
-</div>
+  <div class=" new-post ">
+    <a class="link-secondary "href="/cad">
+      <div class="input-group shadow">
+        <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="compartilhe momentos, escreva {{user.dataValues.autor}}" aria-describedby="button-addon2">
+        <button class="btn btn-success rounded-end text-light m-auto" type="button" id="button-addon2">
+          <i class="bi text-white bi-plus-circle"></i>
+        </button>
+      </div>
+    </a>
+  </div>
 
-<div class="card-body bg-transparent card text-center shadow m-3" id="bannerNotLogin">
-  <h5 class="card-title text-secondary fw-light fs-4 mb-2">Bem vindo ao blog</h5>
-  <p class="card-text text-light">O blog</p>
-  <div class="g-signin2 shadow mx-auto" data-onsuccess="SignIn" data-theme="dark"></div>
-  <small class="text-secondary">
-    <a href="/logout" class="btn shadow btn-danger mt-2 text-light" onclick="signOut();">Sign out</a>
-  </small>
-</div>
 
 <section class="row p-1">
   {{#each posts}}
@@ -60,5 +52,3 @@
     </div>
   </div>
 {{/each}}
-
-
