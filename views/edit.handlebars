@@ -1,21 +1,14 @@
-<script src="/static/ckeditor/build/ckeditor.js"></script>
+<script src="/ckeditor/build/ckeditor.js"></script>
 {{#each edit}}
   <form action="/update/{{dataValues.id}}" method="POST" class="p-3" id="formEdit">
 
     <div class="mb-3 p-2">
       <label class="form-label text-light" for="floatingInput">Autor(a)</label>
-      <input type="text" name="autor" class="form-control" id="floatingInput" value="{{user.name}}">
+      <input type="text" name="autor" class="form-control" id="floatingInput" value="{{dataValues.autor}}">
     </div>
 
-    <div class="mb-3 p-2 .d-none">
-      <label class="form-label text-light" for="floatingInput">Email</label>
-      <input type="text" name="email" class="form-control" id="floatingInput" value="{{user.email}}">
-    </div>
-
-    <div class="mb-3 p-2 .d-none">
-      <label class="form-label text-light" for="floatingInput">Foto</label>
-      <input type="text" name="foto" class="form-control" id="floatingInput" value="{{user.picture}}">
-    </div>
+    <input disabled type="text" name="email" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.email}}">
+    <input disabled type="text" name="foto" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.foto}}">
 
     <div class="mb-3 p-2">
       <label for="floatingInput" class="form-label text-light">Slug</label>
@@ -48,66 +41,54 @@
     <button type="submit" class="btn btn-primary mx-2">Enviar</button>
   </form>
 {{/each}}
-{{!-- <script>
-  function toRasc() {
-    const express = require('express');
-    const app = express();
-    const Post = require('../models/Post.js')
-    src
-    document.getElementById("formEdit").action = "/sketch";
-    const id = req.params.id;
-    Post.update(req.body, {
-      where: { id: id },
-      publicado: 0
-    })
-  }
-</script> --}}
+
 <script>ClassicEditor
-    .create( document.querySelector( '#conteudo' ), {
-      
-      toolbar: {
-        items: [
-          'undo',
-          'redo',
-          '|',
-          'bold',
-          'italic',
-          'underline',
-          'fontFamily',
-          'fontSize',
-          '|',
-          'fontColor',
-          'highlight',
-          '|',
-          'bulletedList',
-          'numberedList',
-          '|',
-          'outdent',
-          'indent',
-          'alignment',
-          '|',
-          'horizontalLine',
-          '|',
-          'code'
-        ]
-      },
-      language: 'pt-br',
-      licenseKey: '',
-      
-      
-      
-    } )
-    .then( editor => {
-      window.editor = editor;
-  
-      
-      
-      
-    } )
-    .catch( error => {
-      console.error( 'Oops, something went wrong!' );
-      console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-      console.warn( 'Build id: v89nm3xcoi1i-xyd3twi9ywa' );
-      console.error( error );
-    } );
-</script>
+			.create( document.querySelector( '#conteudo' ), {
+				
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'|',
+						'bold',
+						'underline',
+						'italic',
+						'|',
+						'alignment',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'todoList',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'fontFamily',
+						'fontSize',
+						'fontColor',
+						'|',
+						'code',
+						'horizontalLine',
+						'|'
+					]
+				},
+				language: 'pt-br',
+				licenseKey: '',
+				
+				
+				
+			} )
+			.then( editor => {
+				window.editor = editor;
+		
+				
+				
+				
+			} )
+			.catch( error => {
+				console.error( 'Oops, something went wrong!' );
+				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+				console.warn( 'Build id: 124s41fvxfoy-5sy8gb4yjfv' );
+				console.error( error );
+			} );
+	</script>

@@ -47,66 +47,56 @@
   </div>
   <button type="submit" class="btn btn-primary mx-2">Enviar</button>
 
-  {{!-- <button type="submit" class="btn btn-primary mx-2" onclick="toRasc()">Salvar rascunho</button> --}}
 </form>
 
-{{!-- <script>
-  function toRasc() {
-    document.getElementById("form").action = "/sketch";
-  }
-</script> --}}
 
 <script>ClassicEditor
-    .create( document.querySelector( '#conteudo' ), {
-      
-      toolbar: {
-        items: [
-          'undo',
-          'redo',
-          '|',
-          'bold',
-          'italic',
-          'underline',
-          'fontFamily',
-          'fontSize',
-          '|',
-          'fontColor',
-          'highlight',
-          '|',
-          'bulletedList',
-          'numberedList',
-          '|',
-          'link',
-          '|',
-          'outdent',
-          'indent',
-          'alignment',
-          '|',
-          'horizontalLine',
-          'blockQuote',
-          'specialCharacters',
-          '|',
-          'code',
-          'imageUpload'
-        ]
-      },
-      language: 'pt-br',
-      licenseKey: '',
-      
-      
-      
-    } )
-    .then( editor => {
-      window.editor = editor;
-  
-      
-      
-      
-    } )
-    .catch( error => {
-      console.error( 'Oops, something went wrong!' );
-      console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-      console.warn( 'Build id: v89nm3xcoi1i-xyd3twi9ywa' );
-      console.error( error );
-    } );
-</script>
+			.create( document.querySelector( '#conteudo' ), {
+				
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'|',
+						'bold',
+						'underline',
+						'italic',
+						'|',
+						'alignment',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'todoList',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'fontFamily',
+						'fontSize',
+						'fontColor',
+						'|',
+						'code',
+						'horizontalLine',
+						'|'
+					]
+				},
+				language: 'pt-br',
+				licenseKey: '',
+				
+				
+				
+			} )
+			.then( editor => {
+				window.editor = editor;
+		
+				
+				
+				
+			} )
+			.catch( error => {
+				console.error( 'Oops, something went wrong!' );
+				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+				console.warn( 'Build id: 124s41fvxfoy-5sy8gb4yjfv' );
+				console.error( error );
+			} );
+	</script>

@@ -2,17 +2,13 @@ function signOut() {
   let auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
+
   });
 }
 
-
-
 function logIn() {
   const hero = document.querySelector('#bannerNotLogin');
-
   hero.classList.add('visually-hidden');
-
-
 }
 // auth2 is initialized with gapi.auth2.init() and a user is signed in.
 function SignIn(googleUser) {
@@ -27,6 +23,5 @@ function SignIn(googleUser) {
     }
   };
   xhr.send(JSON.stringify({token: id_token}));
-
   
 }

@@ -30,13 +30,14 @@ app.use(express.json());
 app.use(cookieParser());
 // Rotas
 app.get(`/`, function(req, res) {
+  let name = req.body.name;
   Post.findAll({
     order: [["id", "DESC"]],
     where: {
-      publicado: 1,
+      publicado: 1
     }
   }).then((posts)=> {
-    var user = req.user;
+    
     res.render("home",
     {
       posts: posts
@@ -70,7 +71,9 @@ app.get('/logout', (req, res)=>{
 app.get('/perfil', checkAuthenticated, (req, res)=>{
   let user = req.user;
 
-  res.render("perfil", {user});
+  res.render("perfil", {
+    user
+  });
 })
 
 app.get(`/cad`, checkAuthenticated, function(req, res) {
@@ -114,14 +117,16 @@ app.post(`/update/:id`, checkAuthenticated, function(req, res) {
 });
 
 app.get(`/edit/:id`, checkAuthenticated, function(req, res) {
-  let user = req.user;
+  
   Post.findAll({
     where: {
       id: req.params.id,
     },
-  }).then(function(post) {
-    res.render("edit", {user}, {
+  }).then((post, user)=> {
+    var user = req.user;
+    res.render("edit", {
       edit: post,
+      info: {user}
     });
   });
 });

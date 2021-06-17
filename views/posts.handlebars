@@ -1,23 +1,22 @@
 {{#each posts}}
-  <div class="card bg-dark m-2">
-    <div class="card-body px-4">
-      <section class="text-light mt-2">
-        {{{dataValues.conteudo}}}
-      </section>
-      <div class="auotr">
-        <small class="text-secondary mt-5">Publicado por: {{dataValues.autor}}</small>
-        <small class="">
-          <img class="rounded-circle  position-relative"src="{{dataValues.foto}}" alt="">
-        </small>
-        
+  <section class="mx-2 py-1 px-3 my-3 w-auto shadow rounded-3">
+    <div class="d-flex align-items-center my-2 text-light ">
+      <div class="flex-shrink-0">
+        <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
       </div>
-      <div class="card mb-3 w-25 h-25">
-        <img class="card-img-top" src="{{dataValues.foto}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Publicado por:</h5>
-          <p class="card-text">{{dataValues.autor}}</p>
-          <p class="card-text"><small class="text-muted">{{dataValues.updateAt}}</small></p>
-        </div>
+      <div class="flex-grow-0 float-start text-profile">
+        {{dataValues.autor}}
+      </div>
+    </div>
+  </section>
+
+  <div class="card bg-dark mx-2 shadow">
+    <div class="card-body px-3">
+      <div class="text-light"> 
+        <h2 class="mb-3">{{dataValues.titulo}}</h2>
+      </div>
+      <div class="text-light mt-2">
+        {{{dataValues.conteudo}}}
       </div>
       <hr class="text-light">
     </div>
