@@ -25,7 +25,7 @@ main .ck-editor[role='application'] {
 
 .ck.ck-editor__editable {
 	background: #fff;
-	border: 1px solid hsl(0, 0%, 70%);
+	border: 0px solid hsl(0, 0%, 70%);
 	width: 100%;
 }
 
@@ -34,7 +34,12 @@ main .ck-editor[role='application'] {
 	position: relative;
 	z-index: var(--ck-sample-editor-z-index);
 }
-
+.ck.ck-toolbar {
+  border: 1.3px solid #6c757d !important;
+}
+.ck.ck-editor__editable {
+border: 1px solid #6c757d !important;
+}
 .editor-container {
 	display: flex;
 	flex-direction: row;
@@ -43,11 +48,75 @@ main .ck-editor[role='application'] {
 	width: 100%;
 	justify-content: center;
 }
+
+
+/* Classic build. */
+:root {
+    --ck-color-base-foreground: #212529 !important;
+    --ck-color-base-background: #212529 !important;
+    --ck-color-base-border: #6c757d !important;
+    --ck-color-base-action: #6c757d !important;
+    --ck-color-base-focus: #363636 !important;
+    --ck-color-base-text: #e0e2e4 !important;
+    --ck-color-base-active: #a09595 !important;
+    --ck-color-base-active-focus: #363636 !important;
+    --ck-color-base-error: #db3700;
+    --ck-color-focus-border-coordinates: #363636 !important;
+    --ck-color-focus-border: #363636 !important;
+    --ck-color-focus-outer-shadow: #363636 !important;
+    /* --ck-color-focus-disabled-shadow: rgba(119,186,248,0.3); */
+    --ck-color-focus-error-shadow: rgba(255,64,31,0.3);
+    --ck-color-text: white !important;
+    --ck-color-shadow-drop: rgba(0,0,0,0.15);
+    --ck-color-shadow-drop-active: rgba(0,0,0,0.2);
+    --ck-color-shadow-inner: rgba(0,0,0,0.1);
+    --ck-color-button-default-background: transparent !important;
+    --ck-color-button-default-hover-background: #41464b !important;
+    --ck-color-button-default-active-background: #41464b !important;
+    --ck-color-button-default-active-shadow: #41464b !important;
+    --ck-color-button-default-disabled-background: transparent;
+    --ck-color-button-on-background: #41464b !important;
+    --ck-color-button-on-hover-background: #424548 !important;
+    --ck-color-button-on-active-background: #212529 !important;
+    --ck-color-button-on-active-shadow: #41464b !important;
+    --ck-color-button-on-disabled-background: #41464b !important;
+    --ck-color-button-action-background: var(--ck-color-base-action);
+    --ck-color-button-action-hover-background: #579e3d;
+    --ck-color-button-action-active-background: #53973b;
+    --ck-color-button-action-active-shadow: #498433;
+    --ck-color-button-action-disabled-background: #7ec365;
+    --ck-color-button-action-text: var(--ck-color-base-background);
+    --ck-color-button-save: #008a00;
+    --ck-color-button-cancel: #db3700;
+    --ck-color-switch-button-off-background: #b0b0b0;
+    --ck-color-switch-button-off-hover-background: #a3a3a3;
+    --ck-color-switch-button-on-background: var(--ck-color-button-action-background);
+    --ck-color-switch-button-on-hover-background: #579e3d;
+    --ck-color-switch-button-inner-background: var(--ck-color-base-background);
+    --ck-color-switch-button-inner-shadow: rgba(0,0,0,0.1);
+    --ck-color-dropdown-panel-background: var(--ck-color-base-background);
+    --ck-color-dropdown-panel-border: var(--ck-color-base-border);
+    --ck-color-input-background: var(--ck-color-base-background);
+    --ck-color-input-border: #c7c7c7;
+    --ck-color-input-error-border: var(--ck-color-base-error);
+    --ck-color-input-text: var(--ck-color-base-text);
+    --ck-color-input-disabled-background: #f2f2f2;
+    --ck-color-input-disabled-border: #c7c7c7;
+}
+
+.ck.ck-editor__main>.ck-editor__editable p{
+  background-color: #212529 !important;
+  color: whitesmoke !important;
+}
+.ck.ck-editor__main>.ck-editor__editable{
+  background-color: #212529 !important;
+  color: whitesmoke;
+}
 .new-post {
   padding-top: 10px;
   padding-bottom: 10px;
   margin: auto;
-  width: 90%;
+  width: 100%;
 }
 .new-post a {
   text-decoration: none;
@@ -56,3 +125,78 @@ main .ck-editor[role='application'] {
 	display: none;
 	visibility: hidden;
 }
+
+
+/*   color variables */
+/*   border radius */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  position: relative;
+  width: 20rem;
+  height: 3rem;
+}
+
+.form-text {
+	position: relative;
+  width: 20rem;
+  height: 5.75rem;
+}
+
+.form__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #6c757d;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  outline: none;
+  padding: 1.25rem;
+  background: none;
+  /* Change border when input focus*/
+}
+
+.form__input:hover {
+  border-color: #adffff;
+}
+
+.form__input:focus {
+  border-color: #18ffff;
+}
+
+.form__label {
+  position: absolute;
+  left: 1rem;
+  top: 0.8rem;
+  padding: 0 0.5rem;
+  color: white;
+  cursor: text;
+  -webkit-transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  background-color: #212529;
+}
+
+/* 
+1. When the input is in the focus state
+reduce the size of the label and move upwards 
+
+2. Keep label state when content is in input field 
+*/
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+  top: -0.5rem;
+  font-size: 0.8rem;
+  left: 0.8rem;
+}
+/*# sourceMappingURL=scss.css.map */

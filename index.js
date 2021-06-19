@@ -3,7 +3,9 @@ const app = express();
 const Post = require("./models/Post");
 const Users = require("./models/User");
 const handlebars = require("express-handlebars");
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const slugify = require('slugify');
+const random = require ('./public/js/slugNumbers')
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
 const {OAuth2Client} = require('google-auth-library');
@@ -75,7 +77,7 @@ app.get('/logout', (req, res)=>{
   res.redirect('/');
 })
 
-app.get('/perfil/:id', checkAuthenticated, (req, res)=>{
+app.get('/perfil', checkAuthenticated, (req, res)=>{
   let user = req.user;
 
   res.render("perfil", {
@@ -93,8 +95,10 @@ app.post(`/add`, checkAuthenticated, function(req, res) {
     autor: req.body.autor,
     email: req.body.email,
     foto: req.body.foto,
-    slug: req.body.slug,
     titulo: req.body.titulo,
+    slug: slugify(req.body.titulo + - + random(1,1000),{
+      lower: true
+    }),
     descricao: req.body.descricao,
     conteudo: req.body.conteudo,
     publicado: req.body.publicado,
