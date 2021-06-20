@@ -24,6 +24,9 @@ const Post = db.sequelize.define('postagens', {
   },
   foto : {
     type: db.Sequelize.STRING
+  },
+  id_user : {
+    type: db.Sequelize.STRING
   }
 })
 

@@ -1,5 +1,4 @@
 const express = require("express");
-const app = express();
 const Post = require("./models/Post");
 const Users = require("./models/User");
 const handlebars = require("express-handlebars");
@@ -15,6 +14,7 @@ require("dotenv").config();
 
 // Config
 //static
+const app = express();
 app.use(express.static(__dirname + "/public"));
 // Template
 app.engine(
