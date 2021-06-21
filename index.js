@@ -5,6 +5,8 @@ const handlebars = require("express-handlebars");
 const cookieParser = require('cookie-parser');
 const slugify = require('slugify');
 const random = require ('./public/js/slugNumbers')
+const seedrandom = require('seedrandom');
+
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
 const {OAuth2Client} = require('google-auth-library');
@@ -13,8 +15,11 @@ require('./public/js/auth')
 require("dotenv").config();
 
 // Config
+// Random
+rng = seedrandom('added entropy.', { entropy: true });
+console.log(random());
 //static
-const app = express();
+var app = express();
 app.use(express.static(__dirname + "/public"));
 // Template
 app.engine(
@@ -85,6 +90,22 @@ app.get('/perfil', checkAuthenticated, (req, res)=>{
   });
 })
 
+app.get('/autor/:id_user', checkAuthenticated, (req, res)=>{
+  const id = req.params.id_user;
+  Post.findAll({
+    order: [["id", "DESC"]],
+    where: {
+      id_user: id
+    }
+  }).then((posts)=> {
+    res.render("autor", 
+    { 
+      posts: posts
+    });
+  });
+})
+
+
 app.get(`/cad`, checkAuthenticated, function(req, res) {
   let user = req.user;
   res.render("form", {user});
@@ -96,17 +117,13 @@ app.post(`/add`, checkAuthenticated, function(req, res) {
     email: req.body.email,
     foto: req.body.foto,
     titulo: req.body.titulo,
-    slug: slugify(req.body.titulo + - + random(1,1000),{
+    slug: slugify(req.body.titulo + - + random(),{
       lower: true
     }),
     descricao: req.body.descricao,
     conteudo: req.body.conteudo,
     publicado: req.body.publicado,
-  }),
-  Users.create({
-    autor: req.body.autor,
-    email: req.body.email,
-    foto: req.body.foto
+    id_user: req.body.sub
   })
     .then(function() {
       res.redirect(`/`);
@@ -186,6 +203,7 @@ function checkAuthenticated(req, res, next){
       });
       const payload = ticket.getPayload();
       user.name = payload.name;
+      user.sub = payload.sub;
       user.email = payload.email;
       user.picture = payload.picture;
     }

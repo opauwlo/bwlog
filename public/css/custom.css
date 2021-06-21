@@ -2,7 +2,9 @@
 .text-profile {
   margin-left: -25px;
 }
-
+  .text-profile a {
+    text-decoration: none;
+  }
 .editor__editable,
 /* Classic build. */
 main .ck-editor[role='application'] .ck.ck-content,
@@ -71,16 +73,16 @@ border: 1px solid #6c757d !important;
     --ck-color-shadow-drop-active: rgba(0,0,0,0.2);
     --ck-color-shadow-inner: rgba(0,0,0,0.1);
     --ck-color-button-default-background: transparent !important;
-    --ck-color-button-default-hover-background: #41464b !important;
-    --ck-color-button-default-active-background: #41464b !important;
-    --ck-color-button-default-active-shadow: #41464b !important;
+    --ck-color-button-default-hover-background: transparent !important;
+    --ck-color-button-default-active-background: transparent !important;
+    --ck-color-button-default-active-shadow: transparent !important;
     --ck-color-button-default-disabled-background: transparent;
-    --ck-color-button-on-background: #41464b !important;
+    --ck-color-button-on-background: transparent !important;
     --ck-color-button-on-hover-background: #424548 !important;
-    --ck-color-button-on-active-background: #212529 !important;
-    --ck-color-button-on-active-shadow: #41464b !important;
-    --ck-color-button-on-disabled-background: #41464b !important;
-    --ck-color-button-action-background: var(--ck-color-base-action);
+    --ck-color-button-on-active-background: transparent !important;
+    --ck-color-button-on-active-shadow: transparent !important;
+    --ck-color-button-on-disabled-background: transparent !important;
+    --ck-color-button-action-background: transparent !important;
     --ck-color-button-action-hover-background: #579e3d;
     --ck-color-button-action-active-background: #53973b;
     --ck-color-button-action-active-shadow: #498433;
@@ -126,7 +128,9 @@ border: 1px solid #6c757d !important;
 	visibility: hidden;
 }
 
-
+.perfil a {
+  text-decoration: none;
+}
 /*   color variables */
 /*   border radius */
 *,
@@ -199,4 +203,3 @@ reduce the size of the label and move upwards
   font-size: 0.8rem;
   left: 0.8rem;
 }
-/*# sourceMappingURL=scss.css.map */
