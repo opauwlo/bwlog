@@ -76,7 +76,7 @@ app.get('/login', (req, res)=>{
 
 app.get('/logout', (req, res)=>{
   res.clearCookie('session-token');
-  res.redirect('/');
+  res.redirect('/login');
 })
 
 app.get('/perfil', checkAuthenticated, (req, res)=>{
