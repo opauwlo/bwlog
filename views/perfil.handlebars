@@ -1,6 +1,110 @@
-<a href="/logout"> logout</a>
+<section class="mx-2 py-1 px-3 mt-3 w-auto shadow rounded-3">
+  <div class="d-flex align-items-center my-2 text-light ">
+    <div class="flex-shrink-0">
+      <img class="rounded-circle w-50 border border-warning"src="{{user.picture}}" alt="profile picture">
+    </div>
+    <div class="flex-grow-0 float-start text-profile">
+      <a class="link-secondary text-white-50" href="# ">
+        {{user.name}}
+      </a>
+      <a href="/logout">
+        <span class="text-end badge bg-danger fs-6">Sair</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-<h1 class="text-light">hi {{user.name}}</h1>
-<h1 class="text-light">hi {{user.sub}}</h1>
+<div class=" new-post p-2 text-light">
+  <div class="card text-white bg-dark">
+    <div class="card-body">
+      Suas histórias:
+    </div>
+    <div class="new-post p-2 ">
+      <ul class="nav nav-pills nav-justified mb-3 " id="pills-tab" role="tablist">
+        <li class="nav-item " role="presentation">
+          <button class="nav-link active shadow border-3" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Publicas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link shadow border-3" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Privadas</button>
+        </li>
+      </ul>
 
-<img src="{{user.picture}}" alt="profile picture">
+    </div>
+  </div>
+</div>
+<div class="tab-content " id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <section class="row row-cols-md-1 p-1">
+      {{#each posts}}
+        {{#if dataValues.publicado}}
+          <div class="col-sm-6  rounded-3">
+            <div class="card bg-dark m-2 shadow text-center">
+              <div class="card-body px-3 ">
+                <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
+                <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
+                <p class="card-text text-info">{{dataValues.descricao}}</p>
+ 
+                <div class="d-grid gap-2 mt-2 p-3">
+                  <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success fw-bold">Ler Mais!</a>
+                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-primary fw-bold">editar</a>
+                  <button type="button" class="btn btn-outline-danger fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Deletar
+                  </button>                  
+                </div>
+                <hr class="text-light">
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+    </section>
+  </div>
+  <div class="tab-pane fade bg-dark" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <section class="row row-cols-md-1 p-1">
+      {{#each posts}}
+        {{#unless dataValues.publicado}}
+          <div class="col-sm-6  rounded-3">
+            <div class="card bg-dark m-2 shadow text-center">
+              <div class="card-body px-3 ">
+                <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
+                <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
+                <p class="card-text text-info">{{dataValues.descricao}}</p>
+ 
+                <div class="d-grid gap-2 mt-2 p-3">
+                  <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success fw-bold">Ler Mais!</a>
+                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-primary fw-bold">editar</a>
+                  <button type="button" class="btn btn-outline-danger fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Deletar
+                  </button>                  
+                </div>
+                <hr class="text-light">
+              </div>
+            </div>
+          </div>
+        {{/unless}}
+      {{/each}}
+    </section>
+  </div>
+</div>
+{{#each posts}}
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog text-secondary">
+      <div class="modal-content bg-dark text-secondary">
+        <div class="modal-header bg-dark text-secondary">
+          <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
+          <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-white-50">
+          ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+          <a href="/deletar/{{dataValues.id}}">
+            <button type="button" class="btn btn-danger mx-1">Deletar</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}

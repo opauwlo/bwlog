@@ -15,34 +15,31 @@
   </head>
   <body class="bg-dark p-2 container">
 
-    <div class="offcanvas offcanvas-end bg-dark rounded-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end bg-dark rounded-start p-1 ml-2" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header bg-dark rounded-start">
-        <h5 class="mt-2 text-warning fs-2 text fw-bold " id="offcanvasRightLabel">Menu</h5>
+        <h5 class="mt-2 text-warning fs-2 text fw-bold " id="offcanvasRightLabel">the bwlog</h5>
         <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body bg-dark">
         <div class="navbar-nav">
-          <a class="nav-link mx-auto fs-3 text-white-50 fw-semibold" aria-current="page" href="/">Home</a>
-          <a class="nav-link mx-auto fs-3 text-white-50 fw-semibold" href="/cad">New Post</a>
-          <a href="/logout" class="mx-auto">
-            <button type="button" class="btn btn-danger mx-2" onclick="signOut();">Sair</button>
-          </a>
-          <div class="g-signin2 nav-link mx-auto rounded-3 " data-onsuccess="SignIn" data-theme=""></div>
+          <a class="nav-link mx-auto text-white-50 fs-5" aria-current="page" href="/">Home</a>
+          <a class="nav-link mx-auto text-white-50 fs-5" href="/perfil">Perfil</a>
+          <a class="nav-link mx-auto text-white-50 fs-5" href="/cad">Nova história</a>
         </div>
       </div>
     </div>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand mx-3 text-warning fs-2 text fw-bold " href="/">pauwlo</a>
+          <a class="navbar-brand mx-3 text-warning fs-2 text fw-bold " href="/">the bwlog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active mx-3" aria-current="page" href="/">Home</a>
-              <a class="nav-link mx-3" href="/cad">New Post</a>
-              <a class="nav-link mx-3" href="#">Sign</a>
+              <a class="nav-link mx-3" href="/cad">Nova história</a>
+              <a class="nav-link mx-3" href="/perfil">Perfil</a>
             </div>
           </div>
         </div>  

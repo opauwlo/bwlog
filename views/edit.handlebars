@@ -2,41 +2,41 @@
 {{#each edit}}
   <form action="/update/{{dataValues.id}}" method="POST" class="p-3" id="formEdit">
 
-    <div class="mb-3 p-2">
-      <label class="form-label text-light" for="floatingInput">Autor(a)</label>
-      <input type="text" name="autor" class="form-control" id="floatingInput" value="{{dataValues.autor}}">
-    </div>
+		<div class="form mb-3 p-2 mx-auto">
+			<input type="text" name="autor" class="form__input" autocomplete="on" placeholder=" " required value="{{dataValues.autor}}">
+			<label class="form__label">Autor (a)</label>
+		</div>
+
+		<hr class="text-dark">
 
     <input disabled type="text" name="email" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.email}}">
     <input disabled type="text" name="foto" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.foto}}">
 
-    <div class="mb-3 p-2">
-      <label for="floatingInput" class="form-label text-light">Slug</label>
-      <input type="text" name="slug" class="form-control" id="floatingInput" value="{{dataValues.slug}}"> 
-    </div>
+		<div class="form mb-3 p-2 mx-auto">
+			<input type="text" name="titulo" class="form__input" autocomplete="off" placeholder=" " value="{{dataValues.titulo}}" required>
+			<label class="form__label">Título</label>
+		</div>
+		
+		<hr class="text-dark">
 
-    <div class="mb-3 p-2">
-      <label for="floatingInput" class="form-label text-light">Título</label>
-      <input type="text" name="titulo" class="form-control" id="floatingInput" value="{{dataValues.titulo}}">
-    </div>
-
-    <div class="mb-3 p-2">
-      <label for="floatingInput" class="form-label text-light">Descrição</label>
-      <textarea name="descricao" class="form-control" id="floatingInput" rows="2">{{dataValues.descricao}}</textarea>
-    </div>  
+		<div class="form-text mb-3 p-2 mx-auto">
+			<textarea type="text" name="descricao" class="form__input" autocomplete="on" placeholder=" " required>{{dataValues.descricao}}</textarea>
+			<label class="form__label">Descrição</label>
+		</div>
+		
 
     <div class="mb-3 p-2">
       <label class="form-label text-light">Conteudo do post</label>
       <textarea name="conteudo" class="form-control" id="conteudo">{{dataValues.conteudo}}</textarea>
     </div>
 
-    <div class="mb-3 p-2">
-      <label class="form-label text-light" for="floatingInput">Salvar como:</label>
-      <select class="form-select mb-3 p-2" name="publicado" required>
-        <option class="mb-3 p-2" value="1">Publicar</option>
-        <option class="mb-3 p-2" value="0">Salvar como rascunho</option>
-      </select>
-    </div>
+  <div class="mb-3 p-2 bg-dark">
+    <label class="form-label text-light bg-dark" for="floatingInput">Salvar como:</label>
+    <select class="form-select bg-dark text-light border-2 border-secondary" name="publicado" required>
+      <option value="true">Publico</option>
+      <option value="false">Privado</option>
+    </select>
+  </div>
 
     <button type="submit" class="btn btn-primary mx-2">Enviar</button>
   </form>

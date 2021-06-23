@@ -1,6 +1,5 @@
 const express = require("express");
 const Post = require("./models/Post");
-const Users = require("./models/User");
 const handlebars = require("express-handlebars");
 const cookieParser = require('cookie-parser');
 const slugify = require('slugify');
@@ -17,7 +16,6 @@ require("dotenv").config();
 // Config
 // Random
 rng = seedrandom('added entropy.', { entropy: true });
-console.log(random());
 //static
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -44,7 +42,7 @@ app.get(`/`, function(req, res) {
   Post.findAll({
     order: [["id", "DESC"]],
     where: {
-      publicado: 1
+      publicado: true
     }
   }).then((posts)=> {
     res.render("home", 
@@ -64,7 +62,6 @@ app.post(`/`, (req, res)=>{
     }); 
     const payload = ticket.getPayload();
     const userid = payload['sub'];
-    console.log(payload);
   }
   verify()
   .then(()=>{
@@ -84,18 +81,26 @@ app.get('/logout', (req, res)=>{
 
 app.get('/perfil', checkAuthenticated, (req, res)=>{
   let user = req.user;
-
-  res.render("perfil", {
-    user
-  });
+  Post.findAll({
+    order: [["id", "DESC"]],
+    where: {
+      id_user: user.sub
+    }
+  }).then((posts)=>{
+    res.render("perfil", {
+      posts: posts,
+      user: user
+    })
+  })
 })
 
-app.get('/autor/:id_user', checkAuthenticated, (req, res)=>{
+app.get('/autor/:id_user', (req, res)=>{
   const id = req.params.id_user;
   Post.findAll({
     order: [["id", "DESC"]],
     where: {
-      id_user: id
+      id_user: id,
+      publicado: true
     }
   }).then((posts)=> {
     res.render("autor", 
@@ -142,7 +147,7 @@ app.post(`/update/:id`, checkAuthenticated, function(req, res) {
     },
   })
     .then(function() {
-      res.redirect(`/`);
+      res.redirect(`/perfil`);
     })
     .catch(function(erro) {
       res.send(`falha ao atualizar post: ` + erro);
@@ -171,7 +176,7 @@ app.get(`/deletar/:id`, function(req, res) {
     },
   })
     .then(function() {
-      res.redirect(`/`);
+      res.redirect(`/perfil`);
     })
     .catch(function(erro) {
       res.send("Erro ao deletar posategem!" + erro);
@@ -217,7 +222,6 @@ function checkAuthenticated(req, res, next){
     })
 
 }
-
-app.listen(process.env.PORT || 8005, function() {
+app.listen(process.env.PORT || 8000 , ()=> {
   console.log(`Servidor Rodando`);
 });

@@ -1,18 +1,19 @@
-{{#each posts}}
-  <section class="mx-2 py-1 px-3 my-3 w-auto shadow rounded-3">
-    <div class="d-flex align-items-center my-2 text-light ">
-      <div class="flex-shrink-0">
-        <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+{{#posts}}
+  {{#if @first}}
+    <section class="mx-2 py-1 px-3 my-3 w-auto shadow rounded-3">
+      <div class="d-flex align-items-center my-2 text-light ">
+        <div class="flex-shrink-0">
+          <img class="rounded-circle w-50 border border-warning"src="{{dataValues.foto}}" alt="profile picture">
+        </div>
+        <div class="flex-grow-0 float-start text-profile">
+          <a class="link-secondary text-white-50" href="# ">
+            {{dataValues.autor}}
+          </a>
+        </div>
       </div>
-      <div class="flex-grow-0 float-start text-profile">
-        <a class="link-secondary  " href="/autor/{{dataValues.id_user}}">
-          {{dataValues.autor}}
-        </a>
-      </div>
-    </div>
-  </section>
-  
-{{/each}}
+    </section>
+  {{/if}}
+{{/posts}}
 
 <div class=" new-post p-3">
   <a class="link-secondary "href="/cad">
@@ -25,19 +26,17 @@
   </a>
 </div>
 
-<section class="row p-1">
+<section class="row p-1 row-cols-md-1 ">
   {{#each posts}}
-      <div class="col-sm-4  rounded-3">
-        <div class="card bg-dark m-2 shadow text-center">
+      <div class="col-lg-6 rounded-3 mb-4">
+        <div class="card bg-dark m-2 shadow text-center" >
           <div class="card-body px-3 ">
-            <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
-            <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
-            <p class="card-text text-info">{{dataValues.descricao}}</p>
-            <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-success text-light">Ler Mais!</a>
-            <a href="/edit/{{dataValues.id}}" class="btn btn-primary mx-1">editar</a>        
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              Deletar
-            </button>
+            <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
+            <small class="text-info">{{dataValues.descricao}}</small>
+            <p class="card-text text-secondary"> by: {{dataValues.autor}}</p>
+            <div class="d-grid gap-2">
+              <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success text-light">Ler Mais!</a>
+            </div>
             <hr class="text-light">
           </div>
         </div>
