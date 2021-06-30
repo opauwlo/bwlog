@@ -1,9 +1,6 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="social-blog" />
-
   &#xa0;
-
-  <!-- <a href="https://social-blog.netlify.app">Demo</a> -->
+  <a href="https://the-bwlog.herokuapp.com/">the bwlog</a>
 </div>
 
 <h1 align="center">social-blog</h1>
@@ -46,23 +43,23 @@
 
 ## :dart: About ##
 
-Describe your project
+A social network for you to share your stories, no images just text
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Login system with google auth;\
+:heavy_check_mark: Profile page;\
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [AWS](https://aws.amazon.com/pt/getting-started/)
+- [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
+- [Express](http://expressjs.com/)
+- [MySql](https://www.mysql.com/)
+- [Handlebars](https://handlebarsjs.com/)
 
 ## :white_check_mark: Requirements ##
 
@@ -78,12 +75,12 @@ $ git clone https://github.com/opauwlo/social-blog
 $ cd social-blog
 
 # Install dependencies
-$ yarn
+$ npm i
 
 # Run the project
-$ yarn start
+$ npm run dev
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:8000>
 ```
 
 ## :memo: License ##
@@ -91,7 +88,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/opauwlo" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/opauwlo" target="_blank">opauwlo</a>
 
 &#xa0;
 
