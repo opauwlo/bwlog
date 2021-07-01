@@ -1,14 +1,21 @@
-  <div class=" new-post p-3">
-    <a class="link-secondary "href="/cad">
-      <div class="input-group shadow">
-        <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="compartilhe momentos, escreva {{user.dataValues.autor}}" aria-describedby="button-addon2" disabled>
-        <button class="btn btn-success rounded-end text-light m-auto" type="button" id="button-addon2">
-          <i class="bi text-white bi-plus-circle"></i>
-        </button>
-      </div>
-    </a>
-  </div>
+<div class=" new-post p-3">
+  <a class="link-secondary "href="/cad">
+    <div class="input-group shadow">
+      <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="compartilhe momentos, escreva {{user.dataValues.autor}}" aria-describedby="button-addon2" disabled>
+      <button class="btn btn-success rounded-end text-light m-auto" type="button" id="button-addon2">
+        <i class="bi text-white bi-plus-circle"></i>
+      </button>
+    </div>
+  </a>
+</div>
 
+<div class="loader">
+  <div class="text-center">
+    <div class="spinner-border text-light" style="width: 2.5rem; height: 2.5rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
 <section class="row row-cols-md-1 p-1 ">
   {{#each posts}}
       <div class="col-lg-6 rounded-3 mb-4">

@@ -9,14 +9,23 @@
       </a>
     <small class="text-secondary">
       <div hidden class="visually-hidden invisible g-signin2 " data-onsuccess="SignIndata-theme="dark"></div>
-      <a href="/logout" class="btn shadow btn-danger mt-2 text-light" onclick="signOut();">Sign out</a>
+      <a href="/logout" class="btn shadow btn-danger justify-center text-light btn-sm" onclick="signOut();">Sign out</a>
     </small>
     </div>
   </div>
 </section>
-
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg-dark">
+    <div class=" new-post p-3">
+      <a class="link-secondary "href="/cad">
+        <div class="input-group shadow">
+          <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="compartilhe momentos, escreva {{user.dataValues.autor}}" aria-describedby="button-addon2" disabled>
+          <button class="btn btn-success rounded-end text-light m-auto" type="button" id="button-addon2">
+            <i class="bi text-white bi-plus-circle"></i>
+          </button>
+        </div>
+      </a>
+    </div>
     <div class="card-body">
       Suas histórias:
     </div>
