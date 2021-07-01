@@ -47,8 +47,8 @@ A social network for you to share your stories, no images just text
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Login system with google auth;\
-:heavy_check_mark: Profile page;\
+:heavy_check_mark: Login system with google auth;
+:heavy_check_mark: Profile page;
 
 ## :rocket: Technologies ##
 
