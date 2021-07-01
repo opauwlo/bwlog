@@ -23,9 +23,7 @@
   },
   "devDependencies": {
     "@types/express-handlebars": "^5.3.0",
-    "autoprefixer": "^10.2.6",
-    "postcss": "^8.3.0",
-    "tailwindcss": "^2.1.4"
+    "autoprefixer": "^10.2.6"
   },
   "main": "index.js",
   "repository": {
