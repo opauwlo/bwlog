@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const slugify = require('slugify');
 const random = require ('./public/js/slugNumbers')
 const seedrandom = require('seedrandom');
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 // Google
   const CLIENT_ID = process.env.CLIENT_ID;
   const {OAuth2Client} = require('google-auth-library');
@@ -41,21 +42,6 @@ const seedrandom = require('seedrandom');
 
   // Rotas
     //home
-      app.get(`/`, function(req, res) {
-        
-        Post.findAll({
-          order: [["id", "DESC"]],
-          where: {
-            publicado: true
-          }
-        }).then((posts)=> {
-          res.render("home", 
-          { 
-            posts: posts
-          });
-        });
-      });
-
     //get login infos 
       app.post(`/`, (req, res)=>{
         let token = req.body.token
@@ -74,6 +60,22 @@ const seedrandom = require('seedrandom');
           res.send('success');
         }).catch(console.error);
       })
+    //render the home
+      app.get(`/`, (req, res)=> {
+        
+        Post.findAll({
+          order: [["id", "DESC"]],
+          where: {
+            publicado: true
+          }
+        }).then((posts)=> {
+          res.render("home", 
+          { 
+            posts: posts
+          });
+        });
+      });
+
 
     //login page
       app.get('/login', (req, res)=>{
@@ -85,6 +87,7 @@ const seedrandom = require('seedrandom');
         res.clearCookie('session-token');
         res.redirect('/login');
       })
+
     //profile page
       app.get('/perfil', checkAuthenticated, (req, res)=>{
         let user = req.user;
@@ -119,13 +122,13 @@ const seedrandom = require('seedrandom');
       })
 
     //page to creat posts
-      app.get(`/cad`, checkAuthenticated, function(req, res) {
+      app.get(`/cad`, checkAuthenticated, (req, res)=> {
         let user = req.user;
         res.render("form", {user});
       });
     
     //page to send your posts infos
-      app.post(`/add`, checkAuthenticated, function(req, res) {
+      app.post(`/add`, checkAuthenticated, (req, res)=> {
         Post.create({
           autor: req.body.autor,
           email: req.body.email,
@@ -147,7 +150,7 @@ const seedrandom = require('seedrandom');
           });
       });
     //page to show a post from somone else
-      app.get(`/posts/:slug`, function(req, res) {
+      app.get(`/posts/:slug`, (req, res)=> {
         Post.findAll({
           where: {
             slug: req.params.slug,
@@ -160,7 +163,7 @@ const seedrandom = require('seedrandom');
       });
       
     //page to insert new infos in some post
-      app.get(`/edit/:id`, checkAuthenticated, function(req, res) {
+      app.get(`/edit/:id`, checkAuthenticated, (req, res)=> {
         
         Post.findAll({
           where: {
@@ -176,7 +179,7 @@ const seedrandom = require('seedrandom');
       });
       
     //page to post posts updates
-      app.post(`/update/:id`, checkAuthenticated, function(req, res) {
+      app.post(`/update/:id`, checkAuthenticated, (req, res)=> {
         const id = req.params.id;
 
         Post.update(req.body, {
@@ -184,22 +187,22 @@ const seedrandom = require('seedrandom');
             id: id,
           },
         })
-          .then(function() {
+          .then(()=> {
             res.redirect(`/perfil`);
           })
-          .catch(function(erro) {
+          .catch((erro)=> {
             res.send(`falha ao atualizar post: ` + erro);
           });
       });
 
     //page to delet some post
-      app.get(`/deletar/:id`, function(req, res) {
+      app.get(`/deletar/:id`, (req, res)=> {
         Post.destroy({
           where: {
             id: req.params.id,
           },
         })
-          .then(function() {
+          .then(()=> {
             res.redirect(`/perfil`);
           })
           .catch(function(erro) {
@@ -207,6 +210,21 @@ const seedrandom = require('seedrandom');
           });
       });
 
+    //search page 
+      app.get(`/search`, (req, res)=>{
+        let {term} = req.query
+        Post.findAll({ 
+          where: { 
+            [Op.or]: [
+              {titulo: {[Op.like]: '%' + term + '%' }},
+              {descricao: {[Op.like]: '%' + term + '%' }},
+              {autor: {[Op.like]: '%' + term + '%' }}
+            ],
+            publicado: true
+          }
+      }).then(posts => res.render('search', {posts}))
+        .catch(err => console.log(err));
+      })
 function checkAuthenticated(req, res, next){
 
   let token = req.cookies['session-token'];

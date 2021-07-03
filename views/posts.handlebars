@@ -1,28 +1,28 @@
 {{#each posts}}
 
-  <section class="mx-2 py-1 px-3 my-3 w-auto shadow rounded-3">
-    <div class="d-flex align-items-center my-2 text-light ">
-      <div class="flex-shrink-0">
-        <img class="rounded-circle w-50 border border-warning"src="{{dataValues.foto}}" alt="profile picture">
+  <div class="bg-dark shadow-sm rounded-3 mt-1">
+    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+      <div class="d-flex align-items-center my-2 text-light ">
+        <div class="flex-shrink-0">
+          <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+        </div>
+        <div class="flex-grow-0 float-start text-profile">
+          <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
+            {{dataValues.autor}}
+          </a>
+        </div>
       </div>
-      <div class="flex-grow-0 float-start text-profile">
-        <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
-          {{dataValues.autor}}
-        </a>
-      </div>
-    </div>
-  </section>
-  <div class="card bg-dark mx-2 shadow-lg border-1 rounded-3 border-secondary my-3">
+    </section>
     <div class="card-body px-4">
-      <div class="text-light"> 
+      <div class="text-white"> 
         <h2 class="mb-3">{{dataValues.titulo}}</h2>
       </div>
-      <hr class="  text-light">
-      <div class="text-light mt-2">
+      <hr class="  text-white-50">
+      <div class="text-white-50 mt-2">
         {{{dataValues.conteudo}}}
       </div>
     </div>
-    
-
   </div>
+    
 {{/each}}
+{{> newPostPartial}}

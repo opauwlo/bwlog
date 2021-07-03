@@ -1,0 +1,50 @@
+<script>ClassicEditor
+			.create( document.querySelector( '#conteudo' ), {
+				
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'|',
+						'bold',
+						'underline',
+						'italic',
+						'|',
+						'alignment',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'todoList',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'fontFamily',
+						'fontSize',
+						'fontColor',
+						'|',
+						'code',
+						'horizontalLine',
+						'|'
+					]
+				},
+				language: 'pt-br',
+				licenseKey: '',
+				
+				
+				
+			} )
+			.then( editor => {
+				window.editor = editor;
+		
+				
+				
+				
+			} )
+			.catch( error => {
+				console.error( 'Oops, something went wrong!' );
+				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+				console.warn( 'Build id: 124s41fvxfoy-5sy8gb4yjfv' );
+				console.error( error );
+			} );
+	</script>

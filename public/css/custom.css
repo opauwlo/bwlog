@@ -204,7 +204,23 @@ reduce the size of the label and move upwards
   left: 0.8rem;
 }
 
-
+.changeTheme {
+  background: #198754;
+  border: 0;
+  border-radius: 36%;
+  bottom: 20px;
+  color: whitesmoke;
+  font-size: 33px;
+  height: 55px;
+  position: fixed;
+  margin: 0 auto;
+  right: 15px;
+  text-align: center;
+  transition: transform 50ms ease-in-out;
+  width: 55px;
+  z-index: 3;
+  padding: 2px;
+}
 
 .loader {
   position: fixed;
