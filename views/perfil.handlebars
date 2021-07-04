@@ -100,9 +100,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-          <a href="/deletar/{{dataValues.id}}">
-            <button type="button" class="btn btn-danger mx-1">Deletar</button>
-          </a>
+          <form action="/deletar/{{dataValues.id}}" method="POST">
+            <button type="submit" class="btn btn-danger mx-1">Deletar</button>
+          </form>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ const seedrandom = require('seedrandom');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment');
+const helpers = require('handlebars-helpers')();
 const Op = Sequelize.Op;
 const app = express(); 
 // Google
@@ -233,7 +234,7 @@ const app = express();
       });
 
     //page to delet some post
-      app.get(`/deletar/:id`, (req, res)=> {
+      app.post(`/deletar/:id`, (req, res)=> {
         Post.destroy({
           where: {
             id: req.params.id,
@@ -250,7 +251,8 @@ const app = express();
     //search page 
       app.get(`/search`, (req, res)=>{
         let {term} = req.query
-        Post.findAll({ 
+        Post.findAll({
+          order: [["id", "DESC"]],
           where: { 
             [Op.or]: [
               {titulo: {[Op.like]: '%' + term + '%' }},
@@ -293,7 +295,11 @@ const app = express();
           res.redirect('/login')
       })
   }
-  
+    //404
+      app.get(`*`, (req, res)=>{
+        let {term} = req.query
+        res.render('404')
+      })
 app.listen(process.env.PORT || 8000 , ()=> {
   console.log(`Servidor Rodando`);
 });
