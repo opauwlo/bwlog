@@ -1,4 +1,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+html {
+  scroll-behavior: smooth;
+}
 .text-profile {
   margin-left: -25px;
 }
@@ -204,50 +207,12 @@ reduce the size of the label and move upwards
   left: 0.8rem;
 }
 
-.changeTheme {
-  background: #198754;
-  border: 0;
-  border-radius: 36%;
-  bottom: 20px;
-  color: whitesmoke;
-  font-size: 33px;
-  height: 55px;
-  position: fixed;
-  margin: 0 auto;
-  right: 15px;
-  text-align: center;
-  transition: transform 50ms ease-in-out;
-  width: 55px;
-  z-index: 3;
-  padding: 2px;
+.margin-r {
+  margin-right: 33px;
 }
 
-.loader {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #212529;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.text-format {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.loader > img {
-  width: 100px;
-}
-
-.loader.hidden {
-  animation: fadeOut 1s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fadeOut {
-  100% {
-      opacity: 0;
-      visibility: hidden;
-  }
-}
-

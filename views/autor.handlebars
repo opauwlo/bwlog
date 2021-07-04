@@ -1,12 +1,12 @@
 {{#posts}}
   {{#if @first}}
-    <section class="mx-2 py-1 px-3 my-3 w-auto shadow rounded-3">
+    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
       <div class="d-flex align-items-center my-2 text-light ">
         <div class="flex-shrink-0">
-          <img class="rounded-circle w-50 border border-warning"src="{{dataValues.foto}}" alt="profile picture">
+          <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
         </div>
         <div class="flex-grow-0 float-start text-profile">
-          <a class="link-secondary text-white-50" href="# ">
+          <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
             {{dataValues.autor}}
           </a>
         </div>
@@ -16,14 +16,13 @@
 {{/posts}}
 
 <div class=" new-post p-3">
-  <a class="link-secondary "href="#">
-    <div class="input-group shadow">
-      <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
-      <button class="btn btn-outline-secondary rounded-end text-light m-auto" type="button" id="button-addon2" disabled>
-        <i class="bi bi-arrow-down"></i>
-      </button>
-    </div>
-  </a>
+ 
+  <div class="input-group shadow">
+    <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
+    <button class="btn btn-outline-secondary border-1 border-secondary text-light m-auto" type="button"id="button-addon2">
+      <i class="bi bi-arrow-down"></i>
+    </button>
+  </div>
 </div>
 
 <section class="row p-1 row-cols-md-1 ">

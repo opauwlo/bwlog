@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="485040018311-t4628pim6j74ssva2ctso0qapn65hts9.apps.googleusercontent.com">
     <link rel = "shortcut icon" type = "imagem/x-icon" href = "/icon/icon.png"/>
+    <script src="/js/loading.js"></script>
+    <link rel="stylesheet" href="/css/loading.css">
     <script src="/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/custom.css">
@@ -13,7 +15,6 @@
     <title>the-bwlog</title>
   </head>
   <body class="bg-dark p-3 container">
-
     <div class="offcanvas offcanvas-end bg-dark rounded-start p-1 ml-2" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header bg-dark rounded-start">
         <h5 class="mt-3 text-warning fs-2 text fw-bold " id="offcanvasRightLabel">the bwlog</h5>
@@ -35,7 +36,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <div class="navbar-nav mt-3">
               <a class="nav-link active mx-3" aria-current="page" href="/">Home</a>
               <a class="nav-link mx-3" href="/cad">Nova história</a>
               <a class="nav-link mx-3" href="/perfil">Perfil</a>
@@ -45,7 +46,8 @@
       </nav>
     </header>
 
-    
+    {{>_msgPartial}}
+
     {{{body}}}
   </body>
 </html>

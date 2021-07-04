@@ -1,0 +1,32 @@
+{{#if success_msg}}
+  <section class="row row-cols-md-1 p-1 alert">
+    <div class="col rounded-3 mb-1">
+      <div class="card bg-info m-2 shadow text-center">
+        <div class="card-body px-3">
+          {{success_msg}}
+        </div>
+      </div>
+    </div>
+  </section>
+{{/if}}
+{{#if erro_msg}}
+  <section class="row row-cols-md-1 p-1 alert">
+    <div class="col rounded-3 mb-1">
+      <div class="card bg-danger m-2 shadow text-center text-dark">
+        <div class="card-body px-3 fw-bold">
+          {{erro_msg}}
+        </div>
+      </div>
+    </div>
+  </section>
+{{/if}}
+
+<script>
+    let alerta = document.getElementsByClassName('alert')[0]
+
+    if(alerta) {
+        setTimeout(() => {
+            alerta.style.display = 'none';
+        }, 2500)
+    }
+</script>

@@ -1,17 +1,22 @@
-<section class="mx-2 py-1 px-3 mt-3 w-auto shadow rounded-3">
-  <div class="d-flex align-items-center my-2 text-light ">
-    <div class="flex-shrink-0">
-      <img class="rounded-circle w-50 border border-warning"src="{{user.picture}}" alt="profile picture">
-    </div>
-    <div class="flex-grow-0 float-start text-profile">
-      <a class="link-secondary text-white-50" href="# ">
-        {{user.name}}
-      </a>
-      <div hidden class="visually-hidden invisible g-signin2 " data-onsuccess="SignIndata-theme="dark"></div>
-      <a href="/logout" class="btn shadow btn-danger justify-center text-light btn-sm" onclick="signOut();"> Sign out </a>
-    </div>
-  </div>
-</section>
+    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+      <div class="d-flex align-items-center my-2 text-light ">
+        <div class="flex-shrink-0">
+          <img class="rounded-circle w-50 border border-secondary"src="{{user.picture}}" alt="profile picture">
+        </div>
+        <div class="flex-grow-0 float-start text-profile">
+          <a class="link-secondary text-white-50" href="# ">
+            {{user.name}}
+          </a>
+          <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
+          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3" onclick="signOut();">
+            Sair
+          </a>
+        </div>
+      </div>
+      </div>
+    </section>
+
+          
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg-dark">
 
@@ -36,21 +41,19 @@
     <section class="row row-cols-md-1 p-1">
       {{#each posts}}
         {{#if dataValues.publicado}}
-          <div class="col-sm-6  rounded-3">
+          <div class="col-lg-6  rounded-3">
             <div class="card bg-dark m-2 shadow text-center">
               <div class="card-body px-3 ">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
                 <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
-                <p class="card-text text-info">{{dataValues.descricao}}</p>
- 
-                <div class="d-grid gap-2 mt-2 p-3">
-                  <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success fw-bold">Ler Mais!</a>
-                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-primary fw-bold">editar</a>
-                  <button type="button" class="btn btn-outline-danger fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+                <div class="d-grid gap-2 p-3" role="group">
+                  <a href="/posts/preview/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
+                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-primary fw-bold">Editar</a>
+                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Deletar
                   </button>                  
                 </div>
-                <hr class="text-light">
               </div>
             </div>
           </div>
@@ -62,21 +65,19 @@
     <section class="row row-cols-md-1 p-1">
       {{#each posts}}
         {{#unless dataValues.publicado}}
-          <div class="col-sm-6  rounded-3">
-            <div class="card bg-dark m-2 shadow text-center">
+          <div class="col-lg-6  rounded-3">
+            <div class="card bg-dark m-2 shadow text-center ">
               <div class="card-body px-3 ">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
                 <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
-                <p class="card-text text-info">{{dataValues.descricao}}</p>
- 
-                <div class="d-grid gap-2 mt-2 p-3">
-                  <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success fw-bold">Ler Mais!</a>
-                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-primary fw-bold">editar</a>
-                  <button type="button" class="btn btn-outline-danger fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+                <div class="d-grid gap-2 p-3" role="group">
+                  <a href="/posts/preview/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
+                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-primary fw-bold">Editar</a>
+                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Deletar
                   </button>                  
                 </div>
-                <hr class="text-light">
               </div>
             </div>
           </div>

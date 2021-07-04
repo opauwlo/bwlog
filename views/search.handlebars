@@ -1,22 +1,36 @@
-<div class="loader">
-  <div class="text-center">
-    <div class="spinner-border text-light" style="width: 2.5rem; height: 2.5rem;" role="status">
-      <span class="visually-hidden">Loading...</span>
+{{> searchPartial}}
+
+<section class="row row-cols-md-1 p-1 ">
+  <div class="col rounded-3 mb-1">
+    <div class="card bg-info m-2 shadow text-center">
+      <div class="card-body px-3">
+      Resultados para <small class="fst-italic fs-6 fw-bold">{{term}}</small>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
 <section class="row row-cols-md-1 p-1 ">
   {{#each posts}}
-      <div class="col-lg-6 rounded-3 mb-4">
-        <div class="card bg-dark m-2 shadow text-center" >
-          <div class="card-body px-3 ">
-            <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
-            <small class="text-info">{{dataValues.descricao}}</small>
-            <p class="card-text text-secondary"> by: {{dataValues.autor}}</p>
-            <div class="d-grid gap-2">
-              <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success text-light">Ler Mais!</a>
-            </div>
-            <hr class="text-light">
+    <div class="col-lg-6 rounded-3 mb-4 text-format">
+      <div class="card bg-dark m-2 shadow text-center" >
+        <div class="card-body px-3 ">
+          <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
+          <small class="text-info">{{dataValues.descricao}}</small>
+          <p class="card-text text-secondary"> by: {{dataValues.autor}}</p>
+          <div class="d-grid gap-2">
+            <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-success text-light">Ler Mais!</a>
+          </div>
+          <hr class="text-light">
+        </div>
+      </div>
+    </div>
+    {{else}}
+      <div class="col rounded-3 mb-4">
+        <div class="card bg-dark m-2 shadow text-center">
+          <div class="card-body px-3 text-light">
+            <small class="fst-italic fs-6 fw-bold">:(</small> <br>
+              Que tal buscar por um sinonimo?
           </div>
         </div>
       </div>

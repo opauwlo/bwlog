@@ -1,12 +1,16 @@
 const express = require("express");
-const Post = require("./models/Post");
+const Sequelize = require('sequelize');
 const handlebars = require("express-handlebars");
 const cookieParser = require('cookie-parser');
 const slugify = require('slugify');
 const random = require ('./public/js/slugNumbers')
+const Post = require("./models/Post");
 const seedrandom = require('seedrandom');
-const Sequelize = require('sequelize');
+const session = require('express-session');
+const flash = require('connect-flash');
+const moment = require('moment');
 const Op = Sequelize.Op;
+const app = express(); 
 // Google
   const CLIENT_ID = process.env.CLIENT_ID;
   const {OAuth2Client} = require('google-auth-library');
@@ -15,11 +19,23 @@ const Op = Sequelize.Op;
   require("dotenv").config();
 
 // Configs
+  //Session
+    app.use(session({
+      secret: "88442211pV#",
+      resave: true,
+      saveUninitialized: true
+    }))
+    app.use(flash())
+  //Middleware
+    app.use((req, res, next)=>{
+      res.locals.success_msg = req.flash("success_msg");
+      res.locals.error_msg = req.flash("error_msg");
+      next();
+    })
   // Random
     rng = seedrandom('added entropy.', { entropy: true });
 
   //static
-    var app = express();
     app.use(express.static(__dirname + "/public"));
 
   // Template
@@ -27,6 +43,11 @@ const Op = Sequelize.Op;
       "handlebars",
       handlebars({
         defaultLayout: "main",
+        helpers: {
+          formatDate: (updateAt) => {
+            return moment(updateAt).format('DD/MM/YYYY')
+          }
+        }
       })
     );
     app.set("view engine", "handlebars");
@@ -42,7 +63,22 @@ const Op = Sequelize.Op;
 
   // Rotas
     //home
-    //get login infos 
+    //render the home
+    app.get(`/`, (req, res)=> {
+      
+      Post.findAll({
+        order: [["id", "DESC"]],
+        where: {
+          publicado: true
+        }
+      }).then((posts)=> {
+        res.render("home", 
+        { 
+          posts: posts
+        });
+      });
+    });
+    //get login infos s
       app.post(`/`, (req, res)=>{
         let token = req.body.token
         async function verify() {
@@ -60,21 +96,6 @@ const Op = Sequelize.Op;
           res.send('success');
         }).catch(console.error);
       })
-    //render the home
-      app.get(`/`, (req, res)=> {
-        
-        Post.findAll({
-          order: [["id", "DESC"]],
-          where: {
-            publicado: true
-          }
-        }).then((posts)=> {
-          res.render("home", 
-          { 
-            posts: posts
-          });
-        });
-      });
 
 
     //login page
@@ -142,11 +163,13 @@ const Op = Sequelize.Op;
           publicado: req.body.publicado,
           id_user: req.body.sub
         })
-          .then(function() {
-            res.redirect(`/`);
+          .then(()=> {
+            req.flash("success_msg", "Publicado com sucesso :)")
+            res.redirect(`/perfil`);
           })
-          .catch(function(erro) {
-            res.send(`falha ao criar post: ` + erro);
+          .catch(()=> {
+            req.flash("erro_msg", (" Houve um erro, não foi possível fazer a publicação:("))
+            res.redirect(`/cad`)
           });
       });
     //page to show a post from somone else
@@ -154,6 +177,7 @@ const Op = Sequelize.Op;
         Post.findAll({
           where: {
             slug: req.params.slug,
+            publicado: true
           },
         }).then(function(post) {
           res.render("posts", {
@@ -161,7 +185,18 @@ const Op = Sequelize.Op;
           });
         });
       });
-      
+
+      app.get(`/posts/preview/:slug`, (req, res)=> {
+        Post.findAll({
+          where: {
+            slug: req.params.slug
+          },
+        }).then(function(post) {
+          res.render("posts", {
+            posts: post,
+          });
+        });
+      });
     //page to insert new infos in some post
       app.get(`/edit/:id`, checkAuthenticated, (req, res)=> {
         
@@ -188,10 +223,12 @@ const Op = Sequelize.Op;
           },
         })
           .then(()=> {
+            req.flash("success_msg", "Atualizado com sucesso :)")
             res.redirect(`/perfil`);
           })
-          .catch((erro)=> {
-            res.send(`falha ao atualizar post: ` + erro);
+          .catch(()=> {
+            req.flash("erro_msg", (" Houve um erro, não foi possível fazer a publicação:("))
+            res.redirect(`/edit/:id`)
           });
       });
 
@@ -222,7 +259,11 @@ const Op = Sequelize.Op;
             ],
             publicado: true
           }
-      }).then(posts => res.render('search', {posts}))
+      }).then(posts => res.render('search', {
+        posts:posts,
+        term: term
+        
+      }))
         .catch(err => console.log(err));
       });
 

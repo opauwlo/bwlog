@@ -1,0 +1,1 @@
+window.addEventListener("load",function(){document.querySelector(".loader").className+=" hidden"});
