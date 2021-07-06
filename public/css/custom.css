@@ -230,3 +230,6 @@ input:-webkit-autofill:active {
 .text-blue {
   color: #2fdbfd;
 }
+.auth-twitter button{
+  display: none !important;
+}
