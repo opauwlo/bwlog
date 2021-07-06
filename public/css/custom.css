@@ -208,9 +208,13 @@ reduce the size of the label and move upwards
 }
 
 .margin-r {
-  margin-right: 33px;
+  margin-right: 40px;
 }
-
+code {
+  background-color: rgba(0, 0, 0, 0.781);
+  color: rgba(243, 243, 26, 0.795);
+  border-radius: 3px;
+}
 .text-format {
   white-space: nowrap;
   overflow: hidden;
@@ -222,4 +226,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: #fff !important;
+}
+.text-blue {
+  color: #2fdbfd;
 }

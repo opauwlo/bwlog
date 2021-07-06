@@ -45,8 +45,8 @@ const app = express();
       handlebars({
         defaultLayout: "main",
         helpers: {
-          formatDate: (updateAt) => {
-            return moment(updateAt).format('DD/MM/YYYY')
+          formatDate: (createdAt) => {
+            return moment(createdAt).format('DD/MM/YYYY')
           }
         }
       })
@@ -162,6 +162,7 @@ const app = express();
           descricao: req.body.descricao,
           conteudo: req.body.conteudo,
           publicado: req.body.publicado,
+          editado: req.body.editado,
           id_user: req.body.sub
         })
           .then(()=> {
@@ -220,8 +221,9 @@ const app = express();
 
         Post.update(req.body, {
           where: {
-            id: id,
-          },
+            id: id
+          }
+
         })
           .then(()=> {
             req.flash("success_msg", "Atualizado com sucesso :)")

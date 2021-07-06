@@ -16,6 +16,9 @@ const Post = db.sequelize.define('postagens', {
   publicado: {
     type: db.Sequelize.BOOLEAN
   },
+  editado: {
+    type: db.Sequelize.BOOLEAN
+  },
   autor : {
     type: db.Sequelize.STRING
   },
