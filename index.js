@@ -9,7 +9,6 @@ const seedrandom = require('seedrandom');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment');
-const helpers = require('handlebars-helpers')();
 const Op = Sequelize.Op;
 const app = express(); 
 // Google
@@ -253,13 +252,19 @@ const app = express();
     //search page 
       app.get(`/search`, (req, res)=>{
         let {term} = req.query
+        let tam = term.length;
+        function tamI(){
+          for (let i = 0; i < tam; i++) {
+            return i;
+          }
+        }
         Post.findAll({
           order: [["id", "DESC"]],
           where: { 
             [Op.or]: [
-              {titulo: {[Op.like]: '%' + term + '%' }},
-              {descricao: {[Op.like]: '%' + term + '%' }},
-              {autor: {[Op.like]: '%' + term + '%' }}
+              {titulo: {[Op.like]: '%' + term[tamI()] + '%' }},
+              {descricao: {[Op.like]: '%' + term[tamI()] + '%' }},
+              {autor: {[Op.like]: '%' + term[tamI()] + '%' }}
             ],
             publicado: true
           }
