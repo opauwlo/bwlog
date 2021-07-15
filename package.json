@@ -21,7 +21,7 @@
     "sequelize": "^6.6.5",
     "set-value": "^4.0.0",
     "slugify": "^1.5.3",
-    "update": "^0.4.2"
+    "update": "^0.7.4"
   },
   "scripts": {
     "start": "node index.js",
