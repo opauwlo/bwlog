@@ -1,8 +1,9 @@
 {
   "name": "notas",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "dependencies": {
+    "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
