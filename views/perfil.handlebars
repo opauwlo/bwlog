@@ -8,7 +8,7 @@
             {{user.name}}
           </a>
           <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
-          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3" onclick="signOut();">
+          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-auto" onclick="signOut();">
             Sair
           </a>
         </div>
@@ -16,10 +16,15 @@
       </div>
     </section>
 
-          
+<div class=" new-post p-2 text-light rounded-3">
+  <div class="card shadow-lg bg-dark">
+    <a href="/perfil/{{user.sub}}/comments" class=" link-info fs-6 mx-3">
+      Seus comentarios
+    </a>
+  </div>
+</div>
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg-dark">
-
     <div class="card-body">
       Suas histórias:
     </div>
@@ -31,6 +36,7 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link shadow border-3" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Privadas</button>
         </li>
+        
       </ul>
 
     </div>
@@ -57,7 +63,7 @@
               </div>
             </div>
           </div>
-        {{/if}}
+        {{/if}} 
       {{/each}}
     </section>
   </div>
@@ -81,7 +87,7 @@
               </div>
             </div>
           </div>
-        {{/unless}}
+        {{/unless}}   
       {{/each}}
     </section>
   </div>
@@ -100,7 +106,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-          <form action="/deletar/{{dataValues.id}}" method="POST">
+          <form action="/deletar/{{dataValues.slug}}" method="POST">
             <button type="submit" class="btn btn-danger mx-1">Deletar</button>
           </form>
         </div>
@@ -108,5 +114,5 @@
     </div>
   </div>
 {{/each}}
-{{> newPostPartial}}
-{{> loadingPartial}}
+{{> _newPost}}
+{{> _loadingPage}}

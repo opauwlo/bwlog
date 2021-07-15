@@ -4,7 +4,7 @@
 
 const random = function random() {
   let number = rng()
-  number = number * 100000
+  number = number * 10000000
   number = number/1
   return randomNumber = Math.floor(number);
 }

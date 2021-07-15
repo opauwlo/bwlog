@@ -1,0 +1,61 @@
+{{#each comments}}
+  <div class="bg-dark shadow-lg rounded-3 mt-2 my-3">
+    <section class=" w-auto rounded-3 shadow">
+      <div class="d-flex align-items-center text-light ">
+        <div class="flex-shrink-0">
+          <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+        </div>
+        <div class=" text-profile-forum">
+          <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
+            {{dataValues.autor}}
+          </a>
+ 
+        </div>
+      </div>
+    </section>
+    <div class="card-body  rounded-3 border-3 border-bottom border-secondary">
+      <div class="mx-3 text-white-50 ">
+        {{{dataValues.conteudo}}}
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-dark border-secondary fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Deletar
+      </button>
+    </div>      
+  </div>
+{{else}}
+  <section class="p-4 ">
+    <div class="bg-dark mb-3 ">
+      <img src="/img/void.png" class="card-img-top" alt="...">
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary">
+              <a class="text-white" href="/">
+                Faça seu primeiro comentário
+              </a>
+            </button>
+        </div>
+      </div>
+    </div>
+  </section>
+{{/each}}
+{{#each comments}}
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog text-secondary">
+      <div class="modal-content bg-dark text-secondary">
+        <div class="modal-header bg-dark text-secondary">
+          <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
+          <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-white-50">
+          ATENÇÃO, ao clicar em deletar o comentario será permanentemente excluido do banco de dados.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+          <form action="/deletar/comment/{{dataValues.id_comment}}" method="POST">
+            <button type="submit" class="btn btn-danger mx-1">Deletar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}

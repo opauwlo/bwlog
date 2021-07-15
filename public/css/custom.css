@@ -2,12 +2,18 @@
 html {
   scroll-behavior: smooth;
 }
-.text-profile {
-  margin-left: -25px;
+.text-profile a{
+  margin-left: -35px;
+  text-decoration: none;
 }
-  .text-profile a {
-    text-decoration: none;
-  }
+
+.text-profile-forum {
+  margin-left: -15px;
+}
+
+.text-profile-forum a {
+  margin-left: -15px;
+}
 .editor__editable,
 /* Classic build. */
 main .ck-editor[role='application'] .ck.ck-content,
@@ -154,16 +160,20 @@ border: 1px solid #6c757d !important;
 .form-text {
 	position: relative;
   width: 98%;
-  height: 5.75rem;
+  height: 5rem;
 }
-
+.form-text-comment {
+	position: relative;
+  width: 98%;
+  height: 3rem;
+}
 .form__input {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #6c757d;
+  border: 1.25px solid #6c757d;
   border-radius: 0.5rem;
   font-family: inherit;
   font-size: inherit;
@@ -206,7 +216,12 @@ reduce the size of the label and move upwards
   font-size: 0.8rem;
   left: 0.8rem;
 }
-
+.end-15 {
+  right: 15% !important;
+}
+.end-10 {
+  right: 7% !important;
+}
 .margin-r {
   margin-right: 40px;
 }
@@ -229,7 +244,4 @@ input:-webkit-autofill:active {
 }
 .text-blue {
   color: #2fdbfd;
-}
-.auth-twitter button{
-  display: none !important;
 }

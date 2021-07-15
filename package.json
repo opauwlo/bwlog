@@ -4,30 +4,33 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.19.0",
-    "bootstrap": "^5.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
-    "google-auth-library": "^7.1.2",
+    "google-auth-library": "^7.3.0",
     "handlebars-helpers": "^0.10.0",
+    "highlight.js": "^11.0.1",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.9",
     "postcss-cli": "^8.3.1",
     "seedrandom": "^3.0.5",
-    "sequelize": "^6.6.2",
-    "slugify": "^1.5.3"
+    "sequelize": "^6.6.5",
+    "set-value": "^4.0.0",
+    "slugify": "^1.5.3",
+    "update": "^0.4.2"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "devDependencies": {
-    "@types/express-handlebars": "^5.3.0",
-    "autoprefixer": "^10.2.6"
+    "@types/express-handlebars": "^5.3.1",
+    "autoprefixer": "^10.2.6",
+    "purgecss": "^4.0.3"
   },
   "main": "index.js",
   "repository": {

@@ -34,7 +34,7 @@
 
     <div class="mb-3 p-2">
       <label class="form-label text-light">Conteudo do post</label>
-      <textarea name="conteudo" class="form-control" id="conteudo">{{dataValues.conteudo}}</textarea>
+      <textarea name="conteudo" class="form-control" id="validationTextarea">{{dataValues.conteudo}}</textarea>
     </div>
 
   <div class="mb-3 p-2 bg-dark">
@@ -51,4 +51,4 @@
   </form>
 {{/each}}
 
-{{> ckeditorPartial}}
+{{> _ckeditorJs}}

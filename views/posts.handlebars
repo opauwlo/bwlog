@@ -1,6 +1,6 @@
 {{#each posts}}
 
-  <div class="bg-dark shadow-sm rounded-3 mt-1">
+  <div class="bg-dark rounded-3 mt-1">
     <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
       <div class="d-flex align-items-center my-2 text-light ">
         <div class="flex-shrink-0">
@@ -17,30 +17,31 @@
       <div class="text-white"> 
         <h2 class="mb-3">{{dataValues.titulo}}</h2>
       </div>
-      <hr class="  text-white-50">
+      <hr class="text-white-50 shadow-lg">
       <div class="text-white-50 mt-2">
         {{{dataValues.conteudo}}}
-        <hr>
-        <p class="text-white-50 card-text fw-light fst-italic fs-6 ">
+        <p class="text-white-50 card-text fw-light fst-italic fs-6 mx-auto text-center">
           Publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<small class="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}</p>
+        <hr class="mx-5">
       </div>
     </div>
   </div>
-
+  <section class="p-4 ">
+    <div class="bg-dark ">
+      <img src="/img/forum.png" class="card-img-top" alt="...">
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary">
+              <a class="text-white" href="/{{dataValues.slug}}/forum">
+                Participe Do Fórum
+              </a>
+            </button>
+        </div>
+      </div>
+    </div>
+  </section>
 {{else}}
-<section class="row row-cols p-1 bg-dark my-5">
-  <div class="col rounded-3 mb-1">
-    <div class="card bg-dark mb-3">
-      <img src="/img/404.png" class="card-img-top" alt="...">
-      <div class="card-body bg-dark text-white-50">
-        <h5 class="card-title bg-dark">Houve um erro ao tentar acessar a pagina</h5>
-        <a class="card-text" href="/">
-          <button class="my-2 btn btn-primary">Voltar para home</button>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+{{> _404}}
 {{/each}}
-{{> newPostPartial}}
+{{> _newPost}}
+{{> _loadingPage}}
 

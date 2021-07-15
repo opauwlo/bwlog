@@ -31,7 +31,10 @@ const Post = db.sequelize.define('postagens', {
   id_user : {
     type: db.Sequelize.STRING
   }
+
+
 })
+
 
 // Post.sync({force: true})
 
