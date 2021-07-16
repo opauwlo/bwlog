@@ -1,50 +1,58 @@
+<link rel="stylesheet" href="/css/ckeditor.css">
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
 <script>ClassicEditor
-			.create( document.querySelector( '#validationTextarea' ), {
-				
-				toolbar: {
-					items: [
-						'undo',
-						'redo',
-						'|',
-						'bold',
-						'underline',
-						'italic',
-						'|',
-						'alignment',
-						'|',
-						'outdent',
-						'indent',
-						'|',
-						'bulletedList',
-						'numberedList',
-						'|',
-						'fontFamily',
-						'fontSize',
-						'fontColor',
-						'|',
-						'code',
-						'horizontalLine',
-						'|'
-					]
-				},
-				language: 'pt-br',
-				licenseKey: '',
-				
-				
-				
-			} )
-			.then( editor => {
-				window.editor = editor;
+	.create( document.querySelector( '#validationTextarea' ), {
 		
-				
-				
-				
-			} )
-			.catch( error => {
-				console.error( 'Oops, something went wrong!' );
-				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-				console.warn( 'Build id: 124s41fvxfoy-5sy8gb4yjfv' );
-				console.error( error );
-			} );
-	</script>
-	
+	toolbar: {
+		items: [
+			'undo',
+			'redo',
+			'|',
+			'bold',
+			'italic',
+			'underline',
+			'|',
+			'fontColor',
+			'fontFamily',
+			'fontSize',
+			'|',
+			'alignment',
+			'|',
+			'indent',
+			'outdent',
+			'|',
+			'codeBlock',
+			'code',
+			'horizontalLine',
+			'|',
+			'bulletedList',
+			'numberedList',
+			'|',
+			'mediaEmbed'
+		]
+	},
+	language: 'pt-br',
+		licenseKey: '',
+		
+		
+		
+	} )
+	.then( editor => {
+		window.editor = editor;
+
+		
+		
+		
+	} )
+	.catch( error => {
+		console.error( 'Oops, something went wrong!' );
+		console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+		console.warn( 'Build id: 6phhrzeqciv9-7xsruudn9rhg' );
+		console.error( error );
+	} );
+</script>
+<script>
+    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        iframely.load( element, element.attributes.url.value );
+    } );
+</script>

@@ -1,3 +1,6 @@
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
+<link rel="stylesheet" href="/css/ckeditor.css">
+
 {{#each posts}}
 
   <div class="bg-dark rounded-3 mt-1">
@@ -26,8 +29,8 @@
       </div>
     </div>
   </div>
-  <section class="p-4 ">
-    <div class="bg-dark ">
+  <section class="p-4 row row-cols center">
+    <div class="bg-dark col-lg-5 col-md-3">
       <img src="/img/forum.png" class="card-img-top" alt="...">
         <div class="d-grid gap-2">
             <button class="btn btn-primary">
@@ -44,4 +47,9 @@
 {{/each}}
 {{> _newPost}}
 {{> _loadingPage}}
+<script>
+    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        iframely.load( element, element.attributes.url.value );
+    } );
+</script>
 

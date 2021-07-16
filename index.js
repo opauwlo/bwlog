@@ -220,18 +220,18 @@ app.get(`/:slug/forum`,  checkAuthenticated, (req, res) => {
       });
     });
 });
-app.get(`/perfil/:slug/comments`, (req, res) => {
-  let slug = req.params.slug
+app.get(`/perfil/comments`, checkAuthenticated, (req, res) => {
+  let user = req.user;
   Comment.findAll({
     order: [["id", "DESC"]],
     where: {
-      id_user: slug
+      id_user: user.sub
     }
   })
     .then(function(comments) {
       res.render("commentsAdm", {
         comments: comments,
-        slug: slug
+        user: user
       });
     });
 });
@@ -324,11 +324,11 @@ app.post(`/deletar/:id`, (req, res) => {
 app.post(`/deletar/comment/:id`, (req, res) => {
   Comment.destroy({
     where: {
-      id_comment: req.params.id,
+      id : req.params.id,
     },
   })
     .then(() => {
-      res.redirect(`/perfil`);
+      res.redirect(`/perfil/comments`);
     })
     .catch(function(erro) {
       res.send("Erro ao deletar cpmentario!" + erro);

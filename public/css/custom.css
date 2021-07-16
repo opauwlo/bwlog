@@ -2,6 +2,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 .text-profile a{
   margin-left: -35px;
   text-decoration: none;
@@ -14,115 +15,7 @@ html {
 .text-profile-forum a {
   margin-left: -15px;
 }
-.editor__editable,
-/* Classic build. */
-main .ck-editor[role='application'] .ck.ck-content,
-/* Decoupled document build. */
-.ck.editor__editable[role='textbox'],
-.ck.ck-editor__editable[role='textbox'],
-/* Inline & Balloon build. */
-.ck.editor[role='textbox'] {
-	width: 100%;
-	background: #fff;
-	font-size: 1em;
-	line-height: 1.6em;
-	min-height: var(--ck-sample-editor-min-height);
-	padding: 1.5em 2em;
-}
 
-main .ck-editor[role='application'] {
-	overflow: auto;
-}
-
-.ck.ck-editor__editable {
-	background: #fff;
-	border: 0px solid hsl(0, 0%, 70%);
-	width: 100%;
-}
-
-/* Because of sidebar `position: relative`, Edge is overriding the outline of a focused editor. */
-.ck.ck-editor__editable {
-	position: relative;
-	z-index: var(--ck-sample-editor-z-index);
-}
-.ck.ck-toolbar {
-  border: 1.3px solid #6c757d !important;
-}
-.ck.ck-editor__editable {
-border: 1px solid #6c757d !important;
-}
-.editor-container {
-	display: flex;
-	flex-direction: row;
-    flex-wrap: nowrap;
-    position: relative;
-	width: 100%;
-	justify-content: center;
-}
-
-
-/* Classic build. */
-:root {
-    --ck-color-base-foreground: #212529 !important;
-    --ck-color-base-background: #212529 !important;
-    --ck-color-base-border: #6c757d !important;
-    --ck-color-base-action: #6c757d !important;
-    --ck-color-base-focus: #363636 !important;
-    --ck-color-base-text: #e0e2e4 !important;
-    --ck-color-base-active: #a09595 !important;
-    --ck-color-base-active-focus: #363636 !important;
-    --ck-color-base-error: #db3700;
-    --ck-color-focus-border-coordinates: #363636 !important;
-    --ck-color-focus-border: #363636 !important;
-    --ck-color-focus-outer-shadow: #363636 !important;
-    /* --ck-color-focus-disabled-shadow: rgba(119,186,248,0.3); */
-    --ck-color-focus-error-shadow: rgba(255,64,31,0.3);
-    --ck-color-text: white !important;
-    --ck-color-shadow-drop: rgba(0,0,0,0.15);
-    --ck-color-shadow-drop-active: rgba(0,0,0,0.2);
-    --ck-color-shadow-inner: rgba(0,0,0,0.1);
-    --ck-color-button-default-background: transparent !important;
-    --ck-color-button-default-hover-background: transparent !important;
-    --ck-color-button-default-active-background: transparent !important;
-    --ck-color-button-default-active-shadow: transparent !important;
-    --ck-color-button-default-disabled-background: transparent;
-    --ck-color-button-on-background: transparent !important;
-    --ck-color-button-on-hover-background: #424548 !important;
-    --ck-color-button-on-active-background: transparent !important;
-    --ck-color-button-on-active-shadow: transparent !important;
-    --ck-color-button-on-disabled-background: transparent !important;
-    --ck-color-button-action-background: transparent !important;
-    --ck-color-button-action-hover-background: #579e3d;
-    --ck-color-button-action-active-background: #53973b;
-    --ck-color-button-action-active-shadow: #498433;
-    --ck-color-button-action-disabled-background: #7ec365;
-    --ck-color-button-action-text: var(--ck-color-base-background);
-    --ck-color-button-save: #008a00;
-    --ck-color-button-cancel: #db3700;
-    --ck-color-switch-button-off-background: #b0b0b0;
-    --ck-color-switch-button-off-hover-background: #a3a3a3;
-    --ck-color-switch-button-on-background: var(--ck-color-button-action-background);
-    --ck-color-switch-button-on-hover-background: #579e3d;
-    --ck-color-switch-button-inner-background: var(--ck-color-base-background);
-    --ck-color-switch-button-inner-shadow: rgba(0,0,0,0.1);
-    --ck-color-dropdown-panel-background: var(--ck-color-base-background);
-    --ck-color-dropdown-panel-border: var(--ck-color-base-border);
-    --ck-color-input-background: var(--ck-color-base-background);
-    --ck-color-input-border: #c7c7c7;
-    --ck-color-input-error-border: var(--ck-color-base-error);
-    --ck-color-input-text: var(--ck-color-base-text);
-    --ck-color-input-disabled-background: #f2f2f2;
-    --ck-color-input-disabled-border: #c7c7c7;
-}
-
-.ck.ck-editor__main>.ck-editor__editable p{
-  background-color: #212529 !important;
-  color: whitesmoke !important;
-}
-.ck.ck-editor__main>.ck-editor__editable{
-  background-color: #212529 !important;
-  color: whitesmoke;
-}
 .new-post {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -204,12 +97,6 @@ border: 1px solid #6c757d !important;
   background-color: #212529;
 }
 
-/* 
-1. When the input is in the focus state
-reduce the size of the label and move upwards 
-
-2. Keep label state when content is in input field 
-*/
 .form__input:focus ~ .form__label,
 .form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
   top: -0.5rem;
@@ -244,4 +131,16 @@ input:-webkit-autofill:active {
 }
 .text-blue {
   color: #2fdbfd;
+}
+.center {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.363) !important;
+  color: rgba(243, 243, 26, 0.795) !important;
+  border-radius: 3px !important;
 }

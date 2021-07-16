@@ -1,4 +1,6 @@
 <script src="/ckeditor/build/ckeditor.js"></script>
+
+
 <form class="new-post mt-2 p-2 was-validated" action="/addcomments" method="POST">
   <div class="form mb-3 mx-auto">
     <fieldset disabled>
@@ -41,13 +43,13 @@
 
     </section>
     <div class="card-body shadow-lg rounded-3 border-1 border-bottom border-secondary mb-3  ">
-      <div class="text-white-50 p-2">
+      <section class="text-white-50 p-2 ck-content">
         {{{dataValues.conteudo}}}
         <hr>
         <p class="text-white-50 card-text fw-light fst-italic fs-6 ">
           Publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<small class="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}
         </p>
-      </div>
+      </section>
     </div>
   </div>
 {{else}}
