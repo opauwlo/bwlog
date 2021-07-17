@@ -9,6 +9,12 @@ body, html {
   font-family: 'Cinzel', serif;
   font-weight: 600;
 }
+.li-menu {
+  margin-top: -15px;
+}
+.li-menu-mobile {
+  margin-left: -30px !important;
+}
 .text-profile a{
   margin-left: -35px;
   text-decoration: none;
