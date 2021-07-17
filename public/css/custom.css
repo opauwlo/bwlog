@@ -113,7 +113,7 @@ html {
   margin-right: 40px;
 }
 code {
-  background-color: rgba(0, 0, 0, 0.781);
+  background: black !important;
   color: rgba(243, 243, 26, 0.795);
   border-radius: 3px;
 }
@@ -140,7 +140,8 @@ input:-webkit-autofill:active {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.363) !important;
+  padding: 10px;
+  background: black !important;
   color: rgba(243, 243, 26, 0.795) !important;
   border-radius: 3px !important;
 }

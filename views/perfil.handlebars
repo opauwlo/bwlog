@@ -1,28 +1,21 @@
-    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
-      <div class="d-flex align-items-center my-2 text-light ">
-        <div class="flex-shrink-0">
-          <img class="rounded-circle w-50 border border-secondary"src="{{user.picture}}" alt="profile picture">
-        </div>
-        <div class="flex-grow-0 float-start text-profile">
-          <a class="link-secondary text-white-50" href="# ">
-            {{user.name}}
-          </a>
-          <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
-          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-auto" onclick="signOut();">
-            Sair
-          </a>
-        </div>
-      </div>
-      </div>
-    </section>
-
-<div class=" new-post p-2 text-light rounded-3">
-  <div class="card bg-dark">
-    <a href="/perfil/comments" class=" link-info fs-6 fw-light mx-3">
-      Seus comentarios
-    </a>
+<section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+  <div class="d-flex align-items-center my-2 text-light ">
+    <div class="flex-shrink-0">
+      <img class="rounded-circle w-50 border border-secondary"src="{{user.picture}}" alt="profile picture">
+    </div>
+    <div class="flex-grow-0 float-start text-profile">
+      <a class="link-secondary text-white-50" href="# ">
+        {{user.name}}
+      </a>
+      <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
+      <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-auto" onclick="signOut();">
+        Sair
+      </a>
+    </div>
   </div>
-</div>
+  </div>
+</section>
+
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg-dark">
     <div class="card-body">
@@ -38,7 +31,6 @@
         </li>
         
       </ul>
-
     </div>
   </div>
 </div>
@@ -116,3 +108,12 @@
 {{/each}}
 {{> _newPost}}
 {{> _loadingPage}}
+<script>
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+
+  });
+}
+</script>

@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const slugify = require("slugify");
 const random = require("./public/js/slugNumbers");
 const Post = require("./models/Post");
-const Comment = require("./models/Comment");
 const seedrandom = require("seedrandom");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -107,7 +106,7 @@ app.get("/login", (req, res) => {
 
 //logout for clean coockie session
 app.get("/logout", (req, res) => {
-  res.clearCookie("session-token");
+  res.clearCookie('session-token');
   res.redirect("/login");
 });
 
@@ -180,61 +179,7 @@ app.post(`/add`, checkAuthenticated, (req, res) => {
       res.redirect(`/cad`);
     });
 });
-//page to create comments
-app.post(`/addcomments`, checkAuthenticated, (req, res) => {
-  let user = req.user;
-  let slug = req.body.slug;
-  Comment.create({
-    autor: user.name,
-    id_comment: slug,
-    conteudo: req.body.conteudo,
-    id_user: user.sub,
-    foto: user.picture
-  })
-    .then(() => {
-      req.flash("success_msg", "seu comentario foi publicado");
-      res.redirect(`/${slug}/forum`);
-    })
-    .catch(() => {
-      req.flash(
-        "erro_msg",
-        " Houve um erro, não foi possível fazer a publicação:("
-      );
-    });
-});
 
-app.get(`/:slug/forum`,  checkAuthenticated, (req, res) => {
-  let slug = req.params.slug;
-  let user = req.user;
-  Comment.findAll({
-    order: [["id", "DESC"]],
-    where: {
-      id_comment: req.params.slug
-    }
-  })
-    .then(function(comments) {
-      res.render("comments", {
-        comments: comments,
-        slug: slug,
-        user: user
-      });
-    });
-});
-app.get(`/perfil/comments`, checkAuthenticated, (req, res) => {
-  let user = req.user;
-  Comment.findAll({
-    order: [["id", "DESC"]],
-    where: {
-      id_user: user.sub
-    }
-  })
-    .then(function(comments) {
-      res.render("commentsAdm", {
-        comments: comments,
-        user: user
-      });
-    });
-});
 //page to show a post from somone else
 app.get(`/posts/:slug`, (req, res) => {
 
@@ -304,11 +249,6 @@ app.post(`/update/:id`, checkAuthenticated, (req, res) => {
 
 //page to delet some post
 app.post(`/deletar/:id`, (req, res) => {
-  Comment.destroy({
-    where: {
-      id_comment: req.params.id,
-    },
-  }),
   Post.destroy({
     where: {
       slug: req.params.id,
@@ -321,19 +261,7 @@ app.post(`/deletar/:id`, (req, res) => {
       res.send("Erro ao deletar posategem!" + erro);
     });
 });
-app.post(`/deletar/comment/:id`, (req, res) => {
-  Comment.destroy({
-    where: {
-      id : req.params.id,
-    },
-  })
-    .then(() => {
-      res.redirect(`/perfil/comments`);
-    })
-    .catch(function(erro) {
-      res.send("Erro ao deletar cpmentario!" + erro);
-    });
-});
+
 //search page
 app.get(`/search`, (req, res) => {
   let s = req.query.term;
