@@ -107,6 +107,7 @@ app.get("/login", (req, res) => {
 //logout for clean coockie session
 app.get("/logout", (req, res) => {
   res.clearCookie('session-token');
+  res.clearCookie('G_AUTHUSER_H');
   res.redirect("/login");
 });
 

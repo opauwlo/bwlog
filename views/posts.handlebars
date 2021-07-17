@@ -17,15 +17,15 @@
     </section>
     <div class="card-body px-4">
       <div class="text-white"> 
-        <h2 class="mb-3">{{dataValues.titulo}}</h2>
+        <h1 class="mb-3 ">{{dataValues.titulo}}</h1>
       </div>
       <hr class="text-white-50 shadow-lg">
       <div class="text-white-50 mt-2">
         {{{dataValues.conteudo}}}
-        <p class="text-white-50 card-text fw-light fst-italic fs-6 mx-auto text-center">
-          Publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<small class="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}</p>
-        <hr class="mx-5">
       </div>
+      <p class="text-secondary mt-3 fst-italic fs-6 text-end">
+        publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<smallclass="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}
+      </p>
     </div>
   </div>
   <section class="p-1">
