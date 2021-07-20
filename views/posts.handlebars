@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/ckeditor.css">
+<link rel="stylesheet" href="/css/content-styles.css">
 <link rel="stylesheet" href="/css/prism.css">
 {{#each posts}}
 
@@ -20,9 +21,12 @@
         <h1 class="mb-3 ">{{dataValues.titulo}}</h1>
       </div>
       <hr class="text-white-50 shadow-lg">
-      <div class="text-white-50">
-        {{dataValues.conteudo}}
-      </div>
+      <section class="text-white-50 ck-content">
+        <article class="ck-content">
+          {{{dataValues.conteudo}}}
+          
+        </article>
+      </section>
       <p class="text-secondary mt-3 fst-italic fs-6 text-end">
         publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<smallclass="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}
       </p>

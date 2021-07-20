@@ -21,7 +21,12 @@
     --ck-inline-image-style-spacing: calc(var(--ck-image-style-spacing) / 2);
     --ck-todo-list-checkmark-size: 16px;
 }
-
+.ck-content a {
+    color: #dab959;
+}
+.ck-content a:hover {
+    color: #f3cf65;
+}
 /* ckeditor5-font/theme/fontsize.css */
 .ck-content .text-tiny {
     font-size: .7em;
@@ -203,7 +208,7 @@
     margin-left: 0;
     margin-right: 0;
     font-style: italic;
-    border-left: solid 5px hsl(0, 0%, 80%);
+    border-left: solid 5px #e7b92e;
 }
 /* ckeditor5-block-quote/theme/blockquote.css */
 .ck-content[dir="rtl"] blockquote {
