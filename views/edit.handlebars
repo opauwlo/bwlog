@@ -1,6 +1,5 @@
 <script src="/ckeditor/build/ckeditor.js"></script>
 <link rel="stylesheet" href="/css/content-styles.css">
-<link rel="stylesheet" href="/css/prism.css">
 
 <div class="loader">
   <div class="text-center">
@@ -37,7 +36,9 @@
 
     <div class="mb-3 p-2">
       <label class="form-label text-light">Conteudo do post</label>
-      <textarea name="conteudo" class="form-control" id="validationTextarea">{{dataValues.conteudo}}</textarea>
+      <textarea name="conteudo" class="ck-content" id="validationTextarea">
+        {{{dataValues.conteudo}}}
+      </textarea>
     </div>
 
   <div class="mb-3 p-2 bg-dark">
@@ -55,4 +56,3 @@
 {{/each}}
 
 {{> _ckeditorJs}}
-<script src="/js/prism.js"></script>

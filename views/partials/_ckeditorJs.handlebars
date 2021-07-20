@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/ckeditor.css">
+<link rel="stylesheet" href="/css/prism.css">
 <script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
 <script>ClassicEditor
 	.create( document.querySelector( '#validationTextarea' ), {
@@ -24,7 +25,6 @@
 			'|',
 			'code',
 			'codeBlock',
-			'htmlEmbed',
 			'|',
 			'mediaEmbed',
 			'imageInsert',
@@ -55,9 +55,6 @@
 		
 	} )
 	.catch( error => {
-		console.error( 'Oops, something went wrong!' );
-		console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-		console.warn( 'Build id: 6phhrzeqciv9-7xsruudn9rhg' );
 		console.error( error );
 	} );
 </script>
@@ -66,3 +63,4 @@
         iframely.load( element, element.attributes.url.value );
     } );
 </script>
+<script src="/js/prism.js"></script>
