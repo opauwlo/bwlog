@@ -28,10 +28,16 @@
         </article>
       </section>
       <p class="text-secondary mt-3 fst-italic fs-6 text-end">
-        publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}  {{#if dataValues.editado}}<smallclass="fw-light fst-normal text-blue mx-1"> post editado</small> {{/if}}
+        publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
+        {{#if dataValues.editado}}
+          <small class="fw-light fst-normal text-blue mx-1">
+            post editado
+          </small>
+        {{/if}}
       </p>
     </div>
   </div>
+  <hr class="text-white-50">
   <script src="https://utteranc.es/client.js"
     repo="opauwlo/social-blog"
     issue-term="pathname"
