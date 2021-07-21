@@ -263,43 +263,6 @@ app.post(`/deletar/:id`, (req, res) => {
     });
 });
 
-//search page
-app.get(`/search`, (req, res) => {
-  let s = req.query.term;
-
-
-  Post.findAll({
-    order: [["id", "DESC"]],
-    where: {
-      [Op.or]: [
-        {
-          titulo: {
-            [Op.like]: "%" + s + "%"
-          }
-        },
-        {
-          descricao: {
-            [Op.like]: "%" + s + "%"
-          }
-        },
-        {
-          autor: {
-            [Op.like]: "%" + s + "%"
-          },
-        }
-      ],
-      publicado: true,
-    },
-  })
-    .then((posts) =>
-      res.render("search", {
-        posts: posts,
-        term: s,
-      })
-    )
-    .catch((err) => console.log(err));
-});
-
 //function to auth
 function checkAuthenticated(req, res, next) {
   let token = req.cookies["session-token"];

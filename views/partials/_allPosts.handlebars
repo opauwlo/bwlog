@@ -1,17 +1,28 @@
-<section class="row row-cols-md-1 p-1 ">
+<section class="row row-cols-md-1 p-1">
   {{#each posts}}
-      <div class="col-lg-6 rounded-3 mb-3 ">
-        <div class="card bg-dark m-2 shadow text-center" >
+      <div class="col-lg-6 rounded-3 mb-3">
+        <div class="card bg-dark m-2 shadow text-center post">
           <div class="card-body px-3 ">
-            
-            <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
-            <p class="text-white-50 text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-            <small class="card-text text-info my-1"> by: {{dataValues.autor}}</small>  
-            <div class="d-grid gap-2 mt-2">
-              <a href="/posts/{{dataValues.slug}}" class="btn shadow border-secondary btn-outline-dark text-light">Ler Mais!</a>
-            </div>            
+            <section class="">
+              <h1 class="card-title text-titulo text-light fs-3 mb-2">
+                {{dataValues.titulo}}
+              </h1>
+              <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                {{dataValues.descricao}}
+              </p>
+              <small class="card-text text-info my-1 text-autor">
+                by: {{dataValues.autor}}
+              </small>  
+              <div class="d-grid gap-2 mt-2">
+                <a href="/posts/{{dataValues.slug}}" class="btn shadow border-secondary btn-outline-dark text-light">Ler Mais!</a>
+              </div>            
+            </section>
+
           </div>
         </div>
       </div>
   {{/each}}
+</section>
+<section class="noPost">
+             
 </section>
