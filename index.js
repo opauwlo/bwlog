@@ -11,6 +11,7 @@ const flash = require("connect-flash");
 const moment = require("moment");
 const Op = Sequelize.Op;
 const app = express();
+module.exports = slugify
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
 const { OAuth2Client } = require("google-auth-library");
