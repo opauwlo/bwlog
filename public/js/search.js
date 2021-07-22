@@ -1,8 +1,22 @@
 const filterInput = document.querySelector('#filter')
 
+function test( str ) {
+  let tam = str.length
+  for (let i = 0; i <= tam; i++) {
+    return[i]
+  }
+}
+
 filterInput.addEventListener('input', event => {
-  const inputValue = event.target.value.toLowerCase();
-  const value = inputValue.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  let s = event.target.value.toLowerCase();
+  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  const r = (/[.\s]+/);
+  const word = s.split(r);
+  function value () {
+    for (let i = 0; i < word.length; i++){
+      return word[i]
+    }
+  }
   const posts = document.querySelectorAll('.post');
   const noPosts = document.querySelector('.noPost');
 
@@ -14,13 +28,10 @@ filterInput.addEventListener('input', event => {
     const postAutor = post.querySelector('.text-autor').textContent.toLowerCase();
     const autor = postAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-    if (title.includes(value) || description.includes(value) || autor.includes(value))  {
-      noPosts.style.display = 'none';
+    if (title.includes(value()) || description.includes(value()) || autor.includes(value()))  {
       post.style.display = 'initial';
       return;
     }
     post.style.display = 'none';
-    noPosts.style.display = 'block';
-
   })
 })

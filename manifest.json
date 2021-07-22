@@ -1,0 +1,23 @@
+{
+  "dir": "ltr",
+  "lang": "pt-BR",
+  "name": "the-bwlog",
+  "short_name": "the-bwlog",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "https://the-bwlog.herokuapp.com/",
+  "background_color": "#00000",
+  "theme_color": "#ffc107",
+  "description": "escreva e compartilhe suas histórias.",
+  "orientation": "portrait",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "https://the-bwlog.herokuapp.com/icon/icon.png",
+      "type": "image/png",
+      "sizes": "500x500"
+    }
+  ],
+  "screenshots": []
+}
