@@ -1,7 +1,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
 .bg {
-  background: #0f0e17 !important;
+  background: #16161a !important;
 }
 /* // loadding // */
 .loader {
@@ -146,7 +146,7 @@ body, html {
   cursor: text;
   -webkit-transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
   transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
-  background-color: #0f0e17;
+  background-color: #16161a;
 }
 
 .form__input:focus ~ .form__label,

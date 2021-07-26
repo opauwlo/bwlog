@@ -1,36 +1,29 @@
 <script src="/ckeditor/build/ckeditor.js"></script>
 <link rel="stylesheet" href="/css/content-styles.css">
 
-<div class="loader">
-  <div class="text-center">
-    <div class="spinner-border text-light" style="width: 2.5rem; height: 2.5rem;" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-</div>
 {{#each edit}}
   <form action="/update/{{dataValues.id}}" method="POST" class="p-3" id="formEdit">
 
-    <div class="form mb-3 p-2 mx-auto">
+    <div class="form mb-3 p-2 mx-auto bg">
       <fieldset disabled>
         <input  type="text" name="autor" class="form__input text-white-50 p-3" autocomplete="off" placeholder=" " value="{{dataValues.autor}}">
         <label class="form__label ">Autor(a)</label>
       </fieldset>
     </div>
 
-		<hr class="text-dark">
+		<hr class="bg">
 
     <input disabled type="text" name="email" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.email}}">
     <input disabled type="text" name="foto" class="visually-hidden-focusable d-none form-control" id="floatingInput" value="{{dataValues.foto}}">
 
-		<div class="form mb-3 p-2 mx-auto">
+		<div class="form mb-3 p-2 mx-auto bg">
 			<input type="text" name="titulo" class="form__input" autocomplete="off" placeholder=" " value="{{dataValues.titulo}}" required>
 			<label class="form__label">Título</label>
 		</div>
 		
-		<hr class="text-dark">
+		<hr class="bg">
 
-		<div class="form-text mb-3 p-2 mx-auto">
+		<div class="form-text mb-3 p-2 mx-auto bg">
 			<textarea type="text" name="descricao" class="form__input" autocomplete="on" placeholder=" " required>{{dataValues.descricao}}</textarea>
 			<label class="form__label">Tags</label>
 		</div>
@@ -43,9 +36,9 @@
       </textarea>
     </div>
 
-  <div class="mb-3 p-2 bg-dark">
-    <label class="form-label text-light bg-dark" for="floatingInput">Salvar como:</label>
-    <select class="form-select bg-dark text-light border-2 border-secondary" name="publicado" required>
+  <div class="mb-3 p-2 bg-dark bg">
+    <label class="form-label text-light bg" for="floatingInput">Salvar como:</label>
+    <select class="form-select bg text-light border-2 border-secondary" name="publicado" required>
       <option value="true">Publico</option>
       <option value="false">Privado</option>
     </select>

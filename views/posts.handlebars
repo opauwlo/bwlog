@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="/css/prism.css">
 {{#each posts}}
 
-  <div class="bg rounded-3 mt-1 mb-2">
+  <div class="bg rounded-3 mt-1 mb-2 p-1">
     <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
-      <div class="d-flex align-items-center my-2 text-light ">
+      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
         <div class="flex-shrink-0">
           <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
         </div>
@@ -31,14 +31,14 @@
         publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
       </p>
       {{#if dataValues.editado}}
-        <small class="fw-light fst-normal text-blue mx-1">
+        <p class="fw-light fst-normal text-blue text-end">
           post editado
-        </small>
+        </p>
       {{/if}}
     </div>
   </div>
 
-  <div class=" my-2 card bg text-light border-dark rounded rounded-2">
+  <div class="card bg text-light border-dark rounded rounded-2 my-5">
     <div class="card-body bg">
       <h5 class="card-title">Discuta sobre o texto no fórum</h5>
       <p class="card-text">Compartilhe o que pensou :)</p>
