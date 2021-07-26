@@ -198,7 +198,12 @@ app.get(`/posts/:slug`, (req, res) => {
       });
     });
 });
-
+app.get(`/forum/:id/:slug`, (req, res) => {
+  const title = req.params.slug
+  res.render("forum", {
+    titulo: title
+  });
+});
 app.get(`/posts/preview/:slug`, (req, res) => {
   Post.findAll({
     where: {

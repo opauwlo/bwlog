@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/css/ckeditor.css">
 <link rel="stylesheet" href="/css/content-styles.css">
+<link rel="stylesheet" href="/css/gist.css">
 <link rel="stylesheet" href="/css/prism.css">
 {{#each posts}}
 
-  <div class="bg-dark rounded-3 mt-1">
+  <div class="bg rounded-3 mt-1 mb-2">
     <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
       <div class="d-flex align-items-center my-2 text-light ">
         <div class="flex-shrink-0">
@@ -37,19 +37,18 @@
       {{/if}}
     </div>
   </div>
-  <hr class="text-white-50">
-  <script src="https://utteranc.es/client.js"
-    repo="opauwlo/social-blog"
-    issue-term="pathname"
-    label="Comentarios ✏️"
-    theme="dark-blue"
-    crossorigin="anonymous"
-    async>
-  </script>
+
+  <div class=" my-2 card bg text-light border-dark rounded rounded-2">
+    <div class="card-body bg">
+      <h5 class="card-title">Discuta sobre o texto no fórum</h5>
+      <p class="card-text">Compartilhe o que pensou :)</p>
+      <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-primary">Participar</a>
+    </div>
+  </div>
+
 {{else}}
 {{> _404}}
 {{/each}}
-{{> _ckeditorJs}}
 {{> _loadingPage}}
 <script src="/js/prism.js"></script>
 

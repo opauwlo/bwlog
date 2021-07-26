@@ -21,7 +21,7 @@ main .ck-editor[role='application'] {
 
 .ck.ck-editor__editable {
 	background: #fff;
-	border: 0px solid hsl(0, 0%, 70%);
+	border: 0px solid hsl(0, 0%, 0%);
 	width: 100%;
 }
 
@@ -54,7 +54,7 @@ border: 1px solid #6c757d !important;
     --ck-color-base-foreground: #212529 !important;
     --ck-color-base-background: #212529 !important;
     --ck-color-base-border: #6c757d !important;
-    --ck-color-base-action: #6c757d !important;
+    --ck-color-base-action: #f25f4c !important;
     --ck-color-base-focus: #363636 !important;
     --ck-color-base-text: #e0e2e4 !important;
     --ck-color-base-active: #a09595 !important;
@@ -70,13 +70,13 @@ border: 1px solid #6c757d !important;
     --ck-color-shadow-drop-active: rgba(0,0,0,0.2);
     --ck-color-shadow-inner: rgba(0,0,0,0.1);
     --ck-color-button-default-background: transparent !important;
-    --ck-color-button-default-hover-background: #6c757d !important;
-    --ck-color-button-default-active-background: #6c757d !important;
+    --ck-color-button-default-hover-background: #f25f4c !important;
+    --ck-color-button-default-active-background: #f25f4c !important;
     --ck-color-button-default-active-shadow: transparent !important;
     --ck-color-button-default-disabled-background: transparent;
-    --ck-color-button-on-background: #6c757d !important;
-    --ck-color-button-on-hover-background: #424548 !important;
-    --ck-color-button-on-active-background: #6c757d !important;
+    --ck-color-button-on-background: #f25f4c !important;
+    --ck-color-button-on-hover-background: #d17b6f !important;
+    --ck-color-button-on-active-background: #f25f4c !important;
     --ck-color-button-on-active-shadow: transparent !important;
     --ck-color-button-on-disabled-background: transparent !important;
     --ck-color-button-action-background: transparent !important;
@@ -104,10 +104,10 @@ border: 1px solid #6c757d !important;
 }
 
 .ck.ck-editor__main>.ck-editor__editable p{
-  background-color: #212529 !important;
+  background-color: #0f0e17 !important;
   color: whitesmoke !important;
 }
 .ck.ck-editor__main>.ck-editor__editable{
-  background-color: #212529 !important;
+  background-color: #0f0e17 !important;
   color: whitesmoke;
 }
