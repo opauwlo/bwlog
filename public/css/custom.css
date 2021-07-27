@@ -34,6 +34,10 @@
 /*fonts and scrol*/
 html {
   scroll-behavior: smooth;
+  background-color: #16161a;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #ff8906, #16161a), repeating-radial-gradient(circle at center center, #ff8906, #ff8906, 15px, transparent 30px, transparent 15px);
+  background-blend-mode: multiply;
 }
 body, html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

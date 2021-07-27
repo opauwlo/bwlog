@@ -40,7 +40,7 @@
       {{#each posts}}
         {{#if dataValues.publicado}}
           <div class="col-lg-6 rounded-3">
-            <div class="card bg-dark m-2 shadow text-center">
+            <div class="card m-2 shadow text-center">
               <div class="card-body px-3 bg">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
                 <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
@@ -59,12 +59,12 @@
       {{/each}}
     </section>
   </div>
-  <div class="tab-pane fade bg-dark" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
     <section class="row row-cols-md-1 p-1">
       {{#each posts}}
         {{#unless dataValues.publicado}}
           <div class="col-lg-6 rounded-3">
-            <div class="card bg-dark m-2 shadow text-center ">
+            <div class="card m-2 shadow text-center ">
               <div class="card-body px-3 bg">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
                 <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
@@ -88,8 +88,8 @@
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog text-secondary">
-      <div class="modal-content bg-dark text-secondary">
-        <div class="modal-header bg-dark text-secondary">
+      <div class="modal-content bg text-secondary">
+        <div class="modal-header bg text-secondary">
           <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
           <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
         </div>
@@ -107,7 +107,6 @@
   </div>
 {{/each}}
 {{> _newPost}}
-{{> _loadingPage}}
 <script>
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();

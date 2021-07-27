@@ -3,7 +3,9 @@
  * Generated on Wed, 07 Jul 2021 07:00:21 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html
  */
-
+ol {
+    margin-left: 40px;
+}
 :root {
     --ck-color-image-caption-background: hsl(0, 0%, 97%);
     --ck-color-image-caption-text: hsl(0, 0%, 20%);
