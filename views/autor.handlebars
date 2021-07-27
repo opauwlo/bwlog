@@ -1,8 +1,8 @@
 {{#posts}}
   {{#if @first}}
 
-    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
-      <div class="d-flex align-items-center my-2 text-light ">
+    <section class=" mx-2 mt-3 w-auto rounded-pill shadow bg">
+      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
         <div class="flex-shrink-0">
           <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
         </div>
@@ -19,8 +19,8 @@
 <div class=" new-post p-3">
  
   <div class="input-group shadow">
-    <input type="text" class="form-control bg-dark rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
-    <button class="btn btn-outline-secondary border-1 border-secondary text-light m-auto" type="button"id="button-addon2">
+    <input type="text" class="form-control bg rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
+    <button class="btn btn-outline-secondary border-1 bg border-secondary text-light m-auto" type="button"id="button-addon2">
       <i class="bi bi-arrow-down"></i>
     </button>
   </div>
@@ -29,15 +29,14 @@
 <section class="row p-1 row-cols-md-1 ">
   {{#each posts}}
       <div class="col-lg-6 rounded-3 mb-4">
-        <div class="card bg-dark m-2 shadow text-center" >
-          <div class="card-body px-3 ">
+        <div class="card m-2 text-center" >
+          <div class="card-body px-3 bg shadow">
             <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
             <small class="text-info">{{dataValues.descricao}}</small>
             <p class="card-text text-secondary"> by: {{dataValues.autor}}</p>
             <div class="d-grid gap-2">
               <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-dark border border-secondary text-light">Ler Mais!</a>
             </div>
-            <hr class="text-light">
           </div>
         </div>
       </div>

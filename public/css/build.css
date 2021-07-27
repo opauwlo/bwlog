@@ -1597,7 +1597,11 @@ fieldset:disabled .btn {
 }
 
 .bg-dark {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='51' height='51' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Crect width='100%25' height='100%25' fill='rgba(255, 137, 6,1)'/%3E%3Ccircle cx='0' cy='0' r='16' fill='rgba(255, 137, 6,1)'/%3E%3Ccircle cx='40' cy='40' r='16' fill='rgba(255, 137, 6,1)'/%3E%3Ccircle cx='40' cy='0' r='14' fill='rgba(255, 137, 6,1)'/%3E%3Ccircle cx='0' cy='40' r='14' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M 20 20a 1 1 0 0 0 0 2a 1 1 0 0 0 0-2zM-10-10h 60v 60h-60z' fill='rgba(22, 22, 26,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ") !important
+  background-color: #16161a;
+  opacity: 1;
+  background-image:  linear-gradient(30deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(150deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(30deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(150deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(60deg, #04050577 25%, transparent 25.5%, transparent 75%, #04050577 75%, #04050577), linear-gradient(60deg, #04050577 25%, transparent 25.5%, transparent 75%, #04050577 75%, #04050577);
+  background-size: 42px 74px;
+  background-position: 0 0, 0 0, 21px 37px, 21px 37px, 0 0, 21px 37px;
 }
 
 .bg-transparent {

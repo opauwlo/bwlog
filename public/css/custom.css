@@ -32,16 +32,11 @@
   }
 }
 /*fonts and scrol*/
-html {
+* {
   scroll-behavior: smooth;
-  background-color: #16161a;
-  opacity: 1;
-  background-image: radial-gradient(circle at center center, #ff8906, #16161a), repeating-radial-gradient(circle at center center, #ff8906, #ff8906, 15px, transparent 30px, transparent 15px);
-  background-blend-mode: multiply;
 }
 body, html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='34.64' height='40' viewBox='0 0 69.2820323027551 80' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='rgba(15, 14, 23,1)'/%3E%3Cpath d='M86.6 70L69.28 80L51.96 70L51.96 50L69.28 40L86.6 50L86.6 70 86.6 50L69.28 40L51.96 50L51.96 70L69.28 80L86.6 70L86.6 50z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M51.96 90L34.64 100L17.32 90L17.32 70L34.64 60L51.96 70L51.96 90 51.96 70L34.64 60L17.32 70L17.32 90L34.64 100L51.96 90L51.96 70z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M17.32 70L0 80L-17.32 70L-17.32 50L0 40L17.32 50L17.32 70 17.32 50L0 40L-17.32 50L-17.32 70L0 80L17.32 70L17.32 50z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M17.32 30L0 40L-17.32 30L-17.32 10L0 0L17.32 10L17.32 30 17.32 10L0 0L-17.32 10L-17.32 30L0 40L17.32 30L17.32 10z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M51.96 10L34.64 20L17.32 10L17.32-10L34.64-20L51.96-10L51.96 10 51.96-10L34.64-20L17.32-10L17.32 10L34.64 20L51.96 10L51.96-10z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M86.6 30L69.28 40L51.96 30L51.96 10L69.28 0L86.6 10L86.6 30 86.6 10L69.28 0L51.96 10L51.96 30L69.28 40L86.6 30L86.6 10z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3Cpath d='M35.51 40.5L35.51 41.5L34.64 41L33.77 41.5L33.77 40.5L32.91 40L33.77 39.5L33.77 38.5L34.64 39L35.51 38.5L35.51 39.5L36.37 40L35.51 40.5 35.14 39.13L34.64 42.27L34.14 39.13L36.61 41.13L33.64 40L36.61 38.87L34.14 40.87L34.64 37.73L35.14 40.87L32.68 38.87L35.64 40L32.68 41.13L35.14 39.13z' stroke-linejoin='miter' fill='rgba(255, 137, 6,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ")
 }
 ::-moz-selection { /* Code for Firefox */
   color: whitesmoke;
