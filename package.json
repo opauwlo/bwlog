@@ -25,7 +25,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "purgecss --css bootstrap.min.css --content views/*.handlebars views/layouts/main.handlebars views/partials/*.handlebars --output dist/"
   },
   "devDependencies": {
     "@types/express-handlebars": "^5.3.1",
