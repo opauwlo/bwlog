@@ -841,4 +841,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
    color: green !important;
  }
  
- 
+ /* media share */
+ .a2a_svg svg {
+  background: #72757e !important;
+ }
