@@ -1,59 +1,76 @@
-<link rel="stylesheet" href="/css/loading.css">
-<script src="/js/loading.js"></script>
-<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
-<link rel="stylesheet" href="/css/content-styles.css">
-<link rel="stylesheet" href="/css/gist.css">
-<link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/ckeditor.css" async defer>
 {{#each posts}}
-
-  <div class="bg rounded-3 mt-1 mb-2 p-1 m-1">
-    <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
-      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
-        <div class="flex-shrink-0">
-          <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+  <head>
+    <title>{{dataValues.titulo}}</title>
+    <meta name="title" content="{{dataValues.titulo}}">
+    <meta name="description" content="{{dataValues.descricao}}">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://the-bwlog.herokuapp.com/{{dataValues.slug}}">
+    <meta property="og:title" content="{{dataValues.titulo}}">
+    <meta property="og:description" content="escreva e compartilhe suas histórias.">
+    <meta property="og:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://the-bwlog.herokuapp.com/">
+    <meta property="twitter:title" content="{{dataValues.titulo}}">
+    <meta property="twitter:description" content="{{dataValues.autor}} || {{dataValues.titulo}}">
+    <meta property="twitter:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
+  </head>
+  <div class="center">
+    <div class="bg rounded-3 mt-1 mb-2 p-1 m-1 col-lg-6">
+      <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+        <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
+          <div class="flex-shrink-0">
+            <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+          </div>
+          <div class="flex-grow-0 float-start text-profile">
+            <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
+              {{dataValues.autor}}
+            </a>
+          </div>
         </div>
-        <div class="flex-grow-0 float-start text-profile">
-          <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
-            {{dataValues.autor}}
-          </a>
-        </div>
-      </div>
-    </section>
-    <div class="card-body">
-      <div class="text-white"> 
-        <h1 class="mb-3 ">{{dataValues.titulo}}</h1>
-      </div>
-      <hr class="text-white-50 shadow-lg">
-      <section class="text-white-50 ck-content">
-        <article class="ck-content">
-          {{{dataValues.conteudo}}}
-          
-        </article>
       </section>
-      <p class="text-secondary mt-3 fst-italic fs-6 text-end">
-        publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
-      </p>
-      {{#if dataValues.editado}}
-        <p class="fw-light fst-normal text-blue text-end">
-          post editado
+      <div class="card-body">
+        <div class="text-white"> 
+          <h1 class="mb-3 ">{{dataValues.titulo}}</h1>
+        </div>
+        <hr class="text-white-50 shadow-lg">
+        <section class="text-white-50 ck-content">
+          <article class="ck-content">
+            {{{dataValues.conteudo}}}
+            
+          </article>
+        </section>
+        <p class="text-secondary mt-3 fst-italic fs-6 text-end">
+          publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
         </p>
-      {{/if}}
+        {{#if dataValues.editado}}
+          <p class="fw-light fst-normal text-blue text-end">
+            post editado
+          </p>
+        {{/if}}
+      </div>
     </div>
   </div>
 
-  <div class="card bg text-light border-dark rounded rounded-2 my-5">
-    <div class="card-body bg">
-      <h5 class="card-title">Discuta sobre o texto no fórum</h5>
-      <p class="card-text">Compartilhe o que pensou :)</p>
-      <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-primary">Participar</a>
+  <div class="center">
+    <div class="card bg text-light border-dark rounded rounded-2 my-5 col-lg-6">
+      <div class="card-body bg">
+        <h5 class="card-title">Discuta sobre o texto no fórum</h5>
+        <p class="card-text">Compartilhe o que pensou :)</p>
+        <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-primary">Participar</a>
+      </div>
     </div>
+
   </div>
 
 {{else}}
 {{> _404}}
 {{/each}}
-{{> _loadingPage}}
-<script>
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
+<script >
     document.querySelectorAll( 'oembed[url]' ).forEach( element => {
         iframely.load( element, element.attributes.url.value );
     } );
