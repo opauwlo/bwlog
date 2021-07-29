@@ -36,15 +36,15 @@
 </div>
 <div class="tab-content " id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <section class="row row-cols-md-1 p-1">
+    <section class="row row-cols-md-1">
       {{#each posts}}
         {{#if dataValues.publicado}}
-          <div class="col-lg-6 rounded-3">
+          <div class="col-lg-6 rounded-3 mb-3">
             <div class="card m-2 shadow text-center">
               <div class="card-body px-3 bg">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
-                <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
                 <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+                <small class="text-secondary mt-1">by: {{dataValues.autor}}</small>
                 <div class="d-grid gap-2 p-3" role="group">
                   <a href="/posts/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
                   <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
@@ -60,19 +60,19 @@
     </section>
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <section class="row row-cols-md-1 p-1">
+    <section class="row row-cols-md-1">
       {{#each posts}}
         {{#unless dataValues.publicado}}
-          <div class="col-lg-6 rounded-3">
+          <div class="col-lg-6 rounded-3 mb-3">
             <div class="card m-2 shadow text-center ">
               <div class="card-body px-3 bg">
                 <h1 class="card-title text-light mb-2">{{dataValues.titulo}}</h1>
-                <small class="text-secondary mt-1">Postado por: {{dataValues.autor}}</small>
                 <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+                <small class="text-secondary mt-1">by: {{dataValues.autor}}</small>
                 <div class="d-grid gap-2 p-3" role="group">
                   <a href="/posts/preview/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
-                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-primary fw-bold">Editar</a>
-                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Deletar
                   </button>                  
                 </div>
