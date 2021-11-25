@@ -1,6 +1,8 @@
-// const randomNotTrue = function randomNotTrue(a,b) {
-//   return Math.round(Math.random()*(b-a)+parseInt(a));
-//   }
+const seedrandom = require("seedrandom");
+
+rng = seedrandom("adddsdddsfs437adsasadsddsdsa", {
+  entropy: true,
+});
 
 const random = function random() {
   let number = rng()
@@ -10,5 +12,3 @@ const random = function random() {
 }
 
 module.exports = random;
-
-

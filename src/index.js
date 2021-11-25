@@ -1,5 +1,4 @@
 const express = require("express");
-const Sequelize = require("sequelize");
 const handlebars = require("express-handlebars");
 const cookieParser = require("cookie-parser");
 const slugify = require("slugify");
@@ -9,14 +8,13 @@ const seedrandom = require("seedrandom");
 const session = require("express-session");
 const flash = require("connect-flash");
 const moment = require("moment");
-const Op = Sequelize.Op;
 const app = express();
 module.exports = slugify
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(CLIENT_ID);
-require("./public/js/auth");
+require("../public/js/auth");
 require("dotenv").config();
 
 // Configs
@@ -89,8 +87,6 @@ app.post(`/`, (req, res) => {
       idToken: token,
       audience: CLIENT_ID,
     });
-    const payload = ticket.getPayload();
-    const userid = payload["sub"];
   }
   verify()
     .then(() => {
@@ -222,7 +218,7 @@ app.get(`/edit/:id`, checkAuthenticated, (req, res) => {
       id: req.params.id,
     },
   }).then((post, user) => {
-    var user = req.user;
+    let user = req.user;
     res.render("edit", {
       edit: post,
       info: {
@@ -297,9 +293,9 @@ function checkAuthenticated(req, res, next) {
 }
 //404
 app.get(`*`, (req, res) => {
-  let { term } = req.query;
   res.render("404");
 });
+
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Servidor Rodando`);
 });
