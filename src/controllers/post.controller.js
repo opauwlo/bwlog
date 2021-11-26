@@ -1,5 +1,5 @@
 const Post = require('../models/Post');
-
+const slugify = require('slugify');
 const random = require('../utils/slugNumbers');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         email: user.email,
         foto: user.picture,
         titulo: req.body.titulo,
-        slug: slugify(req.body.titulo + - + random(), {
+        slug: slugify(req.body.titulo + -+random(), {
           lower: true,
         }),
         descricao: req.body.descricao,
@@ -21,13 +21,13 @@ module.exports = {
         id_user: user.sub,
       })
         .then(() => {
-          req.flash("success_msg", "Publicado com sucesso :)");
+          req.flash('success_msg', 'Publicado com sucesso :)');
           res.redirect(`/perfil`);
         })
         .catch(() => {
           req.flash(
-            "erro_msg",
-            " Houve um erro, não foi possível fazer a publicação:("
+            'erro_msg',
+            ' Houve um erro, não foi possível fazer a publicação:('
           );
           res.redirect(`/cad`);
         });
@@ -42,13 +42,13 @@ module.exports = {
         },
       })
         .then(() => {
-          req.flash("success_msg", "Atualizado com sucesso :)");
+          req.flash('success_msg', 'Atualizado com sucesso :)');
           res.redirect(`/perfil`);
         })
         .catch(() => {
           req.flash(
-            "erro_msg",
-            " Houve um erro, não foi possível fazer a publicação:("
+            'erro_msg',
+            ' Houve um erro, não foi possível fazer a publicação:('
           );
           res.redirect(`/edit/:id`);
         });
@@ -63,22 +63,27 @@ module.exports = {
           res.redirect(`/perfil`);
         })
         .catch(function (erro) {
-          res.send("Erro ao deletar posategem!" + erro);
+          res.send('Erro ao deletar posategem!' + erro);
         });
     },
     showPost: (req, res) => {
       Post.findAll({
         where: {
           slug: req.params.slug,
-          publicado: true
-        }
-      })
-        .then(function (post, comments) {
-          res.render("posts", {
-            posts: post,
-            comments: comments
-          });
+          publicado: true,
+        },
+      }).then(function (post, comments) {
+        res.render('posts', {
+          posts: post,
+          comments: comments,
         });
+      });
+    },
+    showCreatePost: (req, res) => {
+      let user = req.user;
+      res.render('form', {
+        user,
+      });
     },
     showEditPost: (req, res) => {
       Post.findAll({
@@ -86,11 +91,11 @@ module.exports = {
           id: req.params.id,
         },
       }).then((post, user) => {
-        user = req.user;
-        res.render("edit", {
+        let userInfo = req.user;
+        res.render('edit', {
           edit: post,
           info: {
-            user,
+            userInfo,
           },
         });
       });
@@ -101,10 +106,10 @@ module.exports = {
           slug: req.params.slug,
         },
       }).then(function (post) {
-        res.render("posts", {
+        res.render('posts', {
           posts: post,
         });
       });
-    }
-  }
+    },
+  },
 };

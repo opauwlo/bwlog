@@ -1,7 +1,7 @@
 module.exports = {
   errorController: {
     erro404: (req, res) => {
-      res.render("404");
+      res.render('404');
     },
   },
 };

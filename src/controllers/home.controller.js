@@ -1,23 +1,22 @@
 require('../middlewares/checkAuthenticated')
-const slugify = require('slugify');
 const Post = require('../models/Post');
+require('dotenv').config();
 
-module.exports = slugify
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
-const { OAuth2Client } = require("google-auth-library");
+const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
 
-module.exports = {
+module.exports = { 
     homeController: {
       get: (req, res) => {
         Post.findAll({
-            order: [["id", "DESC"]],
+            order: [['id', 'DESC']],
             where: {
               publicado: true,
             },
           }).then((posts) => {
-            res.render("home", {
+            res.render('home', {
               posts: posts,
             });
           });
@@ -34,8 +33,8 @@ module.exports = {
         }
         verify()
           .then(() => {
-            res.cookie("session-token", token);
-            res.send("success");
+            res.cookie('session-token', token);
+            res.send('success');
           })
           .catch(console.error);
       }
