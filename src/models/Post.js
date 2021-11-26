@@ -1,4 +1,4 @@
-const db = require('./DataBase');
+const db = require('../configs/db.config');
 
 const Post = db.sequelize.define('postagens', {
   titulo: {
