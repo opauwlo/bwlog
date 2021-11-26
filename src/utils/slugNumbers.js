@@ -1,6 +1,6 @@
-const seedrandom = require("seedrandom");
+const seedrandom = require('seedrandom');
 
-rng = seedrandom("adddsdddsfs437adsasadsddsdsa", {
+rng = seedrandom('adddsdddsfs437adsasadsddsdsa', {
   entropy: true,
 });
 
