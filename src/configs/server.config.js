@@ -40,7 +40,6 @@ app.use((req, res, next) => {
 
 //static
 app.use(express.static(path.join(process.cwd() + '/src/public')));
-console.log(path.join(process.cwd() + '/src/public'));
 // Template
 app.engine(
   'handlebars',

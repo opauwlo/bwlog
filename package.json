@@ -19,7 +19,7 @@
     "slugify": "^1.5.3"
   },
   "scripts": {
-    "start": "node src/main.js",
+    "start": "node ./src/main.js",
     "dev": "nodemon src/main.js",
     "build": "purgecss --css bootstrap.min.css --content views/*.handlebars views/layouts/main.handlebars views/partials/*.handlebars --output dist/"
   },
