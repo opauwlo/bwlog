@@ -33,7 +33,7 @@ const { postController } = require('../controllers/post.controller');
 
 router.post('/add', checkAuthenticated, postController.creat);
 router.put('/update/:id', checkAuthenticated, postController.update);
-router.delete('/deletar/:id', postController.delete);
+router.post('/deletar/:id', postController.delete);
 router.get('/cad', checkAuthenticated, postController.showCreatePost);
 router.get('/posts/:slug', postController.showPost);
 router.get('/edit/:id', postController.showEditPost);
