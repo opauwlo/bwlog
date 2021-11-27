@@ -18,9 +18,6 @@ app.use(
   }),
 );
 
-// use json
-app.use(express.json());
-
 //Session
 app.use(
   session({
