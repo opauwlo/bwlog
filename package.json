@@ -18,27 +18,22 @@
     "set-value": "^4.0.0",
     "slugify": "^1.5.3"
   },
-    "engines": {
-    "npm": ">=8.1.0",
-    "node": ">=16.12.0"
-  },  "scripts": {
-    "start": "node /src/main.js",
-    "dev": "nodemon src/main.js",
-    "build": "purgecss --css bootstrap.min.css --content views/*.handlebars views/layouts/main.handlebars views/partials/*.handlebars --output dist/"
+  "scripts": {
+    "start": "node ./src/main.js",
+    "dev": "nodemon ./src/main.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.9",
-    "dotenv": "^10.0.0",
-    "purgecss": "^4.0.3"
+    "dotenv": "^10.0.0"
   },
   "main": "src/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/opauwlo/blog-simples.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["blog"],
+  "author": "opauwlo",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/opauwlo/blog-simples/issues"
   },
