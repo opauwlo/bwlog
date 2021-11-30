@@ -24,9 +24,10 @@
     "build": "purgecss --css bootstrap.min.css --content views/*.handlebars views/layouts/main.handlebars views/partials/*.handlebars --output dist/"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9",
     "dotenv": "^10.0.0",
-    "purgecss": "^4.0.3"
+    "nodemon": "^2.0.9",
+    "purgecss": "^4.0.3",
+    "sequelize-cli": "^6.3.0"
   },
   "main": "src/main.js",
   "repository": {
