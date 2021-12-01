@@ -1,34 +1,36 @@
-const Post = require('../models/Post');
+const User = require('../models/User');
 require('../middlewares/checkAuthenticated')
 
 module.exports = {
   profileController: {
     privateProfile: (req, res) => {
-      let user = req.user;
-      Post.findAll({
+      User.findOne({
         order: [['id', 'DESC']],
         where: {
           id_user: user.sub,
         },
-      }).then((posts) => {
+        include: { association: 'posts' }
+      }).then((posts, user) => {
         res.render('perfil', {
           posts: posts,
-          user: user,
+          user: user
         });
       });
     }, 
 
     publicProfile: (req, res) => {
       const id = req.params.id_user;
-      Post.findAll({
+      User.findOne({
         order: [['id', 'DESC']],
         where: {
           id_user: id,
-          publicado: true,
         },
-      }).then((posts) => {
+        include: { association: 'posts' }
+        
+      }).then((posts, user) => {
         res.render('autor', {
           posts: posts,
+          user: user
         });
       });
     }

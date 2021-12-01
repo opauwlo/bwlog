@@ -9,17 +9,25 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },      
-      autor : {
-        type: db.Sequelize.STRING
+      name : {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       foto : {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      descricao: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       id_user : {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       }    
     });
   },

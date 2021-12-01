@@ -5,11 +5,7 @@ const random = require('../utils/slugNumbers');
 module.exports = {
   postController: {
     creat: (req, res) => {
-      let user = req.user;
       Post.create({
-        autor: user.name,
-        email: user.email,
-        foto: user.picture,
         titulo: req.body.titulo,
         slug: slugify(req.body.titulo + -+random(), {
           lower: true,
@@ -18,7 +14,6 @@ module.exports = {
         conteudo: req.body.conteudo,
         publicado: req.body.publicado,
         editado: req.body.editado,
-        id_user: user.sub,
       })
         .then(() => {
           req.flash('success_msg', 'Publicado com sucesso :)');
@@ -67,15 +62,14 @@ module.exports = {
         });
     },
     showPost: (req, res) => {
-      Post.findAll({
+      Post.findOne({
         where: {
           slug: req.params.slug,
           publicado: true,
         },
-      }).then(function (post, comments) {
+      }).then(function (post) {
         res.render('posts', {
           posts: post,
-          comments: comments,
         });
       });
     },
@@ -90,7 +84,7 @@ module.exports = {
         where: {
           id: req.params.id,
         },
-      }).then((post, user) => {
+      }).then((post) => {
         let userInfo = req.user;
         res.render('edit', {
           edit: post,

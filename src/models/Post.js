@@ -1,28 +1,23 @@
-const db = require('../configs/db.config');
+const { Model, DataTypes } = require('sequelize');
 
-const Post = db.sequelize.define('postagens', {
-  titulo: {
-    type: db.Sequelize.STRING
-  },
-  slug: {
-    type: db.Sequelize.STRING
-  },
-  descricao: {
-    type: db.Sequelize.TEXT
-  },
-  conteudo: {
-    type: db.Sequelize.TEXT
-  },
-  publicado: {
-    type: db.Sequelize.BOOLEAN
-  },
-  editado: {
-    type: db.Sequelize.BOOLEAN
-  },
+class Post extends Model {
+  static init(sequelize) {
+    super.init({
+      titulo: DataTypes.STRING,
+      slug: DataTypes.STRING,
+      descricao: DataTypes.TEXT,
+      conteudo: DataTypes.TEXT,
+      publicado: DataTypes.BOOLEAN,
+      editado: DataTypes.BOOLEAN,
 
-});
-
-
-// Post.sync({force: true})
-
-module.exports = Post
+      id_user: DataTypes.STRING
+    }, {
+      sequelize
+    })
+  }
+  
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+  }
+}
+module.exports = Post;

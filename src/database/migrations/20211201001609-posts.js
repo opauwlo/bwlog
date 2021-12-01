@@ -31,6 +31,13 @@ module.exports = {
        editado: {
          type: Sequelize.BOOLEAN,
        },
+       user_id: {
+         type: Sequelize.INTEGER,
+         allowNull: false,
+         references: {model: 'users', key: 'id'},
+         onUpdate: 'CASCADE',
+         onDelete: 'CASCADE'
+       },
        created_at: {
         type: Sequelize.DATE,
         allowNull: false,

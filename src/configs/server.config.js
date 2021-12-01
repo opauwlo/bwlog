@@ -4,10 +4,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment');
-const path = require('path')
+const path = require('path');
 require('dotenv').config();
 
-require('./db.config');
+require('../database');
 
 const app = express();
 
@@ -53,8 +53,10 @@ app.engine(
     },
   })
 );
+
 app.set('views', path.join('src/views'));
 app.set('view engine', 'handlebars');
+
 app.use(express.json());
 app.use(cookieParser());
 
