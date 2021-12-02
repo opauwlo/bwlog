@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 const slugify = require('slugify');
 const random = require('../utils/slugNumbers');
 
@@ -62,14 +63,19 @@ module.exports = {
         });
     },
     showPost: (req, res) => {
-      Post.findOne({
+      Post.findAll({
+        include: [{
+          model: User,
+          as: 'user',
+        }],
         where: {
           slug: req.params.slug,
           publicado: true,
         },
-      }).then(function (post) {
+      }).then(function (post, user) {
         res.render('posts', {
           posts: post,
+          user: user
         });
       });
     },

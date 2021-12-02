@@ -20,9 +20,10 @@ module.exports = {
             where: {
               publicado: true,
             },
-          }).then((posts) => {
+          }).then((posts, user) => {
             res.render('home', {
               posts: posts,
+              user: user
             });
           });
       },
