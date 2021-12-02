@@ -15,8 +15,11 @@ router.post ('/', homeController.post);
 const { loginController } = require('../controllers/login.controller');
 
 router.get('/login', loginController.login);
-router.get('/auth',checkAuthenticated, loginController.auth);
-router.get('/auth/google', checkAuthenticated, loginController.createProfile);
+router.get('/verify',checkAuthenticated, loginController.veriyUser);
+router.get('/signup',checkAuthenticated, loginController.signup);
+
+router.post('/auth/create', checkAuthenticated, loginController.createUser);
+
 //logout router
 const { logoutController } = require('../controllers/logout.controller');
 

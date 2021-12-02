@@ -1,6 +1,4 @@
 const User = require('../models/User');
-require('../middlewares/checkAuthenticated');
-
 
 module.exports = {
     loginController: {
@@ -8,20 +6,37 @@ module.exports = {
         res.render('login');
       },
 
-      createProfile: async (req, res) => {
-        await User.findOrCreate({
-          where: { id_user: user.sub },
-          defaults: {
-            name: user.name,
-            email: user.email,
-            foto: user.picture,
-            descricao: `Olá, meu nome é ${user.name}`
-          }
-        });
-        res.redirect('/perfil');
+      veriyUser: async (req, res) => {
+        var user = req.user
+        console.log('verify user info')
+        console.log(user);
+        const userExist = await User.findOne({ where: {id_user: user.sub} });
+        console.log(userExist);
+        if (userExist == null) {
+          res.redirect('/signup');
+        } else {
+          await res.redirect('/perfil');
+        }      
       },
-      auth: (req, res) => {
-        res.redirect('/auth/google')
+      signup: (req, res) => {
+        var user = req.user
+        res.render('signup');
+      },
+      createUser:  (req, res) => {
+        let user = req.body;
+         User.create({
+        name: user.name,
+        user_name: req.body.nickname,
+        email: user.email,
+        foto: user.picture,
+        descricao: `Olá, meu nome é ${user.name}`
+        }).then(() => {
+        req.flash('success_msg', 'Atualizado com sucesso :)');
+        res.redirect(`/perfil`);
+        }).catch(() => {
+        req.flash('error_msg', 'username já existe.');
+        res.redirect(`/signup`);
+        });
       }
     },
   };
