@@ -1,5 +1,6 @@
 require('../middlewares/checkAuthenticated')
 const Post = require('../models/Post');
+const User = require('../models/User');
 require('dotenv').config();
 
 // Google
@@ -12,6 +13,10 @@ module.exports = {
       get: (req, res) => {
         Post.findAll({
             order: [['id', 'DESC']],
+            include: [{
+              model: User,
+              as: 'user',
+            }],
             where: {
               publicado: true,
             },

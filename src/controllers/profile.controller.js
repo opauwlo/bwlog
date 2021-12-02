@@ -1,15 +1,18 @@
 const User = require('../models/User');
-require('../middlewares/checkAuthenticated')
+const Post = require('../models/Post');
+require('../middlewares/checkAuthenticated');
 
 module.exports = {
   profileController: {
     privateProfile: (req, res) => {
       User.findOne({
-        order: [['id', 'DESC']],
         where: {
           id_user: user.sub,
         },
-        include: { association: 'posts' }
+        include: [{
+          model: Post,
+          as: 'user',
+        }]
       }).then((posts, user) => {
         res.render('perfil', {
           posts: posts,

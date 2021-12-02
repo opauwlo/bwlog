@@ -7,7 +7,7 @@ function SignIn(googleUser) {
   xhr.onload = function() {
     console.log('Signed in as: ' + xhr.responseText);
     if (xhr.responseText ==  'success'){
-      location.assign('/perfil')    
+      location.assign('/auth')    
     }
   };
   xhr.send(JSON.stringify({token: id_token}));

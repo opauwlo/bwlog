@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+const checkAuthenticated = require('../middlewares/checkAuthenticated');
 // Routes
 
 // home router
@@ -14,7 +15,8 @@ router.post ('/', homeController.post);
 const { loginController } = require('../controllers/login.controller');
 
 router.get('/login', loginController.login);
-
+router.get('/auth',checkAuthenticated, loginController.auth);
+router.get('/auth/google', checkAuthenticated, loginController.createProfile);
 //logout router
 const { logoutController } = require('../controllers/logout.controller');
 
@@ -22,7 +24,6 @@ router.get('/logout', logoutController.logout);
 
 // profile router
 const { profileController } = require('../controllers/profile.controller');
-const checkAuthenticated = require('../middlewares/checkAuthenticated');
 
 router.get('/perfil', checkAuthenticated, profileController.privateProfile);
 router.get('/autor/:id_user', profileController.publicProfile);

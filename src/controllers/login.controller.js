@@ -1,6 +1,6 @@
+const User = require('../models/User');
 require('../middlewares/checkAuthenticated');
 
-const User = require('../models/User');
 
 module.exports = {
     loginController: {
@@ -19,6 +19,9 @@ module.exports = {
           }
         });
         res.redirect('/perfil');
+      },
+      auth: (req, res) => {
+        res.redirect('/auth/google')
       }
     },
   };

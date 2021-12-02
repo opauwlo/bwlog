@@ -9,8 +9,6 @@ class Post extends Model {
       conteudo: DataTypes.TEXT,
       publicado: DataTypes.BOOLEAN,
       editado: DataTypes.BOOLEAN,
-
-      id_user: DataTypes.STRING
     }, {
       sequelize
     })
