@@ -7,9 +7,9 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
 
 function checkAuthenticated(req, res, next) {
-    var token = req.cookies['session-token'];
+    let token = req.cookies['session-token'];
   
-    var user = {};
+    let user = {};
     async function verify() {
       const ticket = await client.verifyIdToken({
         idToken: token,
@@ -24,11 +24,10 @@ function checkAuthenticated(req, res, next) {
     verify()
       .then(() => {
         req.user = user;
-      
         next();
       })
       .catch((err) => {
         res.redirect(`/login`)
       });
   }
-module.exports = checkAuthenticated
+module.exports = checkAuthenticated;

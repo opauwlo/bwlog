@@ -9,21 +9,15 @@ const checkAuthenticated = require('../middlewares/checkAuthenticated');
 const { homeController } = require('../controllers/home.controller');
 
 router.get('/', homeController.get);
-router.post ('/', homeController.post);
+
 
 //login router
-const { loginController } = require('../controllers/login.controller');
+const { authController } = require('../controllers/auth.controller');
 
-router.get('/login', loginController.login);
-router.get('/verify',checkAuthenticated, loginController.veriyUser);
-router.get('/signup',checkAuthenticated, loginController.signup);
-
-router.post('/auth/create', checkAuthenticated, loginController.createUser);
-
-//logout router
-const { logoutController } = require('../controllers/logout.controller');
-
-router.get('/logout', logoutController.logout);
+router.get('/login', authController.login);
+router.post ('/login', authController.loginPost);
+router.get('/auth/create',checkAuthenticated, authController.findOrCreate);
+router.get('/logout',checkAuthenticated, authController.logout);
 
 // profile router
 const { profileController } = require('../controllers/profile.controller');
@@ -35,13 +29,13 @@ router.get('/autor/:id_user', profileController.publicProfile);
 // posts router
 const { postController } = require('../controllers/post.controller');
 
-router.post('/add', checkAuthenticated, postController.creat);
-router.put('/update/:id', checkAuthenticated, postController.update);
-router.post('/deletar/:id', postController.delete);
 router.get('/cad', checkAuthenticated, postController.showCreatePost);
-router.get('/posts/:slug', postController.showPost);
+router.post('/add', checkAuthenticated, postController.create);
+router.get('/posts/:slug', postController.renderPost);
 router.get('/edit/:id', postController.showEditPost);
 router.get('/posts/preview/:slug', postController.showPereviewPost);
+router.post('/update/:id', checkAuthenticated, postController.update);
+router.post('/deletar/:id', postController.delete);
 
 // forum router
 const { forumControler } = require('../controllers/forum.controller');

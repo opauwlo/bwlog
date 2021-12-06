@@ -1,14 +1,14 @@
 <section class=" mx-2 mt-3 w-auto rounded-pill shadow-lg bg">
   <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
     <div class="flex-shrink-0">
-      <img class="rounded-circle w-50 border border-secondary"src="{{user.picture}}" alt="profile picture">
+      <img class="rounded-circle w-50 border border-secondary"src="{{user.dataValues.foto}}" alt="profile picture">
     </div>
     <div class="flex-grow-0 float-start text-profile">
       <a class="link-secondary text-white-50" href="# ">
-        {{user.name}}
+        {{user.dataValues.user_name}}
       </a>
       <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
-      <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-2" onclick="signOut();">
+      <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-2" onclick="signOut()">
         Sair
       </a>
     </div>
@@ -44,7 +44,7 @@
               <div class="card-body px-3 bg">
                 <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
                 <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-                <small class="text-secondary mt-1">by: {{dataValues.autor}}</small>
+                <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
                 <div class="d-grid gap-2 p-3" role="group">
                   <a href="/posts/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
                   <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
@@ -98,7 +98,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-          <form action="/deletar/{{dataValues.slug}}" method="POST">
+          <form action="/deletar/{{dataValues.id}}" method="POST">
             <button type="submit" class="btn btn-danger mx-1">Deletar</button>
           </form>
         </div>
@@ -109,10 +109,10 @@
 {{> _newPost}}
 <script>
 function signOut() {
+
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
-
   });
 }
 </script>

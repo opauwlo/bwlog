@@ -18,15 +18,13 @@ app.use(
   }),
 );
 
-// use json
-app.use(express.json());
 
 //Session
 app.use(
   session({
     secret: '88442211pV#',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 app.use(flash());
