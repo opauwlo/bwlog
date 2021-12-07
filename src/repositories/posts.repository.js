@@ -90,6 +90,30 @@ module.exports = {
         }],
       });
       return PostPage;
-    }
+    },
+    fromPostPreview: async (slug) => {
+      const PostPreview = await Post.findAll({
+        where: {
+          slug: slug,
+        },
+        include: [{
+          model: User,
+          as: 'user',
+        }]
+      });
+
+      return PostPreview
+    },
+
+    fromEditPage: async (id) => {
+      const Posts = await Post.findOne({
+        where: { id: id },
+        include: [{
+          model: User,
+          as: 'user'
+        }]
+      });
+      return Posts;
+    },
   },
 };

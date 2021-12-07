@@ -4,7 +4,6 @@ module.exports = {
   profile: {
     private: async (req, res) => {
       let info = req.user
-      
       try {
         const userProfile = await Users.getUserProfile(info);
         const posts = await Users.getUserPosts(userProfile.id);

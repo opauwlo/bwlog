@@ -29,11 +29,11 @@ router.get('/autor/:id_user', profileController.publicProfile);
 // posts router
 const { postController } = require('../controllers/post.controller');
 
-router.get('/cad', checkAuthenticated, postController.showCreatePost);
+router.get('/cad', checkAuthenticated, postController.renderCreatePost);
 router.post('/add', checkAuthenticated, postController.create);
 router.get('/posts/:slug', postController.renderPost);
-router.get('/edit/:id', postController.showEditPost);
-router.get('/posts/preview/:slug', postController.showPereviewPost);
+router.get('/edit/:id', checkAuthenticated, postController.renderEditPost);
+router.get('/posts/preview/:slug', postController.renderPereviewPost);
 router.post('/update/:id', checkAuthenticated, postController.update);
 router.post('/deletar/:id', postController.delete);
 

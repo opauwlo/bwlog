@@ -1,6 +1,7 @@
 const { Users } = require('../repositories/users.repository');
 //function to auth
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -35,7 +36,7 @@ module.exports = {
 
       catch (e) {
         res.status(500).json({
-          message: e.message
+          message: e
         });
       }
     },
@@ -57,8 +58,22 @@ module.exports = {
       let info = req.user;
       try {
         const create = await Users.findOrCreateUser(info);
+        let user = create[1];
+        const token = jwt.sign(
+          {
+            id: user.id,
+            nickname: user.user_name,
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: 43200,
+          },
+        );
+        res.cookie('access_token', token, {
+          overwrite: true
+        });
 
-        if (create) {
+        if (create[0]) {
           req.flash("success_msg", "bem-vinda(o), agora você pode editar o seu perfil");
           res.redirect("/perfil");
 
@@ -66,6 +81,7 @@ module.exports = {
           req.flash("success_msg", "olá, novamente");
           res.redirect(`/perfil`);
         }
+
       } catch (e) {
         console.log(e);
       }

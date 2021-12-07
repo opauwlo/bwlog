@@ -20,7 +20,7 @@ module.exports = {
           descricao: `Olá, me chame de ${info.name}`,
         },
       });
-      return created;
+      return [created, user];
     },
     updateUserProfile: async (info, nickname, desc) => {
       let success = null;

@@ -66,6 +66,40 @@ module.exports = {
       } catch (e) {
         console.log(e);
       }
+    },
+    renderCreate: async (req, res) => {
+      let info = req.user;
+      try {
+        let user =  await Users.getUserProfile(info);
+        res.render('form', {
+          user
+        });
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    renderEdit: async (req, res) => {
+      try {
+        const postsEdit = await Posts.fromEditPage(req.params.id)
+        res.render('edit', {
+          post: postsEdit,
+          user: postsEdit.user,
+        });
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    renderPreview: async (req, res) => {
+      try {
+        const postPreview = await Posts.fromPostPreview(req.params.slug);
+        res.render('posts', {
+          posts: postPreview,
+          user: postPreview
+        });
+
+      } catch (e) {
+        console.log(e)
+      }    
     }
   }
 };

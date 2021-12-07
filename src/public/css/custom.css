@@ -177,7 +177,7 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: #fff !important;
 }
 .text-blue {
-  color: #2fdbfd;
+  color: #2ffd4b;
 }
 .center {
   height: 100%;
@@ -207,6 +207,6 @@ pre {
   font-family: 'Cinzel', serif;
   font-weight: 600;
 
-  color: #ff8906 !important;
+  color: #e0c136 !important;
 
 }

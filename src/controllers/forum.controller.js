@@ -1,10 +1,7 @@
+const { forum } = require("../services/forum.service");
+
 module.exports = {
   forumControler: {
-    forum: (req, res) => {
-      const title = req.params.slug
-      res.render('forum', {
-        titulo: title
-      });
-    },
+    forum: forum.index,
   },
 };
