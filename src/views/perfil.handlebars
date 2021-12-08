@@ -1,24 +1,28 @@
-{{#each posts}}
-  {{#if @first}}
-    <section class=" mx-2 mt-3 w-auto rounded-pill shadow-lg bg">
-      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
-        <div class="flex-shrink-0">
-          <img class="rounded-circle w-50 border border-secondary"src="{{user.dataValues.foto}}" alt="profile picture">
+<div class="row p-2">
+    <div class="col-md-5 mx-auto">
+        <!-- Profile widget -->
+        <div class="overflow-hidden">
+            <div class="px-3 pt-0 pb-4 cover rounded-3">
+                <div class="media align-items-end profile-head rounded-circle">
+                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.foto}}" alt="..." width="130" class="rounded-3 img-thumbnail"></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0">{{user.dataValues.user_name}}</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="mt-5 btn btn-outline-dark btn-sm">Edit profile</a>
+            <div class="">
+                <h5 class="mb-1 mt-2 ">Sobre</h5>
+                <div class="p-4 rounded shadow-sm bg">
+                    <p class="font-italic text-white- mb-0">{{user.dataValues.descricao}}</p>
+
+                </div>
+            </div>
         </div>
-        <div class="flex-grow-0 float-start text-profile">
-          <a class="link-secondary text-white-50" href="# ">
-            {{user.dataValues.user_name}}
-          </a>
-          <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
-          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-2" onclick="signOut()">
-            Sair
-          </a>
-        </div>
-      </div>
-      </div>
-    </section>
-  {{/if}}
-{{/each}}
+    </div>
+</div>
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg">
     <div class="card-body fw-bold">

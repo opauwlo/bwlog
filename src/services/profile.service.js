@@ -5,10 +5,10 @@ module.exports = {
     private: async (req, res) => {
       try {
         const id = req.id
+        const user = await Users.getUserProfile(id)
         const posts = await Users.getUserPosts(id);
-        console.log(posts);
         res.render('perfil', {
-          user: posts.user,
+          user,
           posts: posts,
         });
 

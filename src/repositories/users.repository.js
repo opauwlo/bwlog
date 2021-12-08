@@ -40,9 +40,9 @@ module.exports = {
       });
       return success;
     },
-    getUserProfile: async (info) => {
+    getUserProfile: async (id) => {
       const UserProfile = await User.findOne({
-        where: {id_user: info.sub}
+        where: {id: id}
       });
       
       return UserProfile;
@@ -61,9 +61,11 @@ module.exports = {
 
     getUserPosts: async (id) => {
       const Posts = await Post.findAll({
+        order: [['id', 'DESC']],
         include: [{
           model: User,
-          as: 'user',
+          as: 'user', 
+          required: true
         }],
         where: { user_id : id },
        });
