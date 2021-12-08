@@ -1,21 +1,24 @@
-<section class=" mx-2 mt-3 w-auto rounded-pill shadow-lg bg">
-  <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
-    <div class="flex-shrink-0">
-      <img class="rounded-circle w-50 border border-secondary"src="{{user.foto}}" alt="profile picture">
-    </div>
-    <div class="flex-grow-0 float-start text-profile">
-      <a class="link-secondary text-white-50" href="# ">
-        {{posts.dataValues.user_name}}
-      </a>
-      <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
-      <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-2" onclick="signOut()">
-        Sair
-      </a>
-    </div>
-  </div>
-  </div>
-</section>
-
+{{#each posts}}
+  {{#if @first}}
+    <section class=" mx-2 mt-3 w-auto rounded-pill shadow-lg bg">
+      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
+        <div class="flex-shrink-0">
+          <img class="rounded-circle w-50 border border-secondary"src="{{user.dataValues.foto}}" alt="profile picture">
+        </div>
+        <div class="flex-grow-0 float-start text-profile">
+          <a class="link-secondary text-white-50" href="# ">
+            {{user.dataValues.user_name}}
+          </a>
+          <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
+          <a href="/logout" class="btn shadow btn-danger text-light btn-sm rounded-3 mx-2" onclick="signOut()">
+            Sair
+          </a>
+        </div>
+      </div>
+      </div>
+    </section>
+  {{/if}}
+{{/each}}
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg">
     <div class="card-body fw-bold">

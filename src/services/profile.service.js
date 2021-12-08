@@ -6,9 +6,9 @@ module.exports = {
       try {
         const id = req.id
         const posts = await Users.getUserPosts(id);
-        console.log(posts)
+        console.log(posts);
         res.render('perfil', {
-          user: posts.User,
+          user: posts.user,
           posts: posts,
         });
 

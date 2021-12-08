@@ -60,12 +60,12 @@ module.exports = {
     },
 
     getUserPosts: async (id) => {
-      const Posts = await Post.findAll({ where: { user_id: id },
+      const Posts = await Post.findAll({
         include: [{
           model: User,
           as: 'user',
-          where: { id: id },
         }],
+        where: { user_id : id },
        });
       return Posts;
     }
