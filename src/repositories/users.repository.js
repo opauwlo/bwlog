@@ -64,6 +64,7 @@ module.exports = {
         include: [{
           model: User,
           as: 'user',
+          where: { id: id },
         }],
        });
       return Posts;

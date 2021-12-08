@@ -43,6 +43,7 @@ module.exports = {
     logout: async (req, res) => {
       try {
         await res.clearCookie('session-token');
+        await res.clearCookie('access_token');
         await res.clearCookie('connect.sid');
         await res.clearCookie('G_AUTHUSER_H');
         await res.clearCookie('G_ENABLED_IDPS');
@@ -66,7 +67,7 @@ module.exports = {
           },
           process.env.JWT_SECRET,
           {
-            expiresIn: 43200,
+            expiresIn: 86400,
           },
         );
         res.cookie('access_token', token, {

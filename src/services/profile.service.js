@@ -3,13 +3,12 @@ const { Users } = require('../repositories/users.repository');
 module.exports = {
   profile: {
     private: async (req, res) => {
-      let info = req.user
       try {
-        const userProfile = await Users.getUserProfile(info);
-        const posts = await Users.getUserPosts(userProfile.id);
-
+        const id = req.id
+        const posts = await Users.getUserPosts(id);
+        console.log(posts)
         res.render('perfil', {
-          user: userProfile,
+          user: posts.User,
           posts: posts,
         });
 

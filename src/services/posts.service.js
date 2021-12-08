@@ -4,11 +4,9 @@ const { Users } = require('../repositories/users.repository');
 module.exports = {
   posts: {
     create: async (req, res) => {
-      let info = req.user;
-      let user =  await Users.getUserProfile(info);
 
       const { titulo, descricao, conteudo, publicado, editado } = req.body;
-      let user_id = user.id
+      let user_id = req.id
       console.log(titulo);
       try {
        const success = await Posts.createPost(titulo, descricao, conteudo, publicado, editado, user_id);
@@ -68,9 +66,8 @@ module.exports = {
       }
     },
     renderCreate: async (req, res) => {
-      let info = req.user;
       try {
-        let user =  await Users.getUserProfile(info);
+        let user =  req.user_name;
         res.render('form', {
           user
         });
