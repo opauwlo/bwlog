@@ -10,10 +10,10 @@
                       <div class="profile mr-3 position-relative">
                             
                         <label class="position-absolute top-0 start-100 translate-middle badge p-2 bg-secondary rounded-circle" for="profile"> <i class="fs-6 bi bi-pencil-square"> </i></label>
-                        <input id="profile" type="file" accept="image/*" onchange="preview()">
+                        <input id="profile" type="file" accept="image/*">
                         
                         <label for="profile">
-                          <img id="frame" src="{{user.dataValues.foto}}" alt="..." width="100" height="100" class="rounded-3 border-3 border-dark shadow-lg">
+                          <img id="imgProfile" src="{{user.dataValues.foto}}" alt="..." width="100" height="100" class="rounded-3 border-3 border-dark shadow-lg">
 
                         </label>    
                       </div>
@@ -42,10 +42,16 @@
 </form>
 
 <script>
-  function preview() {
-
-    var youtubeimgsrc = URL.createObjectURL(event.target.files[0]);
-    frame.src=URL.createObjectURL(event.target.files[0]);
-    console.log(youtubeimgsrc);
-  }
+  const profile = document.getElementById('profile');
+  const imgProfile = document.getElementById('imgProfile');
+  profile.addEventListener('change', (e) => {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    fetch('https://api.imgbb.com/1/upload?key=9498af09cd8ff43d32f69177904698a3', {
+      method: 'POST',
+      body: formData
+    }).then(res => res.json()).then(res => {
+      imgProfile.src = res.data.image.url;
+    });
+  });
 </script>
