@@ -23,13 +23,13 @@ router.get('/logout',checkAuthenticated, authController.logout);
 const { profileController } = require('../controllers/profile.controller');
 
 router.get('/perfil', verifyJwt, checkAuthenticated, profileController.privateProfile);
-router.get('/autor/:id_user', profileController.publicProfile);
-
-
+router.get('/autor/:name/:id', profileController.publicProfile);
+router.get('/edit/:id', verifyJwt, checkAuthenticated, profileController.renderUpdateProfile);
+router.post('/update/:id', verifyJwt, checkAuthenticated, profileController.updateProfile);
 // posts router
 const { postController } = require('../controllers/post.controller');
 
-router.get('/cad', verifyJwt, checkAuthenticated, postController.renderCreatePost);
+router.get('/novo/post', verifyJwt, checkAuthenticated, postController.renderCreatePost);
 router.post('/add', verifyJwt, checkAuthenticated, postController.create);
 router.get('/posts/:slug', postController.renderPost);
 router.get('/edit/:id', verifyJwt, checkAuthenticated, postController.renderEditPost);

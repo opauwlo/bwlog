@@ -23,11 +23,12 @@ module.exports = {
 
     public: async (req, res) => {
       try {
-        const id = req.params.id_user;
-        const publicProfile = await Users.getUserProfile(id);
+        const id = req.params.id;
+        const user = await Users.getUserProfile(id)
+        const publicProfile = await Users.getPublicProfile(id);
         res.render('autor', {
-          posts: publicProfile.posts,
-          user: publicProfile.user
+          posts: publicProfile,
+          user: user
         });
       }
       catch (e) {
@@ -56,6 +57,23 @@ module.exports = {
 
       } catch (e) {
         console.log(e);
+      }
+    },
+    renderUpdate: async (req, res) => {
+      let id = req.id;
+
+      if (id == req.params.id) {
+        try {
+          const user = await Users.getUserProfile(id);
+          res.render('updateProfile', {
+            user: user
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        req.flash('error_msg', 'Você não tem permissão para acessar esta página');
+        res.redirect('/perfil');
       }
     }
   }

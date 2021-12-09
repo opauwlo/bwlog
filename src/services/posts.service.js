@@ -7,7 +7,6 @@ module.exports = {
 
       const { titulo, descricao, conteudo, publicado, editado } = req.body;
       let user_id = req.id
-      console.log(titulo);
       try {
        const success = await Posts.createPost(titulo, descricao, conteudo, publicado, editado, user_id);
 

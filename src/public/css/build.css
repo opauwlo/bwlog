@@ -1660,11 +1660,11 @@ fieldset:disabled .btn {
 }
 
 .bg-dark {
-  background-color: #e6e6e6;
-  opacity: .8 ;
-  background-image:  radial-gradient(#cae036 1.6500000000000001px, transparent 1.6500000000000001px), radial-gradient(#cae036 1.6500000000000001px, #e6e6e6 1.6500000000000001px);
-  background-size: 66px 66px;
-  background-position: 0 0,33px 33px;
+  background-color: #090909;
+  opacity: 1;
+  background-image:  radial-gradient(#323232 2px, transparent 2px), radial-gradient(#323232 2px, #090909 2px);
+  background-size: 80px 80px;
+  background-position: 0 0,40px 40px;
 }
 
 .bg-transparent {

@@ -1,22 +1,26 @@
-<div class="row p-2">
-    <div class="col-md-5 mx-auto">
+<div class="row p-2 ">
+    <div class=" mx-auto">
         <!-- Profile widget -->
         <div class="overflow-hidden">
-            <div class="px-3 pt-0 pb-4 cover rounded-3">
+            <div class="px-3 pt-0 pb-4 cover rounded-3 mb-2" style=" background-image: url(https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg); background-size: cover; background-repeat: no-repeat">
                 <div class="media align-items-end profile-head rounded-circle">
-                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.foto}}" alt="..." width="130" class="rounded-3 img-thumbnail"></div>
-                    <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">{{user.dataValues.user_name}}</h4>
+                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.foto}}" alt="..." width="100" class="rounded-3 border-3 border-dark shadow-lg"></div>
+                    <div class="media-body mb-4 text-white">
+                        <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
                     </div>
                 </div>
             </div>
 
-            <a href="#" class="mt-5 btn btn-outline-dark btn-sm">Edit profile</a>
+            <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark" ></div>
+            <a href="/edit/{{user.dataValues.id}}" class="mx-3 mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar Perfil</a> 
+            <a href="/logout" class="mt-5 btn btn-danger text-white btn-sm text-center float-end" onclick="signOut();">
+              Sair
+            </a>
             <div class="">
-                <h5 class="mb-1 mt-2 ">Sobre</h5>
+                <h5 class="mb-1 mt-2 text-white">Sobre</h5>
                 <div class="p-4 rounded shadow-sm bg">
-                    <p class="font-italic text-white- mb-0">{{user.dataValues.descricao}}</p>
+                    <p class="font-italic text-white-50 mb-0">{{user.dataValues.descricao}}</p>
 
                 </div>
             </div>
@@ -75,7 +79,7 @@
               <div class="card-body px-3 bg">
                 <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
                 <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-                <small class="text-secondary mt-1">by: {{dataValues.autor}}</small>
+                <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
                 <div class="d-grid gap-2 p-3" role="group">
                   <a href="/posts/preview/{{dataValues.slug}}" class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
                   <a href="/edit/{{dataValues.id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>

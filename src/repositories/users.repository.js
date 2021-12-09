@@ -14,7 +14,7 @@ module.exports = {
         },
         defaults: {
           name: info.name,
-          user_name: info.name,
+          user_name: info.name.replace(/\s/g, ''),
           email: info.email,
           foto: info.picture,
           descricao: `Olá, me chame de ${info.name}`,
@@ -22,15 +22,16 @@ module.exports = {
       });
       return [created, user];
     },
-    updateUserProfile: async (info, nickname, desc) => {
+    updateUserProfile: async (id, nickname, desc) => {
       let success = null;
       await User.update({
         user_name: nickname,
+        foto: foto,
         descricao: desc,
-
+        
       }, {
         where: {
-          id_user: info.sub,
+          id: id,
         },
       }).then(() => {
         success = true;
@@ -48,12 +49,17 @@ module.exports = {
       return UserProfile;
     },
     getPublicProfile: async (id) => {
-      const PublicProfile = await User.findOne({
+      const PublicProfile = await Post.findAll({
         order: [['id', 'DESC']],
+        include: [{
+          model: User,
+          as: 'user', 
+          required: true
+        }],
         where: {
-          id_user: id,
+          user_id: id,
+          publicado: true
         },
-        include: { association: 'posts' }
       });
 
       return PublicProfile;

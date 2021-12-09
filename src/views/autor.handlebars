@@ -1,22 +1,28 @@
-{{#posts}}
-  {{#if @first}}
+<div class="row p-2 ">
+    <div class=" mx-auto">
+        <!-- Profile widget -->
+        <div class="overflow-hidden">
+            <div class="px-3 pt-0 pb-4 cover rounded-3 mb-5">
+                <div class="media align-items-end profile-head rounded-circle">
+                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.foto}}" alt="..." width="110" class="rounded-3 border-3 border-dark shadow-lg"></div>
+                    <div class="media-body mb-4 text-white">
+                        <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5">
+                <h5 class="mb-1 mt-2 text-white">Sobre</h5>
+                <div class="p-4 rounded shadow-sm bg">
+                    <p class="font-italic text-white-50 mb-0">{{user.dataValues.descricao}}</p>
 
-    <section class=" mx-2 mt-3 w-auto rounded-pill shadow bg">
-      <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
-        <div class="flex-shrink-0">
-          <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+                </div>
+            </div>
         </div>
-        <div class="flex-grow-0 float-start text-profile">
-          <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
-            {{dataValues.autor}}
-          </a>
-        </div>
-      </div>
-    </section>
-  {{/if}}
-{{/posts}}
+    </div>
+</div>
 
-<div class=" new-post p-3">
+<div class="my-1 new-post p-2">
  
   <div class="input-group shadow">
     <input type="text" class="form-control bg rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
@@ -33,7 +39,7 @@
           <div class="card-body px-3 bg shadow">
             <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
             <small class="text-info">{{dataValues.descricao}}</small>
-            <p class="card-text text-secondary"> by: {{dataValues.autor}}</p>
+            <p class="card-text text-secondary"> by: {{user.dataValues.user_name}}</p>
             <div class="d-grid gap-2">
               <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-dark border border-secondary text-light">Ler Mais!</a>
             </div>

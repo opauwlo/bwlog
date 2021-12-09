@@ -6,14 +6,15 @@ class User extends Model {
       name: DataTypes.STRING,
       user_name: {
         type: DataTypes.STRING,
-        unique: true,
+        unique: false,
       },
       email: DataTypes.STRING,
       foto: DataTypes.STRING,
       descricao: DataTypes.STRING,
       id_user: DataTypes.STRING
     }, {
-      sequelize
+      sequelize,
+      initialAutoIncrement: 1000
     })
   }
   static associate(models) {
