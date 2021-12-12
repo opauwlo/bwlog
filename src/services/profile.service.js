@@ -1,5 +1,7 @@
 const { Users } = require('../repositories/users.repository');
 
+const myUrl = require('../utils/upImgBB');
+
 module.exports = {
   profile: {
     private: async (req, res) => {
@@ -39,18 +41,29 @@ module.exports = {
       }
     },
     updated: async (req, res) => {
-      let info = req.user;
-      let nickname = req.body.nickname;
-      let desc = req.body.desc;
-      try {
-        await Users.updateUserProfile(info, nickname, desc);
 
-        if(success) {
+      let id = req.id;
+      let { user_name, descricao } = req.body;
+      if (req.files != null && req.files.profile_img != null) {
+        var profile = req.files.profile_img.data
+        profile = profile.toString('base64');
+        profile = await myUrl(profile);
+
+      }
+      if (req.files != null && req.files.banner_img !=null ) {
+        var banner = req.files.banner_img.data
+        banner = banner.toString('base64');
+        banner = await myUrl(banner);
+      }
+
+      try {
+        const success = await Users.updateUserProfile(user_name, descricao, profile, banner, id);
+
+        if(success == true) {
           req.flash('success_msg', 'Perfil atualizado com sucesso!');
           res.redirect('/perfil');
 
         } else {
-          console.log(e);
           await req.flash('error_msg', 'Houve um erro :( tente novamente');
           res.redirect('/perfil');
         }

@@ -4,7 +4,7 @@ const User = require('../models/User');
 require('../middlewares/checkAuthenticated');
 
 module.exports = {
-  
+   
   Users: {
 
     findOrCreateUser: async (info) => {
@@ -16,19 +16,19 @@ module.exports = {
           name: info.name,
           user_name: info.name.replace(/\s/g, ''),
           email: info.email,
-          foto: info.picture,
+          profile: info.picture,
           descricao: `Olá, me chame de ${info.name}`,
         },
       });
       return [created, user];
     },
-    updateUserProfile: async (id, nickname, desc) => {
+    updateUserProfile: async (user_name, descricao, profile, banner, id) => {
       let success = null;
       await User.update({
-        user_name: nickname,
-        foto: foto,
-        descricao: desc,
-        
+        user_name: user_name,
+        descricao: descricao,
+        profile:  profile,
+        banner : banner,  
       }, {
         where: {
           id: id,
@@ -39,7 +39,7 @@ module.exports = {
         console.log(e);
         success = false;
       });
-      return success;
+      
     },
     getUserProfile: async (id) => {
       const UserProfile = await User.findOne({

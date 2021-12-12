@@ -23,9 +23,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      foto : {
-        type: Sequelize.STRING,
+      profile : {
+        type: Sequelize.TEXT,
         allowNull: false,
+      },
+      banner : {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        defaultValue: 'https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg',
       },
       descricao: {
         type: Sequelize.STRING,

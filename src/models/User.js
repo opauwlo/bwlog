@@ -9,7 +9,11 @@ class User extends Model {
         unique: false,
       },
       email: DataTypes.STRING,
-      foto: DataTypes.STRING,
+      profile: DataTypes.TEXT,
+      banner: {
+        type: DataTypes.TEXT,
+        defaultValue: 'https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg'
+        },
       descricao: DataTypes.STRING,
       id_user: DataTypes.STRING
     }, {

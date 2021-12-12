@@ -5,34 +5,34 @@
 
     <div class="form mb-3 p-2 mx-auto bg">
       <fieldset disabled>
-        <input  type="text" name="autor" class="form__input text-white-50 p-3" autocomplete="off" placeholder=" " value="{{user.dataValues.user_name}}">
-        <label class="form__label ">Autor(a)</label>
+        <input type="text" name="autor" class="rounded-3 form__input text-white-50 p-3" autocomplete="off" placeholder=" " value="{{user.dataValues.user_name}}">
+        <label class="form__label rounded-3">Autor(a)</label>
       </fieldset>
     </div>
 
 		<hr class="bg">
 
-		<div class="form mb-3 p-2 mx-auto bg">
-			<input type="text" name="titulo" class="form__input" autocomplete="off" placeholder=" " value="{{post.dataValues.titulo}}" required>
-			<label class="form__label">Título</label>
+		<div class="form mb-3 p-2 mx-auto rounded-3 bg">
+			<input type="text" name="titulo" class="rounded-3 form__input" autocomplete="off" placeholder=" " value="{{post.dataValues.titulo}}" required>
+			<label class="form__label rounded-3">Título</label>
 		</div>
 		
 		<hr class="bg">
 
-		<div class="form-text mb-3 p-2 mx-auto bg">
+		<div class="form-text mb-3 p-2 rounded-3 mx-auto bg">
 			<textarea type="text" name="descricao" class="form__input" autocomplete="on" placeholder=" " required>{{post.dataValues.descricao}}</textarea>
-			<label class="form__label">Descriçao</label>
+			<label class="form__label rounded-3">Descriçao</label>
 		</div>
 		
 
-    <div class="mb-3 p-2">
+    <div class="mb-3 rounded-3 p-2">
       <label class="form-label text-light">Conteudo do post</label>
       <textarea name="conteudo" class="ck-content" id="validationTextarea">
         {{{post.dataValues.conteudo}}}
       </textarea>
     </div>
 
-  <div class="mb-3 p-2">
+  <div class="mb-3 rounded-3 p-2">
     <label class="form-label text-light" for="floatingInput">Salvar como:</label>
     <select class="form-select bg text-light border-2 border-secondary" name="publicado" required>
       <option value="true">Publico</option>

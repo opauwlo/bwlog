@@ -2,9 +2,9 @@
     <div class=" mx-auto">
         <!-- Profile widget -->
         <div class="overflow-hidden">
-            <div class="px-3 pt-0 pb-4 cover rounded-3 mb-5">
+            <div class="px-3 pt-0 pb-4 rounded-3 mb-5" style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
                 <div class="media align-items-end profile-head rounded-circle">
-                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.foto}}" alt="..." width="110" class="rounded-3 border-3 border-dark shadow-lg"></div>
+                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110" class="rounded-3 border-3 border-dark shadow-lg"></div>
                     <div class="media-body mb-4 text-white">
                         <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>

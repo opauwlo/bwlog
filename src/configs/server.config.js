@@ -6,15 +6,18 @@ const flash = require('connect-flash');
 const moment = require('moment');
 const path = require('path');
 require('dotenv').config();
+const fileUpload = require('express-fileupload');
 
 require('../database');
 
 const app = express();
 
+// default options
+app.use(fileUpload());
 // urlencoded
 app.use(
   express.urlencoded({
-    extended: false,
+    extended: true,
   }),
 );
 
