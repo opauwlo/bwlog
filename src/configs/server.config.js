@@ -20,8 +20,6 @@ app.use(
     extended: true,
   }),
 );
-
-
 //Session
 app.use(
   session({
