@@ -24,11 +24,10 @@ function checkAuthenticated(req, res, next) {
     verify()
       .then(() => {
         req.user = user;
-      
         next();
       })
       .catch((err) => {
         res.redirect(`/login`)
       });
   }
-module.exports = checkAuthenticated
+module.exports = checkAuthenticated;

@@ -4,26 +4,28 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment');
-const path = require('path')
+const path = require('path');
 require('dotenv').config();
+const fileUpload = require('express-fileupload');
 
-require('./db.config');
+require('../database');
 
 const app = express();
 
+// default options
+app.use(fileUpload());
 // urlencoded
 app.use(
   express.urlencoded({
-    extended: false,
+    extended: true,
   }),
 );
-
 //Session
 app.use(
   session({
     secret: '88442211pV#',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 app.use(flash());
@@ -49,8 +51,10 @@ app.engine(
     },
   })
 );
+
 app.set('views', path.join('src/views'));
 app.set('view engine', 'handlebars');
+
 app.use(express.json());
 app.use(cookieParser());
 

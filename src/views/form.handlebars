@@ -5,37 +5,37 @@
 <form action="/add" method="POST" class="p-3" id="form">
 
 
-  <div class="form mb-3 p-2 mx-auto bg">
+  <div class="form mb-3 p-2 mx-auto rounded-3">
     <fieldset disabled>
-      <input  type="text" name="autor" class="form__input text-white-50 p-3 bg" autocomplete="off" placeholder=" " value="{{user.name}}">
-      <label class="form__label ">Autor(a)</label>
+      <input  type="text" name="autor" class="form__input text-white-50 p-3 bg rounded-3" autocomplete="off" placeholder=" " value="{{user}}">
+      <label class="form__label rounded-3 ">Autor(a)</label>
     </fieldset>
   </div>
   
-	<hr class="bg">
+	<hr class="text-dark">
 
-	<div class="form mb-3 p-2 mx-auto bg">
-    <input type="text" name="titulo" class="form__input bg" autocomplete="off" placeholder=" " required>
-    <label class="form__label">Título</label>
+	<div class="form mb-3 p-2 mx-auto">
+    <input type="text" name="titulo" class="form__input bg rounded-3" autocomplete="off" placeholder=" " required>
+    <label class="form__label rounded-3">Título</label>
   </div>
 
-	<hr class="bg">
+	<hr class="text-dark">
 
-	<div class="form-text mb-3 p-2 mx-auto bg">
-    <textarea type="text" name="descricao" class="form__input bg" autocomplete="on" placeholder=" " required></textarea>
-    <label class="form__label">Descriçao</label>
+	<div class="form-text mb-3 p-2 mx-auto rounded-3">
+    <textarea type="text" name="descricao" class="form__input bg rounded-3" autocomplete="on" placeholder=" " required></textarea>
+    <label class="form__label rounded-3">Descriçao</label>
   </div>
 
-	<hr class="bg">
+	<hr class="text-dark">
 
   <div class="mb-3 p-2">
-    <label class="form-label text-light">Conteudo do post</label>
+    <label class="form-label text-white">Conteudo do post</label>
     <textarea name="conteudo" class="form-control" id="validationTextarea"></textarea>
   </div>
 
   <div class="mb-3 p-2 bg-dark">
-    <label class="form-label text-light bg" for="floatingInput">Salvar como:</label>
-    <select class="form-select bg text-light border-2 border-secondary" name="publicado" required>
+    <label class="form-label text-white" for="floatingInput">Salvar como:</label>
+    <select class="form-select bg text-white border-3 border-secondary" name="publicado" required>
       <option value="true">Publico</option>
       <option value="false">Privado</option>
     </select>

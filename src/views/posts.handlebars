@@ -15,7 +15,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://the-bwlog.herokuapp.com/">
     <meta property="twitter:title" content="{{dataValues.titulo}}">
-    <meta property="twitter:description" content="{{dataValues.autor}} || {{dataValues.titulo}}">
+    <meta property="twitter:description" content="{{dataValues.user_name}} || {{dataValues.titulo}}">
     <meta property="twitter:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
   </head>
   <div>
@@ -23,11 +23,11 @@
       <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
         <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
           <div class="flex-shrink-0">
-            <img class="rounded-circle w-50 border border-secondary"src="{{dataValues.foto}}" alt="profile picture">
+            <img class="rounded-circle border border-secondary"src="{{user.dataValues.profile}}" width="50" height="50" alt="profile picture">
           </div>
           <div class="flex-grow-0 float-start text-profile">
-            <a class="text-white-50 fs-6" href="/autor/{{dataValues.id_user}}">
-              {{dataValues.autor}}
+            <a class="ml-4 text-white-50 fs-6" href="/autor/{{user.dataValues.user_name}}/{{user.dataValues.id}}">
+              {{user.dataValues.user_name}}
             </a>
           </div>
         </div>

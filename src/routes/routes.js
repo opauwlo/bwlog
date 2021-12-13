@@ -2,42 +2,40 @@ const express = require('express');
 
 const router = express.Router();
 
+const checkAuthenticated = require('../middlewares/checkAuthenticated');
+const verifyJwt = require('../middlewares/verifyJwt');
 // Routes
 
 // home router
 const { homeController } = require('../controllers/home.controller');
-
 router.get('/', homeController.get);
-router.post ('/', homeController.post);
+
 
 //login router
-const { loginController } = require('../controllers/login.controller');
+const { authController } = require('../controllers/auth.controller');
 
-router.get('/login', loginController.login);
-
-//logout router
-const { logoutController } = require('../controllers/logout.controller');
-
-router.get('/logout', logoutController.logout);
+router.get('/login', authController.login);
+router.post ('/login', authController.loginPost);
+router.get('/auth/create', checkAuthenticated, authController.findOrCreate);
+router.get('/logout',checkAuthenticated, authController.logout);
 
 // profile router
 const { profileController } = require('../controllers/profile.controller');
-const checkAuthenticated = require('../middlewares/checkAuthenticated');
 
-router.get('/perfil', checkAuthenticated, profileController.privateProfile);
-router.get('/autor/:id_user', profileController.publicProfile);
-
-
+router.get('/perfil', verifyJwt, checkAuthenticated, profileController.privateProfile);
+router.get('/autor/:name/:id', profileController.publicProfile);
+router.get('/edit/:id', verifyJwt, checkAuthenticated, profileController.renderUpdateProfile);
+router.post('/update', verifyJwt, checkAuthenticated, profileController.updateProfile);
 // posts router
 const { postController } = require('../controllers/post.controller');
 
-router.post('/add', checkAuthenticated, postController.creat);
-router.put('/update/:id', checkAuthenticated, postController.update);
-router.post('/deletar/:id', postController.delete);
-router.get('/cad', checkAuthenticated, postController.showCreatePost);
-router.get('/posts/:slug', postController.showPost);
-router.get('/edit/:id', postController.showEditPost);
-router.get('/posts/preview/:slug', postController.showPereviewPost);
+router.get('/novo/post', verifyJwt, checkAuthenticated, postController.renderCreatePost);
+router.post('/add', verifyJwt, checkAuthenticated, postController.create);
+router.get('/posts/:slug', postController.renderPost);
+router.get('/edit/post/:id', verifyJwt, checkAuthenticated, postController.renderEditPost);
+router.get('/posts/preview/:slug', postController.renderPereviewPost);
+router.post('/update/:id', verifyJwt, checkAuthenticated, postController.update);
+router.post('/deletar/:id', verifyJwt,checkAuthenticated, postController.delete);
 
 // forum router
 const { forumControler } = require('../controllers/forum.controller');

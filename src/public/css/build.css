@@ -1660,11 +1660,11 @@ fieldset:disabled .btn {
 }
 
 .bg-dark {
-  background-color: #16161a;
+  background-color: #090909;
   opacity: 1;
-  background-image:  linear-gradient(30deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(150deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(30deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(150deg, #040505 12%, transparent 12.5%, transparent 87%, #040505 87.5%, #040505), linear-gradient(60deg, #04050577 25%, transparent 25.5%, transparent 75%, #04050577 75%, #04050577), linear-gradient(60deg, #04050577 25%, transparent 25.5%, transparent 75%, #04050577 75%, #04050577);
-  background-size: 42px 74px;
-  background-position: 0 0, 0 0, 21px 37px, 21px 37px, 0 0, 21px 37px;
+  background-image:  radial-gradient(#323232 2px, transparent 2px), radial-gradient(#323232 2px, #090909 2px);
+  background-size: 80px 80px;
+  background-position: 0 0,40px 40px;
 }
 
 .bg-transparent {
