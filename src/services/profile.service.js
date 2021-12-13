@@ -2,6 +2,8 @@ const { Users } = require('../repositories/users.repository');
 
 const myUrl = require('../utils/upImgBB');
 
+const cloudinary = require('../utils/cloudinary');
+
 module.exports = {
   profile: {
     private: async (req, res) => {
@@ -43,22 +45,30 @@ module.exports = {
     updated: async (req, res) => {
 
       let id = req.id;
-
+      let user = await Users.getUserProfile(id);
       let { user_name, descricao } = req.body;
+
       if (req.files != null && req.files.profile_img != null) {
-        var profile = req.files.profile_img.data
-        profile = profile.toString('base64');
-        profile = await myUrl(profile);
+        var profile = req.files.profile_img
+        await cloudinary.uploader.destroy(user.profile_id);
+        var profileResult = cloudinary.uploader.upload(profile);
+        profile = await profileResult.secure_url;
+        console.log(profile);
+        var profile_id = await profileResult.public_id;
 
       }
       if (req.files != null && req.files.banner_img !=null ) {
         var banner = req.files.banner_img.data
+        //  banner to base64
         banner = banner.toString('base64');
-        banner = await myUrl(banner);
+        await cloudinary.uploader.destroy(user.banner_id);
+        var bannerResult = cloudinary.uploader.upload(banner);
+        banner = await bannerResult.secure_url;
+        var banner_id = await bannerResult.public_id;
       }
 
       try {
-        const success = await Users.updateUserProfile(user_name, descricao, profile, banner, id);
+        const success = await Users.updateUserProfile(user_name, descricao, profile, profile_id, banner, banner_id ,id);
 
         if(success == true) {
           req.flash('success_msg', 'Perfil atualizado com sucesso!');
