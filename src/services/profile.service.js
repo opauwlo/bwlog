@@ -43,6 +43,7 @@ module.exports = {
     updated: async (req, res) => {
 
       let id = req.id;
+
       let { user_name, descricao } = req.body;
       if (req.files != null && req.files.profile_img != null) {
         var profile = req.files.profile_img.data

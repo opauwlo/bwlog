@@ -24,11 +24,11 @@ module.exports = {
         allowNull: false,
       },
       profile : {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       banner : {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg',
       },

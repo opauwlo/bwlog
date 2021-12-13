@@ -6,14 +6,14 @@
       <div class="overflow-hidden">
         <label class="position-absolute top-100 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
           for="banner_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
-        <input name="banner_img" id="banner_img" onchange="previewBanner()" type="file" accept="image/*" />
+        <input name="banner_img" id="banner_img" type="file" accept="image/*" />
         <div id="bannerImg" class="px-3 pt-0 pb-4 rounded-3 mb-2 border border-dark" style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
           <div class="media align-items-end profile-head rounded-circle">
             <div class="profile mr-3 position-relative">
 
               <label class="position-absolute top-0 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
                 for="profile_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
-              <input name="profile_img" id="profile_img" type="file" accept="image/*"    onchange="previewProfile()"/>
+              <input name="profile_img" id="profile_img" type="file" accept="image/*"/>
 
               <label for="profile_img">
                 <img id="imgProfile" src="{{user.dataValues.profile}}" alt="..." width="100" height="100"
@@ -64,22 +64,36 @@
   const imgProfile = document.getElementById('imgProfile');
   const banner_img = document.getElementById('bannerImg');
   const button = document.getElementById('submit');
+
   function load() {
     const loader = document.querySelector('.loader');
     loader.classList.remove('hidden');
-
   }
+
   function activateButton() {
     button.classList.remove('disabled');
   }
-  function previewProfile() {
-    
-    imgProfile.src=URL.createObjectURL(event.target.files[0]);
-    button.classList.remove('disabled');
-  }
-  function previewBanner() {
-    banner_img.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0])})`;
-    button.classList.remove('disabled');
-  }
-  
+
+  var profile = document.getElementById("profile_img");
+  profile.onchange = function() {
+    if(this.files[0].size > 3145728.0){
+      alert("Arquivo muito grande, valor maximo de 3MB!");
+      this.value = "";
+    } else {
+      imgProfile.src=URL.createObjectURL(event.target.files[0]);
+      button.classList.remove('disabled');
+    }
+  };
+
+  var banner = document.getElementById("banner_img");
+  banner.onchange = function() {
+    if(this.files[0].size > 3145728.0){
+      alert("Arquivo muito grande, valor maximo de 3MB!");
+      this.value = "";
+    } else {
+      banner_img.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0])})`;
+      button.classList.remove('disabled');
+    }
+  };
+
 </script>

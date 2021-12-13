@@ -6,7 +6,6 @@ module.exports = {
     index: async (req, res) => {
       try {
         const posts = await Posts.fromHome();
-        console.log(posts);
           res.render('home', {
             posts: posts,
             user: posts.user

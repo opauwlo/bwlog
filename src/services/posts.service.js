@@ -1,5 +1,4 @@
 const { Posts } = require('../repositories/posts.repository');
-const { Users } = require('../repositories/users.repository');
 
 module.exports = {
   posts: {
@@ -54,7 +53,6 @@ module.exports = {
     renderPost: async (req, res) => {
       try {
         const post = await Posts.fromPostPage(req.params.slug);
-
           res.render('posts', {
             posts: post,
             user: post

@@ -1,5 +1,5 @@
 const imgbbUploader = require("imgbb-uploader");
-
+require('dotenv').config();
 // Your barebone async function
 const myUrl = async (base64) => {
   return await imgbbUploader({
