@@ -8,7 +8,7 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 
 const sequelize = new Sequelize(infos);
-// sequelize.sync({force:true})
+//sequelize.sync({force:true})
 User.init(sequelize);
 Post.init(sequelize);
 

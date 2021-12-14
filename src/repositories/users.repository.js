@@ -7,7 +7,7 @@ module.exports = {
    
   Users: {
 
-    findOrCreateUser: async (info) => {
+    findOrCreateUser: async (info, profile, profile_id, banner, banner_id) => {
       const [user, created] = await User.findOrCreate({
         where: {
           id_user: info.sub
@@ -16,19 +16,24 @@ module.exports = {
           name: info.name,
           user_name: info.name.replace(/\s/g, ''),
           email: info.email,
-          profile: info.picture,
+          profile: profile,
+          profile_id: profile_id,
+          banner: banner,
+          banner_id: banner_id,
           descricao: `Olá, me chame de ${info.name}`,
         },
       });
       return [created, user];
     },
-    updateUserProfile: async (user_name, descricao, profile, banner, id) => {
-      let success = null;
+    updateUserProfile: async (user_name, descricao, profile, profile_id, banner, banner_id,id) => {
+      var success = null;
       await User.update({
-        user_name: user_name,
+        user_name: user_name.replace(/\s/g, ''),
         descricao: descricao,
         profile:  profile,
-        banner : banner,  
+        profile_id: profile_id,
+        banner : banner,
+        banner_id : banner_id  
       }, {
         where: {
           id: id,

@@ -30,7 +30,14 @@ module.exports = {
       banner : {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg',
+      },
+      profile_id : {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      banner_id : {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       descricao: {
         type: Sequelize.STRING,
