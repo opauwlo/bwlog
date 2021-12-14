@@ -1,7 +1,5 @@
 const { Users } = require('../repositories/users.repository');
 
-const myUrl = require('../utils/upImgBB');
-
 const cloudinary = require('../utils/cloudinary');
 
 module.exports = {
@@ -49,22 +47,23 @@ module.exports = {
       let { user_name, descricao } = req.body;
 
       if (req.files != null && req.files.profile_img != null) {
-        var profile = req.files.profile_img
+        var profile = req.files.profile_img;
+
         await cloudinary.uploader.destroy(user.profile_id);
-        var profileResult = cloudinary.uploader.upload(profile);
-        profile = await profileResult.secure_url;
-        console.log(profile);
-        var profile_id = await profileResult.public_id;
+
+        var profileResult = await cloudinary.uploader.upload(profile.tempFilePath, {folder: 'bwlog - profile'});
+        profile = profileResult.secure_url;
+        var profile_id = profileResult.public_id;
 
       }
       if (req.files != null && req.files.banner_img !=null ) {
-        var banner = req.files.banner_img.data
-        //  banner to base64
-        banner = banner.toString('base64');
+        var banner = req.files.banner_img;
+
         await cloudinary.uploader.destroy(user.banner_id);
-        var bannerResult = cloudinary.uploader.upload(banner);
-        banner = await bannerResult.secure_url;
-        var banner_id = await bannerResult.public_id;
+
+        var bannerResult = await cloudinary.uploader.upload(banner.tempFilePath, {folder: 'bwlog - banner'});
+        banner = bannerResult.secure_url;
+        var banner_id = bannerResult.public_id;
       }
 
       try {

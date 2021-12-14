@@ -13,7 +13,9 @@ require('../database');
 const app = express();
 
 // default options
-app.use(fileUpload());
+app.use(fileUpload({
+  useTempFiles : true,
+}));
 // urlencoded
 app.use(
   express.urlencoded({

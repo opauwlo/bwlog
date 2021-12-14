@@ -59,11 +59,11 @@ module.exports = {
     findOrCreate: async (req, res) => { 
       let info = req.user;
       // get result from cloudinary 
-      let resultProfile = await cloudinary.uploader.upload(info.picture);
+      let resultProfile = await cloudinary.uploader.upload(info.picture, {folder: 'bwlog - profile'});
       let profile =  resultProfile.secure_url;
       let profile_id = resultProfile.public_id;
 
-      let resultBanner = await cloudinary.uploader.upload('https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg');
+      let resultBanner = await cloudinary.uploader.upload('https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg', {folder: 'bwlog - banner'});
       let banner =  resultBanner.secure_url;
       let banner_id = resultBanner.public_id;
 
