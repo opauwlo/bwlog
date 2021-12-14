@@ -1,3 +1,4 @@
+const  fs  = require('fs');
 const { Users } = require('../repositories/users.repository');
 
 const cloudinary = require('../utils/cloudinary');
@@ -54,7 +55,8 @@ module.exports = {
         var profileResult = await cloudinary.uploader.upload(profile.tempFilePath, {folder: 'bwlog - profile'});
         profile = profileResult.secure_url;
         var profile_id = profileResult.public_id;
-
+        // delete tmp folder
+        
       }
       if (req.files != null && req.files.banner_img !=null ) {
         var banner = req.files.banner_img;
@@ -65,11 +67,15 @@ module.exports = {
         banner = bannerResult.secure_url;
         var banner_id = bannerResult.public_id;
       }
-
+      const dir = 'tmp';
+      fs.rmdir(dir, { recursive: true }, (err) => {
+        if (err) throw err;
+      });   
       try {
         const success = await Users.updateUserProfile(user_name, descricao, profile, profile_id, banner, banner_id ,id);
-
+        
         if(success == true) {
+       
           req.flash('success_msg', 'Perfil atualizado com sucesso!');
           res.redirect('/perfil');
 
