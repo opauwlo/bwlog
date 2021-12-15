@@ -22,7 +22,7 @@
     "slugify": "^1.5.3"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "build": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "devDependencies": {
