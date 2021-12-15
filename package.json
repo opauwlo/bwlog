@@ -23,8 +23,7 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "build": "purgecss --css bootstrap.min.css --content views/*.handlebars views/layouts/main.handlebars views/partials/*.handlebars --output dist/"
+    "dev": "nodemon src/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.9",
