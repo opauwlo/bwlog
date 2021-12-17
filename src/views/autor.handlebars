@@ -4,7 +4,7 @@
         <div class="overflow-hidden">
             <div class="px-3 pt-0 pb-4 rounded-3 mb-5" style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
                 <div class="media align-items-end profile-head rounded-circle">
-                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110" class="rounded-3 border-3 border-dark shadow-lg"></div>
+                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110" style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
                     <div class="media-body mb-4 text-white">
                         <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
@@ -14,7 +14,7 @@
             <div class="mt-5">
                 <h5 class="mb-1 mt-2 text-white">Sobre</h5>
                 <div class="p-4 rounded shadow-sm bg">
-                    <p class="font-italic text-white-50 mb-0">{{user.dataValues.descricao}}</p>
+                    <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.dataValues.descricao}}</p>
 
                 </div>
             </div>

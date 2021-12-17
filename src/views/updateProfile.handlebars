@@ -16,8 +16,8 @@
               <input name="profile_img" id="profile_img" type="file" accept="image/*"/>
 
               <label for="profile_img">
-                <img id="imgProfile" src="{{user.dataValues.profile}}" alt="..." width="100" height="100"
-                  class="rounded-3 border-3 border-dark shadow-lg" />
+                <img id="imgProfile" src="{{user.dataValues.profile}}" alt="..." width="110"
+                  class="rounded-3 border-3 border-dark shadow-lg" style="object-fit: cover;" />
               </label>
             </div>
             <div class="media-body mb-4 text-white position-relative">
@@ -43,7 +43,7 @@
               for="profile">
               <i class="fs-6 bi bi-pencil-square"> </i>
             </label>
-            <input id="descricao" class="overflow-hidden font-italic text-white-50 mb-0 input-sobre" type="text" name="descricao" autocomplete="off" value="{{user.dataValues.descricao}}" onchange="activateButton()"/>
+            <textarea placeholder=" " name="descricao" id="descricao" type="text" class="form-text mb-3 p-2 rounded-3 mx-auto bg"  onchange="activateButton()"  rows="3">{{user.dataValues.descricao}}</textarea>
           </div>
         </div>
         <div class="d-grid gap-2">
