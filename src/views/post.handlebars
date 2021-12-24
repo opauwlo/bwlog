@@ -3,19 +3,20 @@
   <head>
     <title>{{dataValues.titulo}}</title>
     <meta name="title" content="{{dataValues.titulo}}">
+    <mete name="author" content="{{ueser.dataValues.user_name}}">
     <meta name="description" content="{{dataValues.descricao}}">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://the-bwlog.herokuapp.com/{{dataValues.slug}}">
+    <meta property="og:url" content="https://www.bwlog.dev/{{dataValues.slug}}">
     <meta property="og:title" content="{{dataValues.titulo}}">
-    <meta property="og:description" content="escreva e compartilhe suas histórias.">
+    <meta property="og:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
     <meta property="og:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://the-bwlog.herokuapp.com/">
+    <meta property="twitter:url" content="https://www.bwlog.dev/">
     <meta property="twitter:title" content="{{dataValues.titulo}}">
-    <meta property="twitter:description" content="{{dataValues.user_name}} || {{dataValues.titulo}}">
+    <meta property="twitter:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
     <meta property="twitter:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
   </head>
   <div>
