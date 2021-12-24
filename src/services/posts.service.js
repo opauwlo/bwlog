@@ -53,7 +53,7 @@ module.exports = {
     renderPost: async (req, res) => {
       try {
         const post = await Posts.fromPostPage(req.params.slug);
-          res.render('posts', {
+          res.render('post', {
             posts: post,
             user: post
           });
@@ -65,7 +65,7 @@ module.exports = {
     renderCreate: async (req, res) => {
       try {
         let user =  req.user_name;
-        res.render('form', {
+        res.render('createPost', {
           user
         });
       } catch (e) {
@@ -75,7 +75,7 @@ module.exports = {
     renderEdit: async (req, res) => {
       try {
         const postsEdit = await Posts.fromEditPage(req.params.id)
-        res.render('edit', {
+        res.render('editPost', {
           post: postsEdit,
           user: postsEdit.user,
         });
@@ -86,7 +86,7 @@ module.exports = {
     renderPreview: async (req, res) => {
       try {
         const postPreview = await Posts.fromPostPreview(req.params.slug);
-        res.render('posts', {
+        res.render('post', {
           posts: postPreview,
           user: postPreview
         });
