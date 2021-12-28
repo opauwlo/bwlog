@@ -23,7 +23,7 @@ router.get('/logout',checkAuthenticated, authController.logout);
 const { profileController } = require('../controllers/profile.controller');
 
 router.get('/perfil', verifyJwt, checkAuthenticated, profileController.privateProfile);
-router.get('/autor/:name/:id', profileController.publicProfile);
+router.get('/autor/:id/:name', profileController.publicProfile);
 router.get('/edit/:id', verifyJwt, checkAuthenticated, profileController.renderUpdateProfile);
 router.post('/update', verifyJwt, checkAuthenticated, profileController.updateProfile);
 // posts router
