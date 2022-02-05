@@ -7,6 +7,7 @@ const moment = require('moment');
 const path = require('path');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
+const paginateHelper = require('../app/utils/pagination');
 
 require('../database');
 
@@ -50,6 +51,7 @@ app.engine(
       formatDate: (createdAt) => {
         return moment(createdAt).format('DD/MM/YYYY');
       },
+      paginateHelper: paginateHelper.createPagination,
     },
   })
 );

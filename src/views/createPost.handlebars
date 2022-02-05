@@ -3,26 +3,15 @@
 <link rel="stylesheet" href="../../css/prism.css">
 
 <form action="/add" method="POST" class="p-3" id="form">
-
-
-  <div class="form mb-3 p-2 mx-auto rounded-3">
-    <fieldset disabled>
-      <input  type="text" name="autor" class="form__input text-white-50 p-3 bg rounded-3" autocomplete="off" placeholder=" " value="{{user}}">
-      <label class="form__label rounded-3 ">Autor(a)</label>
-    </fieldset>
-  </div>
-  
-	<hr class="text-dark">
-
 	<div class="form mb-3 p-2 mx-auto">
-    <input type="text" name="titulo" class="form__input bg rounded-3" autocomplete="off" placeholder=" " required>
+    <input type="text" name="titulo" class="form__input bg rounded-3" maxlength="40" autocomplete="off" placeholder=" " required>
     <label class="form__label rounded-3">Título</label>
   </div>
 
 	<hr class="text-dark">
 
 	<div class="form-text mb-3 p-2 mx-auto rounded-3">
-    <textarea type="text" name="descricao" class="form__input bg rounded-3" autocomplete="on" placeholder=" " required></textarea>
+    <textarea type="text" name="descricao" class="form__input bg rounded-3" maxlength="38" autocomplete="on" placeholder=" " required></textarea>
     <label class="form__label rounded-3">Descriçao</label>
   </div>
 
@@ -34,15 +23,24 @@
   </div>
 
   <div class="mb-3 p-2 bg-dark">
+    <label class="form-label text-white" for="floatingInput">Adcianar à textlist:  <a class="ml-5 text-info float-end" href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma textlist</a> </label>
+    <select class="form-select bg text-white border-3 border-secondary" name="textlist">
+        <option selected value="NULL"> Sem Textlist </option>
+      {{#each textlist}}
+        <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
+      {{/each}}
+
+    </select>
+  </div>
+  
+  <div class="mb-3 p-2 bg-dark">
     <label class="form-label text-white" for="floatingInput">Salvar como:</label>
     <select class="form-select bg text-white border-3 border-secondary" name="publicado" required>
       <option value="true">Publico</option>
-      <option value="false">Privado</option>
+      <option value="false">Rascunho</option>
     </select>
   </div>
-  <select class="visually-hidden-focusable form-select bg-dark text-light border-2 border-secondary" name="editado">
-    <option value="false">Editdo</option>
-  </select>
+
   <button type="submit" class="btn btn-primary mx-2">Enviar</button>
 
 </form>

@@ -3,24 +3,17 @@
 
   <form action="/update/{{post.dataValues.id}}" method="POST" class="p-3" id="formEdit">
 
-    <div class="form mb-3 p-2 mx-auto bg">
-      <fieldset disabled>
-        <input type="text" name="autor" class="rounded-3 form__input text-white-50 p-3" autocomplete="off" placeholder=" " value="{{user.dataValues.user_name}}">
-        <label class="form__label rounded-3">Autor(a)</label>
-      </fieldset>
-    </div>
-
 		<hr class="bg">
 
 		<div class="form mb-3 p-2 mx-auto rounded-3 bg">
-			<input type="text" name="titulo" class="rounded-3 form__input" autocomplete="off" placeholder=" " value="{{post.dataValues.titulo}}" required>
+			<input type="text" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="40" placeholder=" " value="{{post.dataValues.titulo}}" required>
 			<label class="form__label rounded-3">Título</label>
 		</div>
 		
 		<hr class="bg">
 
 		<div class="form-text mb-3 p-2 rounded-3 mx-auto bg">
-			<textarea type="text" name="descricao" class="form__input" autocomplete="on" placeholder=" " required>{{post.dataValues.descricao}}</textarea>
+			<textarea type="text" name="descricao" maxlength="46" class="form__input" autocomplete="on" placeholder=" " required>{{post.dataValues.descricao}}</textarea>
 			<label class="form__label rounded-3">Descriçao</label>
 		</div>
 		
@@ -31,19 +24,29 @@
         {{{post.dataValues.conteudo}}}
       </textarea>
     </div>
+    <div class="mb-3 p-2 bg-dark">
+      <label class="form-label text-white" for="floatingInput">Adcianar à textlist:  <a class="ml-5 text-info float-end" href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma textlist</a> </label>
+      <select class="form-select bg text-white border-3 border-secondary" name="textlist">
+        {{#if haveTextlist}}
+          <option value="{{textlistPost.dataValues.id}}">{{textlistPost.dataValues.titulo}}</option>
+        {{/if}}
+          <option value="NULL"> Sem Textlist </option>
+        {{#each textlist}}
+          <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
+        {{/each}}
 
-  <div class="mb-3 rounded-3 p-2">
-    <label class="form-label text-light" for="floatingInput">Salvar como:</label>
-    <select class="form-select bg text-light border-2 border-secondary" name="publicado" required>
-      <option value="true">Publico</option>
-      <option value="false">Privado</option>
-    </select>
-  </div>
-  <select class="visually-hidden-focusable form-select bg-dark text-light border-2 border-secondary" name="editado">
-    <option value="true">Editado</option>
-  </select>
+      </select>
+    </div>
+    <div class="mb-3 rounded-3 p-2">
+      <label class="form-label text-light" for="floatingInput">Salvar como:</label>
+      <select class="form-select bg text-light border-2 border-secondary" name="publicado" required>
+        <option value="true">Publico</option>
+        <option value="false">Rascunho</option>
+      </select>
+    </div>
+
     <button type="submit" class="btn btn-primary mx-2">Enviar</button>
   </form>
-
+ 
 
 {{> _ckeditorJs}}

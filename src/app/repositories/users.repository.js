@@ -1,5 +1,5 @@
-const Post = require('../models/Post');
-const User = require('../models/User');
+const Post = require('../../models/Post');
+const User = require('../../models/User');
 
 require('../middlewares/checkAuthenticated');
 
@@ -69,13 +69,25 @@ module.exports = {
 
       return PublicProfile;
     },
-
-    getUserPosts: async (id) => {
+    countPosts: async (id) => {
+      const CountPosts = Post.findAndCountAll({
+        attributes: ['id'],
+        where: {
+          user_id: id
+        },
+      });
+      return CountPosts;
+    },
+    getUserPosts: async (id, offset) => {
       const Posts = await Post.findAll({
+        limit: 50,
+        offset: offset,
+        attributes: ['id','titulo','slug', 'descricao', 'publicado', 'createdAt'],
         order: [['id', 'DESC']],
         include: [{
           model: User,
           as: 'user', 
+          attributes: ['id','user_name', 'profile', 'banner', 'descricao'],
           required: true
         }],
         where: { user_id : id },

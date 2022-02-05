@@ -1,19 +1,24 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="../../css/custom.css" async defer>
+<link rel="stylesheet" href="../../css/build.css" async defer>
 <form action="/update" method="POST" enctype="multipart/form-data">
 
   <div class="row p-2">
-    <div class="mx-auto"> 
+    <div class="mx-auto">
       <!-- Profile widget -->
       <div class="overflow-hidden">
         <label class="position-absolute top-100 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
           for="banner_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
         <input name="banner_img" id="banner_img" type="file" accept="image/*" />
-        <div id="bannerImg" class="px-3 pt-0 pb-4 rounded-3 mb-2 border border-dark" style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
+        <div id="bannerImg" class="px-3 pt-0 pb-4 rounded-3 mb-2 border border-dark"
+          style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
           <div class="media align-items-end profile-head rounded-circle">
             <div class="profile mr-3 position-relative">
 
               <label class="position-absolute top-0 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
                 for="profile_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
-              <input name="profile_img" id="profile_img" type="file" accept="image/*"/>
+              <input name="profile_img" id="profile_img" type="file" accept="image/*" />
 
               <label for="profile_img">
                 <img id="imgProfile" src="{{user.dataValues.profile}}" alt="..." width="110"
@@ -26,7 +31,9 @@
                 for="profile">
                 <i class="fs-6 bi bi-pencil-square"> </i>
               </label>
-              <input id="user_name" class="overflow-hidden text-white mt-1 mb-1 input-name" type="text" name="user_name"autocomplete="off" value="{{user.dataValues.user_name}}" onchange="activateButton()"/>
+              <input id="user_name" minlength="4" maxlength="10" class="overflow-hidden text-white mt-1 mb-1 input-name"
+                type="text" name="user_name" autocomplete="off" value="{{user.dataValues.user_name}}"
+                onchange="activateButton()" />
               <p class="small mb-4">
                 <i class="fas fa-map-marker-alt mr-2"></i>#
                 {{user.dataValues.id}}
@@ -43,17 +50,14 @@
               for="profile">
               <i class="fs-6 bi bi-pencil-square"> </i>
             </label>
-            <textarea placeholder=" " name="descricao" id="descricao" type="text" class="form-text mb-3 p-2 rounded-3 mx-auto bg"  onchange="activateButton()"  rows="3">{{user.dataValues.descricao}}</textarea>
+            <textarea placeholder=" " name="descricao" id="descricao" type="text"
+              class="form-text mb-3 p-2 rounded-3 mx-auto bg" onchange="activateButton()"
+              rows="3">{{user.dataValues.descricao}}</textarea>
           </div>
         </div>
         <div class="d-grid gap-2">
-          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2" onclick="load()">Enviar</button>
-        </div>
-        <div class="d-flex hidden loader text-white-50 justify-content-center">
-          <div class="spinner-border m-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-           indo...
+          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2"
+            onclick="load()">Enviar</button>
         </div>
       </div>
     </div>
@@ -65,29 +69,24 @@
   const banner_img = document.getElementById('bannerImg');
   const button = document.getElementById('submit');
 
-  function load() {
-    const loader = document.querySelector('.loader');
-    loader.classList.remove('hidden');
-  }
-
   function activateButton() {
     button.classList.remove('disabled');
   }
 
-  var profile = document.getElementById("profile_img");
-  profile.onchange = function() {
-    if(this.files[0].size > 3145728.0){
+  let profile = document.getElementById("profile_img");
+  profile.onchange = function () {
+    if (this.files[0].size > 3145728.0) {
       alert("Arquivo muito grande, valor maximo de 3MB!");
       this.value = "";
     } else {
-      imgProfile.src=URL.createObjectURL(event.target.files[0]);
+      imgProfile.src = URL.createObjectURL(event.target.files[0]);
       button.classList.remove('disabled');
     }
   };
 
-  var banner = document.getElementById("banner_img");
-  banner.onchange = function() {
-    if(this.files[0].size > 3145728.0){
+  let banner = document.getElementById("banner_img");
+  banner.onchange = function () {
+    if (this.files[0].size > 3145728.0) {
       alert("Arquivo muito grande, valor maximo de 3MB!");
       this.value = "";
     } else {
@@ -97,3 +96,7 @@
   };
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

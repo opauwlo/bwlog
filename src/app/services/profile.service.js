@@ -1,5 +1,7 @@
 const  fs  = require('fs');
 const { Users } = require('../repositories/users.repository');
+const { Textlists } = require('../repositories/textlists.repository');
+const localStorage = require('localStorage');
 
 const cloudinary = require('../utils/cloudinary');
 
@@ -8,11 +10,40 @@ module.exports = {
     private: async (req, res) => {
       try {
         const id = req.id
-        const user = await Users.getUserProfile(id)
-        const posts = await Users.getUserPosts(id);
+        const user = await Users.getUserProfile(id);
+
+        let currentPage = req.query.page || 1;
+        let postsPerPage = 50;
+
+        if (currentPage == 1) {
+          var countAllPosts = await Users.countPosts(id);
+          var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
+          if (PageLimit == 0) {
+            PageLimit = 1
+          }
+          localStorage.setItem('profilePageLimit', PageLimit) 
+        }
+
+        if (currentPage > localStorage.getItem('profilePageLimit')) {
+          currentPage = localStorage.getItem('profilePageLimit');
+        } else {
+          currentPage = req.query.page || 1;
+        }
+
+        let offset = (currentPage * postsPerPage) - postsPerPage;
+
+
+        const posts = await Users.getUserPosts(id, offset);
+        const textlists = await Textlists.getTextlist(id);
         res.render('perfil', {
+          textlists,
           user,
-          posts: posts,
+          posts,
+          pagination: {
+            page: currentPage,
+            limit: localStorage.getItem('profilePageLimit'),
+            totalRows: countAllPosts,
+          },
         });
 
       }
@@ -29,9 +60,11 @@ module.exports = {
         const id = req.params.id;
         const user = await Users.getUserProfile(id)
         const publicProfile = await Users.getPublicProfile(id);
+        const textlists = await Textlists.getTextlist(id);
         res.render('autor', {
           posts: publicProfile,
-          user: user
+          user: user,
+          textlists
         });
       }
       catch (e) {

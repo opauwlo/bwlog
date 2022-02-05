@@ -1,51 +1,97 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="../../css/custom.css" async defer>
+<link rel="stylesheet" href="../../css/build.css" async defer>
+
 <div class="row p-2 ">
-    <div class=" mx-auto">
-        <!-- Profile widget -->
-        <div class="overflow-hidden">
-            <div class="px-3 pt-0 pb-4 rounded-3 mb-5" style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
-                <div class="media align-items-end profile-head rounded-circle">
-                    <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110" style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
-                    <div class="media-body mb-4 text-white">
-                        <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
-                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-5">
-                <h5 class="mb-1 mt-2 text-white">Sobre</h5>
-                <div class="p-4 rounded shadow-sm bg">
-                    <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.dataValues.descricao}}</p>
-
-                </div>
-            </div>
+  <div class=" mx-auto">
+    <!-- Profile widget -->
+    <div class="overflow-hidden">
+      <div class="px-3 pt-0 pb-4 rounded-3 mb-5"
+        style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
+        <div class="media align-items-end profile-head rounded-circle">
+          <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110"
+              style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
+          <div class="media-body mb-4 text-white">
+            <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
+            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+      <div class="mt-5" style="margin-top: 80px !important;">
+        <h5 class="mb-1 mt-2 text-white">Sobre</h5>
+        <div class="p-4 rounded shadow-sm bg">
+          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.dataValues.descricao}}</p>
 
-<div class="my-1 new-post p-2">
- 
-  <div class="input-group shadow">
-    <input type="text" class="form-control bg rounded-start border-1 border-secondary"placeholder="Meus posts"aria-describedby="button-addon2" disabled>
-    <button class="btn btn-outline-secondary border-1 bg border-secondary text-light m-auto" type="button"id="button-addon2">
-      <i class="bi bi-arrow-down"></i>
-    </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<section class="row p-1 row-cols-md-1 ">
-  {{#each posts}}
-      <div class="col-lg-6 rounded-3 mb-4">
-        <div class="card m-2 text-center" >
-          <div class="card-body px-3 bg shadow">
-            <h1 class="card-title text-light fs-3 mb-2">{{dataValues.titulo}}</h1>
-            <small class="text-info">{{dataValues.descricao}}</small>
-            <p class="card-text text-secondary"> by: {{user.dataValues.user_name}}</p>
-            <div class="d-grid gap-2">
-              <a href="/posts/{{dataValues.slug}}" class="btn shadow btn-outline-dark border border-secondary text-light">Ler Mais!</a>
+<div class=" new-post p-2 text-light">
+  <div class="card text-white bg">
+    <div class="new-post p-2 ">
+      <ul class="nav nav-pills nav-justified mb-3 " id="pills-tab" role="tablist">
+        <li class="nav-item " role="presentation">
+          <button class="nav-link active shadow border-3" id="pills-home-tab" data-bs-toggle="pill"
+            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+            aria-selected="true">Posts</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link shadow border-3" id="pills-textlist-tab" data-bs-toggle="pill"
+            data-bs-target="#pills-textlist" type="button" role="tab" aria-controls="pills-textlist"
+            aria-selected="false">Textlists</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="tab-content " id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <section class="row row-cols-md-1">
+      {{#each posts}}
+      {{#if dataValues.publicado}}
+      <div class="col-lg-6 rounded-3 mb-3">
+        <div class="card m-2 shadow text-center">
+          <div class="card-body px-3 bg">
+            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
+            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+            <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
+            <div class="d-grid gap-2 p-3" role="group">
+              <a href="/posts/{{dataValues.slug}}"
+                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler Mais</a>
             </div>
           </div>
         </div>
       </div>
-  {{/each}}
-</section>
-{{> _newPost}}
+      {{/if}}
+      {{/each}}
+    </section>
+
+  </div>
+  <div class="tab-pane fade" id="pills-textlist" role="tabpanel" aria-labelledby="pills-textlist-tab">
+    <section class="row row-cols-md-1">
+      {{#each textlists }}
+      <div class="col-lg-6 rounded-3 mb-3">
+        <div class="card m-2 shadow text-center ">
+          <div class="card-body px-3 bg">
+            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
+            <div class="d-grid gap-2 p-3" role="group">
+              <a href="/textlist/{{dataValues.slug}}/{{dataValues.id}}"
+                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+  {{> _newPost}}

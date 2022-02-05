@@ -1186,7 +1186,7 @@ fieldset:disabled .btn {
   .container-md,
   .container-sm,
   .container-xl {
-    max-width: 850px;
+    max-width: 730px;
   }
 }
 
@@ -1198,7 +1198,7 @@ fieldset:disabled .btn {
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 1320px
+    max-width: 850px
   }
 }
 
@@ -1713,4 +1713,40 @@ fieldset:disabled .btn {
   .fs-3 {
     font-size: 1.75rem !important
   }
+}
+.translate-middle-x {
+  transform: translateX(-70%) !important;
+}
+.start-50 {
+  left: 50% !important;
+}
+.position-static {
+  position: static !important;
+}
+.position-sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+}
+.ms-0 {
+  margin-left: 0 !important;
+}
+
+.ms-1 {
+  margin-left: 0.25rem !important;
+}
+
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+.ms-3 {
+  margin-left: 1rem !important;
+}
+
+.ms-4 {
+  margin-left: 1.5rem !important;
+}
+
+.ms-5 {
+  margin-left: 3rem !important;
 }

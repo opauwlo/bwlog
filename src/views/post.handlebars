@@ -3,7 +3,7 @@
   <head>
     <title>{{dataValues.titulo}}</title>
     <meta name="title" content="{{dataValues.titulo}}">
-    <mete name="author" content="{{ueser.dataValues.user_name}}">
+    <mete name="author" content="{{user.dataValues.user_name}}">
     <meta name="description" content="{{dataValues.descricao}}">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -66,18 +66,26 @@
     </div>
 
   </div>
+{{/each}}
+
+{{#if haveTextlist}}
+   <div class="card bg text-light border-dark rounded rounded-2 my-5">
+    <div class="card-body d-grid bg">
+      <h5 class="card-title">Este texto está na textlist <strong class="text-info">{{textlist.dataValues.titulo}}</strong></h5>
+      <a href="/textlist/{{textlist.dataValues.slug}}/{{textlist.dataValues.id}}" class="btn btn-dark">Ler Mais</a>
+    </div>
+  </div>   
+{{/if}}
+{{#each posts}}
   <div>
     <div class="card bg text-light border-dark rounded rounded-2 my-5">
-      <div class="card-body bg">
+      <div class="card-body bg d-grid">
         <h5 class="card-title">Discuta sobre o texto no fórum</h5>
         <p class="card-text">Compartilhe o que pensou :)</p>
         <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-primary">Participar</a>
       </div>
     </div>
-
   </div>
-{{else}}
-{{> _404}}
 {{/each}}
 <script>
   const postBody = document.querySelector(".card-body")
