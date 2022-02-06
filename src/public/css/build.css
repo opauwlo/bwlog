@@ -705,7 +705,7 @@ fieldset:disabled .btn {
 
 .btn-outline-dark:hover {
   color: #101010 !important;
-  background-color: #ffffff;
+  background-color: #000000;
   border-color: #000000 !important;
 }
 

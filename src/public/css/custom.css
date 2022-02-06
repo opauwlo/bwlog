@@ -13,13 +13,13 @@ body, html {
 
 }
 ::-moz-selection { /* Code for Firefox */
-  color: whitesmoke;
-  background: black;
+  color: black;
+  background: whitesmoke;
 }
 
 ::selection {
-  color: whitesmoke;
-  background: black;
+  color: black;
+  background: whitesmoke;
 }
 /* othtres*/
 
