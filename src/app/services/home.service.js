@@ -13,13 +13,11 @@ module.exports = {
         if (currentPage == 1) {
           var countAllPosts = await Posts.countPosts();
           var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
-          console.log(countAllPosts.count)
           if (PageLimit == 0) {
             PageLimit = 1
           }
           localStorage.setItem('homePageLimit', PageLimit) 
         }
-        console.log(localStorage.getItem('homePageLimit'))
         if (currentPage > localStorage.getItem('homePageLimit')) {
           currentPage = localStorage.getItem('homePageLimit');
         }  else {
