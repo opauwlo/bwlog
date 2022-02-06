@@ -4,6 +4,7 @@ class Post extends Model {
   static init(sequelize) {
     super.init({
       titulo: DataTypes.STRING,
+      u_id: DataTypes.INTEGER,
       slug: DataTypes.STRING,
       descricao: DataTypes.TEXT,
       conteudo: DataTypes.TEXT,

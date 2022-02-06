@@ -21,10 +21,10 @@ module.exports = {
       }
     },
     update: async (req, res) => {
-      const id = req.params.id;
+      const u_id = req.params.u_id;
       const { titulo, descricao, conteudo, publicado, textlist } = req.body;
       try { 
-        const success = await Posts.updatePost(titulo, descricao, conteudo, publicado, textlist, id);
+        const success = await Posts.updatePost(titulo, descricao, conteudo, publicado, textlist, u_id);
         if (success) {
           req.flash('success_msg', 'Post atualizado com sucesso');
           res.redirect('/perfil');
@@ -52,27 +52,30 @@ module.exports = {
       }
     },
     renderPost: async (req, res) => {
-      try {
-        const post = await Posts.fromPostPage(req.params.slug);
+      const post = await Posts.fromPostPage(req.params.slug);
+      if (post.length == 0) {
+        res.redirect('/404');
+      } else {
+        try {
+          var haveTextlist = false;
 
-        var haveTextlist = false;
+          const verifyTextlist = post[0].textlist_post_owner;
 
-        const verifyTextlist = post[0].textlist_post_owner;
-
-        if (verifyTextlist !== null) {  
-          haveTextlist = true;
-          var textlist = await Textlists.getOneTextlist(post[0].textlist_post_owner);
+          if (verifyTextlist !== null) {  
+            haveTextlist = true;
+            var textlist = await Textlists.getOneTextlist(post[0].textlist_post_owner);
+          }
+            res.render('post', {
+              textlist,
+              haveTextlist,
+              posts: post,
+              user: post,
+            });
+          
+        } catch (e) {
+          console.log(e);
         }
-          res.render('post', {
-            textlist,
-            haveTextlist,
-            posts: post,
-            user: post,
-          });
-        
-      } catch (e) {
-        console.log(e);
-      }
+    }
     },
     renderCreate: async (req, res) => {
       try {
@@ -87,27 +90,34 @@ module.exports = {
       }
     },
     renderEdit: async (req, res) => {
-      try {
-        var postsEdit = await Posts.fromEditPage(req.params.id);
-        var textlist = await Textlists.getTextlist(req.id);
+      const user_id = req.id;
+      var postsEdit = await Posts.fromEditPage(req.params.id, user_id)
 
-        var haveTextlist = false;
-        const verifyTextlist = postsEdit.textlist_post_owner;
-
-        if (verifyTextlist !== null) {  
-          haveTextlist = true;
-          var textlistPost = await Textlists.getOneTextlist(postsEdit.textlist_post_owner);
-          textlist = await Textlists.getTextlistFromEditPage(textlistPost.id);
+      if (postsEdit == null) {
+        res.redirect('/404');
+      } else {
+        try {
+          var textlist = await Textlists.getTextlist(req.id);
+  
+          var haveTextlist = false;
+          const verifyTextlist = postsEdit.textlist_post_owner;
+  
+          if (verifyTextlist !== null) {  
+            haveTextlist = true;
+            var textlistPost = await Textlists.getOneTextlist(postsEdit.textlist_post_owner);
+            textlist = await Textlists.getTextlistFromEditPage(textlistPost.id);
+          }
+          res.render('editPost', {
+            post: postsEdit,
+            user: postsEdit.user,
+            textlist,
+            textlistPost,
+            haveTextlist
+          });
+        } catch (e) {
+          console.log(e)
         }
-        res.render('editPost', {
-          post: postsEdit,
-          user: postsEdit.user,
-          textlist,
-          textlistPost,
-          haveTextlist
-        });
-      } catch (e) {
-        console.log(e)
+
       }
     },
     renderPreview: async (req, res) => {

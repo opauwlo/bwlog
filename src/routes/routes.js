@@ -35,7 +35,7 @@ router.post('/add', verifyJwt, checkAuthenticated, postController.create);
 router.get('/posts/:slug', postController.renderPost);
 router.get('/edit/post/:id', verifyJwt, checkAuthenticated, postController.renderEditPost);
 router.get('/posts/preview/:slug', postController.renderPereviewPost);
-router.post('/update/:id', verifyJwt, checkAuthenticated, postController.update);
+router.post('/update/:u_id', verifyJwt, checkAuthenticated, postController.update);
 router.post('/deletar/:id', verifyJwt,checkAuthenticated, postController.delete);
 
 // textlists router

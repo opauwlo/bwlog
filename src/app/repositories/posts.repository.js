@@ -11,13 +11,16 @@ module.exports = {
 
       let success = null;
       
+      let u_id = random();
+
       if (textlist == "NULL") {
         let textlist_null = null;
         textlist = textlist_null;
       }
       await Post.create({
         titulo: titulo,
-        slug: slugify(titulo + -+random(), {
+        u_id: u_id,
+        slug: slugify(titulo + - + u_id, {
           lower: true,
         }),
         descricao: descricao,
@@ -37,16 +40,15 @@ module.exports = {
       return success;
     },
 
-    updatePost: async (titulo, descricao, conteudo, publicado, textlist, id) => {
+    updatePost: async (titulo, descricao, conteudo, publicado, textlist, u_id) => {
       let success = null;
-      
       if (textlist == "NULL") {
         let textlist_null = null;
         textlist = textlist_null;
       }
       await Post.update({
         titulo: titulo,
-        slug: slugify(titulo + -+random(), {
+        slug: slugify(titulo +-+ u_id, {
           lower: true,
         }),
         descricao: descricao,
@@ -56,7 +58,7 @@ module.exports = {
         textlist_post_owner: textlist,
       }, {
         where: {
-          id: id,
+          u_id: u_id,
         },
       })
         .then(() => {
@@ -137,9 +139,10 @@ module.exports = {
       return PostPreview
     },
 
-    fromEditPage: async (id) => {
+    fromEditPage: async (id, user_id) => {
+      
       const Posts = await Post.findOne({
-        where: { id: id },
+        where: { id: id, user_id: user_id },
         include: [{
           model: User,
           as: 'user'
@@ -147,7 +150,8 @@ module.exports = {
       }).then(post => {
         return post;
       }).catch(err => {
-        console.log(err);
+        console.log(err)
+        return null;
       });
       return Posts;
     },
