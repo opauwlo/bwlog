@@ -199,6 +199,7 @@ border: 1px solid #6c757d !important;
 .ck-content .image img {
   display: block;
   margin: 0 auto;
+  border-radius: 5px !important;
   max-width: 100%;
   min-width: 100%;
 }
