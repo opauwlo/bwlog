@@ -1541,7 +1541,9 @@ fieldset:disabled .btn {
 .mb-4 {
   margin-bottom: 1.5rem !important
 }
-
+.mb-5 {
+  margin-bottom: 3.5rem !important;
+}
 .p-1 {
   padding: .25rem !important
 }
@@ -1756,4 +1758,7 @@ fieldset:disabled .btn {
 }
 pre {
   overflow: auto;
+}
+.fs-1 {
+  font-size: calc(2.375rem + 1.5vw) !important;
 }
