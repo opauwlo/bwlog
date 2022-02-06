@@ -1,7 +1,7 @@
-<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
-<script>ClassicEditor
+<script src="../../ckeditor/build/ckeditor.js"></script>
+<script>
+  ClassicEditor
 	.create( document.querySelector( '#validationTextarea' ), {
-		
 	toolbar: {
 		items: [
 			'undo',
@@ -44,6 +44,14 @@
 	.then( editor => {
 		window.editor = editor;
 
+    editor.keystrokes.set('space', (key, stop) => {
+        editor.execute('input', {
+            text: ' '
+        });
+        stop();
+    });
+
+          
 		
 		
 		
@@ -51,25 +59,7 @@
 	.catch( error => {
 	} );
 </script>
-		<script>ClassicEditor
-				.create( document.querySelector( '.editor' ), {
-					
-					licenseKey: '',
-					
-					
-					
-				} )
-				.then( editor => {
-					window.editor = editor;
-			
-					
-					
-					
-				} )
-				.catch( error => {
-
-				} );
-		</script>
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
 <script>
     document.querySelectorAll( 'oembed[url]' ).forEach( element => {
         iframely.load( element, element.attributes.url.value );

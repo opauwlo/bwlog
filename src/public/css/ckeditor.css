@@ -501,7 +501,7 @@ border: 1px solid #6c757d !important;
   border-radius: 2px;
   text-align: left;
   direction: ltr;
-  tab-size: 4;
+  tab-size: 2;
   white-space: pre-wrap;
   font-style: normal;
   min-width: 200px;
@@ -555,9 +555,9 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
    word-break: normal !important;
    word-wrap: normal !important;
    line-height: 1.5 !important;
-   -moz-tab-size: 4 !important;
-   -o-tab-size: 4 !important;
-   tab-size: 4 !important; 
+   -moz-tab-size: 2 !important;
+   -o-tab-size: 2 !important;
+   tab-size: 2 !important; 
  
    -webkit-hyphens: none !important;
    -moz-hyphens: none !important;
