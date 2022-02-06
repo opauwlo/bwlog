@@ -1,6 +1,5 @@
 <script src="../../ckeditor/build/ckeditor.js"></script>
-<link rel="stylesheet" href="../../css/content-styles.css">
-<link rel="stylesheet" href="../../css/prism.css">
+<link rel="stylesheet" href="../../css/ckeditor.css" async-defer>
 
 <form action="/add" method="POST" class="p-3" id="form">
 	<div class="form mb-3 p-2 mx-auto">
@@ -22,9 +21,9 @@
     <textarea name="conteudo" class="form-control" id="validationTextarea"></textarea>
   </div>
 
-  <div class="mb-3 p-2 bg-dark">
+  <div class="mb-3 p-2">
     <label class="form-label text-white" for="floatingInput">Adcianar à textlist:  <a class="ml-5 text-info float-end" href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma textlist</a> </label>
-    <select class="form-select bg text-white border-3 border-secondary" name="textlist">
+    <select class="form-select bg text-white border border-secondary" name="textlist">
         <option selected value="NULL"> Sem Textlist </option>
       {{#each textlist}}
         <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
@@ -33,15 +32,15 @@
     </select>
   </div>
   
-  <div class="mb-3 p-2 bg-dark">
+  <div class="mb-3 p-2">
     <label class="form-label text-white" for="floatingInput">Salvar como:</label>
-    <select class="form-select bg text-white border-3 border-secondary" name="publicado" required>
+    <select class="form-select bg text-white border-secondary" name="publicado" required>
       <option value="true">Publico</option>
       <option value="false">Rascunho</option>
     </select>
   </div>
 
-  <button type="submit" class="btn btn-primary mx-2">Enviar</button>
+  <button type="submit" class="btn btn-light mx-2">Enviar</button>
 
 </form>
 

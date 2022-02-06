@@ -22,7 +22,7 @@
       <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
       <a href="/edit/{{user.dataValues.id}}" class="mx-3 mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
         Perfil</a>
-      <a href="/logout" class="mt-5 btn btn-danger text-white btn-sm text-center float-end" onclick="signOut();">
+      <a href="/logout" class="mt-5 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
         Sair
       </a>
       <div class="">
@@ -65,9 +65,9 @@
     <section class="row row-cols-md-1">
       {{#each posts}}
       {{#if dataValues.publicado}}
-      <div class="col-lg-6 rounded-3 mb-3">
+      <div class="col-lg-6  mb-3">
         <div class="card m-2 shadow text-center">
-          <div class="card-body px-3 bg">
+          <div class="card-body rounded-3 px-3 bg">
             <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
             <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
             <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>

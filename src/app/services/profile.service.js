@@ -85,7 +85,7 @@ module.exports = {
 
         await cloudinary.uploader.destroy(user.profile_id);
 
-        var profileResult = await cloudinary.uploader.upload(profile.tempFilePath, {folder: 'bwlog - profile'});
+        var profileResult = await cloudinary.uploader.upload(profile.tempFilePath);
         profile = profileResult.secure_url;
         var profile_id = profileResult.public_id;
         // delete tmp folder
@@ -96,7 +96,7 @@ module.exports = {
 
         await cloudinary.uploader.destroy(user.banner_id);
 
-        var bannerResult = await cloudinary.uploader.upload(banner.tempFilePath, {folder: 'bwlog - banner'});
+        var bannerResult = await cloudinary.uploader.upload(banner.tempFilePath);
         banner = bannerResult.secure_url;
         var banner_id = bannerResult.public_id;
       }

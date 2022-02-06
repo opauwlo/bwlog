@@ -59,11 +59,11 @@ module.exports = {
     findOrCreate: async (req, res) => { 
       let info = req.user;
       // get result from cloudinary 
-      let resultProfile = await cloudinary.uploader.upload(info.picture, {folder: 'bwlog - profile'});
+      let resultProfile = await cloudinary.uploader.upload(info.picture);
       let profile =  resultProfile.secure_url;
       let profile_id = resultProfile.public_id;
 
-      let resultBanner = await cloudinary.uploader.upload('https://i.ibb.co/J5zgpmW/jake-weirick-Q-RBVFFXR-g-unsplash.jpg', {folder: 'bwlog - banner'});
+      let resultBanner = await cloudinary.uploader.upload('https://i.ibb.co/PtVc2fH/edxwm3uchch1e2sltrce-1.jpg');
       let banner =  resultBanner.secure_url;
       let banner_id = resultBanner.public_id;
 
@@ -87,8 +87,11 @@ module.exports = {
         if (create[0]) {
           req.flash("success_msg", "bem-vinda(o), agora você pode editar o seu perfil");
           res.redirect("/perfil");
-
+          
         } else {
+          
+          cloudinary.uploader.destroy(profile_id);
+          cloudinary.uploader.destroy(banner_id);
           req.flash("success_msg", "olá, novamente");
           res.redirect(`/perfil`);
         }

@@ -148,10 +148,10 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #fff !important;
+    -webkit-text-fill-color: #ffff !important;
 }
 .text-blue {
-  color: #2ffd4b;
+  color: #ffff;
 }
 .center {
   height: 100%;
@@ -160,11 +160,7 @@ input:-webkit-autofill:active {
   align-items: center;
 }
 
-pre {
-  padding: 10px;
-  background: rgb(29, 28, 28) !important;
-  border-radius: 3px !important;
-}
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -179,9 +175,8 @@ pre {
 }
 .text-menu {
   font-family: 'Cinzel', serif;
-  font-weight: 600;
-
-  color: #e0c136 !important;
+  font-weight: 700;
+  color: #ffffff !important;
 
 }
 .profile-head {

@@ -31,7 +31,7 @@
                 for="profile">
                 <i class="fs-6 bi bi-pencil-square"> </i>
               </label>
-              <input id="user_name" minlength="4" maxlength="10" class="overflow-hidden text-white mt-1 mb-1 input-name"
+              <input id="user_name" minlength="4" required maxlength="10" class="overflow-hidden text-white mt-1 mb-1 input-name"
                 type="text" name="user_name" autocomplete="off" value="{{user.dataValues.user_name}}"
                 onchange="activateButton()" />
               <p class="small mb-4">
@@ -51,13 +51,13 @@
               <i class="fs-6 bi bi-pencil-square"> </i>
             </label>
             <textarea placeholder=" " name="descricao" id="descricao" type="text"
-              class="form-text mb-3 p-2 rounded-3 mx-auto bg" onchange="activateButton()"
+              class="form-text mb-3 p-2 rounded-3 mx-auto bg" required onchange="activateButton()"
               rows="3">{{user.dataValues.descricao}}</textarea>
           </div>
         </div>
         <div class="d-grid gap-2">
           <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2"
-            onclick="load()">Enviar</button>
+            onclick="">Enviar</button>
         </div>
       </div>
     </div>

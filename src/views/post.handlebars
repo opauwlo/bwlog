@@ -10,14 +10,14 @@
     <meta property="og:url" content="https://www.bwlog.dev/{{dataValues.slug}}">
     <meta property="og:title" content="{{dataValues.titulo}}">
     <meta property="og:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
-    <meta property="og:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
+    <meta property="og:image" content="ttps://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.bwlog.dev/">
     <meta property="twitter:title" content="{{dataValues.titulo}}">
     <meta property="twitter:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
-    <meta property="twitter:image" content="https://i.ibb.co/3mgvcKk/the-bwlog.png">
+    <meta property="twitter:image" content="ttps://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
   </head>
   <div>
     <div class="bg rounded-3 mt-1 mb-2 p-1 m-1">
@@ -69,7 +69,7 @@
 {{/each}}
 
 {{#if haveTextlist}}
-   <div class="card bg text-light border-dark rounded rounded-2 my-5">
+   <div class="card bg text-light border-dark rounded-2 my-5">
     <div class="card-body d-grid bg">
       <h5 class="card-title">Este texto está na textlist <strong class="text-info">{{textlist.dataValues.titulo}}</strong></h5>
       <a href="/textlist/{{textlist.dataValues.slug}}/{{textlist.dataValues.id}}" class="btn btn-dark">Ler Mais</a>
@@ -77,39 +77,15 @@
   </div>   
 {{/if}}
 {{#each posts}}
-  <div>
-    <div class="card bg text-light border-dark rounded rounded-2 my-5">
+    <div class="card bg text-light border-dark rounded-2">
       <div class="card-body bg d-grid">
         <h5 class="card-title">Discuta sobre o texto no fórum</h5>
         <p class="card-text">Compartilhe o que pensou :)</p>
-        <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-primary">Participar</a>
+        <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-dark">Participar</a>
       </div>
     </div>
-  </div>
 {{/each}}
-<script>
-  const postBody = document.querySelector(".card-body")
-  let bar = document.createElement("div")
 
-  bar.style.height = "4px"
-  bar.style.width = "0"
-  bar.style.background = "#e53170"
-  bar.style.position = "fixed"
-  bar.style.top = "0"
-  bar.style.left = "0"
-  bar.style.transition = "0.2s"
-  bar.style.zIndex ="9999"
-  document.body.append(bar)
-
-  document.addEventListener("scroll", ()=>{
-    const textHeight = postBody.offsetHeight
-    const pageY = window.pageYOffset
-    const updateBar = pageY * 120 / textHeight
-
-    bar.style.width = updateBar + "%"
-  })
-
-</script>
 <script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
 <script >
     document.querySelectorAll( 'oembed[url]' ).forEach( element => {
