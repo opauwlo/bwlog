@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../css/ckeditor.css" async defer>
 {{#each posts}}
   <head>
-    <title>{{dataValues.titulo}}</title>
+    <title>{{dataValues.titulo}} | {{user.dataValues.user_name}}</title>
     <meta name="title" content="{{dataValues.titulo}}">
     <mete name="author" content="{{user.dataValues.user_name}}">
     <meta name="description" content="{{dataValues.descricao}}">
@@ -33,16 +33,12 @@
     <meta property="og:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
 
     <!-- Image to display -->
-    <!-- Replace   «example.com/image01.jpg» with your own -->
-    <meta property="og:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
-
-    <!-- No need to change anything here -->
-    <meta property="og:type" content="website" />
-    <meta property="og:image:type" content="image/jpeg">
-
     <!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
+    <meta property="og:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
+
+
 
     <!-- Website to visit when clicked in fb or WhatsApp-->
     <meta property="og:url" content="http://www.bwlog.dev/posts/{{dataValues.slug}}">
