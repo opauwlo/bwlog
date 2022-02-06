@@ -699,13 +699,13 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-dark {
-  color: #212529;
+  color: #ffffff;
   border-color: #f3e8e673 !important
 }
 
 .btn-outline-dark:hover {
   color: #101010 !important;
-  background-color: #000000;
+  background-color: #fff !important;
   border-color: #000000 !important;
 }
 
@@ -871,7 +871,6 @@ fieldset:disabled .btn {
 }
 
 .navbar-toggler {
-  padding: .25rem .75rem;
   font-size: 1.25rem;
   line-height: 1;
   background-color: transparent;
@@ -1746,8 +1745,8 @@ fieldset:disabled .btn {
   border-color: #f8f9fa;
 }
 .btn-light:hover {
-  color: #000;
-  background-color: #f9fafb;
+  color: #f9fafb;
+  background-color: #000;
   border-color: #f9fafb;
 }
 .btn-check:focus + .btn-light, .btn-light:focus {
