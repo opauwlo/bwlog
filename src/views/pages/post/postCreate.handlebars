@@ -1,0 +1,46 @@
+
+<form action="/add" method="POST" class="p-3" id="form">
+	<div class="form mb-3 p-2 mx-auto">
+    <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="40" autocomplete="off" placeholder=" " required>
+    <label for="titulo" class="form__label rounded-3">Título</label>
+  </div>
+
+	<hr class="text-dark">
+
+	<div class="form-text mb-3 p-2 mx-auto rounded-3">
+    <textarea type="text" id="descricao" name="descricao" class="form__input bg rounded-3" maxlength="38" autocomplete="on" placeholder=" " required></textarea>
+    <label for="descricao" class="form__label rounded-3">Descriçao</label>
+  </div>
+
+	<hr class="text-dark">
+
+  <div class="mb-3 p-2">
+    <label for="validationTextarea" class="form-label text-white">Conteudo do post</label>
+    <textarea name="conteudo" class="form-control" id="validationTextarea"></textarea>
+  </div>
+
+  <div class="mb-3 p-2">
+    <label for="textlist" class="form-label text-white" for="textlist">Adcianar à textlist:  <a class="ml-5 text-info float-end" href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma textlist</a> </label>
+    <select class="form-select bg text-white border border-secondary" id="textlist" name="textlist">
+        <option selected value="NULL"> Sem Textlist </option>
+      {{#each textlist}}
+        <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
+      {{/each}}
+
+    </select>
+  </div>
+  
+  <div class="mb-3 p-2">
+    <label class="form-label text-white" for="publicado" >Salvar como:</label>
+    <select class="form-select bg text-white border-secondary" id="publicado" name="publicado" required>
+      <option value="true">Publico</option>
+      <option value="false">Rascunho</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-light mx-2">Enviar</button>
+
+</form>
+{{> _ckeditorJs}}
+<link rel="stylesheet" href="../../css/ckeditor.css">
+

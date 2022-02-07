@@ -1,5 +1,7 @@
-const Textlist = require('../../models/Textlist');
+const Textlist = require('../../database/models/Textlist');
+
 const slugify = require('slugify');
+
 const { Op } = require('sequelize');
 
 module.exports = {

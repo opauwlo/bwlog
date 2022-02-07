@@ -1,5 +1,5 @@
-const Post = require('../../models/Post');
-const User = require('../../models/User');
+const Post = require('../../database/models/Post');
+const User = require('../../database/models/User');
 
 require('../middlewares/checkAuthenticated');
 

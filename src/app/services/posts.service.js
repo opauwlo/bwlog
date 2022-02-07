@@ -65,7 +65,7 @@ module.exports = {
             haveTextlist = true;
             var textlist = await Textlists.getOneTextlist(post[0].textlist_post_owner);
           }
-            res.render('post', {
+            res.render('pages/post/postShow', {
               textlist,
               haveTextlist,
               posts: post,
@@ -81,7 +81,7 @@ module.exports = {
       try {
         let user =  req.user_name;
         const textlist = await Textlists.getTextlist(req.id);
-        res.render('createPost', {
+        res.render('pages/post/postCreate', {
           user,
           textlist
         });
@@ -107,7 +107,7 @@ module.exports = {
             var textlistPost = await Textlists.getOneTextlist(postsEdit.textlist_post_owner);
             textlist = await Textlists.getTextlistFromEditPage(textlistPost.id);
           }
-          res.render('editPost', {
+          res.render('pages/post/postEdit', {
             post: postsEdit,
             user: postsEdit.user,
             textlist,
@@ -123,7 +123,7 @@ module.exports = {
     renderPreview: async (req, res) => {
       try {
         const postPreview = await Posts.fromPostPreview(req.params.slug);
-        res.render('post', {
+        res.render('pages/post/postShow', {
           posts: postPreview,
           user: postPreview
         });
@@ -150,9 +150,25 @@ module.exports = {
       }
     },
     renderCreateTextlist: async (req, res) => {
-      res.render('createTextlist', {
+      res.render('pages/textlist/textlistCreate', {
       });
     },
+    renderEditTextlist: async (req, res) => {
+      const textlist = await Textlists.getOneTextlist(req.params.id);
+      res.render('pages/textlist/textlistEdit', {
+        textlist,
+      });
+    },
+    updateTextlist: async (req, res) => {
+      let newTitle = req.body.textlist;
+      let id = req.params.id;
+      const updateTextlist = await Textlists.updateTextlist(id, newTitle);
+      
+      if (updateTextlist) {
+        req.flash('success_msg', 'Textlist atualizada com sucesso');
+        res.redirect('/perfil');
+      }
+    }, 
     destroyTextlist: async (req, res) => {
       const destroyTextlist = await Textlists.deleteTextlist(req.params.id);
       if (destroyTextlist) {
@@ -160,27 +176,11 @@ module.exports = {
         res.redirect('/perfil');
       }
     },
-    updateTextlist: async (req, res) => {
-      let newTitle = req.body.textlist;
-      let id = req.params.id;
-      const updateTextlist = await Textlists.updateTextlist(id, newTitle);
-
-      if (updateTextlist) {
-        req.flash('success_msg', 'Textlist atualizada com sucesso');
-        res.redirect('/perfil');
-      }
-    }, 
-    renderEditTextlist: async (req, res) => {
-      const textlist = await Textlists.getOneTextlist(req.params.id);
-      res.render('updateTextlist', {
-        textlist,
-      });
-    },
     renderPostsFromTextlist: async (req, res) => {
       try {
         const posts = await Posts.fromTextlistPage(req.params.id);
         const textlist = await Textlists.getOneTextlist(req.params.id);
-        res.render('textlist', {
+        res.render('pages/textlist/textlistShow', {
           posts,
           user: posts,
           textlist

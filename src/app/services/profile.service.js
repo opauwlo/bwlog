@@ -35,7 +35,7 @@ module.exports = {
 
         const posts = await Users.getUserPosts(id, offset);
         const textlists = await Textlists.getTextlist(id);
-        res.render('perfil', {
+        res.render('pages/user/userPrivateProfile', {
           textlists,
           user,
           posts,
@@ -61,7 +61,7 @@ module.exports = {
         const user = await Users.getUserProfile(id)
         const publicProfile = await Users.getPublicProfile(id);
         const textlists = await Textlists.getTextlist(id);
-        res.render('autor', {
+        res.render('pages/user/userPublicProfile', {
           posts: publicProfile,
           user: user,
           textlists
@@ -127,7 +127,7 @@ module.exports = {
       if (id == req.params.id) {
         try {
           const user = await Users.getUserProfile(id);
-          res.render('updateProfile', {
+          res.render('pages/user/userUpdateProfile', {
             user: user
           });
         } catch (e) {

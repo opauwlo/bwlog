@@ -6,15 +6,15 @@
 		<hr class="bg">
 
 		<div class="form mb-3 p-2 mx-auto rounded-3 bg">
-			<input type="text" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="40" placeholder=" " value="{{post.dataValues.titulo}}" required>
-			<label class="form__label rounded-3">Título</label>
+			<input type="text" id="titulo" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="40" placeholder=" " value="{{post.dataValues.titulo}}" required>
+			<label for="titulo" class="form__label rounded-3">Título</label>
 		</div>
 		
 		<hr class="bg">
 
 		<div class="form-text mb-3 p-2 rounded-3 mx-auto bg">
-			<textarea type="text" name="descricao" maxlength="46" class="form__input" autocomplete="on" placeholder=" " required>{{post.dataValues.descricao}}</textarea>
-			<label class="form__label rounded-3">Descriçao</label>
+			<textarea id="descricao" type="text" name="descricao" maxlength="46" class="form__input" autocomplete="on" placeholder=" " required>{{post.dataValues.descricao}}</textarea>
+			<label for="descricao" class="form__label rounded-3">Descriçao</label>
 		</div>
 		
 

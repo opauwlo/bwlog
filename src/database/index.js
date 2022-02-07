@@ -4,9 +4,9 @@ require('dotenv').config();
 // Coneckão Com Banco De Dados
 const infos = require('../configs/db.config');
 
-const User = require('../models/User');
-const Post = require('../models/Post');
-const Textlist = require('../models/Textlist');
+const User = require('./models/User');
+const Post = require('./models/Post');
+const Textlist = require('./models/Textlist');
 
 const sequelize = new Sequelize(infos);
 //sequelize.sync({force:true})

@@ -1,19 +1,22 @@
 const { Users } = require('../repositories/users.repository');
-//function to auth
-require('dotenv').config();
+
 const jwt = require('jsonwebtoken');
+
 const cloudinary = require('../utils/cloudinary');
 
 // Google
 const CLIENT_ID = process.env.CLIENT_ID;
+require('dotenv').config();
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
 
 module.exports = {
   auth: {
-    login: async (req, res) => { 
-      await res.render("login");
+    renderLogin: async (req, res) => { 
+      await res.render('pages/auth/login');
     },
+
+
     loginPost: async (req, res) => {
       try {
         let token = req.body.token;

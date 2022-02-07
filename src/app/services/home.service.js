@@ -28,7 +28,7 @@ module.exports = {
 
         const posts = await Posts.fromHome(offset);
 
-        res.render("home", {
+        res.render("pages/home/", {
           pagination: {
             page: currentPage,
             limit: localStorage.getItem('homePageLimit'),

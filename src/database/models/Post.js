@@ -11,7 +11,8 @@ class Post extends Model {
       publicado: DataTypes.BOOLEAN,
       editado: DataTypes.BOOLEAN,
     }, {
-      sequelize
+      sequelize,
+      initialAutoIncrement: 1000
     })
   }
   
