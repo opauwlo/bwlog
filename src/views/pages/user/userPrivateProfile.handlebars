@@ -64,49 +64,49 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     <section class="row row-cols-md-1">
       {{#each posts}}
-        {{#if dataValues.publicado}}
-          <div class="col-lg-6  mb-3">
-            <div class="card m-2 shadow text-center">
-              <div class="card-body rounded-3 px-3 bg">
-                <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
-                <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-                <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
-                <div class="d-grid gap-2 p-3" role="group">
-                  <a href="/posts/{{dataValues.slug}}"
-                    class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
-                  <a href="/edit/post/{{dataValues.id}}"
-                    class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                    data-bs-toggle="modal" data-bs-target="#staticBackdrop{{{dataValues.id}}}">
-                    Deletar
-                  </button>
-                </div>
-              </div>
+      {{#if dataValues.publicado}}
+      <div class="col-lg-6  mb-3">
+        <div class="card m-2 shadow text-center">
+          <div class="card-body rounded-3 px-3 bg">
+            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
+            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
+            <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
+            <div class="d-grid gap-2 p-3" role="group">
+              <a href="/posts/{{dataValues.slug}}"
+                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
+              <a href="/edit/post/{{dataValues.id}}"
+                class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+              <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop{{{dataValues.id}}}">
+                Deletar
+              </button>
             </div>
           </div>
-          <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog text-secondary">
-              <div class="modal-content bg text-secondary">
-                <div class="modal-header bg text-secondary">
-                  <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-                  <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                    data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-white-50">
-                  ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                  <form action="/deletar/{{dataValues.id}}" method="POST">
-                    <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-                  </form>
-                </div>
-              </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog text-secondary">
+          <div class="modal-content bg text-secondary">
+            <div class="modal-header bg text-secondary">
+              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
+              <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-white-50">
+              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+              <form action="/deletar/{{dataValues.id}}" method="POST">
+                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
+              </form>
             </div>
           </div>
-        {{/if}}
+        </div>
+      </div>
+      {{/if}}
       {{/each}}
     </section>
   </div>
@@ -134,8 +134,8 @@
         </div>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdropRasc{{dataValues.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal fade" id="staticBackdropRasc{{dataValues.id}}" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog text-secondary">
           <div class="modal-content bg text-secondary">
             <div class="modal-header bg text-secondary">
@@ -180,13 +180,14 @@
         </div>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdrops{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal fade" id="staticBackdrops{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog text-secondary">
           <div class="modal-content bg text-secondary">
             <div class="modal-header bg text-secondary">
               <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-white-50">
               ATENÇÃO, ao clicar em deletar a textlist será permanentemente excluida do banco de dados.

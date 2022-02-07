@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="../../css/ckeditor.css" async defer>
 {{#each posts}}
-  <head>
-    <title>{{dataValues.titulo}} | {{user.dataValues.user_name}}</title>
-    <meta name="title" content="{{dataValues.titulo}}">
-    <mete name="author" content="{{user.dataValues.user_name}}">
+
+<head>
+  <title>{{dataValues.titulo}} | {{user.dataValues.user_name}}</title>
+  <meta name="title" content="{{dataValues.titulo}} | {{user.dataValues.user_name}}">
+  <mete name="author" content="{{user.dataValues.user_name}}">
     <meta name="description" content="{{dataValues.descricao}}">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -11,109 +12,99 @@
     <meta property="og:title" content="{{dataValues.titulo}}">
     <meta property="og:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
     <meta property="og:image" content="ttps://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
-    
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.bwlog.dev/posts/{{dataValues.slug}}">
     <meta property="twitter:title" content="{{dataValues.titulo}}">
     <meta property="twitter:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
     <meta property="twitter:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
-
-
     <!-- MS, fb & Whatsapp -->
-
     <!-- MS Tile - for Microsoft apps-->
-    <meta name="msapplication-TileImage" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">    
-
+    <meta name="msapplication-TileImage" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
     <!-- fb & Whatsapp -->
-
     <!-- Site Name, Title, and Description to be displayed -->
     <meta property="og:site_name" content="bwlog">
     <meta property="og:title" content="{{dataValues.titulo}}">
     <meta property="og:description" content="{{user.dataValues.user_name}} | {{dataValues.titulo}}">
-
     <!-- Image to display -->
     <!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <meta property="og:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
-
-
-
     <!-- Website to visit when clicked in fb or WhatsApp-->
     <meta property="og:url" content="http://www.bwlog.dev/posts/{{dataValues.slug}}">
-
-  </head>
-    <div class="bg rounded-3 mt-1 mb-5 p-1 m-1">
-      <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
-        <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
-          <div class="flex-shrink-0">
-            <img class="rounded-circle border border-secondary"src="{{user.dataValues.profile}}" width="55" height="55" style="object-fit: cover;"  alt="profile picture">
-          </div>
-          <div class="flex-grow-0 float-start text-profile">
-            <a class="ml-4 text-white-50 fs-6" href="/autor/{{user.dataValues.id}}/{{user.dataValues.user_name}}">
-              {{user.dataValues.user_name}}
-            </a>
-          </div>
-        </div>
-      </section>
-      <div class="card-body">
-        <div class="text-white"> 
-          <h1 class="mb-3 fs-1" style="margin-top: 30px;">{{dataValues.titulo}}</h1>
-        </div>
-        <hr class="text-white-50 shadow-lg mb-5">
-        <section class="text-white-50 ck-content">
-          <article class="ck-content">
-            {{{dataValues.conteudo}}}
-            
-          </article>
-        </section>
-        <p class="text-secondary mt-2 fst-italic fs-6 text-end">
-          publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
-        </p>
-        {{#if dataValues.editado}}
-          <p class="fw-light fst-normal text-blue text-end">
-            post editado
-          </p>
-        {{/if}}
+</head>
+<div class="bg rounded-3 mt-1 mb-5 p-1 m-1">
+  <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+    <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
+      <div class="flex-shrink-0">
+        <img class="rounded-circle border border-secondary" src="{{user.dataValues.profile}}" width="55" height="55"
+          style="object-fit: cover;" alt="profile picture">
       </div>
-      <section class="center bg mb-3">
-        <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg" data-a2a-url="https://www.bwlog.dev/posts/{{dataValues.slug}}" data-a2a-title="{{dataValues.titulo}}">
-          <a class="a2a_button_copy_link"></a>
-          <a class="a2a_button_twitter"></a>
-          <a class="a2a_button_facebook"></a>
-          <a class="a2a_button_telegram"></a>
-          <a class="a2a_button_whatsapp"></a>
-        </div>
-        <script async src="https://static.addtoany.com/menu/page.js"></script>
-      </section>
+      <div class="flex-grow-0 float-start text-profile">
+        <a class="ml-4 text-white-50 fs-6" href="/autor/{{user.dataValues.id}}/{{user.dataValues.user_name}}">
+          {{user.dataValues.user_name}}
+        </a>
+      </div>
     </div>
+  </section>
+  <div class="card-body">
+    <div class="text-white">
+      <h1 class="mb-3 fs-1" style="margin-top: 30px;">{{dataValues.titulo}}</h1>
+    </div>
+    <hr class="text-white-50 shadow-lg mb-5">
+    <section class="text-white-50 ck-content">
+      <article class="ck-content">
+        {{{dataValues.conteudo}}}
+
+      </article>
+    </section>
+    <p class="text-secondary mt-2 fst-italic fs-6 text-end">
+      publicado em: {{#formatDate dataValues.createdAt}}{{/formatDate}}
+    </p>
+    {{#if dataValues.editado}}
+    <p class="fw-light fst-normal text-blue text-end">
+      post editado
+    </p>
+    {{/if}}
+  </div>
+  <section class="center bg mb-3">
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg"
+      data-a2a-url="https://www.bwlog.dev/posts/{{dataValues.slug}}" data-a2a-title="{{dataValues.titulo}}">
+      <a class="a2a_button_copy_link"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_whatsapp"></a>
+    </div>
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+  </section>
+</div>
 {{/each}}
 
 {{#if haveTextlist}}
-   <div class="card bg text-light border-dark rounded-2 mb-4">
-    <div class="card-body d-grid bg">
-      <h5 class="card-title">Este texto está na textlist <strong class="text-info">{{textlist.dataValues.titulo}}</strong></h5>
-      <a href="/textlist/{{textlist.dataValues.slug}}/{{textlist.dataValues.id}}" class="btn btn-dark">Ler Mais</a>
-    </div>
-  </div>   
+<div class="card bg text-light border-dark rounded-2 mb-4">
+  <div class="card-body d-grid bg">
+    <h5 class="card-title">Este texto está na textlist <strong class="text-info">{{textlist.dataValues.titulo}}</strong>
+    </h5>
+    <a href="/textlist/{{textlist.dataValues.slug}}/{{textlist.dataValues.id}}" class="btn btn-dark">Ler Mais</a>
+  </div>
+</div>
 {{/if}}
 {{#each posts}}
-    <div class="card bg text-light mb-4 border-dark rounded-2">
-      <div class="card-body bg d-grid">
-        <h5 class="card-title">Discuta sobre o texto no fórum</h5>
-        <p class="card-text">Compartilhe o que pensou :)</p>
-        <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-dark">Participar</a>
-      </div>
-    </div>
+<div class="card bg text-light mb-4 border-dark rounded-2">
+  <div class="card-body bg d-grid">
+    <h5 class="card-title">Discuta sobre o texto no fórum</h5>
+    <p class="card-text">Compartilhe o que pensou :)</p>
+    <a href="/forum/{{dataValues.id}}/{{dataValues.titulo}}" class="btn btn-dark">Participar</a>
+  </div>
+</div>
 {{/each}}
 
 <script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
-<script >
-    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
-        iframely.load( element, element.attributes.url.value );
-    } );
+<script>
+  document.querySelectorAll('oembed[url]').forEach(element => {
+    iframely.load(element, element.attributes.url.value);
+  });
 </script>
 <script src="../../js/prism.js"></script>
-
-

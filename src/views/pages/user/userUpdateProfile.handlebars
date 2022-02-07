@@ -31,9 +31,9 @@
                 for="profile">
                 <i class="fs-6 bi bi-pencil-square"> </i>
               </label>
-              <input id="user_name" minlength="4" required maxlength="10" class="overflow-hidden text-white mt-1 mb-1 input-name"
-                type="text" name="user_name" autocomplete="off" value="{{user.dataValues.user_name}}"
-                onchange="activateButton()" />
+              <input id="user_name" minlength="4" required maxlength="10"
+                class="overflow-hidden text-white mt-1 mb-1 input-name" type="text" name="user_name" autocomplete="off"
+                value="{{user.dataValues.user_name}}" onchange="activateButton()" />
               <p class="small mb-4">
                 <i class="fas fa-map-marker-alt mr-2"></i>#
                 {{user.dataValues.id}}
@@ -56,46 +56,14 @@
           </div>
         </div>
         <div class="d-grid gap-2">
-          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2"
-            onclick="">Enviar</button>
+          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2" onclick="">Enviar</button>
         </div>
       </div>
     </div>
   </div>
 </form>
 
-<script>
-  const imgProfile = document.getElementById('imgProfile');
-  const banner_img = document.getElementById('bannerImg');
-  const button = document.getElementById('submit');
-
-  function activateButton() {
-    button.classList.remove('disabled');
-  }
-
-  let profile = document.getElementById("profile_img");
-  profile.onchange = function () {
-    if (this.files[0].size > 3145728.0) {
-      alert("Arquivo muito grande, valor maximo de 3MB!");
-      this.value = "";
-    } else {
-      imgProfile.src = URL.createObjectURL(event.target.files[0]);
-      button.classList.remove('disabled');
-    }
-  };
-
-  let banner = document.getElementById("banner_img");
-  banner.onchange = function () {
-    if (this.files[0].size > 3145728.0) {
-      alert("Arquivo muito grande, valor maximo de 3MB!");
-      this.value = "";
-    } else {
-      banner_img.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0])})`;
-      button.classList.remove('disabled');
-    }
-  };
-
-</script>
+<script src="../../js/userProfileImg.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
