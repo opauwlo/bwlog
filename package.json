@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "private": false,
   "dependencies": {
+    "autocannon": "^7.6.0",
     "body-parser": "^1.19.0",
+    "climem": "^1.0.3",
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
@@ -28,8 +30,6 @@
     "dev": "nodemon src/server.js"
   },
   "devDependencies": {
-    "autocannon": "^7.6.0",
-    "climem": "^1.0.3",
     "nodemon": "^2.0.9",
     "purgecss": "^4.0.3",
     "sequelize-cli": "^6.4.1"
