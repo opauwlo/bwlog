@@ -51,7 +51,7 @@ module.exports = {
       let success = null;
       await Textlist.update({
         titulo: textlistName,
-        slug: slugify(textlistName)
+        slug: slugify(textlistName , { lower: true })
       }, {
         where: {
           id: textlistId
