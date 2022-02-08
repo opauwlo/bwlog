@@ -10,7 +10,7 @@ module.exports = {
       let success = null;
       await Textlist.create({
         titulo: textlistName,
-        slug: slugify(textlistName),
+        slug: slugify(textlistName, { lower: true }),
         owner: ownerId
       }).then(() => {
         success = true;
