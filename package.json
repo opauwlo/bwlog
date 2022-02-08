@@ -3,9 +3,7 @@
   "version": "0.0.2",
   "private": false,
   "dependencies": {
-    "autocannon": "^7.6.0",
     "body-parser": "^1.19.0",
-    "climem": "^1.0.3",
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
@@ -24,9 +22,7 @@
     "slugify": "^1.6.5"
   },
   "scripts": {
-    "start": "CLIMEM=8999 node -r climem src/server.js",
-    "climem": "npx climem 8999",
-    "test": "npx autocannon -c 1000 -d 59 -p 15 https://www.bwlog.dev/",
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "devDependencies": {
