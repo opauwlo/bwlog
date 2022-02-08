@@ -7,7 +7,8 @@ class Textlist extends Model {
       slug: DataTypes.STRING,
 
     }, {
-      sequelize
+      sequelize,
+      initialAutoIncrement: 1000
     })
   }
   
