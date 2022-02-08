@@ -13,7 +13,6 @@
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "google-auth-library": "^7.11.0",
-    "handlebars-helpers": "^0.10.0",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
     "moment": "^2.29.1",
