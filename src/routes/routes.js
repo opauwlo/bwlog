@@ -22,28 +22,28 @@ router.get('/logout',checkAuthenticated, authController.logout);
 // profile router
 const { profileController } = require('../app/controllers/profile.controller');
 
-router.get('/perfil', verifyJwt, checkAuthenticated, profileController.privateProfile);
+router.get('/perfil', checkAuthenticated, verifyJwt, profileController.privateProfile);
 router.get('/autor/:id/:name', profileController.publicProfile);
-router.get('/edit/:id', verifyJwt, checkAuthenticated, profileController.renderUpdateProfile);
-router.post('/update', verifyJwt, checkAuthenticated, profileController.updateProfile);
+router.get('/edit/:id', checkAuthenticated, verifyJwt, profileController.renderUpdateProfile);
+router.post('/update',  checkAuthenticated, verifyJwt, profileController.updateProfile);
 
 // posts router
 const { postController } = require('../app/controllers/post.controller');
 
-router.get('/novo/post', verifyJwt, checkAuthenticated, postController.renderCreatePost);
-router.post('/add', verifyJwt, checkAuthenticated, postController.create);
+router.get('/novo/post', checkAuthenticated, verifyJwt, postController.renderCreatePost);
+router.post('/add', checkAuthenticated, verifyJwt, postController.create);
 router.get('/posts/:slug', postController.renderPost);
-router.get('/edit/post/:id', verifyJwt, checkAuthenticated, postController.renderEditPost);
+router.get('/edit/post/:id', checkAuthenticated, verifyJwt, postController.renderEditPost);
 router.get('/posts/preview/:slug', postController.renderPereviewPost);
-router.post('/update/:u_id', verifyJwt, checkAuthenticated, postController.update);
-router.post('/deletar/:id', verifyJwt,checkAuthenticated, postController.delete);
+router.post('/update/:u_id', checkAuthenticated, verifyJwt, postController.update);
+router.post('/deletar/:id', checkAuthenticated, verifyJwt, postController.delete);
 
 // textlists router
-router.post('/add/textlist', verifyJwt, checkAuthenticated, postController.createTextlist);
+router.post('/add/textlist', checkAuthenticated, verifyJwt, postController.createTextlist);
 router.post('/textlist/:id', postController.updateTextlist);
-router.post('/deletar/textlist/:id', verifyJwt, checkAuthenticated, postController.deleteTextlist);
-router.get('/novo/textlist', verifyJwt, checkAuthenticated, postController.renderCreateTextlist);
-router.get('/edit/textlist/:id', verifyJwt, checkAuthenticated, postController.renderEditTextlist);
+router.post('/deletar/textlist/:id', checkAuthenticated, verifyJwt, postController.deleteTextlist);
+router.get('/novo/textlist', checkAuthenticated, verifyJwt, postController.renderCreateTextlist);
+router.get('/edit/textlist/:id', checkAuthenticated, verifyJwt, postController.renderEditTextlist);
 router.get('/textlist/:slug/:id', postController.renderPostsFromTextlist);
 // forum router
 const { forumControler } = require('../app/controllers/forum.controller');

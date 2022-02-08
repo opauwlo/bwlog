@@ -1,5 +1,5 @@
 const express = require('express');
-const handlebars = require('express-handlebars');
+const {create} = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -43,21 +43,21 @@ app.use((req, res, next) => {
 //static
 app.use(express.static(path.join(process.cwd() + '/src/public')));
 // Template
-app.engine(
-  'handlebars',
-  handlebars({
-    defaultLayout: 'main',
-    helpers: {
-      formatDate: (createdAt) => {
-        return moment(createdAt).format('DD/MM/YYYY');
-      },
-      paginateHelper: paginateHelper.createPagination,
-    },
-  })
-);
 
-app.set('views', path.join('src/views'));
+hbs = create({
+  defaultLayout: 'main',
+  helpers: {
+    formatDate: (createdAt) => {
+      return moment(createdAt).format('DD/MM/YYYY');
+    },
+    paginateHelper: paginateHelper.createPagination,
+  },
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', path.join('src/views'));
+
 
 app.use(express.json());
 app.use(cookieParser());

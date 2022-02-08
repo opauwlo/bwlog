@@ -5,7 +5,7 @@ require('dotenv').config();
 function verifyJwt(req, res, next) {
   const token = req.cookies.access_token;
   if (!token) {
-    res.redirect('/login')
+    res.redirect('/login');
   }
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET);
