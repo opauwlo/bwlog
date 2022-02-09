@@ -17,6 +17,7 @@
     "google-auth-library": "^7.11.0",
     "ioredis": "^4.28.5",
     "jsonwebtoken": "^8.5.1",
+    "localStorage": "^1.0.4",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "seedrandom": "^3.0.5",

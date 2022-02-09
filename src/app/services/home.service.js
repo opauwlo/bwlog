@@ -1,7 +1,5 @@
 const { Posts } = require('../repositories/posts.repository');
 
-const localStorage = require('localStorage');
-
 const cache = require('../utils/cache');
 
 module.exports = {
