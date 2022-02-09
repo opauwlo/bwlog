@@ -2,42 +2,60 @@ const { Posts } = require('../repositories/posts.repository');
 
 const localStorage = require('localStorage');
 
+const cache = require('../utils/cache');
+
 module.exports = {
   home: {
     // render home page
     index: async (req, res) => {
       try {
         let currentPage = req.query.page || 1;
-        let postsPerPage = 50;
+        let postsPerPage = 10;
 
-        if (currentPage == 1) {
-          var countAllPosts = await Posts.countPosts();
-          var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
-          if (PageLimit == 0) {
-            PageLimit = 1
+        const cachePageLimit = await cache.get('cachePageLimit');
+        if (!cachePageLimit) {
+          if (currentPage == 1 ) {
+            var countAllPosts = await Posts.countPosts();
+            var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
+            if (PageLimit == 0) {
+              PageLimit = 1
+            }
+            cache.set('cachePageLimit', PageLimit, 11 );
           }
-          localStorage.setItem('homePageLimit', PageLimit) 
+        } else {
+          PageLimit = parseInt(cachePageLimit);
         }
-        if (currentPage > localStorage.getItem('homePageLimit')) {
-          currentPage = localStorage.getItem('homePageLimit');
-        }  else {
-          currentPage = req.query.page || 1;
+
+
+        if (currentPage > cache.get('cachePageLimit')) {
+          currentPage = cache.get('cachePageLimit');
         }
 
         let offset = (currentPage * postsPerPage) - postsPerPage;
 
-        const posts = await Posts.fromHome(offset);
+        
+        const cachedPosts = await cache.get(`posts_${currentPage}`);
+        if (!cachedPosts) {
+          var isCached = false;
+          var posts = await Posts.fromHome(offset);
+          cache.set(`posts_${currentPage}`, posts, 11);
 
-        res.render("pages/home/", {
+        } else {
+          isCached = true;
+          posts = cachedPosts;
+        }
+        res.render("pages/home/",{
           pagination: {
             page: currentPage,
-            limit: localStorage.getItem('homePageLimit'),
-            totalRows: localStorage.getItem('homePageLimit'),
+            limit: PageLimit,
+            totalRows: PageLimit,
           },
+          isCached: isCached,
           posts: posts,
           user: posts.user,
         });
       } catch (e) {
+        console.log(e);
         res.status(500).json({
           message: e.message,
         });

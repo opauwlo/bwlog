@@ -108,7 +108,7 @@ module.exports = {
         where: {
           publicado: true,
         },
-        order: [['createdAt', 'DESC']],
+        order: [['id', 'DESC']],
       });
       return Posts;
     },
@@ -150,7 +150,6 @@ module.exports = {
       }).then(post => {
         return post;
       }).catch(err => {
-        console.log(err)
         return null;
       });
       return Posts;

@@ -55,7 +55,6 @@ module.exports = {
         await res.redirect('/login'); 
       } 
       catch (e) {
-        console.log(e);
       }
      
     },
@@ -100,7 +99,6 @@ module.exports = {
         }
 
       } catch (e) {
-        console.log(e);
       }
     }
   }

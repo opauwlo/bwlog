@@ -41,7 +41,6 @@ module.exports = {
       }).then(() => {
         success = true;
       }).catch(async (e) => {
-        console.log(e);
         success = false;
       });
       

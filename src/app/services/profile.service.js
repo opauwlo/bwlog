@@ -48,7 +48,7 @@ module.exports = {
 
       }
       catch (e) {
-        console.log(e);
+        
         res.status(500).json({
           message: e.message
         });
@@ -68,7 +68,7 @@ module.exports = {
         });
       }
       catch (e) {
-        console.log(e);
+        
         res.status(500).json({
           message: e.message
         });
@@ -118,7 +118,7 @@ module.exports = {
         }
 
       } catch (e) {
-        console.log(e);
+        
       }
     },
     renderUpdate: async (req, res) => {
@@ -131,7 +131,7 @@ module.exports = {
             user: user
           });
         } catch (e) {
-          console.log(e);
+          
         }
       } else {
         req.flash('error_msg', 'Você não tem permissão para acessar esta página');

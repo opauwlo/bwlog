@@ -17,7 +17,7 @@ module.exports = {
           res.redirect('/cad');
         }
       } catch (e) {
-        console.log(e);
+        
       }
     },
     update: async (req, res) => {
@@ -33,7 +33,7 @@ module.exports = {
           res.redirect(`/edit/:id`);
         }
       } catch (e) {
-        console.log(e);
+        
       }
     },
     delete: async (req, res) => {
@@ -48,7 +48,7 @@ module.exports = {
           res.redirect('/perfil');
         }
       } catch (e) {
-        console.log(e);
+        
       }
     },
     renderPost: async (req, res) => {
@@ -73,7 +73,7 @@ module.exports = {
             });
           
         } catch (e) {
-          console.log(e);
+          
         }
     }
     },
@@ -86,7 +86,6 @@ module.exports = {
           textlist
         });
       } catch (e) {
-        console.log(e)
       }
     },
     renderEdit: async (req, res) => {
@@ -115,7 +114,6 @@ module.exports = {
             haveTextlist
           });
         } catch (e) {
-          console.log(e)
         }
 
       }
@@ -129,7 +127,6 @@ module.exports = {
         });
 
       } catch (e) {
-        console.log(e)
       }    
     },
     createTextlist: async (req, res) => {
@@ -146,7 +143,7 @@ module.exports = {
           res.redirect('/novo/textlist');
         }
       } catch (e) {
-        console.log(e);
+        
       }
     },
     renderCreateTextlist: async (req, res) => {
@@ -186,7 +183,7 @@ module.exports = {
           textlist
         });
       } catch (e) {
-        console.log(e);
+        
       }
     }
   }
