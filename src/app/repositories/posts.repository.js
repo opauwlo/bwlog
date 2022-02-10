@@ -127,6 +127,13 @@ module.exports = {
       return {posts : Posts, isCached: false};
     },
     fromPostPage: async (slug) => {
+
+      const cachedPost = await cache.get(`post_${slug}`);
+
+      if (cachedPost) {
+        return {posts: cachedPost, isCached: true};
+      }
+
       const PostPage = await Post.findAll({
         where: {
           slug: slug,
@@ -137,7 +144,9 @@ module.exports = {
           as: 'user',
         }],
       });
-      return PostPage;
+
+      await cache.set(`post_${slug}, PostPage, 20`)
+      return {posts: PostPage, isCached: false};
     },
     fromPostPreview: async (slug) => {
       const PostPreview = await Post.findAll({
