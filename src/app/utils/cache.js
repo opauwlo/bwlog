@@ -4,9 +4,7 @@ require("dotenv").config();
 class cache {
   constructor() {
     this.redis = new Redis(process.env.REDIS_URL, {
-      tls: {
-        rejectUnauthorized: false
-      }
+      keyPrefix: "cache:",
     });
   }
 
@@ -19,10 +17,6 @@ class cache {
 
   set(key, value, timeExp) {
     return this.redis.set(key, JSON.stringify(value), "EX", timeExp);
-  }
-  
-  del(key) {
-    return this.redis.del(key);
   }
 }
 

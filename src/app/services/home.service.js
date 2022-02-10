@@ -1,6 +1,4 @@
-const { Posts } = require('../repositories/posts.repository');
-
-const cache = require('../utils/cache');
+const { Posts } = require("../repositories/posts.repository");
 
 module.exports = {
   home: {
@@ -8,41 +6,25 @@ module.exports = {
     index: async (req, res) => {
       try {
         let currentPage = req.query.page || 1;
-        let postsPerPage = 10;
+        let postsPerPage = 60;
 
-        const cachePageLimit = await cache.get('cachePageLimit');
-        if (!cachePageLimit) {
-          if (currentPage == 1 ) {
-            var countAllPosts = await Posts.countPosts();
-            var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
-            if (PageLimit == 0) {
-              PageLimit = 1
-            }
-            cache.set('cachePageLimit', PageLimit, 11 );
+        if (currentPage == 1) {
+          var countAllPosts = await Posts.countPosts();
+          var PageLimit = Math.ceil(countAllPosts / postsPerPage);
+          if (PageLimit == 0) {
+            PageLimit = 1;
           }
-        } else {
-          PageLimit = parseInt(cachePageLimit);
         }
 
-
-        if (currentPage > cache.get('cachePageLimit')) {
-          currentPage = cache.get('cachePageLimit');
+        if (currentPage > PageLimit) {
+          currentPage = PageLimit;
         }
 
-        let offset = (currentPage * postsPerPage) - postsPerPage;
+        let offset = currentPage * postsPerPage - postsPerPage;
 
-        
-        const cachedPosts = await cache.get(`posts_${currentPage}`);
-        if (!cachedPosts) {
-          var isCached = false;
-          var posts = await Posts.fromHome(offset);
-          cache.set(`posts_${currentPage}`, posts, 11);
+        var { posts, isCached } = await Posts.fromHome(offset);
 
-        } else {
-          isCached = true;
-          posts = cachedPosts;
-        }
-        res.render("pages/home/",{
+        return res.render("pages/home/", {
           pagination: {
             page: currentPage,
             limit: PageLimit,
@@ -50,13 +32,10 @@ module.exports = {
           },
           isCached: isCached,
           posts: posts,
-          user: posts.user,
+          user: posts,
         });
       } catch (e) {
-        console.log(e);
-        res.status(500).json({
-          message: e.message,
-        });
+        console.error(e);
       }
     },
   },

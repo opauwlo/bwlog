@@ -4,6 +4,8 @@ const User = require('../../database/models/User');
 const slugify = require('slugify');
 const random = require('../utils/slugNumbers');
 
+const cache = require('../utils/cache');
+
 module.exports = {
 
   Posts: {
@@ -87,15 +89,26 @@ module.exports = {
       return success;
     },
     countPosts: async () => {
-      const CountPosts = Post.findAndCountAll({
-        attributes: ['id'],
+
+      const cachePageLimit = await cache.get('cachePageLimit');
+      if (cachePageLimit) {
+        return cachePageLimit;
+      }
+      const CountPosts = Post.count({
         where: {
           publicado: true,
         },
       });
+      await cache.set('cachePageLimit', await CountPosts, 15);
       return CountPosts;
     },
     fromHome: async (offset) => {
+      const cachedPosts = await cache.get(`posts`);
+
+      if (cachedPosts) {
+        return {posts: cachedPosts, isCached: true};
+      }
+
       const Posts = await Post.findAll({
         limit: 50,
         offset: offset,
@@ -110,7 +123,8 @@ module.exports = {
         },
         order: [['id', 'DESC']],
       });
-      return Posts;
+      await cache.set(`posts`, Posts, 15);
+      return {posts : Posts, isCached: false};
     },
     fromPostPage: async (slug) => {
       const PostPage = await Post.findAll({
