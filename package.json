@@ -6,7 +6,7 @@
     "start:dev": "nodemon src/server.js",
     "start:performance": "CLIMEM=8999 node -r climem src/server.js",
     "climem:terminal": "npx climem 8999",
-    "test:charge": "npx autocannon -c 2500 -d 30 http://localhost:8000 "
+    "test:charge": "npx autocannon -c 400 -d 25 http://localhost:8000 "
   },
   "dependencies": {
     "autocannon": "^7.6.0",
