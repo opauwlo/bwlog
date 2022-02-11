@@ -76,7 +76,6 @@ module.exports = {
           user: post,
         });
       } catch (e) {
-        console.log
       }
     },
     renderCreate: async (req, res) => {

@@ -132,9 +132,6 @@ module.exports = {
       const cachedHaveTextlist = await cache.get(`verifyTextlist_${slug}`);
       const cachedTextlist = await cache.get(`textlist_${slug}`);
       if (cachedPost !== null) {
-        console.log('cachedPost');
-        console.log(cachedHaveTextlist);
-        console.log(cachedTextlist);
         return { post: cachedPost, textlist: cachedTextlist, haveTextlist: cachedHaveTextlist };
       }
 
@@ -153,7 +150,7 @@ module.exports = {
         });
            
         const verifyTextlist = PostPage.textlist_post_owner;
-        console.log(verifyTextlist);
+
         if (verifyTextlist) {  
           var textlist = await Textlists.getOneTextlist(PostPage.textlist_post_owner);
           if (textlist.public == false) {
@@ -165,7 +162,6 @@ module.exports = {
         cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
         cache.set(`textlist_${slug}`, textlist, 20);
         cache.set(`post_${slug}`, PostPage, 20);
-        console.log('not cachedPost');
         return { post: JSON.parse(JSON.stringify(PostPage)), textlist: JSON.parse(JSON.stringify(textlist)), haveTextlist: haveTextlist };
       } catch (error) {}
     },
