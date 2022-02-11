@@ -1,6 +1,8 @@
-const { Posts } = require("../repositories/posts.repository");
+const { Posts } = require('../repositories/posts.repository');
 
-const { Textlists } = require("../repositories/textlists.repository");
+const { Textlists } = require('../repositories/textlists.repository');
+
+const cache = require('../utils/cache');
 module.exports = {
   posts: {
     create: async (req, res) => {
@@ -62,13 +64,37 @@ module.exports = {
     },
     
     renderPost: async (req, res) => {
+      const slug = req.params.slug;
+
+      var textlist = undefined;
+      var haveTextlist = undefined;
+
+      const cachedHaveTextlist = await cache.get(`verifyTextlist_${slug}`);
+      const cachedTextlist = await cache.get(`textlist_${slug}`);
+      const post = await Posts.fromPostPage(slug);
+      if (cachedHaveTextlist) {
+        textlist = cachedTextlist;
+        haveTextlist = cachedHaveTextlist;
+      }
       try {
-        const { post, textlist, haveTextlist } = await Posts.fromPostPage(
-          req.params.slug
-        );
         if (post.length == 0 ) {
           return res.redirect("/404");
         }
+
+        const verifyTextlist = post.textlist_post_owner;
+
+        if (verifyTextlist) {  
+          textlist = await Textlists.getOneTextlist(post.textlist_post_owner);
+          if (textlist.public == false) {
+            haveTextlist = false;
+          } else {
+            haveTextlist = true
+          }
+        }
+
+        cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
+        cache.set(`textlist_${slug}`, textlist, 20);
+
         res.render("pages/post/postShow", {
           textlist ,
           haveTextlist,
