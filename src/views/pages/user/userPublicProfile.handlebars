@@ -85,17 +85,17 @@
   <div class="tab-pane fade" id="pills-textlist" role="tabpanel" aria-labelledby="pills-textlist-tab">
     <section class="row row-cols-md-1">
       {{#each textlists }}
-      <div class="col-lg-6 rounded-3 mb-3">
-        <div class="card m-2 shadow text-center ">
-          <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/textlist/{{id}}/{{slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Mais</a>
+        <div class="col-lg-6 rounded-3 mb-3">
+          <div class="card m-2 shadow text-center ">
+            <div class="card-body px-3 bg">
+              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+              <div class="d-grid gap-2 p-3" role="group">
+                <a href="/textlist/{{id}}/{{slug}}"
+                  class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Mais</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       {{/each}}
     </section>
   </div>

@@ -67,10 +67,7 @@ module.exports = {
         });
       }
       catch (e) {
-        
-        res.status(500).json({
-          message: e.message
-        });
+        console.log(e);
       }
     },
     updated: async (req, res) => {

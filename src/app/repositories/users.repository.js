@@ -91,7 +91,7 @@ module.exports = {
             publicado: true
           },
         });
-        await cache.set(`public_${id}`, PublicProfile, 25);
+        await cache.set(`public_${id}`, PublicProfile, 10);
         return JSON.parse(JSON.stringify(PublicProfile));
 
       } catch (e) {}
@@ -134,7 +134,7 @@ module.exports = {
           }],
           where: { user_id : id },
         });
-        await cache.set(`getUserPosts${id}`, Posts, 25);
+        await cache.set(`getUserPosts${id}`, Posts, 5);
         return JSON.parse(JSON.stringify(Posts)); 
 
       } catch (e) {}
