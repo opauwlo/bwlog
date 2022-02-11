@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../../css/ckeditor.css">
 <form action="/add" method="POST" class="p-3" id="form">
   <div class="form mb-3 p-2 mx-auto">
     <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="40" autocomplete="off"
@@ -27,7 +28,7 @@
     <select class="form-select bg text-white border border-secondary" id="textlist" name="textlist">
       <option selected value="NULL"> Sem Textlist </option>
       {{#each textlist}}
-      <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
+      <option value="{{id}}"> {{titulo}} </option>
       {{/each}}
 
     </select>
@@ -45,4 +46,3 @@
 
 </form>
 {{> _ckeditorJs}}
-<link rel="stylesheet" href="../../css/ckeditor.css">

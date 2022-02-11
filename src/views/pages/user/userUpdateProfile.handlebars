@@ -12,7 +12,7 @@
           for="banner_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
         <input name="banner_img" id="banner_img" type="file" accept="image/*" />
         <div id="bannerImg" class="px-3 pt-0 pb-4 rounded-3 mb-2 border border-dark"
-          style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
+          style="background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
           <div class="media align-items-end profile-head rounded-circle">
             <div class="profile mr-3 position-relative">
 
@@ -21,7 +21,7 @@
               <input name="profile_img" id="profile_img" type="file" accept="image/*" />
 
               <label for="profile_img">
-                <img id="imgProfile" src="{{user.dataValues.profile}}" alt="..." width="110"
+                <img id="imgProfile" src="{{user.profile}}" alt="..." width="110"
                   class="rounded-3 border-3 border-dark shadow-lg" style="object-fit: cover;" />
               </label>
             </div>
@@ -33,10 +33,10 @@
               </label>
               <input id="user_name" minlength="4" required maxlength="10"
                 class="overflow-hidden text-white mt-1 mb-1 input-name" type="text" name="user_name" autocomplete="off"
-                value="{{user.dataValues.user_name}}" onchange="activateButton()" />
+                value="{{user.user_name}}" onchange="activateButton()" />
               <p class="small mb-4">
                 <i class="fas fa-map-marker-alt mr-2"></i>#
-                {{user.dataValues.id}}
+                {{user.id}}
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@
             </label>
             <textarea placeholder=" " name="descricao" id="descricao" type="text"
               class="form-text mb-3 p-2 rounded-3 mx-auto bg" required onchange="activateButton()"
-              rows="3">{{user.dataValues.descricao}}</textarea>
+              rows="3">{{user.descricao}}</textarea>
           </div>
         </div>
         <div class="d-grid gap-2">

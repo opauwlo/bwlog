@@ -1,6 +1,7 @@
 const Textlist = require('../../database/models/Textlist');
 
 const slugify = require('slugify');
+const cache = require('../utils/cache');
 
 const { Op } = require('sequelize');
 
@@ -20,24 +21,47 @@ module.exports = {
       return success
     },
     getTextlist: async (ownerId) => {
-      const textlist = await Textlist.findAll({
-        order: [['createdAt', 'DESC']],
-        where: {
-          owner: ownerId
-        }
-      });
-      return textlist;
+
+      const cachedTextlist = await cache.get(`textlist_${ownerId}`);
+      if (cachedTextlist) {
+        return cachedTextlist;
+      }
+      try {
+        const textlist = await Textlist.findAll({
+          order: [['createdAt', 'DESC']],
+          where: {
+            owner: ownerId
+          }
+        });
+        await cache.set(`textlist_${ownerId}`, textlist, 25);
+        return JSON.parse(JSON.stringify(textlist));
+
+      } catch (e) { }
     },
     getOneTextlist: async (textlistId) => {
-      const textlist = await Textlist.findOne({
-        where: {
-          id: textlistId
-        }
-      });
-      return textlist;
+
+      const cachedTextlist = await cache.get(`textlist_${textlistId}`);
+
+      if (cachedTextlist) {
+        return cachedTextlist;
+      }
+
+      try {
+        const textlist = await Textlist.findOne({
+          where: {
+            id: textlistId
+          }
+        });
+
+        await cache.set(`textlist_${textlistId}`, textlist, 25);
+        return JSON.parse(JSON.stringify(textlist));
+
+      } catch (e) {}
     },
     getTextlistFromEditPage: async (selected) => {
+      
       const textlist = await Textlist.findAll({
+        attributes: ['id', 'titulo'],
         order: [['createdAt', 'DESC']],
         where: {
           id: {
@@ -45,6 +69,7 @@ module.exports = {
           }
         }
       });
+      return JSON.parse(JSON.stringify(textlist));
       return textlist;
     },
     updateTextlist: async (textlistId, textlistName) => {

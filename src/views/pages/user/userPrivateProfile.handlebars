@@ -8,19 +8,19 @@
     <!-- Profile widget -->
     <div class="overflow-hidden">
       <div class="px-3 pt-0 pb-4 rounded-3 mb-2"
-        style=" background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
+        style=" background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
         <div class="media align-items-end profile-head rounded-circle">
-          <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110"
+          <div class="profile mr-3 rounded-circle"><img src="{{user.profile}}" alt="..." width="110"
               style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
           <div class="media-body mb-4 text-white">
-            <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
-            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
+            <h4 class="mt-1 mb-1">{{user.user_name}}</h4>
+            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
           </div>
         </div>
       </div>
 
       <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
-      <a href="/edit/{{user.dataValues.id}}" class="mx-3 mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
+      <a href="/edit/{{user.id}}" class="mx-3 mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
         Perfil</a>
       <a href="/logout" class="mt-5 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
         Sair
@@ -29,13 +29,26 @@
         <h5 class="mb-1 mt-2 text-white">Sobre</h5>
         <div class="p-4 rounded shadow-sm bg">
           <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">
-            {{user.dataValues.descricao}}
+            {{user.descricao}}
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<section class="end my-3">
+  <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg-black"
+    data-a2a-url="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}" data-a2a-title="{{user.user_name}}">
+    <a class="a2a_button_copy_link"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_telegram"></a>
+    <a class="a2a_button_whatsapp"></a>
+    <a class="a2a_button_facebook"></a>
+  </div>
+  <script async src="https://static.addtoany.com/menu/page.js"></script>
+</section>
+
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg">
 
@@ -64,98 +77,98 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     <section class="row row-cols-md-1">
       {{#each posts}}
-      {{#if dataValues.publicado}}
-      <div class="col-lg-6  mb-3">
-        <div class="card m-2 shadow text-center">
-          <div class="card-body rounded-3 px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
-            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-            <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/posts/{{dataValues.slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
-              <a href="/edit/post/{{dataValues.id}}"
-                class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-              <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                data-bs-toggle="modal" data-bs-target="#staticBackdrop{{{dataValues.id}}}">
-                Deletar
-              </button>
+        {{#if publicado}}
+        <div class="col-lg-6  mb-3">
+          <div class="card m-2 shadow text-center">
+            <div class="card-body rounded-3 px-3 bg">
+              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+              <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
+              <small class="text-secondary mt-1">by: {{user.user_name}}</small>
+              <div class="d-grid gap-2 p-3" role="group">
+                <a href="/posts/{{slug}}"
+                  class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
+                <a href="/edit/post/{{id}}"
+                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{{id}}}">
+                  Deletar
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-secondary">
-          <div class="modal-content bg text-secondary">
-            <div class="modal-header bg text-secondary">
-              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-white-50">
-              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{dataValues.id}}" method="POST">
-                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-              </form>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop{{{id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog text-secondary">
+            <div class="modal-content bg text-secondary">
+              <div class="modal-header bg text-secondary">
+                <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
+                <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                  data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-white-50">
+                ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                <form action="/deletar/{{id}}" method="POST">
+                  <button type="submit" class="btn btn-danger mx-1">Deletar</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {{/if}}
+        {{/if}}
       {{/each}}
     </section>
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
     <section class="row row-cols-md-1">
       {{#each posts}}
-      {{#unless dataValues.publicado}}
-      <div class="col-lg-6 rounded-3 mb-3">
-        <div class="card m-2 shadow text-center ">
-          <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
-            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-            <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/posts/preview/{{dataValues.slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
-              <a href="/edit/post/{{dataValues.id}}"
-                class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-              <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{dataValues.id}}">
-                Deletar
-              </button>
+        {{#unless publicado}}
+        <div class="col-lg-6 rounded-3 mb-3">
+          <div class="card m-2 shadow text-center ">
+            <div class="card-body px-3 bg">
+              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+              <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
+              <small class="text-secondary mt-1">by: {{user.user_name}}</small>
+              <div class="d-grid gap-2 p-3" role="group">
+                <a href="/posts/preview/{{slug}}"
+                  class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler</a>
+                <a href="/edit/post/{{id}}"
+                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{id}}">
+                  Deletar
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdropRasc{{dataValues.id}}" data-bs-backdrop="static"
-        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-secondary">
-          <div class="modal-content bg text-secondary">
-            <div class="modal-header bg text-secondary">
-              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-white-50">
-              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{dataValues.id}}" method="POST">
-                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-              </form>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdropRasc{{id}}" data-bs-backdrop="static"
+          data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog text-secondary">
+            <div class="modal-content bg text-secondary">
+              <div class="modal-header bg text-secondary">
+                <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
+                <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                  data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-white-50">
+                ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                <form action="/deletar/{{id}}" method="POST">
+                  <button type="submit" class="btn btn-danger mx-1">Deletar</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {{/unless}}
+        {{/unless}}
       {{/each}}
     </section>
   </div>
@@ -165,14 +178,14 @@
       <div class="col-lg-6 rounded-3 mb-3">
         <div class="card m-2 shadow text-center ">
           <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
+            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
             <div class="d-grid gap-2 p-3" role="group">
-              <a href="/textlist/{{dataValues.slug}}/{{dataValues.id}}"
+              <a href="/textlist/{{id}}/{{slug}}"
                 class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Posts</a>
-              <a href="/edit/textlist/{{dataValues.id}}"
+              <a href="/edit/textlist/{{id}}"
                 class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
               <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{dataValues.id}}}">
+                data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
                 Deletar
               </button>
             </div>
@@ -180,7 +193,7 @@
         </div>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdrops{{{dataValues.id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+      <div class="modal fade" id="staticBackdrops{{{id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog text-secondary">
           <div class="modal-content bg text-secondary">
@@ -194,7 +207,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/textlist/{{dataValues.id}}" method="POST">
+              <form action="/deletar/textlist/{{id}}" method="POST">
                 <button type="submit" class="btn btn-danger mx-1">Deletar</button>
               </form>
             </div>

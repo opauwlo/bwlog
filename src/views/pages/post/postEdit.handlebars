@@ -31,12 +31,14 @@
         href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma
         textlist</a> </label>
     <select class="form-select bg text-white border-secondary" name="textlist">
+      
       {{#if haveTextlist}}
-      <option value="{{textlistPost.dataValues.id}}">{{textlistPost.dataValues.titulo}}</option>
+      <option value="{{textlistPost.id}}">{{textlistPost.titulo}}</option>
       {{/if}}
       <option value="NULL"> Sem Textlist </option>
+
       {{#each textlist}}
-      <option value="{{dataValues.id}}"> {{dataValues.titulo}} </option>
+        <option value="{{id}}"> {{titulo}} </option>
       {{/each}}
 
     </select>

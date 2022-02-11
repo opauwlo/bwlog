@@ -1,4 +1,6 @@
 const  fs  = require('fs');
+const del = require('del');
+
 const { Users } = require('../repositories/users.repository');
 const { Textlists } = require('../repositories/textlists.repository');
 const localStorage = require('localStorage');
@@ -16,22 +18,19 @@ module.exports = {
         let postsPerPage = 50;
 
         if (currentPage == 1) {
-          var countAllPosts = await Users.countPosts(id);
-          var PageLimit = Math.ceil(countAllPosts.count / postsPerPage);
+          var countAllPosts = await Users.countPostsFromProfile(id);
+          var PageLimit = Math.ceil(countAllPosts / postsPerPage);
           if (PageLimit == 0) {
             PageLimit = 1
           }
-          localStorage.setItem('profilePageLimit', PageLimit) 
+          PageLimit = localStorage.setItem('profilePageLimit', PageLimit) 
         }
 
-        if (currentPage > localStorage.getItem('profilePageLimit')) {
-          currentPage = localStorage.getItem('profilePageLimit');
-        } else {
-          currentPage = req.query.page || 1;
+        if (currentPage > PageLimit) {
+          currentPage = PageLimit;
         }
 
         let offset = (currentPage * postsPerPage) - postsPerPage;
-
 
         const posts = await Users.getUserPosts(id, offset);
         const textlists = await Textlists.getTextlist(id);
@@ -58,7 +57,7 @@ module.exports = {
     public: async (req, res) => {
       try {
         const id = req.params.id;
-        const user = await Users.getUserProfile(id)
+        const user = await Users.getUserProfile(id);
         const publicProfile = await Users.getPublicProfile(id);
         const textlists = await Textlists.getTextlist(id);
         res.render('pages/user/userPublicProfile', {
@@ -87,9 +86,7 @@ module.exports = {
 
         var profileResult = await cloudinary.uploader.upload(profile.tempFilePath);
         profile = profileResult.secure_url;
-        var profile_id = profileResult.public_id;
-        // delete tmp folder
-        
+        var profile_id = profileResult.public_id;        
       }
       if (req.files != null && req.files.banner_img !=null ) {
         var banner = req.files.banner_img;
@@ -101,10 +98,11 @@ module.exports = {
         var banner_id = bannerResult.public_id;
       }
       const dir = 'tmp';
-      fs.rmdir(dir, { recursive: true }, (err) => {
-        if (err) throw err;
-      });   
+      
+      
       try {
+        await del(dir);
+
         const success = await Users.updateUserProfile(user_name, descricao, profile, profile_id, banner, banner_id ,id);
         
         if(success == true) {
@@ -118,7 +116,7 @@ module.exports = {
         }
 
       } catch (e) {
-        
+        console.log(e)
       }
     },
     renderUpdate: async (req, res) => {

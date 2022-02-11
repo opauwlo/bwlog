@@ -1,6 +1,9 @@
 const Post = require('../../database/models/Post');
 const User = require('../../database/models/User');
 
+const cache = require('../utils/cache');
+const slugify = require('slugify');
+
 require('../middlewares/checkAuthenticated');
 
 module.exports = {
@@ -14,7 +17,7 @@ module.exports = {
         },
         defaults: {
           name: info.name,
-          user_name: info.name.replace(/\s/g, ''),
+          user_name: slugify(info.name , { lower: true }),
           email: info.email,
           profile: profile,
           profile_id: profile_id,
@@ -28,7 +31,7 @@ module.exports = {
     updateUserProfile: async (user_name, descricao, profile, profile_id, banner, banner_id,id) => {
       var success = null;
       await User.update({
-        user_name: user_name.replace(/\s/g, ''),
+        user_name: slugify(user_name , { lower: true }),
         descricao: descricao,
         profile:  profile,
         profile_id: profile_id,
@@ -46,52 +49,95 @@ module.exports = {
       
     },
     getUserProfile: async (id) => {
-      const UserProfile = await User.findOne({
-        where: {id: id}
-      });
-      
-      return UserProfile;
+
+      const UserProfileCached =  await cache.get(`user_${id}`);
+
+      if (UserProfileCached) {
+        return UserProfileCached;
+      }
+
+      try {
+        const UserProfile = await User.findOne({
+          attributes: ['id', 'user_name', 'profile', 'banner', 'profile_id', 'banner_id', 'descricao'],
+          where: {id: id}
+        });
+        await cache.set(`user_${id}`, UserProfile, 15);
+
+        return JSON.parse(JSON.stringify(UserProfile));
+
+      } catch (e) { 
+        console.log(e);
+      }
     },
     getPublicProfile: async (id) => {
-      const PublicProfile = await Post.findAll({
-        order: [['id', 'DESC']],
-        include: [{
-          model: User,
-          as: 'user', 
-          required: true
-        }],
-        where: {
-          user_id: id,
-          publicado: true
-        },
-      });
 
-      return PublicProfile;
+      const PublicProfileCached =  await cache.get(`public_${id}`);
+
+      if (PublicProfileCached) {
+        return PublicProfileCached;
+      }
+      try {
+        const PublicProfile = await Post.findAll({
+          order: [['id', 'DESC']],
+          attributes: ['titulo', 'descricao', 'slug', 'user_id', 'publicado'],
+          include: [{
+            model: User,
+            as: 'user', 
+            attributes: ['user_name'],
+            required: true
+          }],
+          where: {
+            user_id: id,
+            publicado: true
+          },
+        });
+        await cache.set(`public_${id}`, PublicProfile, 25);
+        return JSON.parse(JSON.stringify(PublicProfile));
+
+      } catch (e) {}
     },
-    countPosts: async (id) => {
-      const CountPosts = Post.findAndCountAll({
-        attributes: ['id'],
-        where: {
-          user_id: id
-        },
-      });
-      return CountPosts;
+    countPostsFromProfile: async (id) => {
+      const cachedCountPosts = await cache.get(`cachedCountPosts${id}`);
+
+      if (cachedCountPosts) {
+        return cachedCountPosts;
+      }
+      try {
+        const CountPosts = Post.count({
+          where: {
+            user_id: id
+          },
+        });
+        await cache.set(`cachedCountPosts${id}`, await CountPosts, 25);
+        return await CountPosts;
+
+      } catch (e) {}
     },
     getUserPosts: async (id, offset) => {
-      const Posts = await Post.findAll({
-        limit: 50,
-        offset: offset,
-        attributes: ['id','titulo','slug', 'descricao', 'publicado', 'createdAt'],
-        order: [['id', 'DESC']],
-        include: [{
-          model: User,
-          as: 'user', 
-          attributes: ['id','user_name', 'profile', 'banner', 'descricao'],
-          required: true
-        }],
-        where: { user_id : id },
-       });
-      return Posts;
+      const cachedPosts = await cache.get(`getUserPosts${id}`);
+
+      if (cachedPosts) {
+        return cachedPosts;
+      }
+      
+      try {
+        const Posts = await Post.findAll({
+          limit: 50,
+          offset: offset,
+          attributes: ['id','titulo','slug', 'descricao', 'publicado'],
+          order: [['id', 'DESC']],
+          include: [{
+            model: User,
+            as: 'user', 
+            attributes: ['user_name'],
+            required: true
+          }],
+          where: { user_id : id },
+        });
+        await cache.set(`getUserPosts${id}`, Posts, 25);
+        return JSON.parse(JSON.stringify(Posts)); 
+
+      } catch (e) {}
     }
   }
 };

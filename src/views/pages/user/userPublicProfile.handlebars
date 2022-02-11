@@ -1,3 +1,5 @@
+{{> _metaTagsPublicProfile}}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
   integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 <link rel="stylesheet" href="../../css/custom.css" async defer>
@@ -8,27 +10,37 @@
     <!-- Profile widget -->
     <div class="overflow-hidden">
       <div class="px-3 pt-0 pb-4 rounded-3 mb-5"
-        style="background-image: url({{user.dataValues.banner}}); background-size: cover; background-repeat: no-repeat">
+        style="background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
         <div class="media align-items-end profile-head rounded-circle">
-          <div class="profile mr-3 rounded-circle"><img src="{{user.dataValues.profile}}" alt="..." width="110"
+          <div class="profile mr-3 rounded-circle"><img src="{{user.profile}}" alt="..." width="110"
               style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
           <div class="media-body mb-4 text-white">
-            <h4 class="mt-1 mb-1">{{user.dataValues.user_name}}</h4>
-            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.dataValues.id}}</p>
+            <h4 class="mt-1 mb-1">{{user.user_name}}</h4>
+            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
           </div>
         </div>
       </div>
       <div class="mt-5" style="margin-top: 80px !important;">
         <h5 class="mb-1 mt-2 text-white">Sobre</h5>
         <div class="p-4 rounded shadow-sm bg">
-          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.dataValues.descricao}}</p>
-
+          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.descricao}}</p>
         </div>
       </div>
     </div>
   </div>
+  
 </div>
-
+<section class="end my-3">
+  <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg-black"
+    data-a2a-url="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}" data-a2a-title="{{user.user_name}}">
+    <a class="a2a_button_copy_link"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_telegram"></a>
+    <a class="a2a_button_whatsapp"></a>
+    <a class="a2a_button_facebook"></a>
+  </div>
+  <script async src="https://static.addtoany.com/menu/page.js"></script>
+</section>
 <div class=" new-post p-2 text-light">
   <div class="card text-white bg">
     <div class="new-post p-2 ">
@@ -51,15 +63,15 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     <section class="row row-cols-md-1">
       {{#each posts}}
-      {{#if dataValues.publicado}}
+      {{#if publicado}}
       <div class="col-lg-6 rounded-3 mb-3">
         <div class="card m-2 shadow text-center">
           <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
-            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{dataValues.descricao}}</p>
-            <small class="text-secondary mt-1">by: {{user.dataValues.user_name}}</small>
+            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
+            <small class="text-secondary mt-1">by: {{user.user_name}}</small>
             <div class="d-grid gap-2 p-3" role="group">
-              <a href="/posts/{{dataValues.slug}}"
+              <a href="/posts/{{slug}}"
                 class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler Mais</a>
             </div>
           </div>
@@ -76,9 +88,9 @@
       <div class="col-lg-6 rounded-3 mb-3">
         <div class="card m-2 shadow text-center ">
           <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{dataValues.titulo}}</h2>
+            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
             <div class="d-grid gap-2 p-3" role="group">
-              <a href="/textlist/{{dataValues.slug}}/{{dataValues.id}}"
+              <a href="/textlist/{{id}}/{{slug}}"
                 class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Mais</a>
             </div>
           </div>

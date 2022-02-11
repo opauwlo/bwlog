@@ -6,7 +6,7 @@
     "start:dev": "nodemon src/server.js",
     "start:performance": "CLIMEM=8999 node -r climem src/server.js",
     "climem:terminal": "npx climem 8999",
-    "test:charge": "npx autocannon -c 50 -d 25 http://localhost:8000 "
+    "test:charge": "npx autocannon -c 500 -d 30 http://localhost:8000 "
   },
   "dependencies": {
     "autocannon": "^7.6.0",
@@ -15,6 +15,7 @@
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
+    "del": "^6.0.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-fileupload": "^1.3.1",

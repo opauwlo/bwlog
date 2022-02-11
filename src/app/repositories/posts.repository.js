@@ -1,6 +1,6 @@
 const Post = require('../../database/models/Post');
 const User = require('../../database/models/User');
-
+const { Textlists } = require('./textlists.repository.js')
 const slugify = require('slugify');
 const random = require('../utils/slugNumbers');
 
@@ -100,7 +100,7 @@ module.exports = {
         },
       });
       await cache.set('cachePageLimit', await CountPosts, 15);
-      return CountPosts;
+      return await CountPosts;
     },
     fromHome: async (offset) => {
       const cachedPosts = await cache.get(`posts`);
@@ -124,42 +124,69 @@ module.exports = {
         order: [['id', 'DESC']],
       });
       await cache.set(`posts`, Posts, 15);
-      return {posts : Posts, isCached: false};
+
+      return {posts : JSON.parse(JSON.stringify(Posts))};
     },
     fromPostPage: async (slug) => {
 
       const cachedPost = await cache.get(`post_${slug}`);
-
+      const cachedHaveTextlist = await cache.get(`verifyTextlist_${slug}`);
+      const cachedTextlist = await cache.get(`textlist_${slug}`);
       if (cachedPost) {
-        return {posts: cachedPost, isCached: true};
+        return { post: cachedPost, textlist: cachedTextlist, haveTextlist: cachedHaveTextlist };
       }
 
-      const PostPage = await Post.findAll({
-        where: {
-          slug: slug,
-          publicado: true,
-        },
-        include: [{
-          model: User,
-          as: 'user',
-        }],
-      });
+      try {
+        var haveTextlist = false;
 
-      await cache.set(`post_${slug}, PostPage, 20`)
-      return {posts: PostPage, isCached: false};
+        const PostPage = await Post.findAll({
+          where: {
+            slug: slug,
+            publicado: true,
+          },
+          include: [{
+            model: User,
+            as: 'user',
+          }],
+        });
+           
+        const verifyTextlist = PostPage[0].textlist_post_owner;
+
+        if (verifyTextlist != null) {  
+          var textlist = await Textlists.getOneTextlist(PostPage[0].textlist_post_owner);
+          haveTextlist = true
+        }
+        await cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
+        await cache.set(`textlist_${slug}`, textlist, 20)
+        await cache.set(`post_${slug}`, PostPage, 20);
+
+        return { post: JSON.parse(JSON.stringify(PostPage)), textlist: textlist, haveTextlist: haveTextlist };
+      
+      } catch (e) {
+        console.log(e)
+      }
     },
-    fromPostPreview: async (slug) => {
-      const PostPreview = await Post.findAll({
-        where: {
-          slug: slug,
-        },
-        include: [{
-          model: User,
-          as: 'user',
-        }]
-      });
 
-      return PostPreview
+    fromPostPreview: async (slug) => {
+      const cachedPost = await cache.get(`post_preview_${slug}`);
+      if (cachedPost) {
+        return cachedPost;
+      }
+
+      try {
+        const PostPreview = await Post.findAll({
+          where: {
+            slug: slug,
+          },
+          include: [{
+            model: User,
+            as: 'user',
+          }]
+        }); 
+        await cache.set(`post_preview_${slug}`, PostPreview[0], 20);
+        return JSON.parse(JSON.stringify(PostPreview[0]));
+      
+      } catch (e){}
     },
 
     fromEditPage: async (id, user_id) => {
@@ -178,15 +205,24 @@ module.exports = {
       return Posts;
     },
     fromTextlistPage: async (id) => {
-      const Posts = await Post.findAll({
-        order: [['id', 'DESC']],
-        where: { textlist_post_owner: id },
-        include: [{
-          model: User,
-          as: 'user'
-        }]
-      });
-      return Posts;
+
+      const cachedPosts = await cache.get(`posts_textlist_${id}`);
+      if (cachedPosts) {
+        return cachedPosts;
+      }
+      try {
+        const Posts = await Post.findAll({
+          order: [['id', 'DESC']],
+          where: { textlist_post_owner: id },
+          include: [{
+            model: User,
+            as: 'user'
+          }]
+        });
+        await cache.set(`posts_textlist_${id}`, Posts, 25);
+        return JSON.parse(JSON.stringify(Posts));
+
+      } catch (e) {}
     }
   },
 };

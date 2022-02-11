@@ -299,3 +299,13 @@ border-bottom-right-radius:.25rem
 .justify-content-center {
 justify-content:center!important
 }
+.end {
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.bg-black {
+  background-color: #000;
+}
+.a2a_svg svg{background: #000000!important;border-radius: 0px !important;border: 2px solid black !important; border-color: #000000 ;}

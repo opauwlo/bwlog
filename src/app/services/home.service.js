@@ -1,4 +1,5 @@
 const { Posts } = require("../repositories/posts.repository");
+const localStorage = require('localStorage');
 
 module.exports = {
   home: {
@@ -6,7 +7,7 @@ module.exports = {
     index: async (req, res) => {
       try {
         let currentPage = req.query.page || 1;
-        let postsPerPage = 60;
+        let postsPerPage = 50;
 
         if (currentPage == 1) {
           var countAllPosts = await Posts.countPosts();
@@ -14,6 +15,8 @@ module.exports = {
           if (PageLimit == 0) {
             PageLimit = 1;
           }
+          localStorage.setItem('homePageLimit', PageLimit) // set the page limit in local storage
+          PageLimit = localStorage.getItem('homePageLimit') // get the page limit from local storage
         }
 
         if (currentPage > PageLimit) {
@@ -22,7 +25,7 @@ module.exports = {
 
         let offset = currentPage * postsPerPage - postsPerPage;
 
-        var { posts, isCached } = await Posts.fromHome(offset);
+        var { posts } = await Posts.fromHome(offset);
 
         return res.render("pages/home/", {
           pagination: {
@@ -30,7 +33,6 @@ module.exports = {
             limit: PageLimit,
             totalRows: PageLimit,
           },
-          isCached: isCached,
           posts: posts,
           user: posts,
         });
