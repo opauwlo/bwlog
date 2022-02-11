@@ -22,7 +22,7 @@ module.exports = {
     },
     getTextlist: async (ownerId) => {
 
-      const cachedTextlist = await cache.get(`textlist_${ownerId}`);
+      const cachedTextlist = await cache.get(`textlistP_${ownerId}`);
       if (cachedTextlist) {
         return cachedTextlist;
       }
@@ -33,7 +33,7 @@ module.exports = {
             owner: ownerId
           }
         });
-        await cache.set(`textlist_${ownerId}`, textlist, 5);
+        await cache.set(`textlistP_${ownerId}`, textlist, 5);
         return JSON.parse(JSON.stringify(textlist));
 
       } catch (e) { }

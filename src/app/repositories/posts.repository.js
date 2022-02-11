@@ -157,10 +157,10 @@ module.exports = {
           haveTextlist = true
         }
         await cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
-        await cache.set(`textlist_${slug}`, textlist, 20)
+        await cache.set(`textlist_${slug}`, textlist, 20);
         await cache.set(`post_${slug}`, PostPage, 20);
 
-        return { post: JSON.parse(JSON.stringify(PostPage)), textlist: textlist, haveTextlist: haveTextlist };
+        return { post: JSON.parse(JSON.stringify(PostPage)), textlist: JSON.parse(JSON.stringify(textlist)), haveTextlist: haveTextlist };
       
       } catch (e) {
         console.log(e)
