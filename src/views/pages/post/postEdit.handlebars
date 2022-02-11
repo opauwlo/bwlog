@@ -46,8 +46,13 @@
   <div class="mb-3 rounded-3 p-2">
     <label class="form-label text-light" for="floatingInput">Salvar como:</label>
     <select class="form-select bg text-light border-secondary" name="publicado" required>
-      <option value="true">Publico</option>
+      {{#if post.dataValues.publicado}}
+      <option selected value="true">Publico</option>
       <option value="false">Rascunho</option>
+      {{else}}
+      <option selected value="false">Rascunho</option>
+      <option value="true">Publico</option>
+      {{/if}}
     </select>
   </div>
 

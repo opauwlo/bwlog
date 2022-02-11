@@ -62,21 +62,22 @@ module.exports = {
     },
     
     renderPost: async (req, res) => {
-      const { post, textlist, haveTextlist } = await Posts.fromPostPage(
-        req.params.slug
-      );
-
-      if (post.length == 0) {
-        return res.redirect("/404");
-      }
       try {
+        const { post, textlist, haveTextlist } = await Posts.fromPostPage(
+          req.params.slug
+        );
+        if (post.length == 0 ) {
+          return res.redirect("/404");
+        }
         res.render("pages/post/postShow", {
-          textlist,
+          textlist ,
           haveTextlist,
           post,
           user: post,
         });
-      } catch (e) {}
+      } catch (e) {
+        console.log
+      }
     },
     renderCreate: async (req, res) => {
       try {
@@ -115,7 +116,9 @@ module.exports = {
           textlistPost,
           haveTextlist,
         });
-      } catch (e) {}
+      } catch (e) {
+        console.log(e)
+      }
     },
     renderPreview: async (req, res) => {
       try {
@@ -126,14 +129,17 @@ module.exports = {
           post,
           user: post,
         });
-      } catch (e) {}
+      } catch (e) {
+        console.log(e)
+      }
     },
     createTextlist: async (req, res) => {
       try {
         const ownerId = req.id;
         const titulo = req.body.titulo;
+        const isPublic = req.body.publicado;
 
-        const created = await Textlists.createTextlist(titulo, ownerId);
+        const created = await Textlists.createTextlist(titulo, ownerId, isPublic);
         if (created) {
           req.flash("success_msg", `Textlist criada com sucesso`);
           res.redirect("/perfil");
@@ -141,7 +147,7 @@ module.exports = {
           req.flash("error_msg", `erro ao criar textlist tente novamente`);
           res.redirect("/novo/textlist");
         }
-      } catch (e) {}
+      } catch (e) { console.log(e)}
     },
     renderCreateTextlist: async (req, res) => {
       res.render("pages/textlist/textlistCreate", {});
@@ -153,9 +159,10 @@ module.exports = {
       });
     },
     updateTextlist: async (req, res) => {
-      let newTitle = req.body.textlist;
-      let id = req.params.id;
-      const updateTextlist = await Textlists.updateTextlist(id, newTitle);
+      const newTitle = req.body.textlist;
+      const isPublic = req.body.publicado;
+      const id = req.params.id;
+      const updateTextlist = await Textlists.updateTextlist(id, newTitle, isPublic);
 
       if (updateTextlist) {
         req.flash("success_msg", "Textlist atualizada com sucesso");

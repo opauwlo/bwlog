@@ -26,6 +26,9 @@
   <meta property="og:site_name" content="bwlog">
   <meta property="og:title" content="{{user.user_name}}">
   <meta property="og:description" content="{{user.user_name}} | {{user.descricao}}">
-
+  <link itemprop="thumbnailUrl" href="{{user.profile}}"> 
   <meta property="og:url" content="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}">
 </head>
+<span itemprop="image" itemscope itemtype="image/jpeg"> 
+  <link itemprop="url" href="{{user.profile}}"> 
+</span>

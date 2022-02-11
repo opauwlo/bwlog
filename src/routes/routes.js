@@ -40,7 +40,7 @@ router.post('/deletar/:id', checkAuthenticated, verifyJwt, postController.delete
 
 // textlists router
 router.post('/add/textlist', checkAuthenticated, verifyJwt, postController.createTextlist);
-router.post('/textlist/:id', postController.updateTextlist);
+router.post('/textlist/:id',checkAuthenticated, verifyJwt, postController.updateTextlist);
 router.post('/deletar/textlist/:id', checkAuthenticated, verifyJwt, postController.deleteTextlist);
 router.get('/novo/textlist', checkAuthenticated, verifyJwt, postController.renderCreateTextlist);
 router.get('/edit/textlist/:id', checkAuthenticated, verifyJwt, postController.renderEditTextlist);

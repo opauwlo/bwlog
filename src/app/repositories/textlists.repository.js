@@ -7,17 +7,18 @@ const { Op } = require('sequelize');
 
 module.exports = {
   Textlists: {
-    createTextlist: async (textlistName, ownerId) => {
+    createTextlist: async (textlistName, ownerId, isPublic) => {
       let success = null;
       await Textlist.create({
         titulo: textlistName,
         slug: slugify(textlistName, { lower: true }),
-        owner: ownerId
+        owner: ownerId,
+        public: isPublic
       }).then(() => {
         success = true;
       }).catch(() => {
         success = false;
-      });
+      })
       return success
     },
     getTextlist: async (ownerId) => {
@@ -38,13 +39,22 @@ module.exports = {
 
       } catch (e) { }
     },
+    getTextlistPublic: async (ownerId) => {
+
+      try {
+        const textlist = await Textlist.findAll({
+          order: [['createdAt', 'DESC']],
+          where: {
+            owner: ownerId,
+            public: true
+          }
+        });
+        return JSON.parse(JSON.stringify(textlist));
+
+      } catch (e) { }
+    },
+
     getOneTextlist: async (textlistId) => {
-
-      const cachedTextlist = await cache.get(`textlist_${textlistId}`);
-
-      if (cachedTextlist) {
-        return cachedTextlist;
-      }
 
       try {
         const textlist = await Textlist.findOne({
@@ -53,7 +63,6 @@ module.exports = {
           }
         });
 
-        await cache.set(`textlist_${textlistId}`, textlist, 25);
         return JSON.parse(JSON.stringify(textlist));
 
       } catch (e) {}
@@ -70,13 +79,13 @@ module.exports = {
         }
       });
       return JSON.parse(JSON.stringify(textlist));
-      return textlist;
     },
-    updateTextlist: async (textlistId, textlistName) => {
+    updateTextlist: async (textlistId, textlistName, isPublic) => {
       let success = null;
       await Textlist.update({
         titulo: textlistName,
-        slug: slugify(textlistName , { lower: true })
+        slug: slugify(textlistName , { lower: true }),
+        public: isPublic
       }, {
         where: {
           id: textlistId

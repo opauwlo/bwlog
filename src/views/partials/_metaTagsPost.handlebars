@@ -1,30 +1,35 @@
 <head>
-  <title>{{titulo}} | {{user.user_name}}</title>
-  <meta name="author" content="{{user.user_name}}">
-  <meta name="title" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
-  <meta name="description" content="{{titulo}} | {{descricao}}">
+  <title>{{post.titulo}} | {{post.user.user_name}}</title>
+  <meta name="author" content="{{post.user.user_name}}">
+  <meta name="title" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
+  <meta name="description" content="{{post.titulo}} | {{post.descricao}}">
   <!-- Open Graph / Facebook -->
+  <meta property="og:updated_time" content="1440432930" />
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.bwlog.dev/posts/{{slug}}">
-  <meta property="og:title" content="{{user.user_name}}">
-  <meta property="og:description" content="{{titulo}} | {{descricao}}">
+  <meta property="og:url" content="https://www.bwlog.dev/posts/{{post.slug}}">
+  <meta property="og:title" content="{{post.user.user_name}}">
+  <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
   <meta property="og:image:width" content="300">
   <meta property="og:image:height" content="300">
-  <meta property="og:image" content="{{user.banner}}">
+  <meta property="og:image:secure_url" content="{{post.user.banner}}">
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://www.bwlog.dev/posts/{{slug}}">
-  <meta property="twitter:title" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
-  <meta property="twitter:description" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
-  <meta property="twitter:image" content="{{user.banner}}">
+  <meta property="twitter:url" content="https://www.bwlog.dev/posts/{{post.slug}}">
+  <meta property="twitter:title" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
+  <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
+  <meta property="twitter:image" content="{{post.user.banner}}">
   <!-- MS, fb & Whatsapp -->
   <!-- MS Tile - for Microsoft apps-->
-  <meta name="msapplication-TileImage" content="{{user.banner}}">
+  <meta name="msapplication-TileImage" content="{{post.user.banner}}">
   <!-- fb & Whatsapp -->
   <!-- Site Name, Title, and Description to be displayed -->
-  <meta property="og:site_name" content="{{user.user_name}} | bwlog">
-  <meta property="og:title" content="{{titulo}}">
-  <meta property="og:description" content="{{titulo}} | {{descricao}}">
+  <meta property="og:site_name" content="{{post.user.user_name}} | bwlog">
+  <meta property="og:title" content="{{post.titulo}}">
+  <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
   <!-- Website to visit when clicked in fb or WhatsApp-->
-  <meta property="og:url" content="http://www.bwlog.dev/posts/{{slug}}">
+  <link itemprop="thumbnailUrl" href="{{post.user.banner}}"> 
+  <meta property="og:url" content="http://www.bwlog.dev/posts/{{post.slug}}">
 </head>
+<span itemprop="image" itemscope itemtype="image/jpeg"> 
+  <link itemprop="url" href="{{post.user.banner}}"> 
+</span>

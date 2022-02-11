@@ -5,6 +5,11 @@ class Textlist extends Model {
     super.init({
       titulo: DataTypes.STRING,
       slug: DataTypes.STRING,
+      public: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+      }
 
     }, {
       sequelize,

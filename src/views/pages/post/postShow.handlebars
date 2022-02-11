@@ -1,36 +1,35 @@
 <link rel="stylesheet" href="../../css/ckeditor.css" async defer>
-{{#each post}}
 {{> _metaTagsPost}}
 
 <div class="bg rounded-3 mt-1 mb-5 p-1 m-1">
   <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
     <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
       <div class="flex-shrink-0">
-        <img class="rounded-circle border border-secondary" src="{{user.profile}}" width="55" height="55"
+        <img class="rounded-circle border border-secondary" src="{{post.user.profile}}" width="55" height="55"
           style="object-fit: cover;" alt="profile picture">
       </div>
       <div class="flex-grow-0 float-start text-profile">
-        <a class="ml-4 text-white-50 fs-6" href="/autor/{{user.id}}/{{user.user_name}}">
-          {{user.user_name}}
+        <a class="ml-4 text-white-50 fs-6" href="/autor/{{post.user.id}}/{{post.user.user_name}}">
+          {{post.user.user_name}}
         </a>
       </div>
     </div>
   </section>
   <div class="card-body">
     <div class="text-white">
-      <h1 class="mb-3 fs-1" style="margin-top: 30px;">{{titulo}}</h1>
+      <h1 class="mb-3 fs-1" style="margin-top: 30px;">{{post.titulo}}</h1>
     </div>
     <hr class="text-white-50 shadow-lg mb-5">
     <section class="text-white-50 ck-content">
-      <article class="ck-content">
-        {{{conteudo}}}
+      <article class="ck-content fs-4">
+        {{{post.conteudo}}}
 
       </article>
     </section>
     <p class="text-secondary mt-2 fst-italic fs-6 text-end">
-      publicado em: {{#formatDate createdAt}}{{/formatDate}}
+      publicado em: {{#formatDate post.createdAt}}{{/formatDate}}
     </p>
-    {{#if editado}}
+    {{#if post.editado}}
     <p class="fw-light fst-normal text-blue text-end">
       post editado
     </p>
@@ -38,7 +37,7 @@
   </div>
   <section class="center bg mb-3">
     <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg"
-      data-a2a-url="https://www.bwlog.dev/posts/{{slug}}" data-a2a-title="{{titulo}}">
+      data-a2a-url="https://www.bwlog.dev/posts/{{post.slug}}" data-a2a-title="{{post.titulo}}">
       <a class="a2a_button_copy_link"></a>
       <a class="a2a_button_twitter"></a>
       <a class="a2a_button_facebook"></a>
@@ -48,7 +47,6 @@
     <script async src="https://static.addtoany.com/menu/page.js"></script>
   </section>
 </div>
-{{/each}}
 
 {{#if haveTextlist}}
 <div class="card bg text-light border-dark rounded-2 mb-4">
@@ -59,15 +57,14 @@
   </div>
 </div>
 {{/if}}
-{{#each post}}
+
 <div class="card bg text-light mb-4 border-dark rounded-2">
   <div class="card-body bg d-grid">
     <h5 class="card-title">Discuta sobre o texto no fórum</h5>
     <p class="card-text">Compartilhe o que pensou :)</p>
-    <a href="/forum/{{id}}/{{titulo}}" class="btn btn-dark">Participar</a>
+    <a href="/forum/{{post.id}}/{{post.titulo}}" class="btn btn-dark">Participar</a>
   </div>
 </div>
-{{/each}}
 
 <script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
 <script>

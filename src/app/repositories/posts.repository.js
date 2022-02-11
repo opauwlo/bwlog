@@ -125,21 +125,23 @@ module.exports = {
       });
       await cache.set(`posts_${offset}`, Posts, 15);
 
-      return {posts : JSON.parse(JSON.stringify(Posts))};
+      return {posts : JSON.parse(JSON.stringify(Posts)) , isCached: false};
     },
     fromPostPage: async (slug) => {
-
       const cachedPost = await cache.get(`post_${slug}`);
       const cachedHaveTextlist = await cache.get(`verifyTextlist_${slug}`);
       const cachedTextlist = await cache.get(`textlist_${slug}`);
-      if (cachedPost) {
+      if (cachedPost !== null) {
+        console.log('cachedPost');
+        console.log(cachedHaveTextlist);
+        console.log(cachedTextlist);
         return { post: cachedPost, textlist: cachedTextlist, haveTextlist: cachedHaveTextlist };
       }
 
       try {
         var haveTextlist = false;
 
-        const PostPage = await Post.findAll({
+        const PostPage = await Post.findOne({
           where: {
             slug: slug,
             publicado: true,
@@ -150,36 +152,29 @@ module.exports = {
           }],
         });
            
-        const verifyTextlist = PostPage[0].textlist_post_owner;
-
-        if (verifyTextlist != null) {  
-          var textlist = await Textlists.getOneTextlist(PostPage[0].textlist_post_owner);
-          haveTextlist = true
+        const verifyTextlist = PostPage.textlist_post_owner;
+        console.log(verifyTextlist);
+        if (verifyTextlist) {  
+          var textlist = await Textlists.getOneTextlist(PostPage.textlist_post_owner);
+          if (textlist.public == false) {
+            haveTextlist = false;
+          } else {
+            haveTextlist = true
+          }
         }
-        await cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
-        await cache.set(`textlist_${slug}`, textlist, 20);
-        await cache.set(`post_${slug}`, PostPage, 20);
-
+        cache.set(`verifyTextlist_${slug}`, haveTextlist, 20)
+        cache.set(`textlist_${slug}`, textlist, 20);
+        cache.set(`post_${slug}`, PostPage, 20);
+        console.log('not cachedPost');
         return { post: JSON.parse(JSON.stringify(PostPage)), textlist: JSON.parse(JSON.stringify(textlist)), haveTextlist: haveTextlist };
-      
-      } catch (e) {
-        console.log(e)
-      }
+      } catch (error) {}
     },
 
     fromPostPreview: async (slug) => {
-      const cachedPost = await cache.get(`post_preview_${slug}`);
-
-      const cachedHaveTextlist = await cache.get(`verifyTextlistPreview_${slug}`);
-      const cachedTextlist = await cache.get(`textlistPreview_${slug}`);
-      if (cachedPost) {
-        return { post: cachedPost, textlist: cachedTextlist, haveTextlist: cachedHaveTextlist };
-      }
-
       try {
         var haveTextlist = false;
 
-        const PostPreview = await Post.findAll({
+        const PostPreview = await Post.findOne({
           where: {
             slug: slug,
           },
@@ -189,17 +184,19 @@ module.exports = {
           }]
         });
 
-        const verifyTextlist = PostPage[0].textlist_post_owner;
+        const verifyTextlist = PostPreview.textlist_post_owner;
 
-        if (verifyTextlist != null) {  
-          var textlist = await Textlists.getOneTextlist(PostPage[0].textlist_post_owner);
-          haveTextlist = true
-        }
-        await cache.set(`verifyTextlistPreview_${slug}`, haveTextlist, 20)
-        await cache.set(`textlistPreview_${slug}`, textlist, 20);
+        if (verifyTextlist) {  
+          var textlist = await Textlists.getOneTextlist(PostPreview.textlist_post_owner);
 
-        await cache.set(`post_preview_${slug}`, PostPreview, 20);
-        return JSON.parse(JSON.stringify(PostPreview));
+          if (textlist.public == false) {
+            haveTextlist = false;
+          } else {
+            haveTextlist = true
+          }
+        } 
+
+        return { post: JSON.parse(JSON.stringify(PostPreview)), textlist: JSON.parse(JSON.stringify(textlist)), haveTextlist: haveTextlist };
       
       } catch (e){}
     },
@@ -220,11 +217,6 @@ module.exports = {
       return Posts;
     },
     fromTextlistPage: async (id) => {
-
-      const cachedPosts = await cache.get(`posts_textlist_${id}`);
-      if (cachedPosts) {
-        return cachedPosts;
-      }
       try {
         const Posts = await Post.findAll({
           order: [['id', 'DESC']],
@@ -234,7 +226,7 @@ module.exports = {
             as: 'user'
           }]
         });
-        await cache.set(`posts_textlist_${id}`, Posts, 25);
+        
         return JSON.parse(JSON.stringify(Posts));
 
       } catch (e) {}

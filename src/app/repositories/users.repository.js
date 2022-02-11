@@ -114,11 +114,6 @@ module.exports = {
       } catch (e) {}
     },
     getUserPosts: async (id, offset) => {
-      const cachedPosts = await cache.get(`getUserPosts${id}`);
-
-      if (cachedPosts) {
-        return cachedPosts;
-      }
       
       try {
         const Posts = await Post.findAll({
@@ -134,7 +129,6 @@ module.exports = {
           }],
           where: { user_id : id },
         });
-        await cache.set(`getUserPosts${id}`, Posts, 5);
         return JSON.parse(JSON.stringify(Posts)); 
 
       } catch (e) {}

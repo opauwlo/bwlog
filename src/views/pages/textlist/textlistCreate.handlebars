@@ -1,12 +1,22 @@
 <form action="/add/textlist" method="POST" class="p-3" id="form">
 
+  <hr class="bg">
 
   <div class="form mb-3 p-2 mx-auto">
     <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="30" autocomplete="off"
       placeholder=" " required>
     <label for="titulo" class="form__label rounded-3">Título</label>
   </div>
+  
+  <hr class="bg">
 
+  <div class="mb-3 p-2">
+    <label class="form-label text-white" for="publicado">Salvar como:</label>
+    <select class="form-select bg text-white border-secondary" id="publicado" name="publicado" required>
+      <option value="true">Publico</option>
+      <option value="false">Rascunho</option>
+    </select>
+  </div>
   <hr class="text-dark">
   <button type="submit" class="btn btn-light mx-2">Enviar</button>
 

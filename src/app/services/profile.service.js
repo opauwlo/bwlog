@@ -59,7 +59,7 @@ module.exports = {
         const id = req.params.id;
         const user = await Users.getUserProfile(id);
         const publicProfile = await Users.getPublicProfile(id);
-        const textlists = await Textlists.getTextlist(id);
+        const textlists = await Textlists.getTextlistPublic(id);
         res.render('pages/user/userPublicProfile', {
           posts: publicProfile,
           user: user,
