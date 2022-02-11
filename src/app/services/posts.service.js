@@ -119,10 +119,12 @@ module.exports = {
     },
     renderPreview: async (req, res) => {
       try {
-        const postPreview = await Posts.fromPostPreview(req.params.slug);
+        const { post, textlist, haveTextlist } = await Posts.fromPostPreview(req.params.slug);
         res.render("pages/post/postShow", {
-          posts: postPreview,
-          user: postPreview,
+          textlist,
+          haveTextlist,
+          post,
+          user: post,
         });
       } catch (e) {}
     },

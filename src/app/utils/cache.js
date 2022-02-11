@@ -3,11 +3,7 @@ require("dotenv").config();
 
 class cache {
   constructor() {
-    this.redis = new Redis(process.env.REDIS_URL, {
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
+    this.redis = new Redis(process.env.REDIS_URL);
   }
 
   async get(key) {

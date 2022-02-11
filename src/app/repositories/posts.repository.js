@@ -169,11 +169,16 @@ module.exports = {
 
     fromPostPreview: async (slug) => {
       const cachedPost = await cache.get(`post_preview_${slug}`);
+
+      const cachedHaveTextlist = await cache.get(`verifyTextlistPreview_${slug}`);
+      const cachedTextlist = await cache.get(`textlistPreview_${slug}`);
       if (cachedPost) {
-        return cachedPost;
+        return { post: cachedPost, textlist: cachedTextlist, haveTextlist: cachedHaveTextlist };
       }
 
       try {
+        var haveTextlist = false;
+
         const PostPreview = await Post.findAll({
           where: {
             slug: slug,
@@ -182,9 +187,19 @@ module.exports = {
             model: User,
             as: 'user',
           }]
-        }); 
-        await cache.set(`post_preview_${slug}`, PostPreview[0], 20);
-        return JSON.parse(JSON.stringify(PostPreview[0]));
+        });
+
+        const verifyTextlist = PostPage[0].textlist_post_owner;
+
+        if (verifyTextlist != null) {  
+          var textlist = await Textlists.getOneTextlist(PostPage[0].textlist_post_owner);
+          haveTextlist = true
+        }
+        await cache.set(`verifyTextlistPreview_${slug}`, haveTextlist, 20)
+        await cache.set(`textlistPreview_${slug}`, textlist, 20);
+
+        await cache.set(`post_preview_${slug}`, PostPreview, 20);
+        return JSON.parse(JSON.stringify(PostPreview));
       
       } catch (e){}
     },
