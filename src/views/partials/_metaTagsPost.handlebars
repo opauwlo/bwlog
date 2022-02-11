@@ -1,7 +1,7 @@
 <head>
   <title>{{titulo}} | {{user.user_name}}</title>
   <meta name="author" content="{{user.user_name}}">
-  <meta name="title" content="{{user.user_name}}">
+  <meta name="title" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
   <meta name="description" content="{{titulo}} | {{descricao}}">
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -10,16 +10,16 @@
   <meta property="og:description" content="{{titulo}} | {{descricao}}">
   <meta property="og:image:width" content="300">
   <meta property="og:image:height" content="300">
-  <meta property="og:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
+  <meta property="og:image" content="{{user.banner}}">
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.bwlog.dev/posts/{{slug}}">
-  <meta property="twitter:title" content="{{user.user_name}}">
-  <meta property="twitter:description" content="{{titulo}} | {{descricao}}">
-  <meta property="twitter:image" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
+  <meta property="twitter:title" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
+  <meta property="twitter:description" content="{{titulo}} | {{descricao}} | {{user.user_name}}">
+  <meta property="twitter:image" content="{{user.banner}}">
   <!-- MS, fb & Whatsapp -->
   <!-- MS Tile - for Microsoft apps-->
-  <meta name="msapplication-TileImage" content="https://i.ibb.co/sRhMZ61/Design-sem-nome-1.png">
+  <meta name="msapplication-TileImage" content="{{user.banner}}">
   <!-- fb & Whatsapp -->
   <!-- Site Name, Title, and Description to be displayed -->
   <meta property="og:site_name" content="{{user.user_name}} | bwlog">
