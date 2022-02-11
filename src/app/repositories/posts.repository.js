@@ -103,7 +103,7 @@ module.exports = {
       return await CountPosts;
     },
     fromHome: async (offset) => {
-      const cachedPosts = await cache.get(`posts`);
+      const cachedPosts = await cache.get(`posts_${offset}`);
 
       if (cachedPosts) {
         return {posts: cachedPosts, isCached: true};
@@ -123,7 +123,7 @@ module.exports = {
         },
         order: [['id', 'DESC']],
       });
-      await cache.set(`posts`, Posts, 15);
+      await cache.set(`posts_${offset}`, Posts, 15);
 
       return {posts : JSON.parse(JSON.stringify(Posts))};
     },
