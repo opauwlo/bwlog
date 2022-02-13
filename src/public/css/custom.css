@@ -22,7 +22,7 @@ background:#eae9ec
 }
 
 body,html {
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+font-family:"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 overflow-x:hidden
 }
 
@@ -114,7 +114,7 @@ color:#fff;
 outline:none;
 padding:1.25rem;
 background:none;
-font:inherit inherit
+font:inherit inherit;
 }
 
 .form__input:hover {
