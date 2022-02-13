@@ -61,7 +61,7 @@ module.exports = {
           attributes: ['id', 'user_name', 'profile', 'banner', 'profile_id', 'banner_id', 'descricao'],
           where: {id: id}
         });
-        await cache.set(`user_${id}`, UserProfile, 15);
+        await cache.set(`user_${id}`, UserProfile, 9);
 
         return JSON.parse(JSON.stringify(UserProfile));
 
@@ -91,7 +91,7 @@ module.exports = {
             publicado: true
           },
         });
-        await cache.set(`public_${id}`, PublicProfile, 10);
+        await cache.set(`public_${id}`, PublicProfile, 9);
         return JSON.parse(JSON.stringify(PublicProfile));
 
       } catch (e) {}
@@ -108,7 +108,7 @@ module.exports = {
             user_id: id
           },
         });
-        await cache.set(`cachedCountPosts${id}`, await CountPosts, 25);
+        await cache.set(`cachedCountPosts${id}`, await CountPosts, 15);
         return await CountPosts;
 
       } catch (e) {}

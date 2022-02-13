@@ -15,7 +15,7 @@
   integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 <link rel="stylesheet" href="../../css/custom.css" async defer>
 <link rel="stylesheet" href="../../css/build.css" async defer>
-<form action="/update" method="POST" enctype="multipart/form-data">
+<form action="/update" id="form" method="POST" enctype="multipart/form-data">
 
   <div class="row p-3 mt-3">
     <div class="mx-auto">
@@ -71,6 +71,7 @@
         <div class="d-grid gap-2">
           <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2" onclick="">Enviar</button>
         </div>
+        <div id="load"></div>
       </div>
     </div>
   </div>
