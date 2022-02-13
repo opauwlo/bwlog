@@ -26,9 +26,10 @@ app.use(
 //Session
 app.use(
   session({
+    name: 'session',
     secret: '88442211pV#',
-    resave: false,
     saveUninitialized: false,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
 );
 app.use(flash());
