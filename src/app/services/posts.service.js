@@ -84,7 +84,13 @@ module.exports = {
     delete: async (req, res) => {
       let id = req.params.id;
       try {
+
+        var data = await Posts.getBannerIdDelete(id);
+        if (data.banner_id) {
+          await cloudinary.uploader.destroy(data.banner_id)
+        }
         const success = await Posts.deletePost(id);
+
         if (success) {
           req.flash("success_msg", "Post deletado com sucesso");
           res.redirect("/perfil");

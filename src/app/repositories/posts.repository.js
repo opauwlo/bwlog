@@ -52,7 +52,15 @@ module.exports = {
       });
       return bannerId
     },
-
+    getBannerIdDelete: async (id) => {
+      const bannerId = await Post.findOne({
+        attributes: ['banner_id'],
+        where: {
+          id: id
+        }
+      });
+      return bannerId
+    },
     updatePost: async (titulo, banner_img, banner_id, descricao, conteudo, publicado, textlist, u_id) => {
       let success = null;
       if (textlist == "NULL") {
