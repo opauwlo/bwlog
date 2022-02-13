@@ -20,7 +20,7 @@ app.use(fileUpload({
 // urlencoded
 app.use(
   express.urlencoded({
-    extended: true,
+    extended: false,
   }),
 );
 //Session

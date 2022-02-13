@@ -1,8 +1,11 @@
-<link rel="stylesheet" href="../../css/ckeditor.css" async defer>
+<head>
+  <link rel="stylesheet" href="../../css/ckeditor.css" async defer>
+</head>
 {{> _metaTagsPost}}
 
 <div class="bg rounded-3 mt-1 mb-5 p-1 m-1">
-  <section class=" mx-2 mt-3 w-auto rounded-pill shadow">
+  <img class="post_cover_img" src="{{post.banner_img}}" alt="" width="1000" height="420">
+  <section class="mx-2 mt-3 w-auto">
     <div class="d-flex align-items-center my-2 text-light border border-dark rounded-pill">
       <div class="flex-shrink-0">
         <img class="rounded-circle border border-secondary" src="{{post.user.profile}}" width="55" height="55"
@@ -36,8 +39,8 @@
     {{/if}}
   </div>
   <section class="center bg mb-3">
-    <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg"
-      data-a2a-url="https://www.bwlog.dev/posts/{{post.slug}}" data-a2a-title="{{post.titulo}}">
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg" data-a2a-url="https://www.bwlog.dev/posts/{{post.slug}}"
+      data-a2a-title="{{post.titulo}}">
       <a class="a2a_button_copy_link"></a>
       <a class="a2a_button_twitter"></a>
       <a class="a2a_button_facebook"></a>

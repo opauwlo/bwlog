@@ -11,25 +11,44 @@
   <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
   <meta property="og:image:width" content="300">
   <meta property="og:image:height" content="300">
-  <meta property="og:image:secure_url" content="{{post.user.banner}}">
+  {{#if post.banner_img}}
+  <meta property="og:image:secure_url" content="{{post.banner_img}}">
+  {{else}}
+  <meta property="og:image:secure_url" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  {{/if}}
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.bwlog.dev/posts/{{post.slug}}">
   <meta property="twitter:title" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
   <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
-  <meta property="twitter:image" content="{{post.user.banner}}">
+  {{#if post.banner_img}}
+  <meta property="twitter:image" content="{{post.banner_img}}">
+  {{else}}
+  <meta property="twitter:image" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  {{/if}}
   <!-- MS, fb & Whatsapp -->
   <!-- MS Tile - for Microsoft apps-->
-  <meta name="msapplication-TileImage" content="{{post.user.banner}}">
+  {{#if post.banner_img}}
+  <meta name="msapplication-TileImage" content="{{post.banner_img}}">
+  {{else}}
+  <meta name="msapplication-TileImage" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  {{/if}}
   <!-- fb & Whatsapp -->
   <!-- Site Name, Title, and Description to be displayed -->
   <meta property="og:site_name" content="{{post.user.user_name}} | bwlog">
   <meta property="og:title" content="{{post.titulo}}">
   <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
   <!-- Website to visit when clicked in fb or WhatsApp-->
-  <link itemprop="thumbnailUrl" href="{{post.user.banner}}"> 
-  <meta property="og:url" content="http://www.bwlog.dev/posts/{{post.slug}}">
+  {{#if post.banner_img}}
+  <link itemprop="thumbnailUrl" href="{{post.banner_img}}">
+  {{else}}
+  <link itemprop="thumbnailUrl" href="https://www.bwlog.dev/img/bwlog_banner.png">
+  {{/if}}
 </head>
-<span itemprop="image" itemscope itemtype="image/jpeg"> 
-  <link itemprop="url" href="{{post.user.banner}}"> 
+<span itemprop="image" itemscope itemtype="image/jpeg">
+  {{#if post.banner_img}}
+  <link itemprop="url" href="{{post.banner_img}}">
+  {{else}}
+  <link itemprop="url" href="https://www.bwlog.dev/img/bwlog_banner.png">
+  {{/if}}
 </span>

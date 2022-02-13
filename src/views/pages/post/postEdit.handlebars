@@ -1,9 +1,14 @@
-<link rel="stylesheet" href="../../css/ckeditor.css">
-<script async-defer src="../../ckeditor/build/ckeditor.js"></script>
+<form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="form" enctype="multipart/form-data">
 
-<form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="formEdit">
-
-  <hr class="bg">
+  <label for="bannerInput" class="bg p-2 m-2 mb-3 text-white">Imagem de capa
+    <input name="bannerInput" id="bannerInput" type="file" value="" accept="image/*" />
+    <label class="text-white" for="bannerInput">
+      <i class="text-white-50 fs-6 bi bi-pencil-square "></i>
+    </label>
+    <label class="d-grid" for="bannerInput">
+      <img id="postBannerImg" class="img-fluid post_cover_img" src="{{post.dataValues.banner_img}}" alt="" width="1000" height="420">
+    </label>
+  </label>
 
   <div class="form mb-3 p-2 mx-auto rounded-3 bg">
     <input type="text" id="titulo" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="40"
@@ -11,7 +16,12 @@
     <label for="titulo" class="form__label rounded-3">Título</label>
   </div>
 
-  <hr class="bg">
+  <div class="mb-3 rounded-3 p-2">
+    <label class="form-label text-light">Conteudo do post</label>
+    <textarea name="conteudo" class="ck-content" id="validationTextarea">
+        {{{post.dataValues.conteudo}}}
+      </textarea>
+  </div>
 
   <div class="form-text mb-3 p-2 rounded-3 mx-auto bg">
     <textarea id="descricao" type="text" name="descricao" maxlength="46" class="form__input" autocomplete="on"
@@ -19,43 +29,34 @@
     <label for="descricao" class="form__label rounded-3">Descriçao</label>
   </div>
 
-
-  <div class="mb-3 rounded-3 p-2">
-    <label class="form-label text-light">Conteudo do post</label>
-    <textarea name="conteudo" class="ck-content" id="validationTextarea">
-        {{{post.dataValues.conteudo}}}
-      </textarea>
-  </div>
   <div class="mb-3 p-2">
     <label class="form-label text-white" for="floatingInput">Adcianar à textlist: <a class="ml-5 text-info float-end"
         href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma
         textlist</a> </label>
     <select class="form-select bg text-white border-secondary" name="textlist">
-      
+
       {{#if haveTextlist}}
       <option value="{{textlistPost.id}}">{{textlistPost.titulo}}</option>
       {{/if}}
       <option value="NULL"> Sem Textlist </option>
 
       {{#each textlist}}
-        <option value="{{id}}"> {{titulo}} </option>
+      <option value="{{id}}"> {{titulo}} </option>
       {{/each}}
 
     </select>
   </div>
-  <div class="mb-3 rounded-3 p-2">
-    <label class="form-label text-light" for="floatingInput">Salvar como:</label>
-    <select class="form-select bg text-light border-secondary" name="publicado" required>
-      {{#if post.dataValues.publicado}}
-      <option selected value="true">Publico</option>
-      <option value="false">Rascunho</option>
-      {{else}}
-      <option selected value="false">Rascunho</option>
-      <option value="true">Publico</option>
-      {{/if}}
-    </select>
-  </div>
 
-  <button type="submit" class="btn btn-light mx-2">Enviar</button>
+  <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
+  <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn-submit btn btn-light mx-2"
+    value="Enviar">
+  <input id="btn-rasc" type="submit" class="btn btn-dark mx-2" value="Rascunho">
+  <div id="load" class="bg-dark">
+
+  </div>
 </form>
+
+{{> _scriptRenderPreviewImgPost}}
+
+<script async-defer src="../../ckeditor/build/ckeditor.js"></script>
 {{> _ckeditorJs}}

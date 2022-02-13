@@ -2,22 +2,37 @@ const { Posts } = require('../repositories/posts.repository');
 
 const { Textlists } = require('../repositories/textlists.repository');
 
+const del = require('del');
+const cloudinary = require('../utils/cloudinary');
+
 const cache = require('../utils/cache');
 module.exports = {
   posts: {
     create: async (req, res) => {
+      const dir = 'tmp';
       const { titulo, descricao, conteudo, publicado, textlist } = req.body;
-      let user_id = req.id;
+      const user_id = req.id;
+
+      if (req.files && req.files.bannerInput != null) {
+        var banner_img = req.files.bannerInput;
+
+        var bannerResult = await cloudinary.uploader.upload(banner_img.tempFilePath);
+        banner_img = bannerResult.secure_url;
+        var banner_id = bannerResult.public_id;        
+      }
       try {
         const success = await Posts.createPost(
           titulo,
+          banner_img,
+          banner_id,
           descricao,
           conteudo,
           publicado,
           textlist,
           user_id
-        );
-
+          );
+          
+        await del(dir);
         if (success) {
           req.flash("success_msg", "Post criado com sucesso");
           res.redirect("/perfil");
@@ -30,15 +45,30 @@ module.exports = {
     update: async (req, res) => {
       const u_id = req.params.u_id;
       const { titulo, descricao, conteudo, publicado, textlist } = req.body;
+      const dir = 'tmp';
+
+
+      if (req.files != null && req.files.bannerInput != null) {
+        var banner_img = req.files.bannerInput;
+        var banner_id = await Posts.getBannerId(u_id);
+        if (banner_id != null) {  await cloudinary.uploader.destroy(banner_id); }
+       
+        var bannerResult = await cloudinary.uploader.upload(banner_img.tempFilePath);
+        banner_img = bannerResult.secure_url;
+        banner_id = bannerResult.public_id;        
+      }
       try {
         const success = await Posts.updatePost(
           titulo,
+          banner_img,
+          banner_id,
           descricao,
           conteudo,
           publicado,
           textlist,
           u_id
         );
+        await del(dir);
         if (success) {
           req.flash("success_msg", "Post atualizado com sucesso");
           res.redirect("/perfil");
@@ -147,7 +177,20 @@ module.exports = {
     },
     renderPreview: async (req, res) => {
       try {
-        const { post, textlist, haveTextlist } = await Posts.fromPostPreview(req.params.slug);
+        const post = await Posts.fromPostPreview(req.params.slug);
+        var haveTextlist = false;
+        const verifyTextlist = post.textlist_post_owner;
+
+        if (verifyTextlist) {  
+          var textlist = await Textlists.getOneTextlist(post.textlist_post_owner);
+
+          if (textlist.public == false) {
+            haveTextlist = false;
+          } else {
+            haveTextlist = true
+          }
+        } 
+
         res.render("pages/post/postShow", {
           textlist,
           haveTextlist,

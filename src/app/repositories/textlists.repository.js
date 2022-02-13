@@ -34,7 +34,7 @@ module.exports = {
             owner: ownerId
           }
         });
-        await cache.set(`textlistP_${ownerId}`, textlist, 5);
+        await cache.set(`textlistP_${ownerId}`, textlist, 2);
         return JSON.parse(JSON.stringify(textlist));
 
       } catch (e) { }

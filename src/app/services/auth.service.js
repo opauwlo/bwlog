@@ -82,13 +82,13 @@ module.exports = {
             expiresIn: 86400,
           },
         );
-        res.cookie('access_token', token, {
+        await res.cookie('access_token', token, {
           overwrite: true
         });
 
         if (create[0]) {
           req.flash("success_msg", "bem-vinda(o), agora você pode editar o seu perfil");
-          res.redirect("/perfil");
+          return res.redirect("/perfil");
           
         } else {
           

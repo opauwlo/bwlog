@@ -9,7 +9,7 @@ const cache = require('../utils/cache');
 module.exports = {
 
   Posts: {
-    createPost: async (titulo, descricao, conteudo, publicado, textlist, user_id) => {
+    createPost: async (titulo, banner_img, banner_id, descricao, conteudo, publicado, textlist, user_id) => {
 
       let success = null;
       
@@ -30,7 +30,9 @@ module.exports = {
         publicado: publicado,
         editado: false,
         textlist_post_owner: textlist,
-        user_id: user_id
+        user_id: user_id,
+        banner_img: banner_img,
+        banner_id: banner_id
       })
         .then(() => {
           success = true;
@@ -41,8 +43,17 @@ module.exports = {
       
       return success;
     },
+    getBannerId: async (u_id) => {
+      const bannerId = await Post.findOne({
+        attributes: ['banner_id'],
+        where: {
+          u_id: u_id
+        }
+      });
+      return bannerId
+    },
 
-    updatePost: async (titulo, descricao, conteudo, publicado, textlist, u_id) => {
+    updatePost: async (titulo, banner_img, banner_id, descricao, conteudo, publicado, textlist, u_id) => {
       let success = null;
       if (textlist == "NULL") {
         let textlist_null = null;
@@ -58,6 +69,8 @@ module.exports = {
         publicado: publicado,
         editado: true,
         textlist_post_owner: textlist,
+        banner_img: banner_img,
+        banner_id: banner_id
       }, {
         where: {
           u_id: u_id,
@@ -112,7 +125,7 @@ module.exports = {
         const Posts = await Post.findAll({
           limit: 50,
           offset: offset,
-          attributes: ['titulo', 'slug', 'descricao', 'publicado', 'createdAt'],
+          attributes: ['titulo', 'slug', 'descricao', 'publicado', 'createdAt', 'banner_img'],
           include: [{
             model: User,
             attributes: ['user_name'],
@@ -157,7 +170,6 @@ module.exports = {
 
     fromPostPreview: async (slug) => {
       try {
-        var haveTextlist = false;
 
         const PostPreview = await Post.findOne({
           where: {
@@ -169,19 +181,7 @@ module.exports = {
           }]
         });
 
-        const verifyTextlist = PostPreview.textlist_post_owner;
-
-        if (verifyTextlist) {  
-          var textlist = await Textlists.getOneTextlist(PostPreview.textlist_post_owner);
-
-          if (textlist.public == false) {
-            haveTextlist = false;
-          } else {
-            haveTextlist = true
-          }
-        } 
-
-        return { post: JSON.parse(JSON.stringify(PostPreview)), textlist: JSON.parse(JSON.stringify(textlist)), haveTextlist: haveTextlist };
+        return JSON.parse(JSON.stringify(PostPreview))
       
       } catch (e){}
     },
@@ -194,10 +194,6 @@ module.exports = {
           model: User,
           as: 'user'
         }]
-      }).then(post => {
-        return post;
-      }).catch(err => {
-        return null;
       });
       return Posts;
     },

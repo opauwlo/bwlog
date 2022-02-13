@@ -9,6 +9,8 @@ class Post extends Model {
       descricao: DataTypes.TEXT,
       conteudo: DataTypes.TEXT,
       publicado: DataTypes.BOOLEAN,
+      banner_img: DataTypes.STRING,
+      banner_id: DataTypes.STRING,
       editado: DataTypes.BOOLEAN,
     }, {
       sequelize,

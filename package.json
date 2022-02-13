@@ -11,6 +11,8 @@
   "dependencies": {
     "autocannon": "^7.6.0",
     "body-parser": "^1.19.0",
+    "canvas": "^2.9.0",
+    "canvas-constructor": "^5.0.2",
     "climem": "^1.0.3",
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
