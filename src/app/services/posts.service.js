@@ -50,12 +50,16 @@ module.exports = {
 
       if (req.files != null && req.files.bannerInput != null) {
         var banner_img = req.files.bannerInput;
-        var banner_id = await Posts.getBannerId(u_id);
-        if (banner_id != null) {  await cloudinary.uploader.destroy(banner_id); }
+        var data = await Posts.getBannerId(u_id);
+        console.log(data.banner_id != null);
+        if (data.banner_id) {
+          console.log('indo?')
+          await cloudinary.uploader.destroy(data.banner_id)
+        };
        
         var bannerResult = await cloudinary.uploader.upload(banner_img.tempFilePath);
         banner_img = bannerResult.secure_url;
-        banner_id = bannerResult.public_id;        
+        var banner_id = bannerResult.public_id;        
       }
       try {
         const success = await Posts.updatePost(
