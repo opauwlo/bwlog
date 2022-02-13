@@ -28,24 +28,22 @@
       </div>
 
       <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
-      <a href="/edit/{{user.id}}" class="mx-3 mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
+      <a href="/edit/{{user.id}}" class=" mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
         Perfil</a>
-      <a href="/logout" class="mt-5 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
+      <a href="/logout" class="mt-5 mx-2 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
         Sair
       </a>
-      <div class="">
+      <div class="mt-3">
         <h5 class="mb-1 mt-2 text-white">Sobre</h5>
         <div class="p-4 rounded shadow-sm bg">
-          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">
-            {{user.descricao}}
-          </p>
+          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.descricao}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<section class="end my-3">
+<section class="my-1 end mx-2">
   <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg-black"
     data-a2a-url="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}" data-a2a-title="{{user.user_name}}">
     <a class="a2a_button_copy_link"></a>

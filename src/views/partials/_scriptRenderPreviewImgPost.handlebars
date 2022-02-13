@@ -1,4 +1,4 @@
-<script>
+<script async>
 (() => {
 const modified_inputs = new Set;
 const defaultValue = "defaultValue";
@@ -63,8 +63,8 @@ function logSubmit() {
     <strong class="text-white">Enviando...</strong>
     <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
   </div>`;
-  var x = document.getElementById('btn-enviar').setAttribute("hidden", "true");
-  var y = document.getElementById('btn-rasc').setAttribute("hidden", "true");
+  document.getElementById('btn-enviar').setAttribute("hidden", "true");
+  document.getElementById('btn-rasc').setAttribute("hidden", "true");
 } 
 const form = document.getElementById('form');
 form.addEventListener('submit', logSubmit);

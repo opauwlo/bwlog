@@ -156,9 +156,7 @@ margin-right:40px
 }
 
 .text-format {
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis
+  overflow-wrap: break-word;
 }
 
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active {
@@ -329,4 +327,10 @@ img[src=""] {
 
 .m-5 {
   margin: 3rem !important;
+}
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.not-overflow-text {
+ overflow-wrap: break-word;
 }
