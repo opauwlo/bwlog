@@ -51,9 +51,7 @@ module.exports = {
       if (req.files != null && req.files.bannerInput != null) {
         var banner_img = req.files.bannerInput;
         var data = await Posts.getBannerId(u_id);
-        console.log(data.banner_id != null);
         if (data.banner_id) {
-          console.log('indo?')
           await cloudinary.uploader.destroy(data.banner_id)
         };
        
