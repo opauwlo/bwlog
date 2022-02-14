@@ -132,6 +132,22 @@ module.exports = {
         req.flash('error_msg', 'Você não tem permissão para acessar esta página');
         res.redirect('/perfil');
       }
-    }
+    },
+    dashboard: async (req, res) => {
+      const slug = req.params.slug
+      const id = req.id
+      const user = await Users.getUserProfile(id);
+      const data = await Users.verifyOwnerSlug(id, slug);
+      if (data.user_id != id) {
+        return res.redirect('/404');
+      }
+      try {
+        res.render('pages/user/dashboard', {
+          user: user,
+          slug: slug,
+          titulo: data.titulo,
+        })
+      } catch (e) {}
+    },
   }
 };

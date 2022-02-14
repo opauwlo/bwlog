@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="../../css/custom.css" async defer>
+<link rel="stylesheet" href="../../css/build.css" async defer>
+<div class="row p-2 ">
+  <div class=" mx-auto">
+    <!-- Profile widget -->
+    <div class="overflow-hidden">
+      <div class="px-3 pt-0 pb-4 rounded-3 mb-5"
+        style="background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
+        <div class="media align-items-end profile-head rounded-circle">
+          <div class="profile mr-3 rounded-circle"><img src="{{user.profile}}" alt="..." width="110"
+              style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
+          <div class="media-body mb-4 text-white">
+            <h4 class="mt-1 mb-1">{{user.user_name}}</h4>
+            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<h2 class="text-menu text-white fs-3 my-5"> Algumas Informções sobre seu post <strong class="text-info">{{titulo}}</strong></h2>
+
+<div class="text-white bg-light center p-1">
+  <script src="http://static.getclicky.com/101353581/js" type="text/javascript">
+    var clicky_custom = clicky_custom || {};
+    clicky_custom.href = `https://bwlog.dev/post/{{slug}}`;
+    console.log(clicky_custom.href);
+  </script>
+  <script
+    src="//widgets.clicky.com/flashy/?site_id=101353581&sitekey=9c34d0ba04e4207560c9c5ebfe7580eb&w=400&h=400&date=last-28-days&type=visitors&title=N%C2%BA%20Visitantes&hide_y=0&hide_title=0&hide_branding=1"
+    type="text/javascript"></script>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

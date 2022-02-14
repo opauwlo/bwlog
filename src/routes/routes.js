@@ -26,15 +26,16 @@ router.get('/perfil', checkAuthenticated, verifyJwt, profileController.privatePr
 router.get('/autor/:id/:name', profileController.publicProfile);
 router.get('/edit/:id', checkAuthenticated, verifyJwt, profileController.renderUpdateProfile);
 router.post('/update',  checkAuthenticated, verifyJwt, profileController.updateProfile);
+router.get('/status/post/:slug', checkAuthenticated, verifyJwt, profileController.renderDashboard);
 
 // posts router
 const { postController } = require('../app/controllers/post.controller');
 
 router.get('/novo/post', checkAuthenticated, verifyJwt, postController.renderCreatePost);
 router.post('/add', checkAuthenticated, verifyJwt, postController.create);
-router.get('/posts/:slug', postController.renderPost);
+router.get('/post/:slug', postController.renderPost);
 router.get('/edit/post/:id', checkAuthenticated, verifyJwt, postController.renderEditPost);
-router.get('/posts/preview/:slug', postController.renderPereviewPost);
+router.get('/post/preview/:slug', postController.renderPereviewPost);
 router.post('/update/:u_id', checkAuthenticated, verifyJwt, postController.update);
 router.post('/deletar/:id', checkAuthenticated, verifyJwt, postController.delete);
 

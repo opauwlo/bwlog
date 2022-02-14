@@ -14,7 +14,6 @@ filterInput.addEventListener("input", (e) => {
     for (let e = 0; e < o.length; e++) return o[e];
   }
   const n = document.querySelectorAll(".post");
-  document.querySelector(".noPost");
   n.forEach((e) => {
     const t = e
       .querySelector(".text-titulo")

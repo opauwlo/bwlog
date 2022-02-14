@@ -1,4 +1,4 @@
-<script async src="../../ckeditor/build/ckeditor.js"></script>
+<script src="../../ckeditor/build/ckeditor.js"></script>
 <script>
   ClassicEditor
 	.create( document.querySelector( '#validationTextarea' ), {
@@ -59,8 +59,8 @@
 	.catch( error => {
 	} );
 </script>
-<script async charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
-<script async>
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=bf291e547c66f038752f20"></script>
+<script>
     document.querySelectorAll( 'oembed[url]' ).forEach( element => {
         iframely.load( element, element.attributes.url.value );
     } );
