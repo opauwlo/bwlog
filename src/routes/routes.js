@@ -26,7 +26,6 @@ router.get('/perfil', checkAuthenticated, verifyJwt, profileController.privatePr
 router.get('/autor/:id/:name', profileController.publicProfile);
 router.get('/edit/:id', checkAuthenticated, verifyJwt, profileController.renderUpdateProfile);
 router.post('/update',  checkAuthenticated, verifyJwt, profileController.updateProfile);
-router.get('/status/post/:slug', checkAuthenticated, verifyJwt, profileController.renderDashboard);
 
 // posts router
 const { postController } = require('../app/controllers/post.controller');

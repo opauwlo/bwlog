@@ -133,18 +133,5 @@ module.exports = {
 
       } catch (e) {}
     },
-    verifyOwnerSlug: async (id, slug) => {
-      try {
-        const findPostBySlug = await Post.findOne({
-          attributes: ['titulo', 'user_id'],
-          where: {
-            user_id: id,
-            slug: slug,
-          },
-        });
-        return JSON.parse(JSON.stringify(findPostBySlug));
-      } catch (e) {}
-    }
-
   }
 };

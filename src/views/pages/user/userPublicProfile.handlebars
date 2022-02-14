@@ -61,22 +61,47 @@
 </div>
 <div class="tab-content " id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <section class="row row-cols-md-1">
+    <section class="row row-cols-md-1" data-masonry='{"percentPosition": true }'>
       {{#each posts}}
       {{#if publicado}}
-      <div class="col-lg-6 rounded-3 mb-3">
-        <div class="card m-2 shadow text-center">
-          <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-            <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
-            <small class="text-secondary mt-1">by: {{user.user_name}}</small>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/post/{{slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ler Mais</a>
+      {{#if @first}}
+        <a class="col-lg-6 rounded-3 mb-1" href="/post/{{slug}}">
+        <div class="post">
+          <div class="card m-2 text-center">
+            <img class="post_cover_img mb-1" src="{{banner_img}}" alt="" width="1000" height="420" style="padding: 0rem !important;">
+            <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+              <h1 class="card-title text-titulo text-light fs-3 mb-1">
+                {{titulo}}
+              </h1>
+              <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                {{descricao}}
+              </p>
+              <small class="card-text text-info my-1 text-autor">
+                by: {{user.user_name}}
+              </small>        
             </div>
           </div>
         </div>
+        </a>
+      {{else}}
+      <a class="col-lg-6 rounded-3 mb-1" href="/post/{{slug}}">
+      <div class="post">
+        <div class="card m-2 text-center">
+          <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+            <h1 class="card-title text-titulo text-light fs-3 mb-1">
+              {{titulo}}
+            </h1>
+            <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+              {{descricao}}
+            </p>
+            <small class="card-text text-info my-1 text-autor">
+              by: {{user.user_name}}
+            </small>        
+          </div>
+        </div>
       </div>
+      </a>  
+      {{/if}}
       {{/if}}
       {{/each}}
     </section>
@@ -100,10 +125,12 @@
     </section>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-    crossorigin="anonymous"></script>
+<script async src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+  crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
   {{> _newPost}}

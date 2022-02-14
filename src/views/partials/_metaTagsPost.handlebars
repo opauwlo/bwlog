@@ -1,7 +1,7 @@
 <head>
   <title>{{post.titulo}} | {{post.user.user_name}}</title>
   <meta name="author" content="{{post.user.user_name}}">
-  <meta name="title" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
+  <meta name="title" content="{{post.titulo}} by: {{post.user.user_name}}">
   <meta name="description" content="{{post.titulo}} | {{post.descricao}}">
   <!-- Open Graph / Facebook -->
   <meta property="og:updated_time" content="1440432930" />
@@ -9,8 +9,8 @@
   <meta property="og:url" content="https://www.bwlog.dev/post/{{post.slug}}">
   <meta property="og:title" content="{{post.user.user_name}}">
   <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
-  <meta property="og:image:width" content="300">
-  <meta property="og:image:height" content="300">
+  <meta property="og:image:width" content="250">
+  <meta property="og:image:height" content="250">
   {{#if post.banner_img}}
   <meta property="og:image:secure_url" content="{{post.banner_img}}">
   {{else}}
@@ -19,8 +19,8 @@
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.bwlog.dev/post/{{post.slug}}">
-  <meta property="twitter:title" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
-  <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}} | {{post.user.user_name}}">
+  <meta property="twitter:title" content="{{post.titulo}} by: {{post.user.user_name}}">
+  <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}}">
   {{#if post.banner_img}}
   <meta property="twitter:image" content="{{post.banner_img}}">
   {{else}}

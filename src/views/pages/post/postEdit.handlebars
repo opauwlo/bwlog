@@ -1,12 +1,12 @@
 <form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="form" enctype="multipart/form-data">
 
-  <label for="bannerInput" class="bg p-2 m-2 mb-3 text-white">Imagem de capa
+  <label for="bannerInput" class="bg m-2 mb-3 text-white">Imagem de capa
     <input name="bannerInput" id="bannerInput" type="file" value="" accept="image/*" />
     <label class="text-white" for="bannerInput">
       <i class="text-white-50 fs-6 bi bi-pencil-square "></i>
     </label>
     <label class="d-grid" for="bannerInput">
-      <img id="postBannerImg" class="img-fluid post_cover_img" src="{{post.dataValues.banner_img}}" alt="" width="1000" height="420">
+      <img id="postBannerImg" class="border border-secondary img-fluid post_cover_img" src="{{post.dataValues.banner_img}}" alt="" width="1000" height="420">
     </label>
   </label>
 
@@ -16,20 +16,19 @@
     <label for="titulo" class="form__label rounded-3">Título</label>
   </div>
 
-  <div class="mb-3 rounded-3 p-2">
+  <div class="mb-4" style="padding: 0.2rem !important;">
     <label class="form-label text-light">Conteudo do post</label>
     <textarea name="conteudo" class="ck-content" id="validationTextarea">
         {{{post.dataValues.conteudo}}}
       </textarea>
   </div>
 
-  <div class="form-text mb-3 p-2 rounded-3 mx-auto bg">
-    <textarea id="descricao" type="text" name="descricao" maxlength="46" class="form__input" autocomplete="on"
-      placeholder=" " required>{{post.dataValues.descricao}}</textarea>
+  <div class="form mb-3 p-2 mx-auto">
+    <input type="text" id="descricao" name="descricao" class="form__input bg rounded-3" maxlength="60" autocomplete="off" placeholder=" " value="{{post.dataValues.descricao}}" required>
     <label for="descricao" class="form__label rounded-3">Descriçao</label>
   </div>
 
-  <div class="mb-3 p-2">
+  <div class="mb-3 mt-3" style="padding: 0.2rem !important;">
     <label class="form-label text-white" for="floatingInput">Adcianar à textlist: <a class="ml-5 text-info float-end"
         href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">Crie uma
         textlist</a> </label>
@@ -48,9 +47,9 @@
   </div>
 
   <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
-  <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn-submit btn btn-light mx-2"
+  <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn-submit btn btn-light mx-1"
     value="Enviar">
-  <input id="btn-rasc" type="submit" class="btn btn-dark mx-2" value="Rascunho">
+  <input id="btn-rasc" type="submit" class="btn btn-dark mx-1" value="Rascunho">
   <div id="load" class="bg-dark">
 
   </div>

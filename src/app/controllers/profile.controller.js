@@ -6,6 +6,5 @@ module.exports = {
     publicProfile: profile.public, // public profile
     updateProfile: profile.updated, // update profile
     renderUpdateProfile: profile.renderUpdate, // render update profile
-    renderDashboard: profile.dashboard, // render dashboard
   },
 };
