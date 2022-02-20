@@ -9,8 +9,8 @@
   <meta property="og:url" content="https://www.bwlog.dev/post/{{post.slug}}">
   <meta property="og:title" content="{{post.user.user_name}}">
   <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
-  <meta property="og:image:width" content="250">
-  <meta property="og:image:height" content="250">
+  <meta property="og:image:width" content="300">
+  <meta property="og:image:height" content="300">
   {{#if post.banner_img}}
   <meta property="og:image:secure_url" content="{{resetImg post.banner_img}}">
   {{else}}
@@ -22,16 +22,16 @@
   <meta property="twitter:title" content="{{post.titulo}} by: {{post.user.user_name}}">
   <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}}">
   {{#if post.banner_img}}
-  <meta property="twitter:image" content="{{resetImg post.banner_img}}">
+  <meta property="twitter:image" content="{{{resetImg post.banner_img}}}">
   {{else}}
-  <meta property="twitter:image" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  <meta property="twitter:image" content="{{post.shared_img}}">
   {{/if}}
   <!-- MS, fb & Whatsapp -->
   <!-- MS Tile - for Microsoft apps-->
   {{#if post.banner_img}}
   <meta name="msapplication-TileImage" content="{{post.banner_img}}">
   {{else}}
-  <meta name="msapplication-TileImage" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  <meta name="msapplication-TileImage" content="{{post.shared_img}}">
   {{/if}}
   <!-- fb & Whatsapp -->
   <!-- Site Name, Title, and Description to be displayed -->
@@ -40,15 +40,15 @@
   <meta property="og:description" content="{{post.titulo}} | {{post.descricao}}">
   <!-- Website to visit when clicked in fb or WhatsApp-->
   {{#if post.banner_img}}
-  <link itemprop="thumbnailUrl" href="{{post.banner_img}}">
+  <link itemprop="thumbnailUrl" href="{{{resetImg post.banner_img}}}">
   {{else}}
-  <link itemprop="thumbnailUrl" href="https://www.bwlog.dev/img/bwlog_banner.png">
+  <link itemprop="thumbnailUrl" href="{{post.shared_img}}">
   {{/if}}
 </head>
 <span itemprop="image" itemscope itemtype="image/jpeg">
   {{#if post.banner_img}}
-  <link itemprop="url" href="{{resetImg post.banner_img}}">
+  <link itemprop="url" href="{{{resetImg post.banner_img}}}">
   {{else}}
-  <link itemprop="url" href="https://www.bwlog.dev/img/bwlog_banner.png">
+  <link itemprop="url" href="{{post.shared_img}}">
   {{/if}}
 </span>
