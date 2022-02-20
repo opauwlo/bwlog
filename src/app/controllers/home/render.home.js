@@ -1,10 +1,10 @@
-const { Posts } = require("../repositories/posts.repository");
+const { Posts } = require("../../repositories/posts.repository");
 const localStorage = require('localStorage');
 
 module.exports = {
-  home: {
+  homeController: {
     // render home page
-    index: async (req, res) => {
+    renderHome: async (req, res) => {
       try {
         let currentPage = req.query.page || 1;
         let postsPerPage = 50;
@@ -25,14 +25,17 @@ module.exports = {
 
         let offset = currentPage * postsPerPage - postsPerPage;
 
-        var { posts } = await Posts.fromHome(offset);
-
+        var { posts } = await Posts.getPostsFromHome(offset);
         return res.render("pages/home/", {
           pagination: {
             page: currentPage,
             limit: PageLimit,
             totalRows: PageLimit,
           },
+          imgProfile: req.profile,
+          userName: req.user_name,
+          userId: req.id,
+          isLoggedIn: req.isLoggedIn,
           posts: posts,
           user: posts,
         });

@@ -5,6 +5,7 @@ function SignIn(n) {
     t.setRequestHeader("Content-Type", "application/json"),
     (t.onload = function () {
         "success" == t.responseText && location.assign("/auth/create");
+        
     }),
     t.send(JSON.stringify({ token: e }));
 }

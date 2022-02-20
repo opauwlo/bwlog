@@ -1,56 +1,59 @@
 const express = require('express');
-
 const router = express.Router();
 
 const checkAuthenticated = require('../app/middlewares/checkAuthenticated');
 const verifyJwt = require('../app/middlewares/verifyJwt');
+const getUserImg = require("../app/middlewares/getPofileImg");
 // Routes
 
 // home router
-const { homeController } = require('../app/controllers/home.controller');
-router.get('/', homeController.get);
-
+router.all('*', getUserImg);
+const { homeController } = require("../app/controllers/home/render.home");
+router.get("/", homeController.renderHome);
 
 //login router
-const { authController } = require('../app/controllers/auth.controller');
+const { authController } = require("../app/controllers/auth/_index");
 
-router.get('/login', authController.login);
-router.post ('/login', authController.loginPost);
-router.get('/auth/create', checkAuthenticated, authController.findOrCreate);
-router.get('/logout',checkAuthenticated, authController.logout);
+router.get("/login", authController.renderLogin);
+router.get("/logout", authController.logout);
+router.post("/login", authController.login);
 
 // profile router
-const { profileController } = require('../app/controllers/profile.controller');
+const { userController } = require('../app/controllers/user/_index');
 
-router.get('/perfil', checkAuthenticated, verifyJwt, profileController.privateProfile);
-router.get('/autor/:id/:name', profileController.publicProfile);
-router.get('/edit/:id', checkAuthenticated, verifyJwt, profileController.renderUpdateProfile);
-router.post('/update',  checkAuthenticated, verifyJwt, profileController.updateProfile);
+router.get('/perfil', checkAuthenticated, verifyJwt, userController.renderPrivateProfile);
+router.get('/autor/:id/:name', userController.renderPublicProfile);
+router.get('/edit/:id', checkAuthenticated, verifyJwt, userController.renderUpdate);
+router.get("/auth/create", checkAuthenticated, userController.create);
+router.post('/update',  checkAuthenticated, verifyJwt, userController.userValidator, userController.update);
 
 // posts router
-const { postController } = require('../app/controllers/post.controller');
+const { postController } = require("../app/controllers/post/_index");
 
-router.get('/novo/post', checkAuthenticated, verifyJwt, postController.renderCreatePost);
-router.post('/add', checkAuthenticated, verifyJwt, postController.create);
-router.get('/post/:slug', postController.renderPost);
-router.get('/edit/post/:id', checkAuthenticated, verifyJwt, postController.renderEditPost);
-router.get('/post/preview/:slug', postController.renderPereviewPost);
-router.post('/update/:u_id', checkAuthenticated, verifyJwt, postController.update);
-router.post('/deletar/:id', checkAuthenticated, verifyJwt, postController.delete);
+router.get("/novo/post", checkAuthenticated, verifyJwt, postController.postValidator, postController.renderCreate);
+router.post("/add", checkAuthenticated, verifyJwt, postController.postValidator, postController.create);
+router.get("/post/:slug", postController.renderRead);
+router.get("/textlist/:id/:slug", postController.renderFromTextlist);
+router.get("/edit/post/:u_id", checkAuthenticated, verifyJwt, postController.renderUpdate);
+router.get("/post/preview/:slug", postController.renderPrivateRead);
+router.post("/update/:u_id", checkAuthenticated, verifyJwt, postController.postValidator, postController.update);
+router.post("/deletar/:u_id", checkAuthenticated, verifyJwt, postController.delete);
 
 // textlists router
-router.post('/add/textlist', checkAuthenticated, verifyJwt, postController.createTextlist);
-router.post('/textlist/:id',checkAuthenticated, verifyJwt, postController.updateTextlist);
-router.post('/deletar/textlist/:id', checkAuthenticated, verifyJwt, postController.deleteTextlist);
-router.get('/novo/textlist', checkAuthenticated, verifyJwt, postController.renderCreateTextlist);
-router.get('/edit/textlist/:id', checkAuthenticated, verifyJwt, postController.renderEditTextlist);
-router.get('/textlist/:id/:slug', postController.renderPostsFromTextlist);
+const { textlistController } = require('../app/controllers/textlist/_index');
+
+router.post('/add/textlist', checkAuthenticated, verifyJwt, textlistController.textlistValidator, textlistController.create);
+router.post('/textlist/:id',checkAuthenticated, verifyJwt, textlistController.textlistValidator,textlistController.update);
+router.post('/deletar/textlist/:id', checkAuthenticated, verifyJwt, textlistController.delete);
+router.get('/novo/textlist', checkAuthenticated, verifyJwt, textlistController.renderCreate);
+router.get('/edit/textlist/:id', checkAuthenticated, verifyJwt, textlistController.renderUpdate);
+
 // forum router
-const { forumControler } = require('../app/controllers/forum.controller');
-router.get('/forum/:id/:slug', forumControler.forum);
+const { forumController } = require('../app/controllers/forum/render.forum');
+router.get('/forum/:id/:slug', forumController.renderForum);
 
 // 404 router
-const { errorController } = require('../app/controllers/error.controller')
-router.get('*', errorController.erro404);
+const { errorController } = require("../app/controllers/error/render.error");
+router.get("*", errorController.renderError);
 
 module.exports = router;

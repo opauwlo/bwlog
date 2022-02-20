@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400;600&display=swap');
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css";
 
 /* CSSTidy 1.5.2: Mon, 07 Feb 2022 23:41:08 +0000 */
@@ -6,7 +7,8 @@ background:#16161a!important
 }
 
 * {
-scroll-behavior:smooth
+scroll-behavior:smooth;
+font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 body::-webkit-scrollbar {
@@ -45,7 +47,8 @@ margin-left:-30px!important
 }
 
 .text-profile a {
-margin-left:10px
+margin-left:10px;
+font-weight: 700;
 }
 
 .text-profile-forum {
@@ -73,7 +76,8 @@ visibility:hidden
 }
 
 .perfil a {
-text-decoration:none
+text-decoration:none;
+font-weight: 700;
 }
 
 *,::before,::after {
@@ -316,6 +320,7 @@ justify-content:center!important
   width: 100%;
   height: 100%;
   aspect-ratio: 1000/420;
+  margin-bottom: -4px;
 }
 img[src=""] {
   display: none;
@@ -335,14 +340,99 @@ img[src=""] {
  overflow-wrap: break-word;
 }
 a {
-  text-decoration: none !important;; 
+  text-decoration: none !important; 
 }
 a .text_dec {
-  text-decoration: underline #ffffff !important;
+  text-decoration: underline whitesmoke 0.1px !important;
 }
 iframe > h3 {
   font-size: 1.5rem!important;
   font-weight: 700!important;
   color: #fff!important;
   margin-bottom: 1rem!important;
+}
+.fade-in {
+	opacity: 0;
+	animation-name: fadeInOpacity;
+	animation-timing-function: ease-in;
+	animation-duration: 3s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+  50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.fade-out {
+	opacity: 0;
+	animation-name: fadeOutOpacity;
+	animation-timing-function: ease-out;
+	animation-duration: 2s;
+}
+
+@keyframes fadeOutOpacity {
+	0% {
+		opacity: 1;
+	}
+  50% {
+    opacity: 1;
+  }
+	100% {
+		opacity: 0;
+
+	}
+}
+.text-titulo {
+  font-size: 1.35rem !important;
+  font-weight: 500;
+}
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.alert-dismissible {
+  padding-right: 3rem;
+}
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.25rem 1rem;
+}
+
+.mr-3 {
+  margin-right: 20px;
+}
+.mt-35 {
+  margin-top: 20px;
+}
+.border-1 {
+  border-width: 1px !important;
+}
+
+.border-2 {
+  border-width: 2px !important;
+}
+
+.border-3 {
+  border-width: 3px !important;
+}
+
+.border-4 {
+  border-width: 4px !important;
+}
+
+.border-5 {
+  border-width: 5px !important;
+}
+.bg-text {
+  text-shadow: rgb(0, 0, 0) 2px 0 11px;
 }

@@ -1,3 +1,4 @@
+{{>_msgAlert}}
 <head>
   <title>bwlog | {{user.user_name}}</title>
   <meta name="author" content="{{user.user_name}}">
@@ -5,13 +6,7 @@
   <meta name="description" content="{{user.user_name}} | {{user.descricao}}">
 
 </head>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-<link rel="stylesheet" href="../../css/custom.css" async defer>
-<link rel="stylesheet" href="../../css/build.css" async defer>
-
-<div class="row p-2 ">
+<div class=" p-2 ">
   <div class=" mx-auto">
     <!-- Profile widget -->
     <div class="overflow-hidden">
@@ -21,15 +16,15 @@
           <div class="profile mr-3 rounded-circle"><img src="{{user.profile}}" alt="..." width="110"
               style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
           <div class="media-body mb-4 text-white">
-            <h4 class="mt-1 mb-1">{{user.user_name}}</h4>
-            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
+            <h5 class="bg-text mb-1">{{user.user_name}}</h5>
+            <p class="small mb-4 w-auto bg-text"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
           </div>
         </div>
       </div>
 
       <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
       <a href="/edit/{{user.id}}" class=" mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
-        Perfil</a>     
+        Perfil</a>
       <a href="/logout" class="mt-5 mx-2 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
         Sair
       </a>
@@ -81,30 +76,36 @@
 </div>
 <div class="tab-content " id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <section class="row row-cols-md-1">
+    <section class="row row-cols-md-1" >
       {{#each posts}}
       {{#if publicado}}
-      <a href="/post/{{slug}}">
-        <div class="col-lg-6 mb-3">
-          <div class="card m-2 shadow text-center">
-            <div class="card-body rounded-3 px-3 bg">
-              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-              <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
-              <small class="text-secondary mt-1">by: {{user.user_name}}</small>
-              <center><a href="https://livetrafficfeed.com/hit-counter" data-root="1" data-unique="1" data-style="11" data-min="9" data-start="1" id="LTF_hitcounter">Visitors Hit Counter</a><script type="text/javascript" src="//cdn.livetrafficfeed.com/static/hitcounterjs/live.js"></script></center><noscript><a href="https://livetrafficfeed.com/hit-counter">Visitors Hit Counter</a></noscript>   
-              <div class="d-grid gap-2 p-3" role="group">
-                <a href="/edit/post/{{id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+      <div class="col-lg-6 post mb-2" >
+        <div class="card m-1 text-center">
+          <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+            <a href="/post/{{slug}}">
+              <h1 class="card-title text-titulo text-light mb-1">
+                {{titulo}}
+              </h1>
+              <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                {{descricao}}
+              </p>
+              <small class="card-text text-info my-1 text-autor">
+                by: {{user.user_name}}
+              </small>
+              <div class="d-grid gap-2 p-1">
+                <a href="/edit/post/{{u_id}}"
+                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
                 <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{{id}}}">
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{u_id}}">
                   Deletar
                 </button>
               </div>
-            </div>
+            </a>
           </div>
         </div>
-      </a>
+      </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop{{{id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+      <div class="modal fade" id="staticBackdrop{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog text-secondary">
           <div class="modal-content bg text-secondary">
@@ -118,7 +119,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{id}}" method="POST">
+              <form action="/deletar/{{u_id}}" method="POST">
                 <button type="submit" class="btn btn-danger mx-1">Deletar</button>
               </form>
             </div>
@@ -130,29 +131,38 @@
     </section>
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <section class="row row-cols-md-1" >
+    <section class="row row-cols-md-1">
       {{#each posts}}
       {{#unless publicado}}
-      <a href="/post/preview/{{slug}}">
-        <div class="col-lg-6 rounded-3 mb-3">
-          <div class="card m-2 shadow text-center ">
-            <div class="card-body px-3 bg">
-              <h2 class="text_dec card-title text-titulo text-light mb-2">{{titulo}}</h2>
-              <p class="card-text text-info text-format" style="margin-bottom: 0;">{{descricao}}</p>
-              <small class="text-secondary mt-1">by: {{user.user_name}}</small>
-              <div class="d-grid gap-2 p-3" role="group">
-                <a href="/edit/post/{{id}}" class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{{id}}}">
-                  Deletar
-                </button>
-              </div>
+      <div class="col-lg-6 rounded-3 mb-2" href="/post/{{slug}}">
+        <div class="post">
+          <div class="card m-2 text-center">
+            <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+              <a href="/post/preview/{{slug}}">
+                <h1 class="card-title text-titulo text-light mb-1">
+                  {{titulo}}
+                </h1>
+                <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                  {{descricao}}
+                </p>
+                <small class="card-text text-info my-1 text-autor">
+                  by: {{user.user_name}}
+                </small>
+                <div class="d-grid gap-2 p-3" role="group">
+                  <a href="/edit/post/{{u_id}}"
+                    class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{{u_id}}}">
+                    Deletar
+                  </button>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-      </a>
+      </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdropRasc{{id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+      <div class="modal fade" id="staticBackdropRasc{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog text-secondary">
           <div class="modal-content bg text-secondary">
@@ -166,7 +176,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{id}}" method="POST">
+              <form action="/deletar/{{{u_id}}}" method="POST">
                 <button type="submit" class="btn btn-danger mx-1">Deletar</button>
               </form>
             </div>
@@ -184,17 +194,17 @@
       <div class="col-lg-6 rounded-3 mb-3">
         <div class="card m-2 shadow text-center ">
           <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/textlist/{{id}}/{{slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Posts</a>
-              <a href="/edit/textlist/{{id}}"
-                class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-              <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
-                Deletar
-              </button>
-            </div>
+            <a href="/textlist/{{id}}/{{slug}}">
+              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+              <div class="d-grid gap-2 p-1">
+                <a href="/edit/textlist/{{id}}"
+                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
+                  Deletar
+                </button>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -202,18 +212,18 @@
       <div class="col-lg-6 rounded-3 mb-3">
         <div class="card m-2 shadow text-center ">
           <div class="card-body px-3 bg">
-            <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-            <span class="text-secondary"> textlist salva como rascunho </span>
-            <div class="d-grid gap-2 p-3" role="group">
-              <a href="/textlist/{{id}}/{{slug}}"
-                class="text-white btn shadow btn-outline-dark fw-bold border-secondary">Ver Posts</a>
-              <a href="/edit/textlist/{{id}}"
-                class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-              <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
-                Deletar
-              </button>
-            </div>
+            <a href="/textlist/{{id}}/{{slug}}">
+              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+              <span class="text-secondary"> textlist salva como rascunho </span>
+              <div class="d-grid gap-2 p-3" role="group">
+                <a href="/edit/textlist/{{id}}"
+                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
+                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
+                  Deletar
+                </button>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -251,8 +261,7 @@
 
 <script async src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script async src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
 <script>
   function signOut() {
 
@@ -260,5 +269,4 @@
     auth2.signOut().then(function () {
     });
   }
-
 </script>

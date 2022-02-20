@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
 
-function checkAuthenticated(req, res, next) {
+async function checkAuthenticated(req, res, next) {
     let token = req.cookies['session-token'];
   
     let user = {};
@@ -27,7 +27,10 @@ function checkAuthenticated(req, res, next) {
         next();
       })
       .catch((err) => {
-        res.redirect(`/login`)
+        res.cookie("lastPage", req.url, {
+          overwrite: true,
+        });
+        return res.redirect(`/login`)
       });
   }
 module.exports = checkAuthenticated;

@@ -11,6 +11,8 @@ class Post extends Model {
       publicado: DataTypes.BOOLEAN,
       banner_img: DataTypes.STRING,
       banner_id: DataTypes.STRING,
+      shared_img: DataTypes.STRING,
+      shared_id: DataTypes.STRING,
       editado: DataTypes.BOOLEAN,
     }, {
       sequelize,

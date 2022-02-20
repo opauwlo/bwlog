@@ -1,16 +1,14 @@
-<form action="/add" method="POST" class="p-3" id="form" enctype="multipart/form-data">
-
-  <label for="bannerInput" class="bg m-2 mb-3 text-white">Imagem de capa
-    <label class="text-white" for="bannerInput">
-      <i class="text-white-50 fs-6 bi bi-pencil-square "></i>
-    </label>
-    <label class="d-grid" for="bannerInput">
-      <img id="postBannerImg" class="img-fluid post_cover_img border border-secondary" src="" alt="" width="1000" height="420">
-    </label>
+  {{>_msgAlert}}
+<form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data">
+  <label for="bannerInput" class="center bg mx-2 text-white">Imagem de capa
+    <i class="m-1 p-2 bi bi-image"></i>
+  </label>
+  <label for="bannerInput" class="m-2 center">
+    <img id="postBannerImg" class="post_cover_img border border-secondary" src="" ="removeBtn()">
   </label>
   <input name="bannerInput" id="bannerInput" type="file" accept="image/*" />
-
-  <div class="form mb-3 p-2 mx-auto rounded-3 bg">
+  <button hidden id="remove" onclick="resetInput()" type="button" class="end btn center m-2 bg text-danger">Remover Imagem</button>
+  <div class="form mb-3 p-2 mx-auto rounded-3 bg mt-1">
     <input type="text" name="titulo" id="titulo" class="form__input rounded-3" maxlength="40" autocomplete="off"
       placeholder=" " required>
     <label for="titulo" class="form__label rounded-3">Título</label>
@@ -49,5 +47,6 @@
   </div>
 </form>
 
-{{> _scriptRenderPreviewImgPost}}
+
+<script src="../../js/getBannerPost.js"></script>
 {{> _ckeditorJs}}

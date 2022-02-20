@@ -12,9 +12,9 @@
   <meta property="og:image:width" content="250">
   <meta property="og:image:height" content="250">
   {{#if post.banner_img}}
-  <meta property="og:image:secure_url" content="{{post.banner_img}}">
+  <meta property="og:image:secure_url" content="{{resetImg post.banner_img}}">
   {{else}}
-  <meta property="og:image:secure_url" content="https://www.bwlog.dev/img/bwlog_banner.png">
+  <meta property="og:image:secure_url" content="{{post.shared_img}}">
   {{/if}}
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
   <meta property="twitter:title" content="{{post.titulo}} by: {{post.user.user_name}}">
   <meta property="twitter:description" content="{{post.titulo}} | {{post.descricao}}">
   {{#if post.banner_img}}
-  <meta property="twitter:image" content="{{post.banner_img}}">
+  <meta property="twitter:image" content="{{resetImg post.banner_img}}">
   {{else}}
   <meta property="twitter:image" content="https://www.bwlog.dev/img/bwlog_banner.png">
   {{/if}}
@@ -47,7 +47,7 @@
 </head>
 <span itemprop="image" itemscope itemtype="image/jpeg">
   {{#if post.banner_img}}
-  <link itemprop="url" href="{{post.banner_img}}">
+  <link itemprop="url" href="{{resetImg post.banner_img}}">
   {{else}}
   <link itemprop="url" href="https://www.bwlog.dev/img/bwlog_banner.png">
   {{/if}}
