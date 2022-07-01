@@ -2,7 +2,7 @@
   "name": "bwlog",
   "description": "A simple bwlog for writing",
   "private": false,
-  "engines": {
+    "engines": {
     "node": "17.4.0"
   },
   "scripts": {
@@ -31,7 +31,7 @@
     "ioredis": "^4.28.5",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "mysql2": "^2.2.5",
     "seedrandom": "^3.0.5",
     "sequelize": "^6.15.1",
