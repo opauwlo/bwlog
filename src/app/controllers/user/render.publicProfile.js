@@ -1,25 +1,29 @@
-const { Users } = require('../../repositories/users.repository');
-const { Textlists } = require('../../repositories/textlists.repository');
+const profile = require('../../services/user/profile');
 
 module.exports = {
   renderPublicProfile: {
     index: async (req, res) => {
       const id = req.params.id;
-      const user = await Users.getUserProfile(id);
+      let page = req.query.page || 1;
+      const [user, posts, textlists, PageLimit, currentPage] = await profile.public(id, page);
       if (!user) {
         res.redirect('/404');
       }
       try {
-        const publicProfile = await Users.getPublicProfile(id);
-        const textlists = await Textlists.getTextlistPublic(id);
+
         res.render("pages/user/userPublicProfile", {
-          posts: publicProfile,
+          posts: posts,
           user: user,
           textlists,
           imgProfile: req.profile,
           userName: req.user_name,
           userId: req.id,
-          isLoggedIn: req.isLoggedIn
+          isLoggedIn: req.isLoggedIn,
+          pagination: {
+            page: currentPage,
+            limit: PageLimit,
+            totalRows: PageLimit,
+          },
         });
       } catch (e) {
         console.log(e);

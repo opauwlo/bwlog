@@ -12,6 +12,7 @@ module.exports = {
   postController: {
     postValidator: validators.postValidator,
     create: create.index,
+    uploadImg: create.uploadImg,
     update: update.index,
     delete: deletePost.index,
     //render

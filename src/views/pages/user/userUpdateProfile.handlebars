@@ -3,7 +3,7 @@
   <meta name="title" content="{{user.user_name}}">
   <meta name="author" content="{{user.user_name}}">
   <meta name="description" content="bwlog | escreva e compartilhe histórias">
-    <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.bwlog.dev/">
   <meta property="og:title" content="{{user.user_name}}">
@@ -11,68 +11,58 @@
   <meta property="og:image" content="https://www.bwlog.dev/img/bwlog_banner.png">
 </head>
 
-<form action="/update" id="form" method="POST" enctype="multipart/form-data">
-  {{>_msgAlert}}
-  <div class="row p-4 mt-3">
-    <div class="mx-auto">
-      <!-- Profile widget -->
-      <div class="overflow-hidden">
-        <label class="position-absolute top-100 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
-          for="banner_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
-        <input name="banner_img" id="banner_img" type="file" accept="image/*" />
-        <div id="bannerImg" class="px-3 pt-0 pb-4 rounded-3 mb-2 border border-dark"
-          style="background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
-          <div class="media align-items-end profile-head rounded-circle">
-            <div class="profile mr-3 position-relative">
+<div class="row center">
+  <section class="col-12 col-lg-9">
+    <form action="/update" id="form" method="POST" enctype="multipart/form-data">
 
-              <label class="position-absolute top-0 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
-                for="profile_img"> <i class="fs-6 bi bi-pencil-square"> </i></label>
+      <div class="p-2">
+        <div class="mx-auto bg rounded-3">
+          <!-- Profile widget -->
+          <label class="position-absolute top-100 start-0 mx-auto card pointer badge rounded-1 bg-dark border-2 border-secondary"
+            for="banner_img">
+            <i class="bi fs-6 bi-pencil-square text-center translate-middle"></i>
+          </label>
+          <input name="banner_img" id="banner_img" type="file" accept="image/*" />
+          <img id="bannerImg" src="{{user.banner}}" class="pointer profile_cover_img card-img-top rounded-3" alt="..."
+            height="210px" style="object-fit: cover;">
+          <div class="card bg rounded-3">
+            <section>
+              <label class="position-absolute ml-2 mt-3 pointer translate-top card  badge rounded-1 bg-dark border-2 border-secondary"
+                style="z-index: 1 ;" for="profile_img">
+                <i class="fs-6 bi bi-pencil-square text-center translate-middle"></i>
+              </label>
               <input name="profile_img" value="{{user.profile}}" id="profile_img" type="file" accept="image/*" />
-
               <label for="profile_img">
-                <img id="imgProfile" src="{{user.profile}}" alt="..." width="110"
-                  class="rounded-3 border-3 border-dark shadow-lg" style="object-fit: cover;" />
+                <img id="imgProfile" src="{{user.profile}}" class="pointer rounded-3 mx-2"
+                  style="object-fit: cover; transform: translateY(-50%);" width="110" height="110">
               </label>
-            </div>
-            <div class="media-body mb-4 text-white position-relative">
-              <label for="user_name"
-                class="position-absolute top-0 start-12 translate-middle badge p-2 bg-secondary rounded-circle"
-                for="profile">
-                <i class="fs-6 bi bi-pencil-square"> </i>
-              </label>
-              <input id="user_name" minlength="3" required maxlength="10"
-                class="overflow-hidden bg-text center text-white mt-1 mb-1 input-name" type="text" name="user_name" autocomplete="off"
-                value="{{user.user_name}}" onchange="activateButton()" />
-              <p class="small bg-text mb-4">
-                <i class="fas fa-map-marker-alt mr-2"></i>#
-                {{user.id}}
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div class="mt-5">
-          <h5 class="mb-1 mt-2 text-white">Sobre</h5>
-          <div class="p-4 mt-4 rounded shadow-sm bg position-relative">
-            <label for="descricao"
-              class="position-absolute top-0 start-0 translate-middle badge p-2 bg-secondary rounded-circle"
-              for="profile">
-              <i class="fs-6 bi bi-pencil-square"> </i>
-            </label>
-            <textarea placeholder=" " maxlength="200" name="descricao" id="descricao" type="text"
-              class="form-text mb-3 p-2 rounded-3 mx-auto bg" required onchange="activateButton()"
-              rows="3">{{user.descricao}}</textarea>
+            </section>
+          </div>
+          <div class="media-body ml-3 px-2 bg text-white rounded-3 " style="transform: translateY(-2rem);"> 
+            <div class="form mb-3 rounded-3 bg ">
+              <input type="text" name="user_name" id="user_name" minlength="3" required maxlength="10"
+                class="form__input rounded-3" autocomplete="off" placeholder=" " value="{{user.user_name}}"
+                onchange="activateButton()">
+              <label for="user_name" class="form__label rounded-3">{{__ "updateUser.username"}}</label>
+            </div>
+            <div class="form mb-3" style="height: 100px;">
+              <textarea type="text" maxlength="155" minlength="10" name="descricao" id="descricao"
+                class="overflow-hidden form__input bg rounded-3" autocomplete="off" placeholder=" " required
+                onchange="activateButton()">{{user.descricao}}</textarea>
+              <label for="descricao" class="form__label rounded-3">{{__ "updateUser.description"}}</label>
+            </div>
           </div>
         </div>
         <div class="d-grid gap-2">
-          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2" onclick="">Enviar</button>
+          <button id="submit" type="submit" class="mt-5 disabled submit btn btn-dark p-2" onclick="">{{__ "new_history.send"}}</button>
         </div>
         <div id="load"></div>
       </div>
-    </div>
-  </div>
-</form>
+    </form>
 
+  </section>
+</div>
 <script src="../../js/userProfileImg.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

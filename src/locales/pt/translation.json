@@ -1,0 +1,109 @@
+{
+  "menu": {
+    "home": "Home",
+    "profile": "Perfil",
+    "new_history": "Nova História",
+    "new_textlist": "Nova Textlist",
+    "sponser": "Apoie o bwlog",
+    "faq": "FAQ",
+    "language": "🌐 Idioma",
+    "language_en": "🇬🇧",
+    "language_pt": "🇧🇷",
+    "pix_text": "Chave pix copiada, considere apoiar!",
+    "paypal_text": "ou doe pelo paypal!",
+    "ok_text": "Blz"
+  },
+  "profile_menu": {
+    "do_login": "Faça login",
+    "edit_profile": "Editar Perfil",
+    "logout": "Sair"
+  },
+  "home": {
+    "search_placeholder": "Pesquise :)",
+    "new_history": "História",
+    "new_textlist": "Textlist",
+    "by_user": "por"
+  },
+  "post_show": {
+    "see_profile": "Ver Perfil",
+    "may_be_interested": "Pode interessar",
+    "is_textlist": "Esta história está na textlist",
+    "read_more": "Ler mais",
+    "published_in": "publicado em",
+    "post_edited": "esta história foi editada"
+  },
+  "forum": {
+    "forum": "Fórum",
+    "talk_about": "Discuta sobre o texto no fórum",
+    "shared_with_world": "Compartilhado com o mundo :)",
+    "participate": "Participe",
+    "forum_title": "Fórum do texto"
+  },
+  "new_history": {
+    "create_history": "Crie uma nova história:",
+    "edit_history": "Edite sua história:",
+    "start_writing": "Comece a escrever!",
+    "banner_img": "Imagem de capa",
+    "remove_banner": "Remover imagem",
+    "title": "Título",
+    "mini_resume": "Mini-resumo",
+    "add_textlist": "Adicionar à textlist",
+    "create_textlist": "Crie uma textlist",
+    "without_textlist": "Sem textlist",
+    "how_add_img": "Como adicionar imagens?",
+    "answer_how_add_img": "Para adicionar uma imagem, clique no botão 'Adicionar Imagem' e cole o link da imagem, ou selecione a imagem do seu computador.",
+    "how_embed": "Como inserir mídias?",
+    "answer_how_embed": "Para inserir uma mídia, clique no botão 'Adicionar Mídia' e cole o link da mídia.",
+    "answer_how_embed_ps": "quando um embed é adicionado, a pagina pode rapidamente recarregar o que é normal",
+    "see_example": "Veja o exemplo",
+    "send": "Enviar",
+    "sketch": "Esboço"
+  },
+  "new_textlist" : {
+    "create_textlist": "Crie uma nova textlist:",
+    "edit_textlist": "Edite sua textlist:",
+    "textlist_msg_posts": "Aqui está todos os textos referentes a textlist"
+  },
+  "profile": {
+    "edit_profile": "Editar Perfil",
+    "logout": "Sair",
+    "sketchs": "Esboços",
+    "publications": "Publicações",
+    "textlists": "Textlists",
+    "by_user": "por",
+    "edit_button": "Editar",
+    "delete_button": "Deletar",
+    "out_button": "Cancelar",
+    "delete_msg": "Você quer deletar?",
+    "delete_msg_text": "ATENÇÃO, ao clicar em excluir o conteúdo será excluído permanentemente de sua conta.",
+    "sketch_msg": "Esboço"
+  },
+  "data": {
+    "since": "desde",
+    "of": "de"
+  },
+  "updateUser": {
+    "username": "Nome de usuário",
+    "description": "Descrição"
+  },
+  "succses_msg": {
+    "post_created": "História criada com sucesso!",
+    "post_edited": "História editada com sucesso!",
+    "post_deleted": "História deletada com sucesso!",
+    "textlist_created": "Textlist criada com sucesso!",
+    "textlist_edited": "Textlist editada com sucesso!",
+    "textlist_deleted": "Textlist deletada com sucesso!",
+    "profile_edited": "Perfil editado com sucesso!",
+    "welcome": "Bem-vinda(o) ao bwlog!",
+    "hello_again": "Olá de novo!"
+  },
+  "error_msg": {
+    "post_not_created": "Houve um erro, história não criada!",
+    "post_not_edited": "House um erro, história não editada!",
+    "post_not_deleted": "Houve um erro, história não deletada!",
+    "textlist_not_created": "Houve um erro, textlist não criada!",
+    "textlist_not_edited": "Houve um erro, textlist não editada!",
+    "textlist_not_deleted": "Houve um erro, textlist não deletada!",
+    "profile_not_edited": "Houve um erro, perfil não editado!"
+  }
+}

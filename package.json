@@ -1,19 +1,18 @@
 {
-  "name": "the-bwlog",
+  "name": "bwlog",
+  "description": "A simple bwlog for writing",
   "private": false,
+  "engines": {
+    "node": "17.4.0"
+  },
   "scripts": {
     "start": "node src/server.js",
-    "start:dev": "nodemon src/server.js",
-    "start:performance": "CLIMEM=8999 node -r climem src/server.js",
-    "climem:terminal": "npx climem 8999",
-    "test:charge": "npx autocannon -c 500 -d 30 http://localhost:8000 "
+    "start:dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "autocannon": "^7.6.0",
     "body-parser": "^1.19.0",
     "canvas": "^2.9.0",
     "canvas-constructor": "^5.0.2",
-    "climem": "^1.0.3",
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
@@ -25,14 +24,18 @@
     "express-handlebars": "^6.0.2",
     "express-validator": "^6.14.0",
     "google-auth-library": "^7.11.0",
+    "handlebars-i18n": "^1.4.1",
+    "i18next": "^21.8.0",
+    "i18next-fs-backend": "^1.1.4",
+    "i18next-http-middleware": "^3.2.0",
     "ioredis": "^4.28.5",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
-    "require-dir": "^1.2.0",
     "seedrandom": "^3.0.5",
     "sequelize": "^6.15.1",
+    "skia-canvas": "^0.9.29",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
@@ -40,17 +43,16 @@
     "purgecss": "^4.0.3",
     "sequelize-cli": "^6.4.1"
   },
-  "main": "src/main.js",
+  "main": "src/server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opauwlo/blog-simples.git"
+    "url": "git+https://github.com/opauwlo/bwlog.git"
   },
   "keywords": [],
   "author": "opauwlo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/opauwlo/blog-simples/issues"
+    "url": "https://github.com/opauwlo/bwlog/issues"
   },
-  "homepage": "https://github.com/opauwlo/blog-simples#readme",
-  "description": ""
+  "homepage": "https://github.com/opauwlo/bwlog#readme"
 }

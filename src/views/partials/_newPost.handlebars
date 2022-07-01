@@ -1,6 +1,25 @@
-<a style="z-index: 1200;" href="/novo/post" type="button" class="btn btn-dark shadow-lg btn-lg position-fixed end-0 bottom-0 mb-3 margin-r">
-    <i class="bi text-white bi-plus-circle"></i>
-  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill border-orange text-light">
-    Post
-  </span>
-</a>
+<div id="text2" class="fab-container  ">
+  <div id="plus-btn" class="button iconbutton ">
+    <i class="bi bi-plus-lg"></i>
+  </div>
+  <ul id="options" class="options">
+    <li >
+      <a id="newTextlis" class="d-flex" href="/novo/textlist">
+      <span class="btn-label">{{__ "home.new_textlist"}}</span>
+        <div class="iconbutton">
+          <i class="bi bi-list fs-2"></i>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a id="newPost" class="d-flex" href="/novo/post">
+      <span class="btn-label d-flex">{{__ "home.new_history"}}</span>
+        <div class="iconbutton">
+          <i class="bi bi-blockquote-left fs-2"></i>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<script src="../../js/addNewButton.js"></script>

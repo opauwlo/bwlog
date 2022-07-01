@@ -8,7 +8,7 @@ module.exports = {
         .exists()
         .isLength({ min: 1 }) // min 8 chars
         .withMessage("O título deve ter no mínimo 8 caracteres")
-        .isLength({ max: 40 }) // max 40 chars
+        .isLength({ max: 80 }) // max 40 chars
         .withMessage("O título deve ter no máximo 40 caracteres"),
       check("descricao", "Por favor, insira uma descrição para o seu post")
         .exists()
@@ -35,18 +35,18 @@ module.exports = {
     ],
     userValidator: [
       // validate user filds
-      check("user_name", "Por favor, insira um título para o seu post")
+      check("user_name", "Por favor, insira um nome para o seu usaurio")
         .exists()
-        .isLength({ min: 3 }) // min 8 chars
-        .withMessage("O título deve ter no mínimo 8 caracteres")
-        .isLength({ max: 10 }) // max 40 chars
+        .isLength({ min: 3 }) 
+        .withMessage("O seu nome deve ter no mínimo 3 caracteres")
+        .isLength({ max: 10 }) 
         .withMessage("O título deve ter no máximo 40 caracteres"),
       check("descricao", "Por favor, insira uma descrição para o seu post")
         .exists()
-        .isLength({ min: 1 }) // min 10 chars
+        .isLength({ min: 10 })
         .withMessage("A descrição deve ter no mínimo 10 caracteres")
-        .isLength({ max: 200 }) // max 60 chars
-        .withMessage("A descrição deve ter no máximo 60 caracteres"),
+        .isLength({ max: 155 }) //
+        .withMessage("A descrição deve ter no máximo 155 caracteres"),
       ],
   },
 };

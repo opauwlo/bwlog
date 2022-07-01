@@ -1,5 +1,10 @@
-{{> _metaTagsHome}}
-{{> _search}}
-{{> _newPost}}
-{{> _renderAllPosts}}
-{{{paginateHelper pagination}}}
+  <div class="row center">
+    <section class="col-12 col-lg-9">
+        {{> _metaTagsHome}}
+        {{> _newPost}}
+        {{> _search}}
+        {{> _pinnedBanner}}
+        {{> _renderAllPosts}}
+        {{{paginateHelper pagination}}}
+    </section>
+  </div>

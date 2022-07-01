@@ -1,0 +1,110 @@
+{
+  "menu": {
+    "home": "Home",
+    "profile": "Profile",
+    "new_history": "New History",
+    "new_textlist": "New Textlist",
+    "sponser": "Sponser the bwlog",
+    "faq": "FAQ",
+    "language": "🌐 Idioma",
+    "language_en": "🇬🇧",
+    "language_pt": "🇧🇷",
+    "pix_text": "Copied pix key, consider supporting!",
+    "paypal_text": "or donate through paypal!",
+    "ok_text": "Ok"
+  },
+  "profile_menu": {
+    "do_login": "Login now",
+    "edit_profile": "Edit Profile",
+    "logout": "Logout"
+  },
+  "home": {
+    "search_placeholder": "Search :)",
+    "new_history": "History",
+    "new_textlist": "Textlist",
+    "by_user": "by"
+  },
+  "post_show": {
+    "see_profile": "See Profile",
+    "may_be_interested": "May be you like",
+    "is_textlist": "This story is in the textlist",
+    "read_more": "Read more",
+    "published_in": "published in",
+    "post_edited": "this history was edited"
+  },
+  "forum": {
+    "forum": "Forum",
+    "talk_about": "Discuss about the text in the forum",
+    "shared_with_world": "Shared with the world :)",
+    "participate": "Participate",
+    "forum_title": "Text forum"
+  },
+  "new_history": {
+    "create_history": "Create a new story:",
+    "edit_history": "Edit your story:",
+    "start_writing": "Start writing!",
+    "banner_img": "Cover image",
+    "remove_banner": "Remove image",
+    "title": "Title",
+    "mini_resume": "Mini summary",
+    "add_textlist": "Add textlist",
+    "create_textlist": "Create a textlist",
+    "without_textlist": "No textlist",
+    "how_add_img": "How to add images?",
+    "answer_how_add_img": "To add an image, click the 'Add Image' button and paste the image link, or select the image from your device.",
+    "how_embed": "How to insert media?",
+    "answer_how_embed": "To insert a media, click the 'Add Media' button and paste the media link.",
+    "answer_how_embed_ps":"when an embed is added, the page can quickly reload which is normal",
+    "see_example": "See the example",
+    "send": "Send",
+    "sketch": "Sketch"
+  },
+  "new_textlist" : {
+    "create_textlist": "Create a new textlist:",
+    "edit_textlist": "Edit your textlist:",
+    "textlist_msg_posts": "Here is all texts referring to text list"
+  },
+  "profile": {
+    "edit_profile": "Edit Profile",
+    "logout": "Logout",
+    "sketchs": "Sketchs",
+    "publications": "Publications",
+    "textlists": "Textlists",
+    "by_user": "by",
+    "edit_button": "Edit",
+    "delete_button": "Delete",
+    "out_button": "Cancel",
+    "delete_msg": "Do you want to delete?",
+    "delete_msg_text": "ATTENTION, by clicking on delete the content will be permanently deleted from your account.",
+    "sketch_msg": "Sketch"
+
+  },
+  "data": {
+    "since": "since",
+    "of": "of"
+  },
+  "updateUser": {
+    "username": "User name",
+    "description": "Description"
+  },
+  "succses_msg": {
+    "post_created": "Post Successfully Created",
+    "post_edited": "Post Successfully Edited",
+    "post_deleted": "Post Successfully Deleted",
+    "textlist_created": "Textlist Successfully Created",
+    "textlist_edited": "Textlist Successfully Edited",
+    "textlist_deleted": "Textlist Successfully Deleted",
+    "profile_edited": "Profile Successfully Edited",
+    "welcome": "Welcome to the bwlog",
+    "hello_again": "Hello again"
+  },
+  "error_msg": {
+    "post_not_created": "Error creating post",
+    "post_not_edited": "Error editing post",
+    "post_not_deleted": "Error deleting post",
+    "textlist_not_created": "Error creating textlist",
+    "textlist_not_edited": "Error editing textlist",
+    "textlist_not_deleted": "Error deleting textlist",
+    "profile_not_edited": "Error editing profile"
+  }
+}

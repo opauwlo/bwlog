@@ -1,10 +1,10 @@
-const { Textlists } = require("../../repositories/textlists.repository");
+const ShowTextlistsService  = require("../../services/textlist/show");
 
 module.exports = {
   renderCreate: {
     index: async (req, res) => {
       try {
-        const textlist = await Textlists.getTextlist(req.id);
+        const textlist = await ShowTextlistsService.fromOwner(req.id);
         res.render("pages/post/postCreate", {
           textlist,
           imgProfile: req.profile,

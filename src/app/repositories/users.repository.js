@@ -8,24 +8,32 @@ require("../middlewares/checkAuthenticated");
 
 module.exports = {
   Users: {
-    findOrCreateUser: async (info, profile, profile_id, banner, banner_id) => {
-      const [user, created] = await User.findOrCreate({
-        where: {
-          id_user: info.sub,
-        },
-        defaults: {
-          name: info.name,
-          user_name: slugify(info.name, { lower: true }),
-          email: info.email,
-          profile: profile,
-          profile_id: profile_id,
-          banner: banner,
-          banner_id: banner_id,
-          descricao: `Olá, me chame de ${info.name}`,
-        },
-      });
-      return [created, user];
+    findOrCreateUser: async (userInfo, profile, profile_id, banner, banner_id, verify_user) => {
+      try {
+        const [user, created] = await User.findOrCreate({
+          where: {
+            id_user: userInfo.sub,
+          },
+          defaults: {
+            name: userInfo.name,
+            user_name: slugify(userInfo.name, { lower: true }),
+            email: userInfo.email,
+            profile: profile,
+            profile_id: profile_id,
+            banner: banner,
+            banner_id: banner_id,
+            descricao: userInfo.name,
+            verify_user: verify_user,
+            is_admin: false,
+          },
+        });
+        return [created, user];
+
+      } catch (e) {
+        console.log(e);
+      }
     },
+    
     updateUserProfile: async (
       user_name,
       descricao,
@@ -71,6 +79,8 @@ module.exports = {
             "profile_id",
             "banner_id",
             "descricao",
+            "created_at",
+            "verify_user",
           ],
           where: { id: id },
         });
@@ -94,7 +104,7 @@ module.exports = {
       }
     },
     
-    getPublicProfile: async (id) => {
+    getPublicProfile: async (id, offset) => {
       const PublicProfileCached = await cache.get(`public_${id}`);
 
       if (PublicProfileCached) {
@@ -104,6 +114,8 @@ module.exports = {
         const PublicProfile = await Post.findAll({
           order: [["id", "DESC"]],
           attributes: ["titulo", "descricao", "slug", "user_id", "publicado", "banner_img"],
+          limit: 50,
+          offset: offset,
           include: [
             {
               model: User,

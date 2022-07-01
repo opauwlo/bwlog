@@ -1,37 +1,25 @@
-const filterInput = document.querySelector("#filter");
-
-function test(e) {
-  let t = e.length;
-  for (let e = 0; e <= t; e++) return [e];
-}
-filterInput.addEventListener("input", (e) => {
-  let t = e.target.value.toLowerCase();
-  const o = (t = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "")).split(
-    /[.\s]+/
-  );
-
-  function r() {
-    for (let e = 0; e < o.length; e++) return o[e];
+var qsRegex;
+var $grid = $('.dady-of').isotope({
+  filter: function() {
+    return qsRegex ? $(this).text().match( qsRegex ) : true;
   }
-  const n = document.querySelectorAll(".post");
-  n.forEach((e) => {
-    const t = e
-      .querySelector(".text-titulo")
-      .textContent.toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, ""),
-      o = e
-      .querySelector(".text-descricao")
-      .textContent.toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, ""),
-      n = e
-      .querySelector(".text-autor")
-      .textContent.toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-    t.includes(r()) || o.includes(r()) || n.includes(r()) ?
-      (e.style.display = "initial") :
-      (e.style.display = "none");
-  });
 });
+
+var $quicksearch = $('.filter').keyup( debounce( function() {
+  qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+  $grid.isotope();
+}, 200 ) );
+
+function debounce( fn, threshold ) {
+  var timeout;
+  threshold = threshold || 100;
+  return function debounced() {
+    clearTimeout( timeout );
+    var args = arguments;
+    var _this = this;
+    function delayed() {
+      fn.apply( _this, args );
+    }
+    timeout = setTimeout( delayed, threshold );
+  };
+}

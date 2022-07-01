@@ -1,8 +1,33 @@
-<div class="card bg text-white-50 m-3 shadow-lg">
-  <div class="card-header">Olá</div>
-  <div class="card-body">
-    <h5 class="card-title">Crie sua conta no the bwlog</h5>
-    <p class="card-text">Você já está dando muitos dados, não queremos mais não.</p>
-    <div class="g-signin2 " data-onsuccess="SignIn" data-theme="dark"></div>
-  </div>
+<head>
+  <title> Login Social </title>
+</head>
+
+<div class="row center">
+  <section class="col-12 col-lg-9">
+    <div class="card bg text-white-50 shadow-lg">
+      <div class="card-header">Olá</div>
+      <div class="card-body">
+        <h5 class="card-title">Basta clicar, escolher seu e-mail favorito e pronto :)</h5>
+        <p class="card-text">Isto é um login social, não usamos dados sensíveis.</p>
+        <p class="card-text">ps: ao criar sua conta você estará concordando com nossas politicas de uso.</p>
+        <div id="g_id_onload"
+            data-client_id="48094181334-ka5pa5993dfs29r921unvlkuf343m57k.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="/login"
+            data-nonce=""
+            data-auto_select="true">
+        </div>
+
+        <div class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="filled_black"
+            data-text="$ {button.text}"
+            data-size="large"
+            data-logo_alignment="left">
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

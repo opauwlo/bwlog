@@ -14,7 +14,22 @@ class User extends Model {
       profile_id: DataTypes.STRING,
       banner_id: DataTypes.STRING,
       descricao: DataTypes.STRING,
-      id_user: DataTypes.STRING
+      id_user: DataTypes.STRING,
+      verify_user:{
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+      },
+      is_admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      reports: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
     }, {
       sequelize,
       initialAutoIncrement: 1000

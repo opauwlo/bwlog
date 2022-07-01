@@ -1,32 +1,57 @@
-{{>_msgAlert}}
-<form action="/textlist/{{textlist.id}}" method="POST" class="p-3" id="form">
-  <hr class="bg" />
+<head>
+  <title>bwlog</title>
+  <meta name="title" content="{{textlist.titulo}}">
+  <meta name="author" content="{{textlist.titulo}}">
+  <meta name="description" content="bwlog | escreva e compartilhe histórias">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.bwlog.dev/">
+  <meta property="og:title" content="{{textlist.titulo}}">
+  <meta property="og:description" content="bwlog | escreva e compartilhe histórias">
+  <meta property="og:image" content="https://www.bwlog.dev/img/bwlog_banner.png">
+</head>
+<div class="row center">
+  <section class="col-12 col-lg-9">
+    <form action="/textlist/{{textlist.id}}" method="POST" class="p-3" id="form">
+      <h3 class="p-2 text-white text-card"> <strong>{{__ "new_textlist.edit_textlist"}}</strong></h3>
+      <hr class="bg" />
 
-  <div class="form mb-3 p-2 mx-auto">
-    <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="30"
-      value="{{textlist.titulo}}" autocomplete="off" placeholder=" " required />
-    <label for="textlist" class="form__label rounded-3">Título</label>
-  </div>
+      <div class="form mb-3 p-2 mx-auto">
+        <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="30"
+          value="{{textlist.titulo}}" autocomplete="off" placeholder=" " required />
+        <label for="textlist" class="form__label rounded-3">{{__ "new_history.title"}}</label>
+      </div>
 
-  <hr class="bg" />
+      <hr class="bg" />
 
-  <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
-  <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn btn-light mx-2"
-    value="Enviar" />
-  <input id="btn-rasc" type="submit" class="btn btn-dark mx-2" value="Rascunho" />
-  <div id="load"></div>
-</form>
+      <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
+      <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn btn-light mx-2"
+        value="{{__ "new_history.send"}}" />
+      <input id="btn-rasc" type="submit" class="btn btn-dark mx-2" value="{{__ "new_history.sketch"}}" />
+      <div id="load"></div>
+    </form>
 
+    <section class="p-2 m-1"> 
+      <div class="card text-white bg rounded-3 shadow-lg mb-3 m-2">
+        <div class="card-body">
+          <p class="card-text text-center ">{{__ "new_textlist.textlist_msg_posts"}} <strong
+              class="text-info">{{textlist.titulo}}</strong></p>
+        </div>
+      </div>
+      {{> _renderAllPosts}}
+    </section>
+  </section>
+</div>
 <script async>
-function logSubmit() {
-  document.getElementById("load").innerHTML = `
+  function logSubmit() {
+    document.getElementById("load").innerHTML = `
   <div class="d-flex p-3 mt-3 bg align-items-center">
-    <strong class="text-white">Enviando...</strong>
+    <strong class="text-white">⌛⌛⌛</strong>
     <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
   </div>`;
-  document.getElementById('btn-enviar').setAttribute("hidden", "true");
-  document.getElementById('btn-rasc').setAttribute("hidden", "true");
-} 
-const form = document.getElementById('form');
-form.addEventListener('submit', logSubmit);
+    document.getElementById('btn-enviar').setAttribute("hidden", "true");
+    document.getElementById('btn-rasc').setAttribute("hidden", "true");
+  }
+  const form = document.getElementById('form');
+  form.addEventListener('submit', logSubmit);
 </script>

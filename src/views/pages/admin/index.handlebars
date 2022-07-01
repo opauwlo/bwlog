@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="../../css/ckeditor.css">
+
+<div class="row center">
+  <section class="col-12 col-lg-9">
+
+
+    <h1 class="text-info p-3 my-3"> <strong>Admin Dashboard 🧑🏾‍💻</strong> </h1>
+    <div class="px-1 mt-5 accordion accordion-flush " id="accordionFlushExample">
+      <div class="accordion-item rounded ">
+        <h2 class="accordion-header rounded " id="flush-headingOne">
+          <button class="rounded accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Post Reports
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="rounded accordion-collapse collapse" aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body rounded">
+            <table class="table table-dark text-center table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th class="text-center" scope="col">#Post</th>
+                  <th class="text-center" scope="col">#Reports</th>
+                  <th class="text-center" scope="col">#Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each reports}}
+                <tr class="text-center">
+                  <th class="text-center" scope="row"><a href="/post/{{text.slug}}"> {{text.titulo}} </a></th>
+                  <th class="text-center">{{ user.reports }}</th>
+                  {{{checkIfReportsIsMoreThanThree user.reports text.id}}}
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item rounded">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            User Reports
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <table class="table table-dark text-center table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th class="text-center" scope="col">#Post</th>
+                  <th class="text-center" scope="col">#Reports</th>
+                  <th class="text-center" scope="col">#Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each reports}}
+                <tr class="text-center">
+                  <th class="text-center" scope="row"><a href="/post/{{text.slug}}"> {{text.titulo}} </a></th>
+                  <th class="text-center">{{ user.reports }}</th>
+                  {{{checkIfReportsIsMoreThanThree user.reports text.id}}}
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item rounded ">
+        <h2 class="accordion-header rounded " id="flush-headingOne">
+          <button class="rounded accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Edit help text
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="rounded accordion-collapse collapse" aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body rounded">
+            <a href="/admin/publi" class="mb-3 btn-submit btn btn-light mx-1" value="Enviar" > Publi</a>
+            <a href="/admin/faq"  class="btn btn-dark mx-1 mb-3"> F.A.Q </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

@@ -1,34 +1,19 @@
-const { Posts } = require("../../repositories/posts.repository");
-const cloudinary = require("../../utils/cloudinary");
+const PostsDeleteService = require("../../services/post/delete");
 
 module.exports = {
   deletePost: {
     index: async (req, res) => {
       let u_id = req.params.u_id;
+      const deletePost = await PostsDeleteService.main(u_id);
       try {
-        var dataBanner = await Posts.getBannerId(u_id);
-        var dataShared = await Posts.getSharedId(u_id);
-
-        if (dataShared && dataShared.shared_id) {
-          cloudinary.uploader.destroy(dataShared.shared_id);
-        }
-        
-        if (dataBanner && dataBanner.banner_id) {
-          cloudinary.uploader.destroy(dataBanner.banner_id);
-        }
-        
-        const delele = await Posts.deletePost(u_id);
-
-        if (delele) {
-          req.flash("success_msg", "Post deletado com sucesso");
+        if (deletePost) {
+          req.flash("succses_msg", "succses_msg.post_deleted");
           res.redirect("/perfil");
         } else {
-          req.flash("error_msg", "Erro ao deletar post");
+          req.flash("error_msg", "error_msg.post_not_deleted");
           res.redirect("/perfil");
         }
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     },
   },
 };

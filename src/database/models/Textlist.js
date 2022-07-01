@@ -22,4 +22,5 @@ class Textlist extends Model {
     this.hasMany(models.Post, { foreignKey: 'textlist_post_owner', as: 'textlist' });
   }
 }
+
 module.exports = Textlist;

@@ -4,18 +4,22 @@ require('dotenv').config();
 
 async function verifyJwt(req, res, next) {
   const token = req.cookies.access_token;
-  if (!token) {
-    res.redirect('/login');
+  if (!token || token === 'undefined' || token === 'null' || token === '') {
+    return res.redirect('/login');
   }
   try {
-    const data = jwt.verify(token, process.env.JWT_SECRET);
-    req.id = data.id;
-    req.user_name = data.nickname;
-    next();
-    
+    jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
+      if (err) {
+        console.log('asdadadd');
+      }
+      req.id = data.id;
+      req.user_name = data.nickname;
+      req.is_admin = data.admin;
+      next();
+    });
 
-  } catch {
-    res.redirect('/logout')
+  } catch (e){
+    return res.redirect('/logout')
   }
 }
 

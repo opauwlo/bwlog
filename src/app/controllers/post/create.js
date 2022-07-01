@@ -1,11 +1,5 @@
-const { Posts } = require("../../repositories/posts.repository");
-const cloudinary = require("../../utils/cloudinary");
-const getTitleCase = require("../../utils/getTitileCase");
-const createSharedImg = require("../../utils/creteSharedImg");
+const { main, uploadImgService } = require("../../services/post/create");
 const { validationResult } = require("express-validator");
-const del = require("del");
-const dir = "tmp";
-
 
 module.exports = {
   create: {
@@ -16,77 +10,48 @@ module.exports = {
         return res.redirect("/novo/post");
       }
 
-      const {
+      const { titulo, descricao, conteudo, publicado, textlist } = req.body;
+      const user_id = req.id;
+      const files = req.files;
+      const ctratePost = await main(
         titulo,
         descricao,
         conteudo,
         publicado,
-        textlist
-      } = req.body;
-      const user_id = req.id;
-
-      if (req.files && req.files.bannerInput) {
-        const expectdedMimeTypes = [
-          "image/jpeg",
-          "image/png",
-          "image/gif",
-          "image/jpg",
-          "image/webp",
-        ];
-        const fileExtension = req.files.bannerInput.mimetype;
-
-        if (!expectdedMimeTypes.includes(fileExtension)) {
-          const alert = {
-            msg: "Apenas imagens são permitidas",
-          };
-          // for each error, send a flash message
-          req.flash("error_msg", alert.msg);
-          await del(dir);
-          return res.redirect("/novo/post");
-        }
-        var banner_img = req.files.bannerInput;
-
-        var bannerResult = await cloudinary.uploader.upload(
-          banner_img.tempFilePath, {
-            quality: 60,
-          }
-        );
-
-        banner_img = bannerResult.secure_url;
-        var banner_id = bannerResult.public_id;
-      } else {
-
-        const image = await createSharedImg(getTitleCase(titulo));
-        var sharedImg = await cloudinary.uploader.upload(image, {
-          fetch_format: "auto",
-        });
-        var shared_img = sharedImg.secure_url;
-        var shared_id = sharedImg.public_id;
-      }
+        textlist,
+        user_id,
+        files
+      );
 
       try {
-        await del(dir);
-        const success = await Posts.createPost(
-          getTitleCase(titulo),
-          banner_img,
-          banner_id,
-          shared_img,
-          shared_id,
-          descricao,
-          conteudo,
-          publicado,
-          textlist,
-          user_id
-        );
-
-        if (success) {
-          req.flash("success_msg", "Post criado com sucesso");
+        if (ctratePost) {
+          req.flash("succses_msg", "succses_msg.post_created");
           res.redirect("/perfil");
         } else {
-          req.flash("error_msg", "Erro ao criar post");
-          res.redirect("/cad");
+          req.flash("error_msg", "error_msg.post_not_created");
         }
       } catch (e) {}
+    },
+    uploadImg: async (req, res) => {
+      const file = req.files.upload;
+      if (!file) {
+        return res.json({
+          "error": {
+            "message": "Send a image.",
+          },
+        });
+      }
+      let [error, error_msg, url] = await uploadImgService(file);
+      if (error) {
+        return res.json({
+          "error": {
+            "message": error_msg,
+          },
+        });
+      }
+      return res.json({
+        url: url,
+      });
     },
   },
 };

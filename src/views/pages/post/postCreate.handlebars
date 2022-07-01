@@ -1,52 +1,71 @@
-  {{>_msgAlert}}
-<form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data">
-  <label for="bannerInput" class="center bg mx-2 text-white">Imagem de capa
-    <i class="m-1 p-2 bi bi-image"></i>
-  </label>
-  <label for="bannerInput" class="m-2 center">
-    <img id="postBannerImg" class="post_cover_img border border-secondary" src="" ="removeBtn()">
-  </label>
-  <input name="bannerInput" id="bannerInput" type="file" accept="image/*" />
-  <button hidden id="remove" onclick="resetInput()" type="button" class="end btn center m-2 bg text-danger">Remover Imagem</button>
-  <div class="form mb-3 p-2 mx-auto rounded-3 bg mt-1">
-    <input type="text" name="titulo" id="titulo" class="form__input rounded-3" maxlength="40" autocomplete="off"
-      placeholder=" " required>
-    <label for="titulo" class="form__label rounded-3">Título</label>
+<link rel="stylesheet" href="../../css/ckeditor.css">
+<head>
+    <title>{{__ "new_history.create_history"}}</title>
+</head>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gist-embed@1.0.4/dist/gist-embed.min.js"></script>
+<div class="row">
+  <section class="col-12 col-lg-9  mt-4 rounded-3">
+    <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data" onsubmit="setData();">
+    <h4 class="text-white text-card mb-4 p-2"> <strong>{{__ "new_history.create_history"}}</strong></h4>
+      <label for="bannerInput" class="center pointer bg mx-2 text-white">{{__ "new_history.banner_img"}}
+        <i class="m-1 p-2 bi bi-image"></i>
+      </label>
+      <label for="bannerInput" class="pointer m-2 center">
+        <img id="postBannerImg" class="pointer post_cover_img border border-secondary" src=""="removeBtn()">
+      </label>
+      <input name="bannerInput" id="bannerInput" type="file" accept="image/*" />
+      <button hidden id="remove" onclick="resetInput()" type="button" class="pointer btn center m-2 mb-4 bg text-danger">{{__ "new_history.remove_banner"}}</button>
+
+      
+      <div class="form mb-3 pointer p-2 mx-auto rounded-3 bg mt-1">
+        <input type="text" name="titulo" id="titulo" class="pointer form__input rounded-3" maxlength="80" autocomplete="off"
+          placeholder=" " required>
+        <label for="titulo" class="pointer form__label rounded-3">{{__ "new_history.title"}}</label>
+      </div>
+     <div class="form mb-3 p-2 mx-auto">
+        <input type="text" id="descricao" name="descricao" class="form__input bg rounded-3" maxlength="60"
+          autocomplete="off" placeholder=" " required>
+        <label for="descricao" class="form__label rounded-3">{{__ "new_history.mini_resume"}}</label>
+      </div>
+        <p id="placeholder" hidden > {{__ "new_history.start_writing"}}</p>
+      <div class="mb-4 m-1" style="padding: 0.2rem !important;">
+        <div id="textarea" class="bg border height border-secondary text-light px-4">
+        </div>
+      </div> 
+      <input id="conteudo" name="conteudo" type="hidden" />
+
+ 
+
+      <div class="mb-3 mt-3" style="padding: 0.2rem !important;">
+        <label for="textlist" class="form-label text-white" for="textlist">{{__ "new_history.add_textlist"}}: <a class="text-info"
+            href="/novo/textlist" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">{{__ "new_history.create_textlist"}}</a> </label>
+        <select class="form-select bg text-white border border-secondary" id="textlist" name="textlist">
+          <option selected value="NULL"> {{__ "new_history.without_textlist"}} </option>
+          {{#each textlist}}
+          <option value="{{id}}"> {{titulo}} </option>
+          {{/each}}
+        </select>
+
+      </div>
+      <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
+      <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1;" class="mb-3 btn-submit btn btn-light mx-1"
+        value="{{__ "new_history.send"}}">
+      <input id="btn-rasc" type="submit" class="btn btn-dark mx-1 mb-3" value="{{__ "new_history.sketch"}}">
+      <div id="load" class="bg-dark mb-3 ">
+      </div>
+    </form>
+  </section>
+  <div class="col-12 col-lg-3 position-fixed end-0 mt-4 mr-5 display-mobile hidden-margin">
+    {{>_helpPost}} 
   </div>
-
-  <div class="mb-4" style="padding: 0.2rem !important;">
-    <label for="validationTextarea" class="form-label text-white">Conteúdo do post</label>
-    <textarea name="conteudo" class="form-control" id="validationTextarea" > </textarea>
-  </div>
-
-  <div class="form mb-3 p-2 mx-auto">
-    <input type="text" id="descricao" name="descricao" class="form__input bg rounded-3" maxlength="60" 
-      autocomplete="off" placeholder=" " required>
-    <label for="descricao" class="form__label rounded-3">Descriçao</label>
-  </div>
-
-  <div class="mb-3 mt-3" style="padding: 0.2rem !important;">
-    <label for="textlist" class="form-label text-white" for="textlist">Adcianar à textlist: <a
-        class="text-info" href="/novo/textlist" target="_blank" style="text-decoration: none;"
-        rel="noopener noreferrer">Crie uma textlist</a> </label>
-    <select class="form-select bg text-white border border-secondary" id="textlist" name="textlist">
-      <option selected value="NULL"> Sem Textlist </option>
-      {{#each textlist}}
-      <option value="{{id}}"> {{titulo}} </option>
-      {{/each}}
-    </select>
-
-  </div>
-
-  <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
-  <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn-submit btn btn-light mx-1"
-    value="Enviar">
-  <input id="btn-rasc" type="submit" class="btn btn-dark mx-1" value="Rascunho">
-  <div id="load" class="bg-dark">
-
-  </div>
-</form>
-
-
-<script src="../../js/getBannerPost.js"></script>
+</div>
 {{> _ckeditorJs}}
+<script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
+<script src="../../js/embed.js" > </script>
+<script>
+  function setData() {
+    const data = editor.getData();
+    document.getElementById('conteudo').value = data;
+  }
+</script>
+<script src="../../js/getBannerPost.js"></script>

@@ -1,86 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{_locale}}">
+
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-signin-client_id"
-    content="485040018311-t4628pim6j74ssva2ctso0qapn65hts9.apps.googleusercontent.com">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../css/build.css">  
-  <link rel="stylesheet" href="../../css/custom.css" >
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script async src="../../js/bootstrap.min.js" ></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/build.css">
+  <link rel="stylesheet" href="../../css/custom.css">
+  <script src="../../js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="imagem/x-icon" href="../../img/icon.png" />
-  <script async defer src="../../js/auth.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta lang="{{_locale}}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <script src="../../js/i18next.js" async defer></script>
 </head>
-<body class="bg-dark mt-3 container">
-  <div class="offcanvas offcanvas-end  bg" tabindex="-1" id="offcanvasRight"
-    aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header rounded-start">
-      <h5 class="mt-35 fs-2 text-menu text-center center" id="offcanvasRightLabel">bwlog</h5>
-      <button onclick="closeBtn.style.visibility='visible'" type="button" class="fs-3 mt-1 btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"
-        aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body ">
-      <div class="navbar-nav li-menu-mobile">
-        <a class="nav-link mx-auto text-white-50 fs-5" aria-current="page" href="/">🏠 Home</a>
-        <a class="nav-link mx-auto text-white-50 fs-5" href="/perfil">🧑🏾‍💻 Perfil</a>
-        <a class="nav-link mx-auto text-white-50 fs-5" href="/novo/post">📝 Nova história</a>
-        <a class="nav-link mx-auto text-white-50 fs-5" href="/novo/textlist">📎 Nova textlist</a>
-      </div>
-    </div>
-  </div>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid center">
-        <div class="dropdown center row">
 
-          <button type="button" class="btn" data-bs-toggle="dropdown">
-              <img src="{{imgProfile}}" id="profileImg"  class="center rounded-circle border border-dark" onerror="this.onerror=null;this.src='../../img/not_login.png'"  width="45" height="45"
-                style="object-fit: cover;" alt="profile picture">
-                
-          </button>
-          
-          <ul class="dropdown-menu dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            {{#if isLoggedIn}}
-            <li><a class="dropdown-item" href="/perfil"> <strong> {{userName}} </strong> </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item " href="/edit/{{userId}}">Editar Perfil</a></li>
-            <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
-            <li><a href="/logout" onclick="signOut()" class=" dropdown-item text-danger" >Sair</a></li>
-            {{else}}
-            <li><a class="dropdown-item" href="/login"> Faça login </a></li>
-            {{/if}}
-          </ul>
+<body class="bg-dark mt-3 container">
+  <div class="row center mb-2">
+    <section class="col-12 col-lg-9">
+      {{>_msgAlert}}
+      <div class="offcanvas offcanvas-start bg" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header rounded-start">
+          <h5 class="mt-35 fs-2 text-menu mx-4" id="offcanvasRightLabel">bwlog</h5>
+          <button onclick="closeBtn.style.visibility='visible'" type="button"
+            class="fs-3 mt-1 btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
         </div>
-        <div class="collapse navbar-collapse li-menu center" id="navbarNavAltMarkup">
-          <div class="navbar-nav mt-3">
-            <a class="nav-link active text-white" aria-current="page" href="/">🏠 Home</a>
-            <a class="nav-link text-white" href="/perfil">🧑🏾‍💻 Perfil</a>
-            <a class="nav-link text-white" href="/novo/post">📝 Nova história</a>
-            <a class="nav-link text-white" href="/novo/textlist">📎 Nova textlist</a>
+        <div class="offcanvas-body ">
+          <div class="navbar-nav li-menu-mobile">
+            <a class="nav-link mx-5 text-white-50 fs-5" aria-current="page" href="/">🏠 {{__ "menu.home" }}</a>
+            </a>
+            <a class="nav-link mx-5 text-white-50 fs-5" href="/perfil">🧑🏾‍💻 {{__ "menu.profile"}}</a>
+            <a class="nav-link mx-5 text-white-50 fs-5" href="/novo/post">📝 {{__ "menu.new_history"}}</a>
+            <a class="nav-link mx-5 text-white-50 fs-5" href="/novo/textlist">📎 {{__ "menu.new_textlist"}}</a>
+            <a class="nav-link mx-5 text-white-50 fs-5" href="#" onclick="copyToClipboard('{{__ "menu.pix_text"}}', '{{__ "menu.paypal_text"}}' , '{{__ "menu.ok_text"}}' );">💸 {{__ "menu.sponser"}}</a>
+            <a class="nav-link mx-5 text-white-50 fs-5 d-flex" href="#">
+              <select class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
+                aria-label="Default select example" style="margin-top: 0px; width: auto;">
+                <option class="lang-pt" value="pt">{{__ "menu.language_pt"}}</option>
+                <option class="lang-en" value="en">{{__ "menu.language_en"}}</option>
+              </select>
+            </a>
           </div>
         </div>
-        <div class="center text-center"> 
-          <a class="fs-2 text-menu" href="/">bwlog</a>
-        </div>
-        <button id="closeBtn"  class="navbar-toggler" style="padding: 0 !important;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight" aria-expanded="true" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-  </header>
-  {{{body}}}
-  <script>
-      function signOut() {
+      </div>
+      <header class="mb-4">
+        <nav class="navbar navbar-expand-lg fixed-top nav-active nav-fixed navbar-dark mx-2"
+          style="transition: 0.3s ease-in-out;">
+          <button id="closeBtn" class="navbar-toggler" style="padding: 0 !important;" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+            aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="center text-center">
+            <a class="fs-2 text-center text-menu" href="/">bwlog</a>
+          </div>
 
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-        });
-      }
-  </script>
-  </body>
+          <div class="collapse navbar-collapse li-menu center" id="navbarNavAltMarkup">
+            <div class="navbar-nav mt-3">
+              <a class="nav-link active text-white" aria-current="page" href="/">🏠 {{__ "menu.home" }}</a>
+              <a class="nav-link text-white" href="/perfil">🧑🏾‍💻 {{__ "menu.profile"}}</a>
+              <a class="nav-link text-white" href="/novo/post">📝 {{__ "menu.new_history"}}</a>
+              <a class="nav-link text-white" href="/novo/textlist">📎 {{__ "menu.new_textlist"}}</a>
+              <a class="nav-link text-white" href="#" onclick="copyToClipboard('{{__ "menu.pix_text"}}', '{{__ "menu.paypal_text"}}' , '{{__ "menu.ok_text"}}' );">💸 {{__ "menu.sponser"}}</a>
+              <a class="ml-1" href="#">
+                <select class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
+                  aria-label="Default select example" style="margin-top: 2px; width: auto;">
+                  <option class="lang-pt" value="pt">{{__ "menu.language_pt"}}</option>
+                  <option class="lang-en" value="en">{{__ "menu.language_en"}}</option>
+                </select>
+              </a>
+            </div>
+          </div>
+          <div class="dropdown center row">
+            <button type="button" class="btn" data-bs-toggle="dropdown">
+              <img src="{{imgProfile}}" id="profileImg" class="rounded-circle border border-dark"
+                onerror="this.onerror=null;this.src='../../img/not_login.png'" width="44" height="44"
+                style="object-fit: cover;" alt="profile picture">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              {{#if isLoggedIn}}
+              <li><a class="dropdown-item" href="/perfil"> <strong> {{userName}} </strong></a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item " href="/edit/{{userId}}">{{__ "profile_menu.edit_profile"}}</a></li>
+              <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
+              <li><a href="/logout" onclick="signOut()" class=" dropdown-item text-danger">{{__ "profile_menu.logout"}}</a></li>
+              {{else}}
+              <li><a class="dropdown-item" href="/login"> {{__ "profile_menu.do_login"}} </a></li>
+              {{/if}}
+            </ul>
+          </div>
+        </nav>
+      </header>
+    </section>
+  </div>
+  {{{body}}}
+  <hr>
+  <script src="../../js/copy.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
 
 </html>

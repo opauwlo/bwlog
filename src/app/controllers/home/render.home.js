@@ -1,31 +1,13 @@
-const { Posts } = require("../../repositories/posts.repository");
-const localStorage = require('localStorage');
+
+const homeServiceRender = require("../../services/home/show");
 
 module.exports = {
   homeController: {
     // render home page
     renderHome: async (req, res) => {
+      let page = req.query.page || 1;
       try {
-        let currentPage = req.query.page || 1;
-        let postsPerPage = 50;
-
-        if (currentPage == 1) {
-          var countAllPosts = await Posts.countPosts();
-          var PageLimit = Math.ceil(countAllPosts / postsPerPage);
-          if (PageLimit == 0) {
-            PageLimit = 1;
-          }
-          localStorage.setItem('homePageLimit', PageLimit) // set the page limit in local storage
-          PageLimit = localStorage.getItem('homePageLimit') // get the page limit from local storage
-        }
-
-        if (currentPage > PageLimit) {
-          currentPage = PageLimit;
-        }
-
-        let offset = currentPage * postsPerPage - postsPerPage;
-
-        var { posts } = await Posts.getPostsFromHome(offset);
+        let [posts, PageLimit, currentPage] = await homeServiceRender.main(page);
         return res.render("pages/home/", {
           pagination: {
             page: currentPage,

@@ -1,7 +1,7 @@
-<section class="row row-cols-md-1" data-masonry='{"percentPosition": true }'>
+<section id="dady-of" class="dady-of row row-cols-md-1" data-masonry='{"percentPosition": true }'>
   {{#each posts}}
   {{#if @first}}
-    <a class="col-lg-6 rounded-3 mb-1" href="/post/{{slug}}">
+    <a class="col-lg-6 rounded-3 mb-1 post" href="/post/{{slug}}">
     <div class="post">
       <div class="card m-2 text-center">
         <img onerror="this.style.display='none'" class="post_cover_img center" src="{{banner_img}}" alt="" width="1000" height="420" style="padding: 0rem !important;">
@@ -13,14 +13,14 @@
             {{descricao}}
           </p>
           <small class="card-text text-info my-1 text-autor">
-            by: {{user.user_name}}
+            {{__ "home.by_user"}}: {{user.user_name}} {{{checkIfIsVerified user.verify_user}}}
           </small>        
         </div>
       </div>
     </div>
     </a>
   {{else}}
-  <a class="col-lg-6 rounded-3 mb-1" href="/post/{{slug}}">
+  <a class="col-lg-6 rounded-3 mb-1 post" href="/post/{{slug}}">
   <div class="post">
     <div class="card m-2 text-center">
       <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
@@ -31,7 +31,7 @@
           {{descricao}}
         </p>
         <small class="card-text text-info my-1 text-autor">
-          by: {{user.user_name}}
+          {{__ "home.by_user"}}: {{user.user_name}} {{{checkIfIsVerified user.verify_user}}}
         </small>        
       </div>
     </div>
@@ -40,4 +40,7 @@
   {{/if}}
   {{/each}}
 </section>
-<script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+<script  src="../../js/jquery.min.js"></script>
+<script  src="../../js/isotope-docs.min.js"></script>
+<script src="../../js/search.js"></script>

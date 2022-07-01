@@ -1,10 +1,13 @@
-const { Textlists } = require("../../repositories/textlists.repository");
+const TextlistsUpdateService = require("../../services/textlist/update");
 
 module.exports = {
   renderUpdate: {
     index: async (req, res) => {
-      const textlist = await Textlists.getOneTextlist(req.params.id);
+      const [posts, textlist] = await TextlistsUpdateService.infosForRender(req.params.id);
+
       res.render("pages/textlist/textlistEdit", {
+        posts,
+        user: posts,
         textlist,
         imgProfile: req.profile,
         userName: req.user_name,

@@ -1,25 +1,21 @@
-const { Canvas } = require("canvas-constructor/cairo");
-const canvas = require("canvas");
-const registerFont = require("canvas").registerFont;
-registerFont("./src/app/utils/Cinzel-Medium.ttf", {
-  family: "Cinzel"
-});
+const { Canvas, resolveImage } = require("canvas-constructor/skia");
 
-async function createImg(str) {
-  const img = await canvas.loadImage(
-    "https://i.ibb.co/M6fVzjm/banner-placeholder.png"
-  );
 
-  let image = new Canvas(600, 300)
+async function createImg(str, imgProfile, nameProfile) {
+
+  const img = await resolveImage("https://res.cloudinary.com/bwlog/image/upload/v1651956912/essencials/bwlog-7_i8xnt6.png");
+  imgProfile = await resolveImage(imgProfile);
+  let image = await new Canvas(600, 300)
     .printImage(img, 0, 0, 600, 300)
-    .setColor("#000")
-    .setTextFont("30px Cinzel")
+    .setTextFont("bold 28px Cinzel")
     .setTextAlign("center")
-    .printText(str, 300, 150)
+    .printCircularImage(imgProfile, 55, 225, 27, 27)
+    .printWrappedText(str, 300, 135, 555, 30)
+    .setTextFont("bold 13px Cinzel")
+    .setTextBaseline("middle")
+    .printText(nameProfile, 119, 225)
     .toDataURL();
-
-
-  return image
+    return image
 }
 
 module.exports = createImg

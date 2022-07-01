@@ -23,7 +23,7 @@ module.exports = {
         });
       return success;
     },
-    getTextlist: async (ownerId) => {
+    getTextlistFromOwner: async (ownerId) => {
       const cachedTextlist = await cache.get(`textlistP_${ownerId}`);
       if (cachedTextlist) {
         return cachedTextlist;

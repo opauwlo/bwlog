@@ -1,35 +1,45 @@
-{{#if success_msg}}
-  <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
-  <i class="bi bi-check2-circle fs-3"></i>  <div>
-      <strong class="mx-2">{{success_msg}}</strong>
-    </div>
+{{#if succses_msg }}
+  <div class="row center mt-5">
+    <section>
+      <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
+        <i class="bi bi-check2-circle fs-3"></i>
+        <div>
+          <strong class="mx-2">{{__ succses_msg}}</strong>
+        </div>
+      </div>
+    </section>
   </div>
 {{/if}}
 {{#if error_msg}}
-<div class="alert alert-danger fade-in fade-out alert-dismissible p-3 mx-2" role="alert">
-  <strong class="mx-2 text-center">{{error_msg}}</strong>
+<div class="row center mt-5">
+  <section>
+    <div class="alert alert-danger fade-in fade-out alert-dismissible p-3 mx-2" role="alert">
+      <strong class="mx-2 text-center">{{__error_msg}}</strong>
+    </div>
+  </section>
 </div>
 {{/if}}
 {{#if welcome_msg}}
-  <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
-    <div>
-      <strong class="mx-2">{{welcome_msg}}</strong>
+<div class="row center mt-5">
+  <section>
+    <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
+      <div>
+        <strong class="mx-2">{{__welcome_msg}}</strong>
+      </div>
     </div>
-  </div>
+  </section>
+</div>
 {{/if}}
 {{#if hello_again_msg}}
-  <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
-    <div>
-      <strong class="mx-2">{{hello_again_msg}}</strong>
+<div class="row center mt-5">
+  <section>
+    <div class="alert alert-primary fade-in fade-out align-items-center center" role="alert">
+      <div>
+        <strong class="mx-2">{{__hello_again_msg}}</strong>
+      </div>
     </div>
-  </div>
+  </section>
+</div>
 {{/if}}
-<script>
-let alert = document.getElementsByClassName("alert")[0];
-if (alert) {
-  setTimeout(() => {
-    alert.style.display = "none";
-  }, 2500);
-}
 
-</script>
+<script src="../../js/alertMsg.js"></script>

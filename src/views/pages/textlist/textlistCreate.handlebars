@@ -1,54 +1,39 @@
-{{>_msgAlert}}
-<form action="/add/textlist" method="POST" class="p-3" id="form">
-  <hr class="bg" />
+<head>
+    <title>Crie Uma Nova textlist</title>
+</head>
+<div class="row center">
+  <section class="col-12 col-lg-9 mt-3">
+    <form action="/add/textlist" method="POST" class="p-3" id="form">
+    <h3 class="p-2 text-white text-card"> <strong>{{__ "new_textlist.create_textlist"}}</strong></h3>
+      <hr class="bg" />
 
-  <div class="form mb-3 p-2 mx-auto">
-    <input
-      type="text"
-      name="titulo"
-      id="titulo"
-      class="form__input bg rounded-3"
-      maxlength="30"
-      autocomplete="off"
-      placeholder=" "
-      required
-    />
-    <label for="titulo" class="form__label rounded-3">Título</label>
-  </div>
+      <div class="form mb-3 p-2 mx-auto">
+        <input type="text" name="titulo" id="titulo" class="form__input bg rounded-3" maxlength="30" autocomplete="off"
+          placeholder=" " required />
+        <label for="titulo" class="form__label rounded-3">{{__ "new_history.title"}}</label>
+      </div>
 
-  <hr class="bg" />
+      <hr class="bg" />
 
-  <input
-    id="publicado"
-    name="publicado"
-    type="hidden"
-    name="publicado"
-    value="0"
-  />
-  <input
-    id="btn-enviar"
-    type="submit"
-    onclick="this.form.publicado.value=1"
-    class="btn btn-light mx-1"
-    value="Enviar"
-  />
-  <input
-    id="btn-rasc"
-    type="submit"
-    class="btn btn-dark mx-1"
-    value="Rascunho"
-  />
-  <div id="load"></div>
-</form>
+      <input id="publicado" name="publicado" type="hidden" name="publicado" value="0" />
+      <input id="btn-enviar" type="submit" onclick="this.form.publicado.value=1" class="btn btn-light mx-2"
+        value="{{__ "new_history.send"}}" />
+      <input id="btn-rasc" type="submit" class="btn btn-dark mx-2" value="{{__ "new_history.sketch"}}" />
+      <div id="load"></div>
+    </form>
 
+  </section>
+</div>
 <script async>
 
-  function logSubmit() { document.getElementById("load").innerHTML = ` <div
+  function logSubmit() {
+    document.getElementById("load").innerHTML = ` <div
   class="d-flex p-3 mt-3 bg align-items-center"> <strong
-  class="text-white">Enviando...</strong> <div class="spinner-border text-white
+  class="text-white">⌛⌛⌛</strong> <div class="spinner-border text-white
   ms-auto" role="status" aria-hidden="true"></div> </div>`; var x =
-  document.getElementById('btn-enviar').setAttribute("hidden", "true"); var y =
-  document.getElementById('btn-rasc').setAttribute("hidden", "true"); } const
-  form = document.getElementById('form'); form.addEventListener('submit',
-  logSubmit);
+      document.getElementById('btn-enviar').setAttribute("hidden", "true"); var y =
+        document.getElementById('btn-rasc').setAttribute("hidden", "true");
+  } const
+    form = document.getElementById('form'); form.addEventListener('submit',
+      logSubmit);
 </script>

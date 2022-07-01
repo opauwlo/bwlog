@@ -1,264 +1,264 @@
-{{>_msgAlert}}
 <head>
   <title>bwlog | {{user.user_name}}</title>
   <meta name="author" content="{{user.user_name}}">
   <meta name="title" content="bwlog | {{user.user_name}}">
   <meta name="description" content="{{user.user_name}} | {{user.descricao}}">
-
 </head>
-<div class=" p-2 ">
-  <div class=" mx-auto">
-    <!-- Profile widget -->
-    <div class="overflow-hidden">
-      <div class="px-3 pt-0 pb-4 rounded-3 mb-2"
-        style=" background-image: url({{user.banner}}); background-size: cover; background-repeat: no-repeat">
-        <div class="media align-items-end profile-head rounded-circle">
-          <div class="profile mr-3 rounded-circle"><img src="{{user.profile}}" alt="..." width="110"
-              style="object-fit: cover;" class="rounded-3 border-3 border-dark shadow-lg"></div>
-          <div class="media-body mb-4 text-white">
-            <h5 class="bg-text mb-1">{{user.user_name}}</h5>
-            <p class="small mb-4 w-auto bg-text"> <i class="fas fa-map-marker-alt mr-2"></i># {{user.id}}</p>
+
+<div class="row center">
+  <section class="col-12 col-lg-9">
+    <div class="p-2">
+      <div class="mx-auto">
+        <!-- Profile widget -->
+        <div class="card bg rounded-3 mb-3">
+          <img src="{{user.banner}}" class="profile_cover_img card-img-top rounded-3" alt="..." height="210px"
+            style="object-fit: cover;">
+          <img src="{{user.profile}}" class="rounded-3 mx-2" style="object-fit: cover; transform: translateY(-4rem);"
+            width="110" height="110">
+          <div class="card-body text-white">
+            <h5 class="card-title text-titulo center" style="margin-top: -4rem;">
+              <strong contenteditable="true">{{user.user_name}}</strong>{{{checkIfIsVerified user.verify_user}}}
+            </h5>
+            <p class="card-text text-muted">{{user.descricao}}</p>
+            <span class="text-white-50 small float-end end">
+              {{__ "data.since"}} {{#formatDateTime
+              user.created_at}}
+              {{/formatDateTime}}</span>
           </div>
         </div>
-      </div>
-
-      <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
-      <a href="/edit/{{user.id}}" class=" mt-5 btn btn-outline-dark text-white btn-sm text-center">Editar
-        Perfil</a>
-      <a href="/logout" class="mt-5 mx-2 btn btn-danger btn-sm text-center float-end" onclick="signOut();">
-        Sair
-      </a>
-      <div class="mt-3">
-        <h5 class="mb-1 mt-2 text-white">Sobre</h5>
-        <div class="p-4 rounded shadow-sm bg">
-          <p class="font-italic text-white-50 mb-0" style="word-break: break-word;">{{user.descricao}}</p>
-        </div>
+        <div hidden class="visually-hidden invisible g-signin2 " SignIndata-theme="dark"></div>
+        <a href="/edit/{{user.id}}" class="btn btn-outline-dark text-white btn-sm">{{__ "profile.edit_profile"}}</a>
+        <a href="/logout" class="btn btn-danger btn-sm text-center float-end text-light" onclick="signOut();">
+          {{__ "profile.logout"}}</a>
+        </a>
+        {{{checkIfIsAdmin is_admin}}}
       </div>
     </div>
-  </div>
-</div>
 
-<section class="my-1 end mx-2">
-  <div class="a2a_kit a2a_kit_size_32 a2a_default_style bg-black"
-    data-a2a-url="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}" data-a2a-title="{{user.user_name}}">
-    <a class="a2a_button_copy_link"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_telegram"></a>
-    <a class="a2a_button_whatsapp"></a>
-    <a class="a2a_button_facebook"></a>
-  </div>
-  <script async src="https://static.addtoany.com/menu/page.js"></script>
-</section>
-
-<div class=" new-post p-2 text-light">
-  <div class="card text-white bg">
-
-    <div class="new-post p-2 ">
-      <ul class="nav nav-pills nav-justified mb-3 " id="pills-tab" role="tablist">
-        <li class="nav-item " role="presentation">
-          <button class="nav-link active shadow border-3" id="pills-home-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-            aria-selected="true">Publicas</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link shadow border-3" id="pills-profile-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-            aria-selected="false">Rascunhos</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link shadow border-3" id="pills-textlist-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-textlist" type="button" role="tab" aria-controls="pills-textlist"
-            aria-selected="false">Textlists</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="tab-content " id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <section class="row row-cols-md-1" >
-      {{#each posts}}
-      {{#if publicado}}
-      <div class="col-lg-6 post mb-2" >
-        <div class="card m-1 text-center">
-          <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
-            <a href="/post/{{slug}}">
-              <h1 class="card-title text-titulo text-light mb-1">
-                {{titulo}}
-              </h1>
-              <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
-                {{descricao}}
-              </p>
-              <small class="card-text text-info my-1 text-autor">
-                by: {{user.user_name}}
-              </small>
-              <div class="d-grid gap-2 p-1">
-                <a href="/edit/post/{{u_id}}"
-                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{u_id}}">
-                  Deletar
-                </button>
-              </div>
-            </a>
-          </div>
-        </div>
+    <section class="end p-2">
+      <div class="a2a_kit a2a_kit_size_32 a2a_default_style rounded-3 p-1 bg"
+        data-a2a-url="https://www.bwlog.dev/autor/{{user.id}}/{{user.user_name}}" data-a2a-title="{{user.user_name}}">
+      <a class="a2a_button_copy_link"></a>
+        <a class="a2a_button_twitter"> </a>
+        <a class="a2a_button_linkedin"> </a>
+        <a class="a2a_button_reddit"> </a>
+        <a class="a2a_button_facebook"> </a>
+        <a class="a2a_button_telegram"> </a>
+        <a class="a2a_button_whatsapp"> </a>
       </div>
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-secondary">
-          <div class="modal-content bg text-secondary">
-            <div class="modal-header bg text-secondary">
-              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-white-50">
-              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{u_id}}" method="POST">
-                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{/if}}
-      {{/each}}
+      <script async src="https://static.addtoany.com/menu/page.js"></script>
     </section>
-  </div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <section class="row row-cols-md-1">
-      {{#each posts}}
-      {{#unless publicado}}
-      <div class="col-lg-6 rounded-3 mb-2" href="/post/{{slug}}">
-        <div class="post">
-          <div class="card m-2 text-center">
-            <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
-              <a href="/post/preview/{{slug}}">
-                <h1 class="card-title text-titulo text-light mb-1">
-                  {{titulo}}
-                </h1>
-                <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
-                  {{descricao}}
-                </p>
-                <small class="card-text text-info my-1 text-autor">
-                  by: {{user.user_name}}
-                </small>
-                <div class="d-grid gap-2 p-3" role="group">
-                  <a href="/edit/post/{{u_id}}"
-                    class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                  <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                    data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{{u_id}}}">
-                    Deletar
-                  </button>
+
+    <div class=" new-post p-2 text-light">
+      <div class="card text-white bg">
+
+        <div class="new-post p-2 ">
+          <ul class="nav nav-pills nav-justified mb-3 " id="pills-tab" role="tablist">
+            <li class="nav-item " role="presentation">
+              <button class="nav-link active shadow border-3" id="pills-home-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                aria-selected="true">{{__ "profile.publications"}}</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link shadow border-3" id="pills-profile-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                aria-selected="false">{{__ "profile.sketchs"}}</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link shadow border-3" id="pills-textlist-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-textlist" type="button" role="tab" aria-controls="pills-textlist"
+                aria-selected="false">{{__ "profile.textlists"}}</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content p-1" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <section class="row row-cols-md-1">
+          {{#each posts}}
+          {{#if publicado}}
+          <div class="col-lg-6 post mb-2">
+            <div class="card m-1 text-center">
+              <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+                <a href="/post/{{slug}}">
+                  <h1 class="card-title text-titulo text-light mb-1">
+                    {{titulo}}
+                  </h1>
+                  <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                    {{descricao}}
+                  </p>
+                  <small class="card-text text-info my-1 text-autor">
+                    {{__ "profile.by_user"}}: {{user.user_name}} {{{checkIfIsVerified user.verify_user}}}
+                  </small>
+                  <div class="d-grid gap-2 p-1">
+                    <a href="/edit/post/{{u_id}}"
+                      class="btn btn-outline-dark border-secondary text-white fw-bold">{{__ "profile.edit_button"}}</a>
+                    <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                      data-bs-toggle="modal" data-bs-target="#staticBackdrop{{u_id}}">
+                      {{__ "profile.delete_button"}}
+                    </button>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog text-secondary">
+              <div class="modal-content bg text-secondary">
+                <div class="modal-header bg text-secondary">
+                  <h5 class="modal-title text-danger" id="staticBackdropLabel">{{__ "profile.delete_msg"}}</h5>
+                  <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                    data-bs-dismiss="modal"></button>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdropRasc{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-secondary">
-          <div class="modal-content bg text-secondary">
-            <div class="modal-header bg text-secondary">
-              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-white-50">
-              ATENÇÃO, ao clicar em deletar o post será permanentemente excluido do banco de dados.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/{{{u_id}}}" method="POST">
-                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{/unless}}
-      {{/each}}
-    </section>
-  </div>
-  <div class="tab-pane fade" id="pills-textlist" role="tabpanel" aria-labelledby="pills-textlist-tab">
-    <section class="row row-cols-md-1">
-      {{#each textlists }}
-      {{#if public}}
-      <div class="col-lg-6 rounded-3 mb-3">
-        <div class="card m-2 shadow text-center ">
-          <div class="card-body px-3 bg">
-            <a href="/textlist/{{id}}/{{slug}}">
-              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-              <div class="d-grid gap-2 p-1">
-                <a href="/edit/textlist/{{id}}"
-                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
-                  Deletar
-                </button>
+                <div class="modal-body text-white-50">
+                  {{__ "profile.delete_msg_text"}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__ "profile.out_button" }}</button>
+                  <form action="/deletar/{{u_id}}" method="POST">
+                    <button type="submit" class="btn btn-danger mx-1">{{__ "profile.delete_button"}}</button>
+                  </form>
+                </div>
               </div>
-            </a>
+            </div>
           </div>
-        </div>
+          {{/if}}
+          {{/each}}
+          {{{paginateHelper pagination}}} 
+        </section>
       </div>
-      {{else}}
-      <div class="col-lg-6 rounded-3 mb-3">
-        <div class="card m-2 shadow text-center ">
-          <div class="card-body px-3 bg">
-            <a href="/textlist/{{id}}/{{slug}}">
-              <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
-              <span class="text-secondary"> textlist salva como rascunho </span>
-              <div class="d-grid gap-2 p-3" role="group">
-                <a href="/edit/textlist/{{id}}"
-                  class="btn btn-outline-dark border-secondary text-white fw-bold">Editar</a>
-                <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
-                  Deletar
-                </button>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <section class="row row-cols-md-1">
+          {{#each posts}}
+          {{#unless publicado}}
+          <div class="col-lg-6 rounded-3 mb-2" href="/post/{{slug}}">
+            <div class="post">
+              <div class="card m-2 text-center">
+                <div class="card-body px-3 bg border border-dark shadow rounded rounded-2">
+                  <a href="/post/preview/{{slug}}">
+                    <h1 class="card-title text-titulo text-light mb-1">
+                      {{titulo}}
+                    </h1>
+                    <p class="text-white-50 text-format text-descricao" style="margin-bottom: 0;">
+                      {{descricao}}
+                    </p>
+                    <small class="card-text text-info my-1 text-autor">
+                      {{__ "profile.by_user"}}: {{user.user_name}} {{{checkIfIsVerified user.verify_user}}}
+                    </small>
+                    <div class="d-grid gap-2 p-3" role="group">
+                      <a href="/edit/post/{{u_id}}"
+                        class="btn btn-outline-dark border-secondary text-white fw-bold">{{__ "profile.edit_button"}}</a>
+                      <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdropRasc{{{u_id}}}">
+                        {{__ "profile.delete_button"}}
+                      </button>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      {{/if}}
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrops{{{id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-secondary">
-          <div class="modal-content bg text-secondary">
-            <div class="modal-header bg text-secondary">
-              <h5 class="modal-title text-danger" id="staticBackdropLabel">Deseja Deletar?</h5>
-              <button type="button" class="btn-close btn-close-white" aria-label="Close"
-                data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-white-50">
-              ATENÇÃO, ao clicar em deletar a textlist será permanentemente excluida do banco de dados.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <form action="/deletar/textlist/{{id}}" method="POST">
-                <button type="submit" class="btn btn-danger mx-1">Deletar</button>
-              </form>
             </div>
           </div>
-        </div>
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdropRasc{{{u_id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog text-secondary">
+              <div class="modal-content bg text-secondary">
+                <div class="modal-header bg text-secondary">
+                  <h5 class="modal-title text-danger" id="staticBackdropLabel">{{__ "profile.delete_msg"}}</h5>
+                  <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                    data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-white-50">
+                  {{__ "profile.delete_msg_text"}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__ "profile.out_button"}}</button>
+                  <form action="/deletar/{{{u_id}}}" method="POST">
+                    <button type="submit" class="btn btn-danger mx-1">{{__ "profile.delete_button"}}</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/unless}}
+          {{/each}}
+        </section>
       </div>
-      {{/each}}
-    </section>
-  </div>
+      <div class="tab-pane fade" id="pills-textlist" role="tabpanel" aria-labelledby="pills-textlist-tab">
+        <section class="row row-cols-md-1">
+          {{#each textlists }}
+          {{#if public}}
+          <div class="col-lg-6 rounded-3 mb-3">
+            <div class="card m-2 shadow text-center ">
+              <div class="card-body px-3 bg">
+                <a href="/textlist/{{id}}/{{slug}}">
+                  <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+                  <div class="d-grid gap-2 p-1">
+                    <a href="/edit/textlist/{{id}}"
+                      class="btn btn-outline-dark border-secondary text-white fw-bold">{{__ "profile.edit_button"}}</a>
+                    <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                      data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
+                      {{__ "profile.delete_button"}}
+                    </button>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          {{else}}
+          <div class="col-lg-6 rounded-3 mb-3">
+            <div class="card m-2 shadow text-center ">
+              <div class="card-body px-3 bg">
+                <a href="/textlist/{{id}}/{{slug}}">
+                  <h2 class="card-title text-titulo text-light mb-2">{{titulo}}</h2>
+                  <span class="text-secondary"> {{__ "profile.sketch_msg"}} </span>
+                  <div class="d-grid gap-2 p-3" role="group">
+                    <a href="/edit/textlist/{{id}}"
+                      class="btn btn-outline-dark border-secondary text-white fw-bold">{{__ "profile.edit_button"}}</a>
+                    <button type="button" class="btn btn-outline-dark border-secondary fw-bold text-white"
+                      data-bs-toggle="modal" data-bs-target="#staticBackdrops{{{id}}}">
+                      {{__ "profile.delete_button"}}
+                    </button>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrops{{{id}}}" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog text-secondary">
+              <div class="modal-content bg text-secondary">
+                <div class="modal-header bg text-secondary">
+                  <h5 class="modal-title text-danger" id="staticBackdropLabel">{{__ "profile.delete_msg"}}</h5>
+                  <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                    data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-white-50">
+                  {{__ "profile.delete_msg_text"}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__ "profile.out_button"}}</button>
+                  <form action="/deletar/textlist/{{id}}" method="POST">
+                    <button type="submit" class="btn btn-danger mx-1">{{__ "profile.delete_button"}}</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </section>
+      </div>
+    </div>
+
+
+    {{> _newPost}}
+  </section>
 </div>
-
-
-{{> _newPost}}
-{{{paginateHelper pagination}}}
-
 <script async src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 

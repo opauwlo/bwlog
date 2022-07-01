@@ -6,7 +6,7 @@ module.exports = {
   renderFromTextlist: {
     index: async (req, res) => {
       try {
-        const posts = await Posts.getAllPostsFromTextlistPage(req.params.id);
+        const posts = await Posts.getAllPostsFromTextlistPage(req.params.id, true);
         const textlist = await Textlists.getOneTextlist(req.params.id);
         res.render("pages/textlist/textlistShow", {
           posts,

@@ -1,14 +1,11 @@
-//function to auth
 require('dotenv').config();
 
-// Google
 const CLIENT_ID = process.env.CLIENT_ID;
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
 
 async function checkAuthenticated(req, res, next) {
     let token = req.cookies['session-token'];
-  
     let user = {};
     async function verify() {
       const ticket = await client.verifyIdToken({
