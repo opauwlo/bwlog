@@ -54,12 +54,12 @@
     "answer_how_add_img": "To add an image, click the 'Add Image' button and paste the image link, or select the image from your device.",
     "how_embed": "How to insert media?",
     "answer_how_embed": "To insert a media, click the 'Add Media' button and paste the media link.",
-    "answer_how_embed_ps":"when an embed is added, the page can quickly reload which is normal",
+    "answer_how_embed_ps": "when an embed is added, the page can quickly reload which is normal",
     "see_example": "See the example",
     "send": "Send",
     "sketch": "Sketch"
   },
-  "new_textlist" : {
+  "new_textlist": {
     "create_textlist": "Create a new textlist:",
     "edit_textlist": "Edit your textlist:",
     "textlist_msg_posts": "Here is all texts referring to text list"
@@ -77,7 +77,6 @@
     "delete_msg": "Do you want to delete?",
     "delete_msg_text": "ATTENTION, by clicking on delete the content will be permanently deleted from your account.",
     "sketch_msg": "Sketch"
-
   },
   "data": {
     "since": "since",

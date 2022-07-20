@@ -28,7 +28,7 @@ module.exports = {
 
         if (createdUserService[0]) {
           req.flash(
-            "welcome_msg",
+            "succses_msg",
             "succses_msg.welcome"
           );
 
@@ -36,7 +36,7 @@ module.exports = {
           await res.clearCookie("lastPage");
           return res.redirect(lastPage || "/perfil");
         } else {
-          req.flash("hello_again_msg", "succses_msg.hello_again");
+          req.flash("succses_msg", "succses_msg.hello_again");
 
           const lastPage = await req.cookies.lastPage;
           await res.clearCookie("lastPage");

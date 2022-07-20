@@ -59,7 +59,7 @@
     "send": "Enviar",
     "sketch": "Esboço"
   },
-  "new_textlist" : {
+  "new_textlist": {
     "create_textlist": "Crie uma nova textlist:",
     "edit_textlist": "Edite sua textlist:",
     "textlist_msg_posts": "Aqui está todos os textos referentes a textlist"

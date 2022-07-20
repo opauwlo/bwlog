@@ -34,7 +34,7 @@ module.exports = UpadateUserService = {
       if (!expectdedMimeTypes.includes(fileExtension)) {
         return [error =true, "Formato de imagem inválido"];
       }
-      var banner = req.files.banner_img;
+      var banner = files.banner_img;
       await cloudinary.uploader.destroy(user.banner_id);
       let bannerResult = await cloudinary.uploader.upload(banner.tempFilePath, {
         quality: 60,
