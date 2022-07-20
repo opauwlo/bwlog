@@ -6,13 +6,13 @@ require("dotenv").config();
 module.exports = {
   update: {
     index: async (req, res) => {
+      let id = req.id;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         req.flash("error_msg", "Preencha todos os campos corretamente");
         return res.redirect(`/edit/${id}`);
       }
 
-      let id = req.id;
       let { user_name, descricao } = req.body;
       let files = req.files;
       const [error, userImg, user, error_msg] = await UpadateUserService.index(id, user_name, descricao, files);
