@@ -1,9 +1,14 @@
-<link rel="stylesheet" href="../../css/ckeditor.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/markdownEditor.css">
 
 <head>
   <title>{{post.dataValues.titulo}}</title>
+  <script>
+    function addBtn() {
+      document.getElementById("remove").removeAttribute("hidden");
+    }
+  </script>
 </head>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gist-embed@1.0.4/dist/gist-embed.min.js"></script>
 <div class="row">
   <section class="col-12 col-lg-9 mt-4">
     <form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="form" enctype="multipart/form-data"
@@ -13,7 +18,7 @@
         <i class="m-1 p-2 bi bi-image"></i>
       </label>
       <label for="bannerInput" class="m-2 center">
-        <img onload="addBtn()" id="postBannerImg" class="pointer post_cover_img mb-2 border border-secondary"
+        <img onload="addBtn();" id="postBannerImg" class="pointer post_cover_img mb-2 border border-secondary"
           src="{{post.dataValues.banner_img}}">
       </label>
       <input name="bannerInput" id="bannerInput" type="file" accept="image/*" />
@@ -35,9 +40,8 @@
 
       <p id="placeholder" hidden> {{__ "new_history.start_writing"}}</p>
       <div class="mb-4 m-1" style="padding: 0.2rem !important;">
-        <div id="textarea" class="bg border height border-secondary text-light px-4">
-          {{{post.dataValues.conteudo}}}
-        </div>
+        <textarea id="textarea" class="bg border height border-secondary text-light px-4">
+        </textarea>
       </div>
       <input id="conteudo" name="conteudo" type="hidden" />
 
@@ -72,13 +76,14 @@
     {{>_helpPost}}
   </div>
 </div>
-{{> _ckeditorJs}}
-<script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
-<script src="../../js/embed.js"> </script>
+<script async src="../../js/highlight.min.js"></script>
+{{>_markdown}} 
 <script>
-  function setData() {
-    const data = editor.getData();
-    document.getElementById('conteudo').value = data;
+  var simplemde = window.previewRender('{{{post.dataValues.u_id}}}');
+  simplemde.value(`{{{post.dataValues.conteudo}}}`);
+
+  async function setData() {
+   document.getElementById('conteudo').value = await simplemde.value();
   }
 </script>
-<script src="../../js/getBannerPost.js"></script>
+<script defer src="../../js/getBannerPost.js"></script>

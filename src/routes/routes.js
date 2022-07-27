@@ -52,23 +52,6 @@ router.post('/deletar/textlist/:id', verifyJwt, textlistController.delete);
 router.get('/novo/textlist', verifyJwt, textlistController.renderCreate);
 router.get('/edit/textlist/:id', verifyJwt, textlistController.renderUpdate);
 
-// forum router
-const { forumController } = require('../app/controllers/forum/render.forum');
-router.get('/forum/:id/:slug', forumController.renderForum);
-
-// admin router
-const verifyAdminJwt = require('../app/middlewares/verifyAdminJwt');
-const { adminController } = require('../app/controllers/admin/_index');
-router.get('/admin', (req, res) => {
-  return res.json({
-    message: "Admin page",
-    data : "ultra secreto não mande pra ngm por favor.",
-    senha: "123456",
-    user: "user032",
-    hash: 'bmtnzyor6rTnKwM1kohEIeZSb0ANWn/O7qXY350FsuE+A8IDDDH5wGzMz70pn0Y9'
-  });
-});
-
 // 404 router
 const { errorController } = require("../app/controllers/error/render.error");
 router.get("*", errorController.renderError);

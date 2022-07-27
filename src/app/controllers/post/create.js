@@ -13,10 +13,26 @@ module.exports = {
       const { titulo, descricao, conteudo, publicado, textlist } = req.body;
       const user_id = req.id;
       const files = req.files;
-      const ctratePost = await main(
+      const expectdedMimeTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/jpg",
+        "image/webp",
+      ];
+
+      if (files && files.bannerInput) {
+        const fileExtension = files.bannerInput.mimetype;
+        console.log(fileExtension)
+        if (!expectdedMimeTypes.includes(fileExtension)) {
+          req.flash("error_msg", "error_msg.post_not_created");
+          return res.redirect("/novo/post");
+        }
+      }
+      const createPost = await main(
         titulo,
         descricao,
-        conteudo,
+        conteudo, 
         publicado,
         textlist,
         user_id,
@@ -24,9 +40,9 @@ module.exports = {
       );
 
       try {
-        if (ctratePost) {
+        if (createPost) {
           req.flash("succses_msg", "succses_msg.post_created");
-          res.redirect("/perfil");
+          return res.redirect("/perfil");
         } else {
           req.flash("error_msg", "error_msg.post_not_created");
         }

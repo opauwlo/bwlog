@@ -24,7 +24,7 @@ module.exports = PostsCreateService = {
         const fileExtension = files.bannerInput.mimetype;
 
         if (!expectdedMimeTypes.includes(fileExtension)) {
-          return
+          return false;
         }
         var banner_img = files.bannerInput;
         let bannerResult = await cloudinary.uploader.upload(

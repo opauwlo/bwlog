@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../../css/ckeditor.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/markdownEditor.css">
 <head>
     <title>{{__ "new_history.create_history"}}</title>
 </head>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gist-embed@1.0.4/dist/gist-embed.min.js"></script>
 <div class="row">
   <section class="col-12 col-lg-9  mt-4 rounded-3">
     <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data" onsubmit="setData();">
@@ -28,13 +28,10 @@
         <label for="descricao" class="form__label rounded-3">{{__ "new_history.mini_resume"}}</label>
       </div>
         <p id="placeholder" hidden > {{__ "new_history.start_writing"}}</p>
-      <div class="mb-4 m-1" style="padding: 0.2rem !important;">
-        <div id="textarea" class="bg border height border-secondary text-light px-4">
-        </div>
+      <div class="mb-4 m-1 bg" style="padding: 0.2rem !important;">
+        <textarea id="textarea" class="bg border height border-secondary text-light px-4"></textarea>
       </div> 
-      <input id="conteudo" name="conteudo" type="hidden" />
-
- 
+      <input id="conteudo" name="conteudo" type="hidden" /> 
 
       <div class="mb-3 mt-3" style="padding: 0.2rem !important;">
         <label for="textlist" class="form-label text-white" for="textlist">{{__ "new_history.add_textlist"}}: <a class="text-info"
@@ -59,13 +56,13 @@
     {{>_helpPost}} 
   </div>
 </div>
-{{> _ckeditorJs}}
-<script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
-<script src="../../js/embed.js" > </script>
+
+<script async src="../../js/highlight.min.js"></script>
+{{>_markdown}} 
 <script>
-  function setData() {
-    const data = editor.getData();
-    document.getElementById('conteudo').value = data;
+  let simplemde = window.previewRender('newHistory'); 
+  async function setData() {
+   document.getElementById('conteudo').value = await simplemde.value();
   }
 </script>
 <script src="../../js/getBannerPost.js"></script>

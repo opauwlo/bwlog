@@ -1,5 +1,4 @@
 {{> _metaTagsPost}}
-<script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 <link rel="stylesheet" href="../../css/highlight.css">
 <script
   type="text/javascript"
@@ -29,9 +28,9 @@
           </h1>
         </div>
         <hr class="text-white-50 shadow-lg mb-5">
-        <section class="text-white-50 ck-content">
-          <article class="ck-content not-overflow-text" style="font-size: 1.125rem !important;">
-            {{{post.conteudo}}}
+        <section class="text-white-50">
+          <article id="content" class="not-overflow-text" style="font-size: 1.125rem !important;">
+            {{{conteudo}}}
           </article>
         </section>
         <p class="text-secondary mt-2 fst-italic fs-6 text-end">
@@ -122,8 +121,6 @@
     {{/if}}
   </div>
 </div>
-
-<script src="../../js/embed.js" > </script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <script>
