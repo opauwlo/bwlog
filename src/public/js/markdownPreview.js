@@ -45,10 +45,12 @@ function previewRender(uniqueID) {
       }, 250);
       return "Loading...";
     },
+    styleSelectedText: true,
+    tabSize: 2,
+    toolbar: ['bold', 'italic', '|', 'link', 'image', 'code', '|', 'preview', 'fullscreen'],
     lineWrapping: true,
     forceSync: true,
-    placeholder: '...'
-  
+    placeholder: '...',
    });
 
    return simplemde;

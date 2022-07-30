@@ -37,9 +37,7 @@
         <label for="descricao" class="form__label rounded-3">{{__ "new_history.mini_resume"}}</label>
       </div>
 
-
-      <p id="placeholder" hidden> {{__ "new_history.start_writing"}}</p>
-      <div class="mb-4 m-1" style="padding: 0.2rem !important;">
+      <div class="mb-4 m-1 bg" style="padding: 0.2rem !important;">
         <textarea id="textarea" class="bg border height border-secondary text-light px-4">
         </textarea>
       </div>
@@ -80,7 +78,7 @@
 {{>_markdown}} 
 <script>
   var simplemde = window.previewRender('{{{post.dataValues.u_id}}}');
-  simplemde.value(`{{{post.dataValues.conteudo}}}`);
+  simplemde.value(`{{{conteudo}}}`);
 
   async function setData() {
    document.getElementById('conteudo').value = await simplemde.value();

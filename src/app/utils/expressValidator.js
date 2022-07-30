@@ -43,7 +43,7 @@ module.exports = {
         .withMessage("O título deve ter no máximo 40 caracteres"),
       check("descricao", "Por favor, insira uma descrição para o seu post")
         .exists()
-        .isLength({ min: 10 })
+        .isLength({ min: 3 })
         .withMessage("A descrição deve ter no mínimo 10 caracteres")
         .isLength({ max: 155 }) //
         .withMessage("A descrição deve ter no máximo 155 caracteres"),

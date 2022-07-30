@@ -14,16 +14,17 @@ html{
   overflow-x: hidden !important;
 }
 
-body::-webkit-scrollbar {
-width:.2rem
+::-webkit-scrollbar {
+width: .6rem !important;
+height:.6rem !important;
 }
 
-body::-webkit-scrollbar-track {
-background:#313133
+::-webkit-scrollbar-track {
+background:#313133 !important;
 }
 
-body::-webkit-scrollbar-thumb {
-background:#eae9ec
+::-webkit-scrollbar-thumb {
+background:#eae9ec !important;
 }
 
 body,html {

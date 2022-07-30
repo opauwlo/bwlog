@@ -23,7 +23,6 @@ module.exports = {
 
       if (files && files.bannerInput) {
         const fileExtension = files.bannerInput.mimetype;
-        console.log(fileExtension)
         if (!expectdedMimeTypes.includes(fileExtension)) {
           req.flash("error_msg", "error_msg.post_not_created");
           return res.redirect("/novo/post");

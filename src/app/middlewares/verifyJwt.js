@@ -10,7 +10,7 @@ async function verifyJwt(req, res, next) {
   try {
     jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
       if (err) {
-        console.log('asdadadd');
+        return res.redirect('/login');
       }
       req.id = data.id;
       req.user_name = data.nickname;

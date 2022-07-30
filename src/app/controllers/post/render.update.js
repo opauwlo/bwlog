@@ -23,8 +23,11 @@ module.exports = {
           );
           textlist = await Textlists.getTextlistFromEditPage(textlistPost.id);
         }
+        let conteudo = postsEdit.conteudo;
+        conteudo = conteudo.replace(/`/g, "\\`");
         res.render("pages/post/postEdit", {
           post: postsEdit,
+          conteudo,
           user: postsEdit.user,
           textlist,
           textlistPost,
