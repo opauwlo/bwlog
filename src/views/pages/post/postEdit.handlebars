@@ -11,8 +11,7 @@
 </head>
 <div class="row">
   <section class="col-12 col-lg-9 mt-4">
-    <form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="form" enctype="multipart/form-data"
-      onsubmit="setData();">
+    <form action="/update/{{post.dataValues.u_id}}" method="POST" class="p-3" id="form" enctype="multipart/form-data">
       <h4 class="text-white text-card mb-4 p-2"> <strong>{{__ "new_history.edit_history"}}</strong></h4>
       <label for="bannerInput" class="pointer center bg m-2 mb-2 text-white">{{__ "new_history.banner_img"}}
         <i class="m-1 p-2 bi bi-image"></i>
@@ -38,8 +37,7 @@
       </div>
 
       <div class="mb-4 m-1 bg" style="padding: 0.2rem !important;">
-        <textarea id="textarea" class="bg border height border-secondary text-light px-4">
-        </textarea>
+        <textarea id="textarea" class="bg border height border-secondary text-light px-4">{{{conteudo}}}</textarea>
       </div>
       <input id="conteudo" name="conteudo" type="hidden" />
 
@@ -77,11 +75,10 @@
 <script async src="../../js/highlight.min.js"></script>
 {{>_markdown}} 
 <script>
-  var simplemde = window.previewRender('{{{post.dataValues.u_id}}}');
-  simplemde.value(`{{{conteudo}}}`);
-
-  async function setData() {
-   document.getElementById('conteudo').value = await simplemde.value();
-  }
+  let simplemde = window.previewRender('{{{post.dataValues.u_id}}}');
+  simplemde.codemirror.on("change", () => {
+    let value = simplemde.value();
+    document.getElementById("conteudo").value = value;
+  });
 </script>
 <script defer src="../../js/getBannerPost.js"></script>

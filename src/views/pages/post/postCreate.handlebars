@@ -5,7 +5,7 @@
 </head>
 <div class="row">
   <section class="col-12 col-lg-9  mt-4 rounded-3">
-    <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data" onsubmit="setData();">
+    <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data">
     <h4 class="text-white text-card mb-4 p-2"> <strong>{{__ "new_history.create_history"}}</strong></h4>
       <label for="bannerInput" class="center pointer bg mx-2 text-white">{{__ "new_history.banner_img"}}
         <i class="m-1 p-2 bi bi-image"></i>
@@ -60,9 +60,10 @@
 <script async src="../../js/highlight.min.js"></script>
 {{>_markdown}} 
 <script>
-  let simplemde = window.previewRender('newHistory'); 
-  async function setData() {
-   document.getElementById('conteudo').value = await simplemde.value();
-  }
+  let simplemde = window.previewRender('newHistory');   
+  simplemde.codemirror.on("change", () => {
+    let value = simplemde.value();
+    document.getElementById("conteudo").value = value;
+  });
 </script>
 <script src="../../js/getBannerPost.js"></script>
