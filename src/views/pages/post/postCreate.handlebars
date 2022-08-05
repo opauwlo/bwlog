@@ -1,11 +1,12 @@
-<link rel="stylesheet" href="../../css/highlight.css">
-<link rel="stylesheet" href="../../css/markdownEditor.css">
+
+{{> _markdownCss}}
+
 <head>
-    <title>{{__ "new_history.create_history"}}</title>
+  <title>{{__ "new_history.create_history"}}</title>
 </head>
 <div class="row">
   <section class="col-12 col-lg-9  mt-4 rounded-3">
-    <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data">
+    <form action="/add" method="POST" class="p-1" id="form" enctype="multipart/form-data"  onsubmit="setContent();">
     <h4 class="text-white text-card mb-4 p-2"> <strong>{{__ "new_history.create_history"}}</strong></h4>
       <label for="bannerInput" class="center pointer bg mx-2 text-white">{{__ "new_history.banner_img"}}
         <i class="m-1 p-2 bi bi-image"></i>
@@ -27,9 +28,8 @@
           autocomplete="off" placeholder=" " required>
         <label for="descricao" class="form__label rounded-3">{{__ "new_history.mini_resume"}}</label>
       </div>
-        <p id="placeholder" hidden > {{__ "new_history.start_writing"}}</p>
-      <div class="mb-4 m-1 bg" style="padding: 0.2rem !important;">
-        <textarea id="textarea" class="bg border height border-secondary text-light px-4"></textarea>
+      <div class="mb-4 m-1" style="padding: 0.2rem !important;">
+        <div id="editor"></div>
       </div> 
       <input id="conteudo" name="conteudo" type="hidden" /> 
 
@@ -57,13 +57,11 @@
   </div>
 </div>
 
-<script async src="../../js/highlight.min.js"></script>
-{{>_markdown}} 
+{{>_markdownJs}}  
 <script>
-  let simplemde = window.previewRender('newHistory');   
-  simplemde.codemirror.on("change", () => {
-    let value = simplemde.value();
-    document.getElementById("conteudo").value = value;
-  });
+  let editor = window.previewRender(`...`);
+  async function setContent() {
+    document.getElementById("conteudo").value = await editor.getMarkdown();
+  }
 </script>
 <script src="../../js/getBannerPost.js"></script>
