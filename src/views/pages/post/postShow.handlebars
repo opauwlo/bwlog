@@ -1,9 +1,6 @@
 {{> _metaTagsPost}}
-<link rel="stylesheet" href="../../css/highlight.css">
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/gist-embed@1.0.4/dist/gist-embed.min.js"
-></script>
+{{> _markdownCss}}
+
 <div class="row">
   <div class="col-12 col-lg-9 mt-4">
     <div class="bg rounded-3 mt-1 mb-3 p-1 m-1">
@@ -29,8 +26,9 @@
         </div>
         <hr class="text-white-50 shadow-lg mb-5">
         <section class="text-white-50">
-          <article id="content" class="not-overflow-text" style="font-size: 1.125rem !important;">
-            {{{conteudo}}}
+          <article id="content" class="not-overflow-text" >
+            <div id="viewer" style="font-size: 1.125rem !important;">
+            </div>
           </article>
         </section>
         <p class="text-secondary mt-2 fst-italic fs-6 text-end">
@@ -71,23 +69,26 @@
   </div>
   <div class="col-12 col-lg-3 position-fixed end-0 mt-2 mr-5 display-mobile hidden-margin">
     <section class="mb-1 center-no-height hidden-mobile center-no-height">
-      <div class="a2a_kit a2a_kit_size_32 a2a_default_style rounded-3 p-1 bg" data-a2a-url="https://www.bwlog.dev/post/{{post.slug}}"
-        data-a2a-title="{{post.titulo}}" style="justify-content: space-between !important;">
-          <a class="a2a_button_copy_link"></a>
-          <a class="a2a_button_twitter"></a>
-          <a class="a2a_button_linkedin"></a>
-          <a class="a2a_button_reddit"></a>
-          <a class="a2a_button_facebook"></a>
-          <a class="a2a_button_telegram"></a>
-          <a class="a2a_button_whatsapp"></a>
+      <div class="a2a_kit a2a_kit_size_32 a2a_default_style rounded-3 p-1 bg"
+        data-a2a-url="https://www.bwlog.dev/post/{{post.slug}}" data-a2a-title="{{post.titulo}}"
+        style="justify-content: space-between !important;">
+        <a class="a2a_button_copy_link"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_linkedin"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_telegram"></a>
+        <a class="a2a_button_whatsapp"></a>
       </div>
     </section>
     <div class="card bg rounded-3 mb-2 mx-1">
       <img src="{{post.user.banner}}" class="profile_cover_img card-img-top" alt="..." height="110px">
-      <img src="{{post.user.profile}}" class="rounded-3 my-5 mx-2 position-absolute" style="object-fit: cover;" alt="..." width="80" height="80">
+      <img src="{{post.user.profile}}" class="rounded-3 my-5 mx-2 position-absolute" style="object-fit: cover;"
+        alt="..." width="80" height="80">
       <div class="card-body my-4 text-white" style="margin-bottom: 0 !important;">
         <div class="d-grid gap-1 mb-3">
-          <a href="/autor/{{post.user.id}}/{{post.user.user_name}}" class="btn btn-light border-secondary  fw-bold">{{__ "post_show.see_profile"}}</a>
+          <a href="/autor/{{post.user.id}}/{{post.user.user_name}}" class="btn btn-light border-secondary  fw-bold">{{__
+            "post_show.see_profile"}}</a>
         </div>
         <h5 class="card-title mb-2 text-titulo">
           <a class="text-white" href="/autor/{{post.user.id}}/{{post.user.user_name}}">
@@ -96,14 +97,15 @@
         </h5>
         <p class="card-text text-resume">{{post.user.descricao}}</p>
         <span class="text-white-50 small float-end end">
-         {{__ "data.since"}} {{#formatDateTime post.user.createdAt}}
-          
-         {{/formatDateTime}}
-          </span>
+          {{__ "data.since"}} {{#formatDateTime post.user.createdAt}}
+
+          {{/formatDateTime}}
+        </span>
       </div>
     </div>
     {{#if recommendations}}
-    <h4 class="text-white text-center"> <strong class="text-white-50">{{__ "post_show.may_be_interested"}}:</strong></h4>
+    <h4 class="text-white text-center"> <strong class="text-white-50">{{__ "post_show.may_be_interested"}}:</strong>
+    </h4>
     {{#each recommendations}}
     <a class="rounded-3 post" href="/post/{{slug}}">
       <div class="card my-2 mx-1">
@@ -121,9 +123,9 @@
     {{/if}}
   </div>
 </div>
+{{>_markdownJs}}
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <script>
-  hljs.highlightAll();
+  let editor = window.renderPost(`{{{conteudo}}}`);
 </script>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
