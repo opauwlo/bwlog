@@ -8,7 +8,7 @@ module.exports = {
         const post = await Posts.getPostFromPrivateRead(req.params.slug);
         var haveTextlist = false;
         const verifyTextlist = post.textlist_post_owner;
-        const conteudo = post.conteudo;
+        const conteudo = post.conteudo.replace(/`/g, "\\`");
 
         if (verifyTextlist) {
           var textlist = await Textlists.getOneTextlist(post.textlist_post_owner);
