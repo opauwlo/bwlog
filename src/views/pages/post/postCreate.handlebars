@@ -59,7 +59,7 @@
 
 {{>_markdownJs}}  
 <script>
-  let editor = window.previewRender(`...`);
+  let editor = window.previewRender('', 'newHistory');
   async function setContent() {
     document.getElementById("conteudo").value = await editor.getMarkdown();
   }

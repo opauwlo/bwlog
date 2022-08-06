@@ -763,13 +763,17 @@ ol {
   border-radius: 3px;
 }
 
-.show {
-  opacity: 1;
-}
 #text2 {
   opacity: 1  !important;
   cursor: context-menu !important;
   pointer-events:  visible  !important;
+}
+#text2 ul {
+  display: none;
+}
+.show {
+  display: block !important;
+  opacity: 1;
 }
 .lock-body {
   -webkit-user-select: none ;
@@ -779,4 +783,7 @@ ol {
   opacity: 0.9;
   cursor: not-allowed ;
   pointer-events: none ;
+}
+.toastui-editor-dark .toastui-editor-mode-switch {
+  display: none !important;
 }
