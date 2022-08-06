@@ -27,7 +27,7 @@
   "post_show": {
     "see_profile": "See Profile",
     "may_be_interested": "May be you like",
-    "is_textlist": "This story is in the textlist",
+    "is_textlist": "This history is in the textlist",
     "read_more": "Read more",
     "published_in": "published in",
     "post_edited": "this history was edited"
@@ -40,8 +40,8 @@
     "forum_title": "Text forum"
   },
   "new_history": {
-    "create_history": "Create a new story:",
-    "edit_history": "Edit your story:",
+    "create_history": "Create a new history:",
+    "edit_history": "Edit your history:",
     "start_writing": "Start writing!",
     "banner_img": "Cover image",
     "remove_banner": "Remove image",
@@ -50,12 +50,9 @@
     "add_textlist": "Add textlist",
     "create_textlist": "Create a textlist",
     "without_textlist": "No textlist",
-    "how_add_img": "How to add images?",
-    "answer_how_add_img": "To add an image, click the 'Add Image' button and paste the image link, or select the image from your device.",
-    "how_embed": "How to insert media?",
-    "answer_how_embed": "To insert a media, click the 'Add Media' button and paste the media link.",
-    "answer_how_embed_ps": "when an embed is added, the page can quickly reload which is normal",
-    "see_example": "See the example",
+    "how_use_md": "How to write using markdown?",
+    "answer_how_use_md": "You can use markdown to write your history. You can use the following syntax: <pre class='text-light'><code>(n of #) Heading = Heading (n)</code></pre> <pre class='text-light'><code>*italic*</code></pre> <pre class='text-light'><code>**bold**</code></pre>  <pre class='text-light'><code>`code`</code></pre> <pre class='text-light'><code>```code block```</code></pre> <pre class='text-light'><code>[link](url)</code></pre> <pre class='text-light'><code>![title for image](url)</code></pre>",
+    "see_example": "Official markdown documentation",
     "send": "Send",
     "sketch": "Sketch"
   },

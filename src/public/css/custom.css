@@ -784,3 +784,6 @@ ol {
   cursor: not-allowed ;
   pointer-events: none ;
 }
+.toastui-editor-dark .toastui-editor-mode-switch {
+  display: none !important;
+}

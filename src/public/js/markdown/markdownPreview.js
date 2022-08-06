@@ -1,4 +1,4 @@
-function previewRender(conteudo) {
+function previewRender(conteudo, id) {
   const Editor = toastui.Editor;
   const { chart } = Editor.plugin;
   const { codeSyntaxHighlight } = Editor.plugin;
@@ -7,12 +7,19 @@ function previewRender(conteudo) {
 
   const editor = new Editor({
     el: document.querySelector('#editor'),
-    height: '500px',
-    initialEditType: 'wysiwyg',
+    height: '400px',
+    initialEditType: 'markdown',
     previewStyle: 'tab',
-    theme: 'dark',
-    initialValue: conteudo,
+    theme: 'dark', 
+    initialValue: getMarkdown(id) || conteudo  || '',
+    placeholder: '...',
+    toolbarItems: [],
     plugins: [chart, codeSyntaxHighlight, tableMergedCell, uml],
+    events: {
+      change: (e) => {
+        saveMarkdown(editor, id);
+      }
+    }
   });
   return editor;
 }
@@ -27,11 +34,22 @@ function renderPost(conteudo) {
 
   const editor = toastui.Editor.factory({
     el: document.querySelector('#viewer'),
-    height: '500px',
+    height: '450px',
     theme: 'dark',
     viewer: true,
     initialValue: conteudo,
     plugins: [chart, codeSyntaxHighlight, tableMergedCell, uml],
   });
   return editor;
+}
+
+
+function saveMarkdown(editor, id) {
+  const markdown = editor.getMarkdown();
+  localStorage.setItem(id, markdown);
+}
+
+function getMarkdown(id) {
+  const markdown = localStorage.getItem(id);
+  return markdown;
 }
