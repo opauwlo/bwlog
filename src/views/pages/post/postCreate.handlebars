@@ -59,7 +59,13 @@
 
 {{>_markdownJs}}  
 <script>
-  let editor = window.previewRender('', 'newHistory');
+  let editor = window.editorRender('', 'newHistory');
+  let returnFields = window.renderFields('newHistoryFields', '' ,'');
+  returnFields.renderSummary();
+  returnFields.renderTitle();
+  returnFields.saveTitle();
+  returnFields.saveSummary();
+
   async function setContent() {
     document.getElementById("conteudo").value = await editor.getMarkdown();
   }

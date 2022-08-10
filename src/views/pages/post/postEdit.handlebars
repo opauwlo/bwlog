@@ -17,21 +17,20 @@
       </label>
       <label for="bannerInput" class="m-2 center">
         <img onload="addBtn();" id="postBannerImg" class="pointer post_cover_img mb-2 border border-secondary"
-          src="{{post.dataValues.banner_img}}">
+          src="">
       </label>
       <input name="bannerInput" id="bannerInput" type="file" accept="image/*" />
       <button hidden id="remove" onclick="resetInput()" type="button"
         class="pointer btn center m-2 mb-4 bg text-danger">{{__ "new_history.remove_banner"}}</button>
 
       <div class="form mb-3 p-2 my-3 mx-auto rounded-3 bg">
-        <input type="text" id="titulo" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="80"
-          placeholder=" " value="{{post.dataValues.titulo}}" required>
+        <input type="text" id="titulo" name="titulo" class="rounded-3 form__input" autocomplete="off" maxlength="80" placeholder=" " value="" required onchange="">
         <label for="titulo" class="form__label rounded-3">{{__ "new_history.title"}}</label>
       </div>
 
       <div class="form mb-3 p-2 mx-auto">
         <input type="text" id="descricao" name="descricao" class="form__input bg rounded-3" maxlength="60"
-          autocomplete="off" placeholder=" " value="{{post.dataValues.descricao}}" required>
+          autocomplete="off" placeholder=" " value="" required>
         <label for="descricao" class="form__label rounded-3">{{__ "new_history.mini_resume"}}</label>
       </div>
 
@@ -74,7 +73,13 @@
 </div>
 {{>_markdownJs}}
 <script>
-  let editor = window.previewRender(`{{{conteudo}}}`, '{{post.dataValues.u_id}}');
+  let editor = window.editorRender(`{{{conteudo}}}`, '{{post.dataValues.u_id}}');
+  let returnFields = window.renderFields('{{post.dataValues.u_id}}', '{{post.dataValues.descricao}}' ,'{{post.dataValues.titulo}}');
+  returnFields.renderSummary();
+  returnFields.renderTitle();
+  returnFields.saveTitle();
+  returnFields.saveSummary();
+
   async function setContent() {
     document.getElementById("conteudo").value = await editor.getMarkdown();
   }
