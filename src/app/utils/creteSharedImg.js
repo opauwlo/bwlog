@@ -1,7 +1,5 @@
-const { Canvas, resolveImage, FontLibrary} = require("canvas-constructor/skia");
-const { fillTextWithTwemoji, measureText } = require('skia-canvas-twemoji');
-
-FontLibrary.use("Nerd", ["./src/app/utils/fonts/NerdFont.ttf"]);
+const { Canvas, resolveImage} = require("canvas-constructor/skia");
+const { fillTextWithTwemoji } = require('skia-canvas-twemoji');
 
 async function createImg(str, imgProfile, nameProfile) {
 
