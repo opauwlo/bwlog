@@ -20,6 +20,7 @@ module.exports = {
           process.env.JWT_SECRET,
           { expiresIn: "24h" }
         );
+        await res.clearCookie("session-token");
         await res.cookie("access_token", token, {
           httpOnly: true,
           sameSite: true,
@@ -42,7 +43,9 @@ module.exports = {
           await res.clearCookie("lastPage");
           return res.redirect(lastPage || "/perfil");
         }
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };

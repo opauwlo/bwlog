@@ -36,6 +36,8 @@ module.exports = UserServiceCreate = {
         await cloudinary.uploader.destroy(banner_id);
         return [false, user];
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   },
 };

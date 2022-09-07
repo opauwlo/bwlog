@@ -28,18 +28,20 @@ module.exports = {
         }
         verify()
           .then(() => {
-            res.cookie("session-token", token, {
+            // clean session-token cookie
+            await res.clearCookie("session-token");
+            await res.cookie("session-token", token, {
               httpOnly: true,
               overwrite: true,
             });
-            res.redirect("auth/create");
+            return res.redirect("auth/create");
           })
           .catch((e) => {
             console.log(e);
           });
       } catch (e) {
         console.log(e);
-        res.redirect('/login')
+        return res.redirect('/login')
       }
     },
 

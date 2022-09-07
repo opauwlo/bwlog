@@ -50,12 +50,51 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@types/body-parser@*":
+  version "1.19.2"
+  resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.19.2.tgz#aea2059e28b7658639081347ac4fab3de166e6f0"
+  integrity sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==
+  dependencies:
+    "@types/connect" "*"
+    "@types/node" "*"
+
+"@types/connect@*":
+  version "3.4.35"
+  resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.35.tgz#5fcf6ae445e4021d1fc2219a4873cc73a3bb2ad1"
+  integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/debug@^4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.7.tgz#7cc0ea761509124709b8b2d1090d8f6c17aadb82"
   integrity sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==
   dependencies:
     "@types/ms" "*"
+
+"@types/express-serve-static-core@^4.17.18":
+  version "4.17.30"
+  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.30.tgz#0f2f99617fa8f9696170c46152ccf7500b34ac04"
+  integrity sha512-gstzbTWro2/nFed1WXtf+TtrpwxH7Ggs4RLYTLbeVgIkUQOI3WG/JKjgeOU1zXDvezllupjrf8OPIdvTbIaVOQ==
+  dependencies:
+    "@types/node" "*"
+    "@types/qs" "*"
+    "@types/range-parser" "*"
+
+"@types/express@^4.17.13":
+  version "4.17.13"
+  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.13.tgz#a76e2995728999bab51a33fabce1d705a3709034"
+  integrity sha512-6bSZTPaTIACxn48l50SR+axgrqm6qXFIxrdAKaG6PaJk3+zuUr35hBlgT7vOmJcum+OEaIBLtHV/qloEAFITeA==
+  dependencies:
+    "@types/body-parser" "*"
+    "@types/express-serve-static-core" "^4.17.18"
+    "@types/qs" "*"
+    "@types/serve-static" "*"
+
+"@types/mime@*":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
+  integrity sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==
 
 "@types/ms@*":
   version "0.7.31"
@@ -67,10 +106,45 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.2.tgz#ffc5f0f099d27887c8d9067b54e55090fcd54126"
   integrity sha512-KcfkBq9H4PI6Vpu5B/KoPeuVDAbmi+2mDBqGPGUgoL7yXQtcWGu2vJWmmRkneWK3Rh0nIAX192Aa87AqKHYChQ==
 
+"@types/qs@*":
+  version "6.9.7"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.7.tgz#63bb7d067db107cc1e457c303bc25d511febf6cb"
+  integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
+
+"@types/range-parser@*":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
+  integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
+
+"@types/serve-static@*":
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.15.0.tgz#c7930ff61afb334e121a9da780aac0d9b8f34155"
+  integrity sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==
+  dependencies:
+    "@types/mime" "*"
+    "@types/node" "*"
+
 "@types/validator@^13.7.1":
   version "13.7.4"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.7.4.tgz#33cc949ee87dd47c63e35ba4ad94f6888852be04"
   integrity sha512-uAaSWegu2lymY18l+s5nmcXu3sFeeTOl1zhSGoYzcr6T3wz1M+3OcW4UjfPhIhHGd13tIMRDsEpR+d8w/MexwQ==
+
+"@types/ws@8.5.3":
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.5.3.tgz#7d25a1ffbecd3c4f2d35068d0b283c037003274d"
+  integrity sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==
+  dependencies:
+    "@types/node" "*"
+
+"@wll8/express-ws@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wll8/express-ws/-/express-ws-1.0.3.tgz#7bd1907fb9cec89f6a4334c2a7bc0090b782f4b3"
+  integrity sha512-/uvYTpPMUizsXeaMjvWkLyG3Zlib+IPcrOzMBm0+DV8I0Qu+YZKxDGnecJJqQ7N4dN4ifEjMTCyLe36eZcH9OQ==
+  dependencies:
+    "@types/express" "^4.17.13"
+    "@types/ws" "8.5.3"
+    path-to-regexp "0.1.7"
+    ws "7.5.5"
 
 abbrev@1:
   version "1.1.1"
@@ -2588,6 +2662,11 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
+
+ws@7.5.5:
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
+  integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
 
 xregexp@2.0.0:
   version "2.0.0"

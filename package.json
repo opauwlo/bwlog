@@ -10,6 +10,7 @@
     "start:dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "@wll8/express-ws": "^1.0.3",
     "body-parser": "^1.19.0",
     "canvas": "^2.9.0",
     "canvas-constructor": "^5.0.2",
