@@ -1,7 +1,10 @@
 require('dotenv').config();
 
 module.exports = {
-  dialect: 'mysql',
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: true
+  },
   charset: 'utf8mb4',
   collate: 'utf8mb4_bin',
   username: process.env.MYSQLUSER,
