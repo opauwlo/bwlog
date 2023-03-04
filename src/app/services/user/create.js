@@ -5,13 +5,21 @@ require("dotenv").config();
 
 module.exports = UserServiceCreate = {
   main: async (userInfo) => {
-    let resultProfile = await cloudinary.uploader.upload(userInfo.picture, {});
+    cloudinary.image("woman.jpg", {gravity: "face", height: 150, width: 150, crop: "thumb"})
+    let resultProfile = await cloudinary.uploader.upload(userInfo.picture, {
+      gravity: "face",
+      height: 110,
+      width: 110,
+      crop: "thumb",
+      quality: 80,
+      fetch_format: "auto",
+    });
     let profile = resultProfile.secure_url;
     let profile_id = resultProfile.public_id;
     let resultBanner = await cloudinary.uploader.upload(
       "https://i.ibb.co/D5K1PGm/city-7049028-1920-min.jpg",
       {
-        quality: 60,
+        quality: 40,
         fetch_format: "auto",
       }
     );

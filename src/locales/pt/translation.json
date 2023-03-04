@@ -102,5 +102,9 @@
     "textlist_not_edited": "Houve um erro, textlist não editada!",
     "textlist_not_deleted": "Houve um erro, textlist não deletada!",
     "profile_not_edited": "Houve um erro, perfil não editado!"
+  },
+  "auth": {
+    "login_card_title": "É só cilcar, escolher seu email favorito e pronto :)",
+    "login_card_text": "Nós não usamos seus dados sensíveis. Nós apenas usamos seu email para identificá-lo"
   }
 }

@@ -7,12 +7,11 @@ function editorRender(content, id) {
 
   const editor = new Editor({
     el: document.querySelector('#editor'),
-    height: '400px',
+    height: '500px',
     initialEditType: 'markdown',
     previewStyle: 'tab',
     theme: 'dark', 
     initialValue: getMarkdown(id) || content  || '',
-    placeholder: '...',
     toolbarItems: [],
     plugins: [chart, codeSyntaxHighlight, tableMergedCell, uml],
     events: {
@@ -33,7 +32,7 @@ function renderPost(content) {
 
   const editor = toastui.Editor.factory({
     el: document.querySelector('#viewer'),
-    height: '450px',
+    height: '500px',
     theme: 'dark',
     viewer: true,
     initialValue: content,

@@ -14,7 +14,6 @@ async function createImg(str, imgProfile, nameProfile) {
   image.setTextFont("bold 52px Nerd")
   image.setTextAlign("center")
   image.printCircularImage(imgProfile, 131, 550, 57, 57)
-  // image.printWrappedText(str, 640, 340, 1020, 35)
   async function breakStr() {
     let words = str.split(" ");
     let line = "";

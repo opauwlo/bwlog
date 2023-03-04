@@ -23,7 +23,14 @@ module.exports = UpadateUserService = {
       await cloudinary.uploader.destroy(user.profile_id);
       var profileResult = await cloudinary.uploader.upload(
         profile.tempFilePath,
-        { quality: 80, fetch_format: "auto" }
+        {
+          gravity: "face",
+          width: 110,
+          height: 110,
+          crop: "thumb",
+          fetch_format: "auto",
+          quality: 80,
+        }
       );
       profile = profileResult.secure_url;
       var profile_id = profileResult.public_id;
@@ -37,7 +44,7 @@ module.exports = UpadateUserService = {
       var banner = files.banner_img;
       await cloudinary.uploader.destroy(user.banner_id);
       let bannerResult = await cloudinary.uploader.upload(banner.tempFilePath, {
-        quality: 60,
+        quality: 40,
         fetch_format: "auto",
       });
       banner = bannerResult.secure_url;

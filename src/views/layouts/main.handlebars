@@ -15,7 +15,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
   <meta lang="{{_locale}}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-  <script src="../../js/i18next.js" async defer></script>
+  <script src="../../js/i18next.js" type="text/javascript" defer></script>
+  <!-- Load Babel -->
+  <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body class="bg-dark mt-3 container">
@@ -36,9 +39,9 @@
             <a class="nav-link mx-5 text-white-50 fs-5" href="/perfil">🧑🏾‍💻 {{__ "menu.profile"}}</a>
             <a class="nav-link mx-5 text-white-50 fs-5" href="/novo/post">📝 {{__ "menu.new_history"}}</a>
             <a class="nav-link mx-5 text-white-50 fs-5" href="/novo/textlist">📎 {{__ "menu.new_textlist"}}</a>
-            <a class="nav-link mx-5 text-white-50 fs-5" href="#" onclick="copyToClipboard('{{__ "menu.pix_text"}}', '{{__ "menu.paypal_text"}}' , '{{__ "menu.ok_text"}}' );">💸 {{__ "menu.sponser"}}</a>
+            <a class="nav-link mx-5 text-white-50 fs-5" href="" onclick="copyToClipboard('{{__ "menu.pix_text"}}', '{{__ "menu.paypal_text"}}' , '{{__ "menu.ok_text"}}' );">💸 {{__ "menu.sponser"}}</a>
             <a class="nav-link mx-5 text-white-50 fs-5 d-flex" href="#">
-              <select class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
+              <select id="lang-selector-md" class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
                 aria-label="Default select example" style="margin-top: 0px; width: auto;">
                 <option class="lang-pt" value="pt">{{__ "menu.language_pt"}}</option>
                 <option class="lang-en" value="en">{{__ "menu.language_en"}}</option>
@@ -67,10 +70,11 @@
               <a class="nav-link text-white" href="/novo/textlist">📎 {{__ "menu.new_textlist"}}</a>
               <a class="nav-link text-white" href="#" onclick="copyToClipboard('{{__ "menu.pix_text"}}', '{{__ "menu.paypal_text"}}' , '{{__ "menu.ok_text"}}' );">💸 {{__ "menu.sponser"}}</a>
               <a class="ml-1" href="#">
-                <select class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
+                <select id="lang-selector-lg" class="lang-selector form-select-lang rounded-3 p-2 bg border border-dark text-light"
                   aria-label="Default select example" style="margin-top: 2px; width: auto;">
                   <option class="lang-pt" value="pt">{{__ "menu.language_pt"}}</option>
                   <option class="lang-en" value="en">{{__ "menu.language_en"}}</option>
+
                 </select>
               </a>
             </div>

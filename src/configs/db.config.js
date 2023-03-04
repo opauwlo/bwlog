@@ -3,16 +3,16 @@ require('dotenv').config();
 module.exports = {
   dialect: 'postgres',
   dialectOptions: {
-    ssl: true
+    ssl: process.env.POSTGRES_SSL,
   },
   charset: 'utf8mb4',
   collate: 'utf8mb4_bin',
-  username: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
   logging: false,
-  host: process.env.MYSQLHOST,
-  port: process.env.MYSQLPORT,
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
   define: {
     timestamps: true,
     underscored: true,

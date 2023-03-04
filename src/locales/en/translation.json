@@ -102,5 +102,9 @@
     "textlist_not_edited": "Error editing textlist",
     "textlist_not_deleted": "Error deleting textlist",
     "profile_not_edited": "Error editing profile"
+  },
+  "auth": {
+    "login_card_title": "Just click, choose your favorite email and ready :)",
+    "login_card_text": "We do not use your sensitive data. We only use your email to identify you."
   }
 }

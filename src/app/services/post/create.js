@@ -51,7 +51,7 @@ module.exports = PostsCreateService = {
       try {
         await del(dir);
         const success = await Posts.createPost(
-          getTitleCase(titulo),
+          titulo,
           banner_img,
           banner_id,
           shared_img,

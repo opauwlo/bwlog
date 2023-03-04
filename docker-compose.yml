@@ -1,25 +1,27 @@
 version: '3'
 
 services:
-  mysqlsrv:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: "senha"
-      MYSQL_DATABASE: "dbsql"
+
+  pgsqldb:
+    image: postgres
     ports:
-      - "3306:3306"
-    volumes:
-      - /var/lib/mysql
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: pgsqldb
+      POSTGRES_PORT: 5432
     networks:
-      - mysql-compose-network
+      - pgsqldb-compose-network
 
   adminer:
     image: adminer
     ports:
       - 8080:8080
     networks:
-      - mysql-compose-network
+      - pgsqldb-compose-network
 
-networks: 
-  mysql-compose-network:
+networks:
+  pgsqldb-compose-network:
     driver: bridge

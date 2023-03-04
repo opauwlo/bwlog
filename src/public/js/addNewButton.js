@@ -13,9 +13,15 @@ document.getElementById('plus-btn').addEventListener('click', function (e) {
 });
 
 document.addEventListener('click', function (e) {
-  if (e.path[0].classList.value !== 'bi bi-plus-lg') {
-                document.body.classList.remove('lock-body');
-    document.getElementById('options').classList.remove('show');
-    document.getElementById('options').classList.remove('fade-in-btn');
-  }
+  closeOptions(e);
 });
+
+function closeOptions(e) {
+  if (e.path && e.path[0].classList && e.path[0].classList.value) {
+    if (e.path[0].classList.value !== 'bi bi-plus-lg') {
+      document.body.classList.remove('lock-body');
+      document.getElementById('options').classList.remove('show');
+      document.getElementById('options').classList.remove('fade-in-btn');
+    }
+  }
+}
