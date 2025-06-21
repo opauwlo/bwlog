@@ -3,7 +3,7 @@
   "description": "A simple bwlog for writing",
   "private": false,
   "engines": {
-    "node": "18"
+    "node": "22"
   },
   "scripts": {
     "start": "node src/server.js",
