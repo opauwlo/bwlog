@@ -7,7 +7,7 @@ const cache = require("../utils/cache");
 
 module.exports = {
   Posts: {
-    createPost: async (titulo, banner_img, banner_id, shared_img, shared_id, descricao, conteudo, publicado, textlist, user_id ) => {
+    createPost: async (titulo, banner_img, banner_id, descricao, conteudo, publicado, textlist, user_id ) => {
       let success = null;
 
       let u_id = random();
@@ -30,8 +30,6 @@ module.exports = {
         user_id: user_id,
         banner_img: banner_img,
         banner_id: banner_id,
-        shared_img: shared_img,
-        shared_id: shared_id,
       })
         .then(() => {
           success = true;
@@ -44,7 +42,7 @@ module.exports = {
       return success;
     },
 
-    updatePost: async (titulo, banner_img, banner_id, shared_img, shared_id, descricao, conteudo, publicado, textlist, u_id ) => {
+    updatePost: async (titulo, banner_img, banner_id, descricao, conteudo, publicado, textlist, u_id ) => {
       let success = null;
       if (textlist == "NULL") {
         let textlist_null = null;
@@ -63,8 +61,6 @@ module.exports = {
           textlist_post_owner: textlist,
           banner_img: banner_img,
           banner_id: banner_id,
-          shared_img: shared_img,
-          shared_id: shared_id,
         },
         {
           where: {

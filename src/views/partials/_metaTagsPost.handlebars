@@ -14,7 +14,6 @@
   {{#if post.banner_img}}
   <meta property="og:image:secure_url" content="{{resetImg post.banner_img}}">
   {{else}}
-  <meta property="og:image:secure_url" content="{{post.shared_img}}">
   {{/if}}
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
@@ -24,14 +23,12 @@
   {{#if post.banner_img}}
   <meta property="twitter:image" content="{{{resetImg post.banner_img}}}">
   {{else}}
-  <meta property="twitter:image" content="{{post.shared_img}}">
   {{/if}}
   <!-- MS, fb & Whatsapp -->
   <!-- MS Tile - for Microsoft apps-->
   {{#if post.banner_img}}
   <meta name="msapplication-TileImage" content="{{post.banner_img}}">
   {{else}}
-  <meta name="msapplication-TileImage" content="{{post.shared_img}}">
   {{/if}}
   <!-- fb & Whatsapp -->
   <!-- Site Name, Title, and Description to be displayed -->
@@ -42,13 +39,11 @@
   {{#if post.banner_img}}
   <link itemprop="thumbnailUrl" href="{{{resetImg post.banner_img}}}">
   {{else}}
-  <link itemprop="thumbnailUrl" href="{{post.shared_img}}">
   {{/if}}
 </head>
 <span itemprop="image" itemscope itemtype="image/jpeg">
   {{#if post.banner_img}}
   <link itemprop="url" href="{{{resetImg post.banner_img}}}">
   {{else}}
-  <link itemprop="url" href="{{post.shared_img}}">
   {{/if}}
 </span>

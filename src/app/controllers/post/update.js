@@ -3,7 +3,6 @@ const { Users } = require("../../repositories/users.repository");
 const cloudinary = require("../../utils/cloudinary");
 const { validationResult } = require("express-validator");
 const getTitleCase = require("../../utils/getTitileCase");
-const createSharedImg = require("../../utils/creteSharedImg");
 const del = require("del");
 const dir = "tmp";
 
@@ -56,34 +55,12 @@ module.exports = {
         );
         banner_img = bannerResult.secure_url;
         var banner_id = bannerResult.public_id;
-      } else {
-        var dataShared = await Posts.getSharedId(u_id);
-
-        if (dataShared && dataShared.shared_id) {
-          await cloudinary.uploader.destroy(dataShared.shared_id);
-        }
-        var dataBanner = await Posts.getBannerId(u_id);
-        if (dataBanner.banner_id) {
-          await cloudinary.uploader.destroy(dataBanner.banner_id);
-        }
-        var banner_img = '';
-        var banner_id = '';
-        const image = await createSharedImg(getTitleCase(titulo), imgProfile, nameProfile);
-
-        var sharedImg = await cloudinary.uploader.upload(image, {
-          quality: 60
-        });
-
-        var shared_img = sharedImg.secure_url;
-        var shared_id = sharedImg.public_id;
       }
       try {
         const success = await Posts.updatePost(
           getTitleCase(titulo),
           banner_img,
           banner_id,
-          shared_img,
-          shared_id,
           descricao,
           conteudo,
           publicado,

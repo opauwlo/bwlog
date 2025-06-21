@@ -2,7 +2,6 @@ const { Posts } = require("../../repositories/posts.repository");
 const { Users } = require("../../repositories/users.repository");
 const cloudinary = require("../../utils/cloudinary");
 const getTitleCase = require("../../utils/getTitileCase");
-const createSharedImg = require("../../utils/creteSharedImg");
 const del = require("del");
 const dir = "tmp";
 
@@ -35,17 +34,6 @@ module.exports = PostsCreateService = {
         );
         banner_img = bannerResult.secure_url;
         var banner_id = bannerResult.public_id;
-      } else {
-        const image = await createSharedImg(
-          getTitleCase(titulo),
-          imgProfile,
-          nameProfile
-        );
-        var sharedImg = await cloudinary.uploader.upload(image, {
-          quality: 60,
-        });
-        var shared_img = sharedImg.secure_url;
-        var shared_id = sharedImg.public_id;
       }
 
       try {
@@ -54,8 +42,6 @@ module.exports = PostsCreateService = {
           titulo,
           banner_img,
           banner_id,
-          shared_img,
-          shared_id,
           descricao,
           conteudo,
           publicado,
