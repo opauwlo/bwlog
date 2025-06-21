@@ -36,7 +36,7 @@
     "pg-hstore": "2.3.4",
     "seedrandom": "3.0.5",
     "sequelize": "6.15.1",
-    "skia-canvas": "0.9.29",
+    "skia-canvas": "2.0.2",
     "skia-canvas-twemoji": "0.2.0",
     "slugify": "1.6.5",
     "twemoji-parser": "14.0.0"
